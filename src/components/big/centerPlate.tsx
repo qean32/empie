@@ -1,9 +1,9 @@
 type Props = {
  
 }
-export const LeftPanel = ({}: Props) => {
+export const CenterPlate = ({}: Props) => {
     return (
-        <div className="leftpanel">
+        <div className="centerplate">
             <div className="under-color"></div>
         </div>
     );

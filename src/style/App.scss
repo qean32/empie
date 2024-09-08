@@ -1,0 +1,89 @@
+@import './custom/button.scss';
+@import './custom/loader.scss';
+@import './custom/input.scss';
+@import './import.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+body {
+  background-color: $background-color;
+}
+
+.logo {
+  transition: .7S;
+}
+
+.logo:hover {
+  cursor: pointer;
+  filter: drop-shadow(0 0 4vh #E74343);
+}
+
+header {
+  @include dftPlate;
+  @include positioncenterbyflex;
+  width: 100%;
+  height: 6vh;
+  border-radius: 0;
+  border: 0;
+}
+
+header>div {
+  @include positioncenterbyflex;
+  width: 35%;
+  height: 100%;
+  transform: translate(-4vh, 0);
+  justify-content: space-between;
+}
+
+header>div>div {
+  display: flex;
+  align-items: center;
+  gap: 2vh
+}
+
+header>div>div>div {
+  @include dftava;
+}
+
+.centerplate {
+  @include dftPlate;
+  width: 60vh;
+  height: 34vh;
+  margin: 0 0 3vh 0;
+}
+
+.leftpanel {
+  @include dftPlate;
+  width: 20vh;
+  height: 32vh;
+  margin: 1vh 0;
+}
+
+.rightpanel {
+  @include dftPlate;
+  width: 32vh;
+  height: 20vh;
+  margin: 2vh 0;
+}
+
+#root>div {
+  display: flex;
+  padding: 4vh 0 0 0;
+  align-items: start;
+  justify-content: center;
+  gap: 4vh;
+}
+
+.under-color {
+  height: 5vh;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: $background-color-l-dark;
+  border-radius: 0 0 5px 5px;
+}

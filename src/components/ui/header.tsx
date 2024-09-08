@@ -1,10 +1,13 @@
+import { EmpieLogo } from "./Logo"
+
 export const Header = () => {
     return (
         <header>
+            <span></span>
             <div>
-                <img src="" alt="" />
+                <EmpieLogo />
                 <div>
-                    <p></p>
+                    <p>username</p>
                     <div></div>
                 </div>
             </div>

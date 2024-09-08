@@ -1,0 +1,34 @@
+$main-color: #E74343;
+$green-color: green;
+$background-color: #272727;
+$background-color-l: #333333;
+$background-color-l-dark: #2b2b2b;
+$under-plite: #2F2F2F;
+$border-color: #464646;
+$ava-color: #3D3D3D;
+
+@mixin dftPlate {
+    background-color: $background-color-l;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    position: relative;
+}
+
+@mixin positioncenterbyflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin fillall {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin dftava {
+    width: 6.6vh;
+    height: 4.2vh;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: $ava-color;
+}
