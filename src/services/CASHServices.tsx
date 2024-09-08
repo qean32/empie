@@ -1,6 +1,6 @@
-import { host } from "../Functions/GiveConst"
-import RQRequestGET from "../Functions/RQRequestGET"
-import RQRequestPOST from "../Functions/RQRequestPOST"
+import { host } from "../functions/GiveConst"
+import RQRequestGET from "../functions/RQRequestGET"
+import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const CASHServices = {
     GETCashes(offset: number) {

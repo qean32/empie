@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { EmpieLogo } from "./components/ui/Logo"
+import { News } from "./pages/main/news"
+import { Techwork } from "./pages/main/techwork"
 
 type Props = {
 
@@ -8,7 +9,8 @@ export const Router = ({ }: Props) => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={<EmpieLogo />} path="/" />
+                <Route element={<News />} path="/" />
+                <Route element={<Techwork />} path="/techwork" />
 
             </Routes>
         </BrowserRouter>

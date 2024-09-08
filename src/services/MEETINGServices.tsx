@@ -1,7 +1,7 @@
-import { host } from "../Functions/GiveConst"
-import RQRequestGET from "../Functions/RQRequestGET"
-import RQRequestPATCH from "../Functions/RQRequestPATCH"
-import RQRequestPOST from "../Functions/RQRequestPOST"
+import { host } from "../functions/GiveConst"
+import RQRequestGET from "../functions/RQRequestGET"
+import RQRequestPATCH from "../functions/RQRequestPATCH"
+import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const MEETINGServices = {
     GETMeetings: (offset: number) => {

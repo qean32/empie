@@ -1,7 +1,7 @@
 type Props = {
 
 }
-export const Techwork = ({ }: Props) => {
+export const News = ({ }: Props) => {
     return (
         <div>
 

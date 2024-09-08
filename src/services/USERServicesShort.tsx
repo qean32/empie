@@ -1,5 +1,5 @@
-import { host } from "../Functions/GiveConst"
-import RQRequestGET from "../Functions/RQRequestGET"
+import { host } from "../functions/GiveConst"
+import RQRequestGET from "../functions/RQRequestGET"
 
 export const USERServices = {
     GETUsersShort(offset: number) {
