@@ -7,6 +7,7 @@ input {
     border-radius: 5px;
     border: 1px solid $border-color;
     outline: none;
+    cursor: pointer;
 }
 
 label {
@@ -15,7 +16,7 @@ label {
     padding: 0 0 0 2vh;
 }
 
-label > p {
+label>p {
     transition: .7s;
 }
 
@@ -36,4 +37,45 @@ input:focus {
     left: 1vh;
     font-size: 1.4vh;
     transition: .5s;
+}
+
+input[type=date] {
+    border: none;
+    outline: none;
+    padding: 1vh 1.8vh;
+}
+
+input[type=time] {
+    border: none;
+    outline: none;
+    padding: 1vh 1.8vh;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    background-image: url('/svg/calendar.svg');
+    cursor: pointer;
+}
+
+input[type=time]::-webkit-calendar-picker-indicator {
+    background-image: url('/svg/clock.svg');
+    cursor: pointer;
+}
+
+.clocktable {
+    margin: 0 0 0 2vh;
+    position: absolute;
+    left: 10vh;
+    cursor: pointer;
+}
+
+.clocktable>div {
+    background-color: $background-color-dark;
+    padding: 1vh 2vh;
+    height: 3vh;
+    width: 5vh;
+    transition: .4s;
+}
+
+.clocktable>div:hover {
+    background-color: $background-color-light;
 }

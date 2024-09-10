@@ -92,3 +92,7 @@ header>div>div {
 .fill {
   @include fillall;
 }
+
+.nodisplay {
+  display: none;
+}

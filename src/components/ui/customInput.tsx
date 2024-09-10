@@ -55,16 +55,22 @@ type PropsTime = {
     setValue: Function
 }
 export const InputTime = ({ value, setValue }: PropsTime) => {
-    const [notification, setNotification] = useState<string>('')
-
-    useEffect(() => {
-        console.log(value.getDay())
-        console.log(value)
-    }, [value])
+    const color = useBoolean(false)
     return (
-        <div>
-            <input type="time" name="" id="" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
-        </div>
+        <>
+            <div style={{ display: 'flex', height: '4.5vh' }}>
+                <input type="time" name="" id="time_list" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+                {color.boolean ? <div className="clocktable">
+                    <div>12:40</div>
+                    <div>18:40</div>
+                    <div>20:40</div>
+                    <div>21:20</div>
+                    <div>22:20</div>
+                    <div>23:40</div>
+                </div> :
+                    <></>}
+            </div>
+        </>
     );
 }
 
@@ -76,16 +82,29 @@ export const InputDate = ({ value, setValue }: PropsDate) => {
     const [notification, setNotification] = useState<string>('')
 
     useEffect(() => {
-        // console.log(value.getHour())
-        const zxc = moment(value, "YYYY-MM-DD")
-        console.log(
-            zxc,
-        moment(new Date, "YYYY-MM-DD")
-        )
+        console.log(value)
+        if (value) {
+            const value_: any = moment(value).format("DD.MM").split('.')
+            const now: any = moment(new Date).format("DD.MM").split('.')
+            const now_ = now[1] * 30 + Number(now[0])
+            const value__ = value_[1] * 30 + Number(value_[0])
+            const day = now[0] - value_[0]
+            const difference = now_ - value__
+            if (difference == 0) { setNotification('сегодня'); return }
+            if (difference > 0) { setNotification(`невалидная дата`); return }
+            if (difference == -1) { setNotification('завтра'); return }
+            if (difference == -2) { setNotification('послезавтра'); return }
+            if (difference < -27) { setNotification('~ через месяц'); return }
+            if (difference < -7) { setNotification('~ через неделю'); return }
+            if (difference < 0 && [3, 4].includes(-day)) { setNotification(`через ${-day} дня`); return }
+            if (difference < 0) { setNotification(`через ${-day} дней`); return }
+        }
     }, [value])
     return (
-        <div>
-            <input type="date" name="" id="" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+        <div style={{ position: 'relative' }}>
+            <input type="date" value={value}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+            <p className="inputvarning" style={{ color: 'whitesmoke' }}>{notification}</p>
         </div>
     );
 }

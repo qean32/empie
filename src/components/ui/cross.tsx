@@ -3,6 +3,6 @@ type Props = {
 }
 export const Cross = ({ }: Props) => {
     return (
-        <img src="" alt="" />
+        <img src="/svg/cross.svg" alt="" />
     );
 }
