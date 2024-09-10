@@ -59,7 +59,7 @@ export const InputTime = ({ value, setValue }: PropsTime) => {
     return (
         <>
             <div style={{ display: 'flex', height: '4.5vh' }}>
-                <input type="time" name="" id="time_list" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+                <input type="time" name="" id="time_list" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} onFocus={color.SwapFn} onBlur={color.SwapFn}/>
                 {color.boolean ? <div className="clocktable">
                     <div>12:40</div>
                     <div>18:40</div>

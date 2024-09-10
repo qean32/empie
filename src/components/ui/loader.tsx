@@ -1,12 +1,33 @@
+import { useEffect, useState } from "react";
 import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { EmpieLogo } from "./Logo";
+import useBoolean from "../../customHooks/useBoolean";
 
 export const MainLoader = () => {
+    const [points, setPoints] = useState<string>('...')
+    const up = useBoolean(false)
+
+    useEffect(() => {
+        const int = setInterval(() => {
+            if (up.boolean) { setPoints(prev => prev + '.') }
+            if (!up.boolean) { setPoints(prev => prev.slice(0, -1)) }
+            if (points == '.') { up.on(); return }
+            if (points == '..') { up.off(); return }
+        }, 500)
+
+        return () => {
+            clearInterval(int)
+        }
+    }, [points])
     return (
-        <div style={{ ...positioncenterbyabsolute, top: '35%' }}>
-            <div className="mainloader"></div>
-            <EmpieLogo size={10}/>
-        </div>
+        <>
+            <div style={{ ...positioncenterbyabsolute, top: '37%' }} className="mainloader">
+                <div className="dropswadow">
+                    <EmpieLogo size={8.6} />
+                    <p style={{ position: 'absolute', bottom: '-6vh' }}>загрузка{points}</p>
+                </div>
+            </div>
+        </>
     );
 }
 

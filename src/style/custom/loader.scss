@@ -52,10 +52,26 @@
 }
 
 .mainloader {
-    width: 20vh;
-    height: 20vh;
+    width: 14vh;
+    height: 14vh;
     border-radius: 50%;
-    padding: 0;
-    border: 2px solid $main-color;
-    position: absolute;
+    border: .7vh solid $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 1.4s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1.0) translate(-50%, -50%);
+    }
+
+    to {
+        transform: scale(1.02) translate(-50%, -50%);
+    }
+}
+
+.dropswadow > img {
+    filter: drop-shadow(0 0 4vh #E74343);
 }

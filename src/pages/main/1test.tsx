@@ -10,7 +10,8 @@ type Props = {
 }
 export const Test = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
-    const [value, setValue] = useState<any>(() => moment(new Date).format("YYYY-MM-DD"))
+    // const [value, setValue] = useState<any>(() => moment(new Date).format("YYYY-MM-DD"))
+    const [value, setValue] = useState<any>(new Date)
     return (
         <>
             <Header />
