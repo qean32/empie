@@ -8,7 +8,7 @@ export const Header = () => {
                 <EmpieLogo />
                 <div>
                     <p>username</p>
-                    <div></div>
+                    <div className="headerava"></div>
                 </div>
             </div>
         </header>

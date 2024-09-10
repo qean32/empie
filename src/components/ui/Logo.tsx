@@ -1,8 +1,8 @@
 type Props = {
- size?: number
+    size?: number
 }
-export const EmpieLogo = ({size = 40}: Props) => {
+export const EmpieLogo = ({ size = 4 }: Props) => {
     return (
-        <img src="/svg/empieLogo.svg" className="logo" alt="" style={{width: `${size}px`}} />
+        <img src="/svg/empieLogo.svg" className="logo" alt="" style={{ width: `${size}vh` }} />
     );
 }

@@ -1,27 +1,27 @@
-import { useContext } from "react";
-import { CenterPlate } from "../../components/big/centerPlate";
-import { LeftPanel } from "../../components/big/leftPanel";
-import { RightPanel } from "../../components/big/rightPanel";
+import { useContext, useState } from "react";
 import { Header } from "../../components/ui/header"
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/loader";
+import { InputDate } from "../../components/ui/customInput";
 
 type Props = {
 
 }
-export const News = ({ }: Props) => {
+export const Test = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
+    const [value, setValue] = useState<any>()
     return (
         <>
             <Header />
             {loading ? <div><MainLoader /></div> :
                 <div>
-                    <LeftPanel />
                     <div className="center">
-                        <CenterPlate />
+                        <div className="centerplate" style={{ gap: '20px' }}>
+                            <InputDate value={value} setValue={setValue}/>
+                            <div className="under-color"></div>
+                        </div>
                         {/* <CenterPlate /> */}
                     </div>
-                    <RightPanel />
                 </div>}
         </>
     );

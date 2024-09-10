@@ -1,0 +1,39 @@
+@import '../import.scss';
+
+input {
+    background-color: $background-color-dark;
+    padding: 1vh 2.2vh;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid $border-color;
+    outline: none;
+}
+
+label {
+    @include positioncenterbyflex;
+    justify-content: start;
+    padding: 0 0 0 2vh;
+}
+
+label > p {
+    transition: .7s;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+input:focus {
+    border: 1px solid $border-color;
+}
+
+// input[type=text] {}
+
+.inputvarning {
+    color: $main-color;
+    position: absolute;
+    bottom: -2vh;
+    left: 1vh;
+    font-size: 1.4vh;
+    transition: .5s;
+}

@@ -1,5 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { News } from "./pages/main/news"
+import { Context } from "./context"
+import { Test } from "./pages/main/1test"
 
 type Props = {
 
@@ -7,10 +9,13 @@ type Props = {
 export const Router = ({ }: Props) => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route element={<News />} path="/" />
+            <Context>
+                <Routes>
+                    <Route element={<News />} path="/" />
+                    <Route element={<Test />} path="/test" />
 
-            </Routes>
+                </Routes>
+            </Context>
         </BrowserRouter>
     )
 }
