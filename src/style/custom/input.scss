@@ -61,12 +61,6 @@ input[type=time]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.clocktable {
-    margin: 0 0 0 2vh;
-    position: absolute;
-    left: 10vh;
-    cursor: pointer;
-}
 
 .clocktable>div {
     background-color: $background-color-dark;
@@ -74,8 +68,55 @@ input[type=time]::-webkit-calendar-picker-indicator {
     height: 3vh;
     width: 5vh;
     transition: .4s;
+    transform: translate(-10vh, 0);
+    position: absolute;
 }
 
 .clocktable>div:hover {
     background-color: $background-color-light;
+}
+
+@mixin on-circle($item-count, $circle-size, $item-size) {
+    padding: 0;
+    position: absolute;
+    top: 4.8vh;
+    left: 10vh;
+    border-radius: 50%;
+    list-style: none;
+
+    >* {
+        display: block;
+        width: $item-size;
+        height: $item-size;
+        margin: -($item-size / 2);
+
+        $angle: (
+            360 / $item-count
+        );
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+        &:nth-of-type(#{$i}) {
+            transform:
+                rotate($rot * 1deg) translate($circle-size / 2) rotate($rot * -1deg);
+        }
+
+        $rot: $rot + $angle;
+    }
+}
+}
+
+.clocktable {
+    margin: 0 0 0 2vh;
+    position: absolute;
+    left: 10vh;
+    cursor: pointer;
+    z-index: 2;
+    transition: .7s;
+    opacity: 0;
+}
+
+.circkle {
+    @include on-circle($item-count: 16, $circle-size: 40vh, $item-size: 11vh);
+    opacity: 1;
 }

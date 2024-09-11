@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import useBoolean from "../../customHooks/useBoolean"
 import ValidateRuName from "../../functions/ValidateRuName"
 import moment from "moment"
@@ -56,20 +56,42 @@ type PropsTime = {
 }
 export const InputTime = ({ value, setValue }: PropsTime) => {
     const color = useBoolean(false)
+    const input = useBoolean(false)
+
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value)
+    }
+
+    const clickHandler = (time: string): void => {
+        setValue(time)
+        color.SwapFn()
+    }
+
+
     return (
         <>
-            <div style={{ display: 'flex', height: '4.5vh' }}>
-                <input type="time" name="" id="time_list" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} onFocus={color.SwapFn} onBlur={color.SwapFn}/>
-                {color.boolean ? <div className="clocktable">
-                    <div>12:40</div>
-                    <div>18:40</div>
-                    <div>20:40</div>
-                    <div>21:20</div>
-                    <div>22:20</div>
-                    <div>23:40</div>
-                </div> :
-                    <></>}
-            </div>
+            <div style={{ display: 'flex', height: '4.5vh', position: 'relative' }}>
+                <label htmlFor="time_list" onClick={color.SwapFn}>{value ? `${value}` : 'назначить время'} <img src="/svg/clock.svg" alt="" style={{ margin: '1.6vh' }} /></label>
+                <p onClick={() => input.SwapFn()}>точная настройка</p>
+                <input type="time" name="" id="time_list" value={value} onChange={changeHandler} style={input.boolean ? {} : { display: 'none' }} />
+                <div className={color.boolean ? 'clocktable circkle' : 'clocktable'}>
+                    <div onClick={() => clickHandler('12:40')}>12:40</div>
+                    <div onClick={() => clickHandler('16:40')}>16:40</div>
+                    <div onClick={() => clickHandler('18:40')}>18:40</div>
+                    <div onClick={() => clickHandler('19:20')}>19:20</div>
+                    <div onClick={() => clickHandler('19:40')}>19:40</div>
+                    <div onClick={() => clickHandler('20:20')}>20:20</div>
+                    <div onClick={() => clickHandler('20:40')}>20:40</div>
+                    <div onClick={() => clickHandler('21:20')}>21:20</div>
+                    <div onClick={() => clickHandler('21:40')}>21:40</div>
+                    <div onClick={() => clickHandler('22:20')}>22:20</div>
+                    <div onClick={() => clickHandler('22:40')}>22:40</div>
+                    <div onClick={() => clickHandler('23:20')}>23:20</div>
+                    <div onClick={() => clickHandler('23:40')}>23:40</div>
+                    <div onClick={() => clickHandler('00:20')}>00:20</div>
+                    <div onClick={() => clickHandler('00:40')}>00:40</div>
+                </div >
+            </div >
         </>
     );
 }
