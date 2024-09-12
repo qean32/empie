@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import useBoolean from "../../customHooks/useBoolean"
 import ValidateRuName from "../../functions/ValidateRuName"
 import moment from "moment"
+import ValidatePassword from "../../functions/ValidatePassword"
 
 type PropsText = {
     width?: number
@@ -34,18 +35,45 @@ export const InputText = ({ width, title, value, setValue }: PropsText) => {
             </label>
             <input type="text" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
-            <p className="inputvarning" style={!valide.boolean ? { opacity: '0' } : {}}>не используйте латиницу / числа</p>
+            <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не используйте латиницу / числа</p>
         </div>
     );
 }
 
 type PropsPassword = {
-
+    width?: number
+    title: string
+    value: string
+    setValue: Function
 }
-export const InputPassword = ({ }: PropsPassword) => {
+export const InputPassword = ({ width, title, value, setValue }: PropsPassword) => {
+    const valide = useBoolean(false)
+    const color = useBoolean(false)
+    const view = useBoolean(false)
+
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value)
+    }
+
+    useEffect(() => {
+        if (value != '') check()
+    }, [value])
+
+    const check = () => {
+        if (value != '') { color.on() } else { color.off() }
+        if (!ValidatePassword(value)) { valide.on() } else { valide.off() }
+    }
+
+    const id_ = Math.round(Math.random() * 1000)
     return (
-        <div style={{ position: 'relative' }}>
-            <input type="password" name="" id="" />
+        <div style={{ position: 'relative', width: '30vh' }}>
+            <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} alt="" onClick={() => view.SwapFn()} className="lockpass" />
+            <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
+            </label>
+            <input type={view.boolean ? 'text' : 'password'} name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
+                onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
+            <p className="inputwarning" style={!valide.boolean ? { opacity: '0', bottom: '-2.6vh' } : { bottom: '-2.6vh' }}> используйте латиницу и цифры. минимальная длина - 6</p>
         </div>
     );
 }
@@ -67,13 +95,15 @@ export const InputTime = ({ value, setValue }: PropsTime) => {
         color.SwapFn()
     }
 
-
+    const id_ = Math.round(Math.random() * 1000)
     return (
         <>
-            <div style={{ display: 'flex', height: '4.5vh', position: 'relative' }}>
-                <label htmlFor="time_list" onClick={color.SwapFn}>{value ? `${value}` : 'назначить время'} <img src="/svg/clock.svg" alt="" style={{ margin: '1.6vh' }} /></label>
-                <p onClick={() => input.SwapFn()}>точная настройка</p>
-                <input type="time" name="" id="time_list" value={value} onChange={changeHandler} style={input.boolean ? {} : { display: 'none' }} />
+            <div style={{ display: 'flex', height: '4.5vh', position: 'relative', flexDirection: 'column' }}>
+                <label htmlFor={`${id_}`} onClick={color.SwapFn}>{value ? `${value}` : 'назначить время'} <img src="/svg/clock.svg" alt="" style={{ margin: '1.6vh' }} /></label>
+                <p onClick={() => input.SwapFn()} className="inputwarning" style={{ margin: '0 0 0 2vh' }}>точная настройка</p>
+                <div>
+                    <input type="time" name="" id={`${id_}`} value={value} onChange={changeHandler} style={input.boolean ? {} : { display: 'none' }} className="timeinput" />
+                </div>
                 <div className={color.boolean ? 'clocktable circkle' : 'clocktable'}>
                     <div onClick={() => clickHandler('12:40')}>12:40</div>
                     <div onClick={() => clickHandler('16:40')}>16:40</div>
@@ -126,30 +156,63 @@ export const InputDate = ({ value, setValue }: PropsDate) => {
         <div style={{ position: 'relative' }}>
             <input type="date" value={value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
-            <p className="inputvarning" style={{ color: 'whitesmoke' }}>{notification}</p>
+            <p className="inputwarning" style={{ color: 'whitesmoke' }}>{notification}</p>
         </div>
     );
 }
 
 
 type PropsNumber = {
-
+    width?: number
+    title: string
+    value: number
+    setValue: Function
+    max: number
+    min: number
 }
-export const InputNumber = ({ }: PropsNumber) => {
+export const InputNumber = ({ width = 10, title, value, setValue, min, max }: PropsNumber) => {
+    const valide = useBoolean(false)
+    const color = useBoolean(false)
+
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value)
+    }
+
+    useEffect(() => {
+        if (value != null) check()
+    }, [value])
+
+    const check = () => {
+        if (value > max) { valide.on(); setValue(max) }
+        else if (value < max) { valide.on(); setValue(min) }
+    }
+
+    const id_ = Math.round(Math.random() * 1000)
     return (
-        <div>
-            <input type="number" name="" id="" />
+        <div style={{ position: 'relative' }}>
+            <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
+            </label>
+            <input type="number" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
+                onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
+            <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>минимальное значение - {min} максимальное - {max}</p>
         </div>
     );
 }
 
 type PropsCheckbox = {
-
+    value: boolean
+    setValue: Function
+    title: string
 }
-export const Checkbox = ({ }: PropsCheckbox) => {
+export const Checkbox = ({ title, setValue, value }: PropsCheckbox) => {
+    const changeHandler = () => {
+        setValue((prev: boolean) => !prev)
+    }
     return (
-        <div>
-            <input type="checkbox" name="" id="" />
+        <div onClick={changeHandler} style={{ cursor: 'pointer' }}>
+            <p style={{ position: 'relative' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
+                <img src="/svg/accept.svg" alt="" style={value ? { opacity: '1' } : { opacity: '0' }} className="transition03 checkbox_" /></p>
         </div>
     );
 }
