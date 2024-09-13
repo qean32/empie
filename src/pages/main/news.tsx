@@ -18,7 +18,6 @@ export const News = ({ }: Props) => {
                 <div>
                     <LeftPanel />
                     <div className="center">
-                        <CenterPlate />
                         {/* <CenterPlate /> */}
                     </div>
                     <RightPanel />

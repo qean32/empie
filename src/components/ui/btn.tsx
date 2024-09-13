@@ -9,11 +9,11 @@ export const CustomButton = ({ title, function_ }: Props) => {
     const color = useBoolean(false)
     const fn = () => {
         color.SwapFn()
-        function_()
 
         setTimeout(() => {
             color.SwapFn()
-        }, 1000);
+            function_()
+        }, 700);
     }
     return (
         <button className="btngreen" onClick={fn}>
@@ -31,11 +31,11 @@ export const CustomButtonDisabled = ({ title, function_ }: Props_) => {
     const color = useBoolean(false)
     const fn = () => {
         color.SwapFn()
-        function_()
 
         setTimeout(() => {
             color.SwapFn()
-        }, 1000);
+            function_()
+        }, 700);
     }
     return (
         <button onClick={fn}>

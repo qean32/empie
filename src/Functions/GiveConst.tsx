@@ -5,7 +5,7 @@ export const techwork: boolean = false
 
 export enum colors {
     maincolor = '#E74343',
-    greencolor = 'asd',
+    greencolor = '#0d9e0d',
     backgroundcolor = ''
 }
 
@@ -15,7 +15,7 @@ export enum direction {
     dota = 'dota'
 }
 
-export const positioncenterbyabsolute:  React.CSSProperties = {
+export const positioncenterbyabsolute: React.CSSProperties = {
     position: 'absolute',
     top: '50%',
     left: '50%',
