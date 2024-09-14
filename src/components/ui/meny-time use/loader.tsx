@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { positioncenterbyabsolute } from "../../functions/GiveConst";
+import { positioncenterbyabsolute } from "../../../functions/GiveConst";
 import { EmpieLogo } from "./Logo";
-import useBoolean from "../../customHooks/useBoolean";
+import useBoolean from "../../../customHooks/useBoolean";
 
 export const MainLoader = () => {
     const [points, setPoints] = useState<string>('...')

@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { CenterPlate } from "../../components/big/centerPlate";
+import { CenterPlate } from "../../components/big/plates/centerPlate";
 import { LeftPanel } from "../../components/big/leftPanel";
 import { RightPanel } from "../../components/big/rightPanel";
-import { Header } from "../../components/ui/header"
+import { Header } from "../../components/ui/meny-time use/header"
 import { SomeContext } from "../../context";
-import { MainLoader } from "../../components/ui/loader";
+import { MainLoader } from "../../components/ui/meny-time use/loader";
 
 type Props = {
 

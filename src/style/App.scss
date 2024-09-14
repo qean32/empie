@@ -38,7 +38,7 @@ header>div {
   @include positioncenterbyflex;
   width: 35%;
   height: 100%;
-  transform: translate(-4vh, 0);
+  transform: translate(-5vh, 0);
   justify-content: space-between;
 }
 
@@ -61,16 +61,16 @@ header>div>div {
 
 .leftpanel {
   @include dftPlate;
-  width: 20vh;
-  height: 32vh;
+  width: 22vh;
+  padding: 1vh 0;
   margin: 0.5vh 0;
 }
 
 .rightpanel {
   @include dftPlate;
   width: 34vh;
-  height: 22vh;
   margin: 1vh 0;
+  padding: 2vh 0;
 }
 
 .main {
@@ -86,7 +86,7 @@ header>div>div {
   width: 100%;
   position: absolute;
   bottom: 0;
-  z-index: 0;
+  z-index: -1;
   background-color: $background-color-dark;
   border-radius: 0 0 8px 8px;
 }
@@ -110,4 +110,65 @@ header>div>div {
 .center {
   display: flex;
   flex-direction: column;
+}
+
+.onlineindicator {
+  height: 1.6vh;
+  width: 1.6vh;
+  background-color: $background-color-light-l;
+  display: flex;
+  border-radius: 50%;
+}
+
+.leftpanel>div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 4vh;
+  padding: 0 0 0 2vh;
+  cursor: pointer;
+}
+
+
+.leftpanel>div>p {
+  transition: .7s;
+}
+
+
+.leftpanel>div:hover>p {
+  transform: translateX(1vh);
+}
+
+.leftpanel>div>img {
+  margin: 0 2vh 0 0;
+}
+
+.leftpanel>section {
+  padding: 3.2vh 0 0 0;
+}
+
+.leftpanel>section>div>p {
+  font-size: 11px;
+  margin: 2px 5px;
+  cursor: pointer;
+}
+
+
+.leftpanel>section>div {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0 0 0 2vh;
+}
+
+.rightpanel > div {
+  padding: 0 3vh;
+  width: 100%;
+  height: 3vh;
+  transition: .7s;
+  cursor: pointer;
+}
+
+.rightpanel > div:hover {
+  transform: translateX(1vh);
 }

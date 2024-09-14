@@ -1,7 +1,7 @@
-const Shadaow = ({ }: {}) => {
+const Shadow = ({ }: {}) => {
     return (
         <div className="shadow"></div>
     );
 }
 
-export default Shadaow;
+export default Shadow;

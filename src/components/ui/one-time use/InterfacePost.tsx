@@ -13,7 +13,6 @@ export const InputComent = ({ value, setValue, title, width = 40 }: Props) => {
     }
 
 
-
     return (
         <div style={{ width: `${width}vh`, position: 'relative' }}>
             <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} style={{ width: `${width}vh` }} />
@@ -21,3 +20,7 @@ export const InputComent = ({ value, setValue, title, width = 40 }: Props) => {
         </div>
     );
 }
+
+// like
+
+// coment

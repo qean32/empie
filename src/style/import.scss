@@ -11,6 +11,7 @@ $border-color: #303030;
     border: 1px solid $border-color;
     border-radius: 8px;
     position: relative;
+    z-index: 1;
 }
 
 @mixin positioncenterbyflex {
@@ -26,8 +27,8 @@ $border-color: #303030;
 }
 
 @mixin dftava {
-    width: 6.6vh;
-    height: 4.2vh;
+    width: 6vh;
+    height: 4vh;
     cursor: pointer;
     border-radius: 4px;
     background-color: $background-color-dark;

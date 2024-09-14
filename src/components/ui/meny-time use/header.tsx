@@ -1,9 +1,10 @@
 import { EmpieLogo } from "./Logo"
+import OnlineHandler from "../one-time use/onlineHandler";
 
 export const Header = () => {
     return (
         <header>
-            <span></span>
+            <span style={{position: 'absolute', right: '20vh'}}><OnlineHandler /></span>
             <div>
                 <EmpieLogo />
                 <div>

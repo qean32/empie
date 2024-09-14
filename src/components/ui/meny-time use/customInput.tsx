@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react"
-import useBoolean from "../../customHooks/useBoolean"
-import ValidateRuName from "../../functions/ValidateRuName"
+import useBoolean from "../../../customHooks/useBoolean"
+import ValidateRuName from "../../../functions/ValidateRuName"
 import moment from "moment"
-import ValidatePassword from "../../functions/ValidatePassword"
-import ValidateEmail from "../../functions/ValidateEmail"
+import ValidatePassword from "../../../functions/ValidatePassword"
+import ValidateEmail from "../../../functions/ValidateEmail"
 
 type PropsText = {
     width?: number
@@ -259,6 +259,27 @@ export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
             <div style={{ transform: 'translate(22vh, -1vh)' }}>
                 <p className="inputwarning" style={value.length > 40 ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/40 </p>
             </div>
+        </div>
+    );
+}
+
+type PropsSearch = {
+    value: string
+    setValue: Function
+    width?: number
+    title: string
+}
+export const Search = ({ value, setValue, title, width = 40 }: PropsSearch) => {
+
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value)
+    }
+
+
+    return (
+        <div style={{ width: `${width}vh`, position: 'relative' }}>
+            <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} style={{ width: `${width}vh` }} />
+            <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '1.2vh', right: '-3.1vh' }} />
         </div>
     );
 }
