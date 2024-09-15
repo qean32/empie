@@ -12,3 +12,15 @@ export const CenterPlate = ({ children }: Props) => {
         </div>
     );
 }
+
+type Props_ = {
+    children: any
+}
+export const SmallCenterPlate = ({ children }: Props_) => {
+
+    return (
+        <div className="smallcenterplate">
+            {children}
+        </div>
+    );
+}
