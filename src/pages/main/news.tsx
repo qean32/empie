@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { CenterPlate } from "../../components/big/plates/centerPlate";
-import { LeftPanel } from "../../components/big/leftPanel";
-import { RightPanel } from "../../components/big/rightPanel";
+import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { LeftPanel } from "../../components/hoc/leftPanel";
+import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header"
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
@@ -20,7 +20,6 @@ export const News = ({ }: Props) => {
                     <div className="center">
                         {/* <CenterPlate /> */}
                     </div>
-                    <RightPanel />
                 </div>}
         </>
     );

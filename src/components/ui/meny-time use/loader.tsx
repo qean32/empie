@@ -24,8 +24,8 @@ export const MainLoader = () => {
             <div style={{ ...positioncenterbyabsolute, top: '37%' }} className="mainloader">
                 <div className="dropswadow">
                     <EmpieLogo size={8.6} />
-                    <p style={{ position: 'absolute', bottom: '-45px', left: '3px' }}>загрузка{points}</p>
                 </div>
+                <p style={{ position: 'absolute', bottom: '-65px', width: '85px' }}>загрузка{points}</p>
             </div>
         </>
     );

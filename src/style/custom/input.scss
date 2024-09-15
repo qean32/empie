@@ -122,8 +122,8 @@ input[type=time]::-webkit-calendar-picker-indicator {
 }
 
 .circkle {
-    @include on-circle($item-count: 16, $circle-size: 280px, $item-size: 11vh);
     opacity: 1;
+    @include on-circle($item-count: 16, $circle-size: 280px, $item-size: 11vh);
 }
 
 .timeinput {

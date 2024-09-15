@@ -21,3 +21,10 @@ export const positioncenterbyabsolute: React.CSSProperties = {
     left: '50%',
     transform: 'translate(-50%, -50%)'
 }
+
+export const positioncenterbyflex: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+}

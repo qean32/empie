@@ -2,15 +2,18 @@ import { useCallback, useContext, useState } from "react";
 import { Header } from "../../components/ui/meny-time use/header"
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { CenterPlate, SmallCenterPlate } from "../../components/big/plates/centerPlate";
-import { LeftPanel } from "../../components/big/leftPanel";
-import { RightPanel } from "../../components/big/rightPanel";
-import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/rightPanel";
-import { Button } from "../../components/ui/meny-time use/customButton";
-import { InputComent } from "../../components/ui/one-time use/InterfacePost";
+import { CenterPlate, SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
+import { LeftPanel } from "../../components/hoc/leftPanel";
+import { RightPanel } from "../../components/hoc/rightPanel";
+import { RightPanelChildren } from "../../childrens/rightPanel";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { Modal } from "../../components/ui/meny-time use/modal";
-import { InputDate, InputTime } from "../../components/ui/meny-time use/customInput";
+import { TopTeamChild } from "../../childrens/topTeam";
+import { StreamChild } from "../../childrens/stream";
+import { RightTransferChild } from "../../childrens/rightTransfer";
+import { TournamentChild } from "../../childrens/tournament";
+import { MeetingChild } from "../../childrens/meeting";
+import { InlineTeam, InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 
 type Props = {
 
@@ -28,33 +31,16 @@ export const Test = ({ }: Props) => {
                 <div className="main">
                     <LeftPanel />
                     <div className="center">
-                        <CenterPlate>
-                            <div className="user-conteiner">
-                                <div><div className="ava"></div><p>username</p></div>
-                                {/* in component this div */}
-                                <span>
-                                    <img src="" alt="" />
-                                    <img src="" alt="" />
-                                    <img src="" alt="" />
-                                </span>
-                            </div>
-                        </CenterPlate>
-                        <SmallCenterPlate>
-                            <div>
-                                <div className="teamvstam">
-                                    <p>zxcclown</p> <div><p>2:40</p><img src="" alt="" /></div><p>RAKUZAN</p>
-                                </div>
-                                <div className="aboutmeet">
-                                    <p>04.04.24 квалификация</p>
-                                    <p>b03</p>
-                                </div>
-                            </div>
-                        </SmallCenterPlate>
+                        <CenterPlate><InlineUser /></CenterPlate>
+                        <CenterPlate><InlineTeam /></CenterPlate>
+                        <SmallCenterPlate><MeetingChild /></SmallCenterPlate>
+                        <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                     </div>
                     <div>
-                        <RightPanel>
-                            <RightPanelChildren />
-                        </RightPanel>
+                        <RightPanel><RightPanelChildren /></RightPanel>
+                        <RightPanel><RightTransferChild /></RightPanel>
+                        <RightPanel><TopTeamChild /></RightPanel>
+                        <RightPanel><StreamChild /></RightPanel>
                     </div>
                 </div>}
         </>
