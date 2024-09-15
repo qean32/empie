@@ -33,9 +33,9 @@ input:focus {
 .inputwarning {
     color: $main-color;
     position: absolute;
-    bottom: -2vh;
+    bottom: -20px;
     left: 1vh;
-    font-size: 1.4vh;
+    font-size: 10px;
     transition: .5s;
     cursor: pointer;
     white-space: nowrap;
@@ -66,9 +66,11 @@ input[type=time]::-webkit-calendar-picker-indicator {
 
 .clocktable>div {
     background-color: $background-color-dark;
-    padding: 1vh 2vh;
+    padding: 10px 30px;
     height: 3vh;
     width: 5vh;
+    min-height: 20px;
+    min-width: 40px;
     transition: .4s;
     border-radius: 5px;
     transform: translate(-10vh, 0);
@@ -114,13 +116,13 @@ input[type=time]::-webkit-calendar-picker-indicator {
     position: absolute;
     left: 10vh;
     cursor: pointer;
-    z-index: 2;
+    z-index: 12;
     transition: .7s;
     opacity: 0;
 }
 
 .circkle {
-    @include on-circle($item-count: 16, $circle-size: 40vh, $item-size: 11vh);
+    @include on-circle($item-count: 16, $circle-size: 280px, $item-size: 11vh);
     opacity: 1;
 }
 

@@ -14,7 +14,7 @@ export const LeftPanel = ({ }: Props) => {
                 <div><p>разработчикам</p><p>блог</p></div>
                 <div> <p>еще</p><p>помощь</p></div>
             </section>
-            <span className="under-color"></span>
+            <span className="under-color" style={{minHeight: '48px'}}></span>
         </div>
     );
 }

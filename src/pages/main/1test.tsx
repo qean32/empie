@@ -10,6 +10,7 @@ import { Button } from "../../components/ui/meny-time use/customButton";
 import { InputComent } from "../../components/ui/one-time use/InterfacePost";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { Modal } from "../../components/ui/meny-time use/modal";
+import { InputDate, InputTime } from "../../components/ui/meny-time use/customInput";
 
 type Props = {
 
@@ -35,9 +36,9 @@ export const Test = ({ }: Props) => {
                         </CenterPlate>
                     </div>
                     <div>
-                    <RightPanel>
-                        <RightPanelChildren />
-                    </RightPanel>
+                        <RightPanel>
+                            <RightPanelChildren />
+                        </RightPanel>
                     </div>
                 </div>}
         </>

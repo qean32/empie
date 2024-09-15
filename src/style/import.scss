@@ -29,6 +29,8 @@ $border-color: #303030;
 @mixin dftava {
     width: 6vh;
     height: 4vh;
+    min-height: 32px;
+    min-width: 48px;
     cursor: pointer;
     border-radius: 4px;
     background-color: $background-color-dark;
