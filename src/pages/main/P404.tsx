@@ -14,11 +14,11 @@ export const P404 = ({ }: Props) => {
             <div className="main">
                 <div style={{ ...positioncenterbyabsolute }}>
                     <CenterPlate>
-                        <div className="techwork" style={{ height: '380px' }}>
+                        <div className="coniensmallwindow" style={{ height: '380px' }}>
                             <Repair />
                             <p>страница не найдена</p>
                             <div>
-                                <Button title="на придыдущую" />
+                                <Button title="назад" />
                                 <Button title="на главную" />
                             </div>
                         </div>

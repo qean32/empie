@@ -22,18 +22,22 @@
     margin: 0 2vh 0 0;
 }
 
-.leftpanel>section {
-    padding: 3vh 0 0 0;
+.leftpanel > article {
+    margin: 2vh 0 0 0;
 }
 
-.leftpanel>section>div>p {
+.under-color>section {
+    padding: 1vh 0 0 0;
+}
+
+.under-color>section>div>p {
     font-size: 11px;
     margin: 2px 5px;
     cursor: pointer;
 }
 
 
-.leftpanel>section>div {
+.under-color>section>div {
     display: flex;
     justify-content: start;
     align-items: center;

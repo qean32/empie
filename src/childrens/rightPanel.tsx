@@ -23,7 +23,7 @@ export const RightPanelDirectionChildren = ({ }: Props_) => {
             <div>новости</div>
             <div>игроки</div>
             <div>команды</div>
-            <div>протоколы</div>
+            {/* <div>протоколы</div> */}
         </>
     );
 }

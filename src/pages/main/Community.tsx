@@ -34,7 +34,7 @@ export const Community = ({ }: Props) => {
                     <div className="center">
                         <CenterPlate>
                             <div style={{ padding: '20px' }}>
-                                <Search value={search} setValue={setSearch} title="найти человека" width={60} />
+                                <Search value={search} setValue={setSearch} title="найти человека" width={45} />
                             </div>
                             <InlineUser />
                             <InlineUser />

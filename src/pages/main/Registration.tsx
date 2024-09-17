@@ -18,7 +18,6 @@ export const Registration = ({ }: Props) => {
                     <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
                         <CenterPlate>
                             <div className="techwork">
-
                             </div>
                         </CenterPlate>
                     </div>

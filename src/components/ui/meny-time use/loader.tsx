@@ -13,7 +13,7 @@ export const MainLoader = () => {
             if (!up.boolean) { setPoints(prev => prev.slice(0, -1)) }
             if (points == '.') { up.on(); return }
             if (points == '..') { up.off(); return }
-        }, 500)
+        }, 200)
 
         return () => {
             clearInterval(int)

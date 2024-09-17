@@ -1,15 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { News } from "./pages/main/News"
+import { News } from "./pages/main/news"
 import { Context } from "./context"
 import { Test } from "./pages/main/1Test"
-import { Community } from "./pages/main/Community"
-import { Transfers } from "./pages/main/Transfers"
-import { Meetings } from "./pages/direction/Meetings"
-import { Tournaments } from "./pages/direction/Tournaments"
-import { Teams } from "./pages/direction/Teams"
-import { P404 } from "./pages/main/P404"
-import { Registration, Registretion } from "./pages/main/Registration"
-import { Music } from "./pages/main/Music"
+import { Community } from "./pages/main/community"
+import { Transfers } from "./pages/main/transfers"
+import { Meetings } from "./pages/direction/meetings"
+import { Tournaments } from "./pages/direction/tournaments"
+import { Teams } from "./pages/direction/teams"
+import { P404 } from "./pages/main/p404"
+import { Registration } from "./pages/main/registration"
+import { Music } from "./pages/main/music"
+import { Profile } from "./pages/main/profile"
 
 type Props = {
 
@@ -22,7 +23,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<Test />} path="/test" />
                     <Route element={<News direction={false} />} path="/" />
                     <Route element={<Registration />} path="/registration" />
-                    <Route element={<></>} path="/profile/:id" />
+                    <Route element={<Profile />} path="/profile/:id" />
                     <Route element={<></>} path="/wall" />
 
                     <Route element={<Community />} path="/community" />

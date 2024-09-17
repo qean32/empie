@@ -20,7 +20,7 @@ export const Techwork = ({ }: Props) => {
                     <>
                         <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
                             <CenterPlate>
-                                <div className="techwork">
+                                <div className="coniensmallwindow">
                                     <Repair />
                                     <p>ведутся работы</p>
                                 </div>

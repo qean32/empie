@@ -10,11 +10,12 @@ export const LeftPanel = ({ }: Props) => {
             <div><img src="/svg/community.svg" alt="" /><p>сообщество</p></div>
             <div><img src="/svg/dragon.svg" alt="" /><p>направления</p></div>
             <div><img src="/svg/cash.svg" alt="" /><p>расходы</p></div>
-            <section>
-                <div><p>разработчикам</p><p>блог</p></div>
-                <div> <p>еще</p><p>помощь</p></div>
-            </section>
-            <span className="under-color" style={{minHeight: '48px'}}></span>
+            <article className="under-color" style={{ minHeight: '48px' }}>
+                <section>
+                    <div><p>разработчикам</p><p>блог</p></div>
+                    <div> <p>еще</p><p>помощь</p></div>
+                </section>
+            </article>
         </div>
     );
 }

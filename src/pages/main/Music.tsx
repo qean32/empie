@@ -5,6 +5,7 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import Repair from "../../components/ui/meny-time use/repair";
 import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { SomeContext } from "../../context";
+import { Button } from "../../components/ui/meny-time use/customButton";
 
 type Props = {
 
@@ -18,9 +19,10 @@ export const Music = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
                         <CenterPlate>
-                            <div className="techwork">
+                            <div className="coniensmallwindow">
                                 <Repair />
                                 <p>раздел в разработке</p>
+                                <Button title="назад" />
                             </div>
                         </CenterPlate>
                     </div>

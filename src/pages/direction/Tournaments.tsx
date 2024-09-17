@@ -31,7 +31,12 @@ export const Tournaments = ({ }: Props) => {
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                         </div>
-                        <RightPanel><RightPanelDirectionChildren /></RightPanel>
+                        <div>
+                            <RightPanel><RightPanelDirectionChildren /></RightPanel>
+                            <RightPanel><RightPanelDirectionChildren /></RightPanel>
+                            <RightPanel><RightPanelDirectionChildren /></RightPanel>
+                            <RightPanel><RightPanelDirectionChildren /></RightPanel>
+                        </div>
                     </>
                 }
             </div>

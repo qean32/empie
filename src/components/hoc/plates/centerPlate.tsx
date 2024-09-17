@@ -6,7 +6,7 @@ export const CenterPlate = ({ children }: Props) => {
     return (
         <div className="centerplate">
             {children}
-            <div className="under-color"></div>
+            <article className="under-color"></article>
         </div>
     );
 }
