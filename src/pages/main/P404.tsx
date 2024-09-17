@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { CenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Button } from "../../components/ui/meny-time use/customButton";
 import { Header } from "../../components/ui/meny-time use/header";
@@ -8,6 +9,7 @@ type Props = {
 
 }
 export const P404 = ({ }: Props) => {
+    const navigate = useNavigate()
     return (
         <>
             <Header />
@@ -18,8 +20,8 @@ export const P404 = ({ }: Props) => {
                             <Repair />
                             <p>страница не найдена</p>
                             <div>
-                                <Button title="назад" />
-                                <Button title="на главную" />
+                                <Button title="назад" function_={() => navigate(-1)}/>
+                                <Button title="на главную" function_={() => navigate('/')}/>
                             </div>
                         </div>
                     </CenterPlate>

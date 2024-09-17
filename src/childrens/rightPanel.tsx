@@ -1,13 +1,15 @@
 type Props = {
-
+    fn1: Function
+    fn2: Function
+    fn3: Function
 }
-export const RightPanelChildren = ({ }: Props) => {
+export const RightPanelChildren = ({ fn1, fn2, fn3 }: Props) => {
     return (
         <>
-            <div>турниры</div>
+            <div onClick={() => fn1()}>турниры</div>
             <div>игроки</div>
-            <div>команды</div>
-            <div>матчи</div>
+            <div onClick={() => fn2()}>команды</div>
+            <div onClick={() => fn3()}>матчи</div>
         </>
     );
 }

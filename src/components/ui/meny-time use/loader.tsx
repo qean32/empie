@@ -4,7 +4,7 @@ import { EmpieLogo } from "./Logo";
 import useBoolean from "../../../customHooks/useBoolean";
 
 export const MainLoader = () => {
-    const [points, setPoints] = useState<string>('...')
+    const [points, setPoints] = useState<string>('.')
     const up = useBoolean(false)
 
     useEffect(() => {

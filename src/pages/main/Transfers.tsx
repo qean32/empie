@@ -6,7 +6,6 @@ import { CenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
-import useBoolean from "../../customHooks/useBoolean";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 
@@ -14,8 +13,7 @@ type Props = {
 
 }
 export const Transfers = ({ }: Props) => {
-    const modal = useBoolean(false)
-    const { loading } = useContext<any>(SomeContext)
+    const { loading, modal } = useContext<any>(SomeContext)
 
     return (
         <>
@@ -24,7 +22,7 @@ export const Transfers = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <LeftPanel />
+                        <LeftPanel function_={modal.SwapFn} />
                         <div className="center">
                             <CenterPlate>
                                 <div className="transfers">

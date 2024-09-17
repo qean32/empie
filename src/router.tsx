@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { News } from "./pages/main/news"
 import { Context } from "./context"
-import { Test } from "./pages/main/1Test"
+import { Test } from "./pages/main/1test"
 import { Community } from "./pages/main/community"
 import { Transfers } from "./pages/main/transfers"
 import { Meetings } from "./pages/direction/meetings"
@@ -39,7 +39,9 @@ export const Router = ({ }: Props) => {
 
                     <Route element={<></>} path="/offers" />
 
-                    <Route element={<News direction={false} />} path="/" />
+                    <Route element={<News direction={false} />} path="/dota" />
+                    <Route element={<News direction={false} />} path="/cs" />
+                    <Route element={<News direction={false} />} path="/bascketball" />
                     <Route element={<></>} path="/tournament/:id" />
                     <Route element={<></>} path="/meeting/:id" />
                     <Route element={<></>} path="/team/:id" />

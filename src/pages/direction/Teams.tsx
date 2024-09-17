@@ -7,7 +7,6 @@ import { RightPanel } from "../../components/hoc/rightPanel";
 import { Search } from "../../components/ui/meny-time use/customInput";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
-import useBoolean from "../../customHooks/useBoolean";
 import useDebounce from "../../customHooks/useDebounce";
 import { InlineTeam } from "../../components/ui/meny-time use/inlinePrezentation";
 import { SomeContext } from "../../context";
@@ -16,10 +15,9 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 type Props = {
 }
 export const Teams = ({ }: Props) => {
-    const modal = useBoolean(false)
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
-    const { loading } = useContext<any>(SomeContext)
+    const { loading, modal } = useContext<any>(SomeContext)
 
     useEffect(() => {
 
@@ -31,7 +29,7 @@ export const Teams = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <LeftPanel />
+                        <LeftPanel function_={modal.SwapFn} />
                         <div className="center">
                             <CenterPlate>
                                 <div style={{ padding: '20px' }}>

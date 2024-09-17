@@ -58,10 +58,10 @@ header>div>div {
 
 .centerplate {
   @include dftPlate;
-  width: 60vh;
+  width: 62vh;
   margin: 0 0 40px 0;
   min-width: 440px;
-  min-height: 200px;
+  min-height: 220px;
 
   display: flex;
   align-items: center;
@@ -217,6 +217,5 @@ header>div>div {
 
 .aboutcareer > div > img {
   height: 50px;
-  width: 50px;
-  background-color: black;
+  width: 70px;
 }
