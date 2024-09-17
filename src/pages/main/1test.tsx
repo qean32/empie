@@ -14,6 +14,7 @@ import { RightTransferChild } from "../../childrens/rightTransfer";
 import { TournamentChild } from "../../childrens/tournament";
 import { MeetingChild } from "../../childrens/meeting";
 import { InlineTeam, InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
+import { MoveonGridChild } from "../../childrens/moveongrid";
 
 type Props = {
 
@@ -41,6 +42,7 @@ export const Test = ({ }: Props) => {
                         <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
+                        <RightPanel><MoveonGridChild /></RightPanel>
                     </div>
                 </div>}
         </>

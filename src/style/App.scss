@@ -134,3 +134,20 @@ header>div>div {
   display: flex;
   border-radius: 50%;
 }
+
+
+.gridpoint{
+  background-color: rgb(53, 53, 53);
+  width: 200px;
+  padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 5px;
+}
+
+.gridpoint > div{
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}

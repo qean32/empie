@@ -6,9 +6,9 @@ export const LeftPanel = ({ }: Props) => {
         <div className="leftpanel">
             <div><img src="/svg/news.svg" alt="" /><p>новости</p></div>
             <div><img src="/svg/music.svg" alt="" /><p>музыка</p></div>
-            <div><img src="/svg/dragon.svg" alt="" /><p>направления</p></div>
-            <div><img src="/svg/community.svg" alt="" /><p>сообщество</p></div>
             <div><img src="/svg/chat.svg" alt="" /><p>чат</p></div>
+            <div><img src="/svg/community.svg" alt="" /><p>сообщество</p></div>
+            <div><img src="/svg/dragon.svg" alt="" /><p>направления</p></div>
             <div><img src="/svg/cash.svg" alt="" /><p>расходы</p></div>
             <section>
                 <div><p>разработчикам</p><p>блог</p></div>
