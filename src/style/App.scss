@@ -75,6 +75,24 @@ header>div>div {
   min-width: 440px;
 }
 
+
+.smallcenterplate:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+.centerplate:hover {
+  transform: translateY(-3px);
+}
+
+.leftpanel:hover {
+  transform: translateY(-3px);
+}
+
+.rightpanel:hover {
+  transform: translateY(-3px);
+}
+
 .smallcenterplate>div {
   padding: 20px 30px;
 }
@@ -167,9 +185,9 @@ header>div>div {
 .coniensmallwindow {
   @include positioncenterbyflex;
   flex-direction: column;
-  padding: 20px;
   gap: 20px;
   min-height: 200px;
+  margin: 20px;
 }
 
 .background {

@@ -15,7 +15,7 @@
 
 
 .leftpanel>div:hover>p {
-    transform: translateX(1vh);
+    transform: translateX(7px);
 }
 
 .leftpanel>div>img {
@@ -23,7 +23,7 @@
 }
 
 .leftpanel>article {
-    margin: 2vh 0 0 0;
+    margin: 1vh 0 0 0;
 }
 
 .under-color>section {
@@ -54,14 +54,20 @@
 }
 
 .rightpanellink:hover {
-    transform: translateX(1vh);
+    transform: translateX(7px);
 }
 
 .inline-conteiner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: .3s;
     padding: 10px 20px;
+}
+
+.inline-conteiner:hover {
+    background-color: rgb(61, 61, 61);
+    cursor: pointer;
 }
 
 .inline-conteiner>div {
@@ -126,6 +132,15 @@
     align-items: center;
     justify-content: start;
     gap: 10px;
+    transition: .7s;
+}
+
+.topteam>div>div {
+    transition: .7s;
+}
+
+.topteam>div>div:hover {
+    transform: translateY(-5px);
 }
 
 .topteam>div>div {

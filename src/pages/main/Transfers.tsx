@@ -8,6 +8,7 @@ import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
+import useBoolean from "../../customHooks/useBoolean";
 
 type Props = {
 
@@ -15,9 +16,16 @@ type Props = {
 export const Transfers = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
+    const modaltournaments = useBoolean(false)
+    const modalmeetings = useBoolean(false)
+    const modalteams = useBoolean(false)
+
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
+            {modalteams.boolean && <Modal function_={modalteams.off}><ModalDirectionChildren function_={modalteams.off} link="teams" /></Modal>}
+            {modalmeetings.boolean && <Modal function_={modalmeetings.off}><ModalDirectionChildren function_={modalmeetings.off} link="meetings" /></Modal>}
+            {modaltournaments.boolean && <Modal function_={modaltournaments.off}><ModalDirectionChildren function_={modaltournaments.off} link="tournaments" /></Modal>}
             <Header />
             <div className="main">
                 {loading ? <MainLoader /> :
@@ -36,7 +44,7 @@ export const Transfers = ({ }: Props) => {
                                 </div>
                             </SmallCenterPlate>
                         </div>
-                        <RightPanel><RightPanelChildren fn1={() => undefined} fn2={() => undefined} fn3={() => undefined} /></RightPanel>
+                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn2={modalmeetings.on} fn3={modalmeetings.on} /></RightPanel>
                     </>
                 }
             </div>

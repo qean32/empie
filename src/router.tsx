@@ -34,7 +34,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<></>} path="/chat" />
                     <Route element={<></>} path="/cash" />
 
-                    <Route element={<Meetings />} path="/meeting/:iddirection" />
+                    <Route element={<Meetings />} path="/meetings/:iddirection" />
                     <Route element={<Tournaments />} path="/tournaments/:iddirection" />
                     <Route element={<Teams />} path="/teams/:iddirection" />
 

@@ -29,6 +29,7 @@ export const Test = ({ }: Props) => {
         <>
             {value && <Modal function_={clickHandler}> <ModalDirectionChildren function_={clickHandler} /> </Modal>}
             <Header />
+            ТЕСТОВАЯ СТРАНИЦА
             {loading ? <div className="main"><MainLoader /></div> :
                 <div className="main">
                     <LeftPanel function_={() => undefined} />

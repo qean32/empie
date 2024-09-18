@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router"
+
 type Props = {
     fn1: Function
     fn2: Function
@@ -15,16 +17,18 @@ export const RightPanelChildren = ({ fn1, fn2, fn3 }: Props) => {
 }
 
 type Props_ = {
-
+    direction: number
 }
-export const RightPanelDirectionChildren = ({ }: Props_) => {
+export const RightPanelDirectionChildren = ({ direction }: Props_) => {
+    const navigate = useNavigate()
+
     return (
         <div>
-            <div className="rightpanellink">турниры</div>
-            <div className="rightpanellink">матчи</div>
-            <div className="rightpanellink">новости</div>
-            <div className="rightpanellink">игроки</div>
-            <div className="rightpanellink">команды</div>
+            <div className="rightpanellink" onClick={() => navigate(`/tournaments/${direction}`)}>турниры</div>
+            <div className="rightpanellink" onClick={() => navigate(`/meetings/${direction}`)}>матчи</div>
+            <div className="rightpanellink" onClick={() => navigate(`/${direction}`)}>новости</div>
+            <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
+            <div className="rightpanellink" onClick={() => navigate(`/teams/${direction}`)}>команды</div>
             {/* <div>протоколы</div> */}
         </div>
     );

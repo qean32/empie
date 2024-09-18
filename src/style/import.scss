@@ -12,6 +12,7 @@ $border-color: #303030;
     border-radius: 8px;
     position: relative;
     z-index: 1;
+    transition: .7s;
 }
 
 @mixin positioncenterbyflex {

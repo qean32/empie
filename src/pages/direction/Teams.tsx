@@ -32,7 +32,7 @@ export const Teams = ({ }: Props) => {
                         <div className="center">
                             <SmallCenterPlate>
                                 <div style={{ padding: '20px' }}>
-                                    <Search value={search} setValue={setSearch} title="найти команду" width={60} />
+                                    <Search value={search} setValue={setSearch} title="найти команду" width={40} />
                                 </div>
                                 <InlineTeam />
                                 <InlineTeam />

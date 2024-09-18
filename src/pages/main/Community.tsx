@@ -11,6 +11,7 @@ import useDebounce from "../../customHooks/useDebounce";
 import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
+import useBoolean from "../../customHooks/useBoolean";
 
 type Props = {
 
@@ -20,11 +21,18 @@ export const Community = ({ }: Props) => {
     const debounsedValue = useDebounce(search)
     const { loading, modal } = useContext<any>(SomeContext)
 
+    const modaltournaments = useBoolean(false)
+    const modalmeetings = useBoolean(false)
+    const modalteams = useBoolean(false)
+
     useEffect(() => {
     }, [debounsedValue])
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
+            {modalteams.boolean && <Modal function_={modalteams.off}><ModalDirectionChildren function_={modalteams.off} link="teams" /></Modal>}
+            {modalmeetings.boolean && <Modal function_={modalmeetings.off}><ModalDirectionChildren function_={modalmeetings.off} link="meetings" /></Modal>}
+            {modaltournaments.boolean && <Modal function_={modaltournaments.off}><ModalDirectionChildren function_={modaltournaments.off} link="tournaments" /></Modal>}
             <Header />
             {loading ? <div className="main"><MainLoader /></div> :
                 <div className="main">
@@ -43,7 +51,7 @@ export const Community = ({ }: Props) => {
                             <InlineUser />
                         </SmallCenterPlate>
                     </div>
-                    <RightPanel><RightPanelChildren fn1={() => undefined} fn2={() => undefined} fn3={() => undefined} /></RightPanel>
+                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn2={modalmeetings.on} fn3={modalmeetings.on} /></RightPanel>
                 </div>}
         </>
     );

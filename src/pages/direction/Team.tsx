@@ -25,12 +25,16 @@ export const Team = ({ }: Props) => {
                                 <article className="about">
                                     <p>teamname</p>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
-                                    <p style={{fontSize: '1.6vh'}}>матчи: 23/32 турниры: 2/3 показатели: 52%</p>
+                                    <p style={{ fontSize: '1.6vh' }}>матчи: 23/32 турниры: 2/3 показатели: 52%</p>
                                 </article>
                             </CenterPlate>
                             <CenterPlate>
                                 <div className="trophy">
                                     <div>
+                                        <img src="" alt="" />
+                                        <img src="" alt="" />
+                                        <img src="" alt="" />
+                                        <img src="" alt="" />
                                         <img src="" alt="" />
                                         <img src="" alt="" />
                                         <img src="" alt="" />

@@ -6,12 +6,12 @@ export const Header = () => {
     const navigate = useNavigate()
     return (
         <header>
-            <span style={{ position: 'absolute', right: '20vh' }}><OnlineHandler /></span>
+            <span style={{ position: 'absolute', right: '20vh' }} onClick={() => navigate('/test')}><OnlineHandler /></span>
             <div>
                 <div onClick={() => navigate('/')}>
                     <EmpieLogo />
                 </div>
-                <div>
+                <div onClick={() => navigate('/profile/2')} style={{cursor: 'pointer'}}>
                     <p>username</p>
                     <div className="headerava"></div>
                 </div>

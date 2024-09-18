@@ -5,6 +5,7 @@ import moment from "moment"
 import ValidatePassword from "../../../functions/ValidatePassword"
 import ValidateEmail from "../../../functions/ValidateEmail"
 import { Button } from "./customButton"
+import { GenerateId } from "../../../functions/GenerateNumber"
 
 type PropsText = {
     width?: number
@@ -30,7 +31,7 @@ export const InputText = ({ width, title, value, setValue, max }: PropsText) => 
         if (!ValidateRuName(value)) { valide.on() } else { valide.off() }
     }
 
-    const id_ = Math.round(Math.random() * 1000)
+    const id_ = GenerateId()
     return (
         <div style={{ position: 'relative' }}>
             <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
@@ -72,7 +73,7 @@ export const InputPassword = ({ width, title, value, setValue }: PropsPassword) 
         if (!ValidatePassword(value)) { valide.on() } else { valide.off() }
     }
 
-    const id_ = Math.round(Math.random() * 1000)
+    const id_ = GenerateId()
     return (
         <div style={{ position: 'relative', width: '30vh' }}>
             <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} alt="" onClick={() => view.SwapFn()} className="lockpass" />
@@ -103,7 +104,7 @@ export const InputTime = ({ value, setValue }: PropsTime) => {
         color.SwapFn()
     }
 
-    const id_ = Math.round(Math.random() * 1000)
+    const id_ = GenerateId()
     return (
         <>
             <div style={{ display: 'flex', height: '4.5vh', position: 'relative', flexDirection: 'column' }}>
@@ -195,7 +196,7 @@ export const InputNumber = ({ width = 10, title, value, setValue, min, max }: Pr
         else if (value < max) { valide.on(); setValue(min) }
     }
 
-    const id_ = Math.round(Math.random() * 1000)
+    const id_ = GenerateId()
     return (
         <div style={{ position: 'relative' }}>
             <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
@@ -248,7 +249,7 @@ export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
         if (!ValidateEmail(value)) { valide.on() } else { valide.off() }
     }
 
-    const id_ = Math.round(Math.random() * 1000)
+    const id_ = GenerateId()
     return (
         <div style={{ position: 'relative' }}>
             <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
@@ -291,7 +292,7 @@ type PropsFile = {
     setValue: Function
 }
 export const InputFile = ({ title = 'изображение', setValue }: PropsFile) => {
-    const id_ = Math.round(Math.random() * 1000)
+    const id_ = GenerateId()
     const [src, setSrc] = useState<any>([]);
     const urls = src.map((file: any) => URL.createObjectURL(file));
 
@@ -304,7 +305,7 @@ export const InputFile = ({ title = 'изображение', setValue }: PropsF
     }
     return (
         <div>
-            <input type="file" id={`${id_}`} style={{ display: 'none' }} onChange={changeHandler} />
+            <input accept="image/png, image/jpeg, image/svg, image/jpg, image/webp" type="file" id={`${id_}`} style={{ display: 'none' }} onChange={changeHandler} />
             <label htmlFor={`${id_}`} className="inputfile">
                 <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '90px', height: '60px' }}>{src.length > 0 ? <></> : <img src="/svg/upload.svg" />}</div>
                 <p>{title}</p>

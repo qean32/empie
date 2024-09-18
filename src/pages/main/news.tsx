@@ -23,8 +23,6 @@ export const News = ({ direction = false }: Props) => {
     const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
 
-
-
     if (!direction) {
         return (
             <>
@@ -66,7 +64,7 @@ export const News = ({ direction = false }: Props) => {
                         <SmallCenterPlate><div></div></SmallCenterPlate>
                     </div>
                     <div>
-                        <RightPanel><RightPanelDirectionChildren /></RightPanel>
+                        <RightPanel><RightPanelDirectionChildren direction={0} /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
