@@ -148,3 +148,16 @@ input[type=checkbox] {
     width: 1.3vh;
     border: 2px solid $background-color-dark;
 }
+
+.inputfile {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+
+.inputfile>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

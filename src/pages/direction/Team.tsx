@@ -5,6 +5,7 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { SomeContext } from "../../context";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { RightPanel } from "../../components/hoc/rightPanel";
+import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 
 type Props = {
 
@@ -22,17 +23,10 @@ export const Team = ({ }: Props) => {
                             <CenterPlate>
                                 <div className="background"><img src="" alt="" /></div>
                                 <article className="about">
-                                    <p>username</p>
+                                    <p>teamname</p>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
+                                    <p style={{fontSize: '1.6vh'}}>матчи: 23/32 турниры: 2/3 показатели: 52%</p>
                                 </article>
-                            </CenterPlate>
-                            <CenterPlate>
-                                <div className="aboutcareer" style={{ justifyContent: 'center' }}>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                </div>
                             </CenterPlate>
                             <CenterPlate>
                                 <div className="trophy">
@@ -42,6 +36,17 @@ export const Team = ({ }: Props) => {
                                         <img src="" alt="" />
                                         <img src="" alt="" />
                                     </div>
+                                </div>
+                            </CenterPlate>
+                            <CenterPlate>
+                                <div>
+                                    <div className="kep">
+                                        <InlineUser />
+                                    </div>
+                                    <InlineUser />
+                                    <InlineUser />
+                                    <InlineUser />
+                                    <InlineUser />
                                 </div>
                             </CenterPlate>
                         </div>

@@ -11,9 +11,9 @@ export const Header = () => {
                 <div onClick={() => navigate('/')}>
                     <EmpieLogo />
                 </div>
-                <div onClick={() => navigate('/profile/1')}>
+                <div>
                     <p>username</p>
-                    <img src="" alt="" className="headerava"/>
+                    <div className="headerava"></div>
                 </div>
             </div>
         </header>

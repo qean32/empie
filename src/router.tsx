@@ -11,6 +11,7 @@ import { P404 } from "./pages/main/p404"
 import { Registration } from "./pages/main/registration"
 import { Music } from "./pages/main/music"
 import { Profile } from "./pages/main/profile"
+import { Team } from "./pages/direction/team"
 
 type Props = {
 
@@ -44,7 +45,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<News direction={false} />} path="/bascketball" />
                     <Route element={<></>} path="/tournament/:id" />
                     <Route element={<></>} path="/meeting/:id" />
-                    <Route element={<></>} path="/team/:id" />
+                    <Route element={<Team />} path="/team/:id" />
                     <Route element={<></>} path="/editteam/:id" />
                     <Route element={<></>} path="/regteam/:iddirection" />
                     <Route element={<></>} path="/protokols/:iddirection" />

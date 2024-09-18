@@ -15,6 +15,7 @@ import { TournamentChild } from "../../childrens/tournament";
 import { MeetingChild } from "../../childrens/meeting";
 import { InlineTeam, InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 import { MoveonGridChild } from "../../childrens/moveongrid";
+import { InputFile } from "../../components/ui/meny-time use/customInput";
 
 type Props = {
 
@@ -32,6 +33,7 @@ export const Test = ({ }: Props) => {
                 <div className="main">
                     <LeftPanel function_={() => undefined} />
                     <div className="center">
+                        <SmallCenterPlate><InputFile setValue={() => undefined} /></SmallCenterPlate>
                         <SmallCenterPlate><InlineUser /></SmallCenterPlate>
                         <SmallCenterPlate><InlineTeam /></SmallCenterPlate>
                         <SmallCenterPlate><MeetingChild /></SmallCenterPlate>

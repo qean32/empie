@@ -4,6 +4,7 @@ import ValidateRuName from "../../../functions/ValidateRuName"
 import moment from "moment"
 import ValidatePassword from "../../../functions/ValidatePassword"
 import ValidateEmail from "../../../functions/ValidateEmail"
+import { Button } from "./customButton"
 
 type PropsText = {
     width?: number
@@ -280,6 +281,34 @@ export const Search = ({ value, setValue, title, width = 40 }: PropsSearch) => {
         <div style={{ width: `${width}vh`, position: 'relative' }}>
             <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} style={{ width: `${width}vh` }} />
             <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '1.2vh', right: '-3.1vh' }} />
+        </div>
+    );
+}
+
+
+type PropsFile = {
+    title?: string,
+    setValue: Function
+}
+export const InputFile = ({ title = 'изображение', setValue }: PropsFile) => {
+    const id_ = Math.round(Math.random() * 1000)
+    const [src, setSrc] = useState<any>([]);
+    const urls = src.map((file: any) => URL.createObjectURL(file));
+
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return
+        if (!e.target.files[0]) return
+
+        setSrc([e.target.files[0]])
+        setValue(e.target.files[0])
+    }
+    return (
+        <div>
+            <input type="file" id={`${id_}`} style={{ display: 'none' }} onChange={changeHandler} />
+            <label htmlFor={`${id_}`} className="inputfile">
+                <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '90px', height: '60px' }}>{src.length > 0 ? <></> : <img src="/svg/upload.svg" />}</div>
+                <p>{title}</p>
+            </label>
         </div>
     );
 }
