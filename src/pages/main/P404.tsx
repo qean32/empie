@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Button } from "../../components/ui/meny-time use/customButton";
 import { Header } from "../../components/ui/meny-time use/header";
 import Repair from "../../components/ui/meny-time use/repair";
@@ -15,7 +15,7 @@ export const P404 = ({ }: Props) => {
             <Header />
             <div className="main">
                 <div style={{ ...positioncenterbyabsolute }}>
-                    <CenterPlate>
+                    <SmallCenterPlate>
                         <div className="coniensmallwindow" style={{ height: '380px' }}>
                             <Repair />
                             <p>страница не найдена</p>
@@ -24,7 +24,7 @@ export const P404 = ({ }: Props) => {
                                 <Button title="на главную" function_={() => navigate('/')}/>
                             </div>
                         </div>
-                    </CenterPlate>
+                    </SmallCenterPlate>
                 </div>
             </div>
         </>

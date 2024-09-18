@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
@@ -24,7 +24,7 @@ export const Transfers = ({ }: Props) => {
                     <>
                         <LeftPanel function_={modal.SwapFn} />
                         <div className="center">
-                            <CenterPlate>
+                            <SmallCenterPlate>
                                 <div className="transfers">
                                     <Transfer />
                                     <Transfer />
@@ -34,9 +34,9 @@ export const Transfers = ({ }: Props) => {
                                     <Transfer />
                                     <Transfer />
                                 </div>
-                            </CenterPlate>
+                            </SmallCenterPlate>
                         </div>
-                        <RightPanel><RightPanelChildren /></RightPanel>
+                        <RightPanel><RightPanelChildren fn1={() => undefined} fn2={() => undefined} fn3={() => undefined} /></RightPanel>
                     </>
                 }
             </div>

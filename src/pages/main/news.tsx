@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
@@ -38,11 +38,11 @@ export const News = ({ direction = false }: Props) => {
                         <>
                             <LeftPanel function_={modal.SwapFn} />
                             <div className="center">
-                                <CenterPlate><div></div></CenterPlate>
-                                <CenterPlate><div></div></CenterPlate>
-                                <CenterPlate><div></div></CenterPlate>
-                                <CenterPlate><div></div></CenterPlate>
-                                <CenterPlate><div></div></CenterPlate>
+                                <SmallCenterPlate><div></div></SmallCenterPlate>
+                                <SmallCenterPlate><div></div></SmallCenterPlate>
+                                <SmallCenterPlate><div></div></SmallCenterPlate>
+                                <SmallCenterPlate><div></div></SmallCenterPlate>
+                                <SmallCenterPlate><div></div></SmallCenterPlate>
                             </div>
                             <div>
                                 <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn2={modalmeetings.on} fn3={modalmeetings.on} /></RightPanel>
@@ -63,7 +63,7 @@ export const News = ({ direction = false }: Props) => {
                 <div className="main">
                     <LeftPanel function_={modal.SwapFn} />
                     <div className="center">
-                        <CenterPlate><div></div></CenterPlate>
+                        <SmallCenterPlate><div></div></SmallCenterPlate>
                     </div>
                     <div>
                         <RightPanel><RightPanelDirectionChildren /></RightPanel>

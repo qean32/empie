@@ -5,8 +5,8 @@ type Props = {
 }
 export const MoveonGridChild = ({}: Props) => {
     return ( 
-        <article>
+        <div>
             <GridPoint />
-        </article>
+        </div>
     );
 }

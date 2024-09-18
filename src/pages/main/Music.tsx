@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import Repair from "../../components/ui/meny-time use/repair";
@@ -20,13 +20,13 @@ export const Music = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
-                        <CenterPlate>
+                        <SmallCenterPlate>
                             <div className="coniensmallwindow">
                                 <Repair />
                                 <p>раздел в разработке</p>
                                 <Button title="назад" function_={() => navigate('/')} />
                             </div>
-                        </CenterPlate>
+                        </SmallCenterPlate>
                     </div>
                 }
             </div>

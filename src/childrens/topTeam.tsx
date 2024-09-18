@@ -3,7 +3,7 @@ type Props = {
 }
 export const TopTeamChild = ({ }: Props) => {
     return (
-        <section className="topteam">
+        <div className="topteam">
             <p>кол-во побед</p>
             <div>
                 <div></div>
@@ -11,6 +11,6 @@ export const TopTeamChild = ({ }: Props) => {
                 <div></div>
                 <div></div>
             </div>
-        </section>
+        </div>
     );
 }

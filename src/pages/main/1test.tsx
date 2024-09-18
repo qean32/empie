@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from "react";
 import { Header } from "../../components/ui/meny-time use/header"
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { CenterPlate, SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { RightPanelChildren } from "../../childrens/rightPanel";
@@ -30,15 +30,15 @@ export const Test = ({ }: Props) => {
             <Header />
             {loading ? <div className="main"><MainLoader /></div> :
                 <div className="main">
-                    <LeftPanel />
+                    <LeftPanel function_={() => undefined} />
                     <div className="center">
-                        <CenterPlate><InlineUser /></CenterPlate>
-                        <CenterPlate><InlineTeam /></CenterPlate>
+                        <SmallCenterPlate><InlineUser /></SmallCenterPlate>
+                        <SmallCenterPlate><InlineTeam /></SmallCenterPlate>
                         <SmallCenterPlate><MeetingChild /></SmallCenterPlate>
                         <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                     </div>
                     <div>
-                        <RightPanel><RightPanelChildren /></RightPanel>
+                        <RightPanel><RightPanelChildren fn1={() => undefined} fn2={() => undefined} fn3={() => undefined} /></RightPanel>
                         <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>

@@ -5,9 +5,9 @@ type Props = {
 }
 export const StreamChild = ({ }: Props) => {
     return (
-        <article className="stream">
+        <div className="stream">
             <Repair />
             <p>стрим не идет</p>
-        </article>
+        </div>
     );
 }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { SomeContext } from "../../context";
@@ -16,10 +16,10 @@ export const Registration = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
-                        <CenterPlate>
+                        <SmallCenterPlate>
                             <div className="techwork">
                             </div>
-                        </CenterPlate>
+                        </SmallCenterPlate>
                     </div>
                 }
             </div>

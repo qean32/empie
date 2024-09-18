@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import Repair from "../../components/ui/meny-time use/repair";
 import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { SomeContext } from "../../context";
@@ -19,12 +19,12 @@ export const Techwork = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
-                            <CenterPlate>
+                            <SmallCenterPlate>
                                 <div className="coniensmallwindow">
                                     <Repair />
                                     <p>ведутся работы</p>
                                 </div>
-                            </CenterPlate>
+                            </SmallCenterPlate>
                         </div>
                     </>
                 }

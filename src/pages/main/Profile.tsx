@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CenterPlate } from "../../components/hoc/plates/centerPlate";
+import { CenterPlate, SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { SomeContext } from "../../context";
@@ -17,7 +17,7 @@ export const Profile = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <LeftPanel />
+                        <LeftPanel function_={() => undefined} />
                         <div>
                             <CenterPlate>
                                 <div className="background"><img src="" alt="" /></div>
@@ -27,10 +27,21 @@ export const Profile = ({ }: Props) => {
                                 </article>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="aboutcareer">
+                                <div className="aboutcareer" style={{ justifyContent: 'center' }}>
                                     <div><img src="" alt="" /><img src="" alt="" /></div>
                                     <div><img src="" alt="" /><img src="" alt="" /></div>
                                     <div><img src="" alt="" /><img src="" alt="" /></div>
+                                    <div><img src="" alt="" /><img src="" alt="" /></div>
+                                </div>
+                            </CenterPlate>
+                            <CenterPlate>
+                                <div className="trophy">
+                                    <div>
+                                        <img src="" alt="" />
+                                        <img src="" alt="" />
+                                        <img src="" alt="" />
+                                        <img src="" alt="" />
+                                    </div>
                                 </div>
                             </CenterPlate>
                         </div>
