@@ -5,13 +5,14 @@ import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { Header } from "../../components/ui/meny-time use/header";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
 }
 export const Techwork = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
-
+    ChangeTitle('тех работы')
     return (
         <>
             <Header />

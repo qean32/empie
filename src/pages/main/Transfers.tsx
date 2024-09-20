@@ -9,6 +9,7 @@ import { Modal } from "../../components/ui/meny-time use/modal";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import useBoolean from "../../customHooks/useBoolean";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
@@ -19,6 +20,8 @@ export const Transfers = ({ }: Props) => {
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
+
+    ChangeTitle('трансферы')
 
     return (
         <>
@@ -44,7 +47,7 @@ export const Transfers = ({ }: Props) => {
                                 </div>
                             </SmallCenterPlate>
                         </div>
-                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn2={modalmeetings.on} fn3={modalmeetings.on} /></RightPanel>
+                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalmeetings.on} /></RightPanel>
                     </>
                 }
             </div>

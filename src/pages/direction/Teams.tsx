@@ -10,6 +10,7 @@ import { InlineTeam } from "../../components/ui/meny-time use/inlinePrezentation
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 }
@@ -21,6 +22,8 @@ export const Teams = ({ }: Props) => {
     useEffect(() => {
 
     }, [debounsedValue])
+    
+    ChangeTitle('команды')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

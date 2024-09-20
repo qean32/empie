@@ -9,7 +9,7 @@ button {
     cursor: pointer;
     transition: 0.7s;
     margin: 20px;
-    border-color: $background-color-light-l;
+    border-color: $background-color-dark;
 }
 
 button>p {
@@ -36,7 +36,7 @@ button:hover>p {
 }
 
 .btngreen {
-    background-color: $background-color-dark;
+    background-color: #242424;
 }
 
 .btngreen>p {

@@ -6,12 +6,14 @@ import { SomeContext } from "../../context";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
 }
 export const Team = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
+    ChangeTitle('команда')
     return (
         <>
             <Header />

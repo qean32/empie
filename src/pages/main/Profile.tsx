@@ -1,23 +1,26 @@
 import { useContext } from "react";
-import { CenterPlate, SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
+import { CenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { SomeContext } from "../../context";
-import { LeftPanel } from "../../components/hoc/leftPanel";
 import { RightPanel } from "../../components/hoc/rightPanel";
+import { Modal } from "../../components/ui/meny-time use/modal";
+import { ModalDirectionChildren } from "../../childrens/modalDirection";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
 }
 export const Profile = ({ }: Props) => {
-    const { loading } = useContext<any>(SomeContext)
+    const { loading, modal } = useContext<any>(SomeContext)
+    ChangeTitle('пользователь')
     return (
         <>
             <Header />
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <LeftPanel function_={() => undefined} />
+                        {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
                         <div>
                             <CenterPlate>
                                 <div className="background"><img src="" alt="" /></div>

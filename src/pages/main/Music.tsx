@@ -7,6 +7,7 @@ import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { SomeContext } from "../../context";
 import { Button } from "../../components/ui/meny-time use/customButton";
 import { useNavigate } from "react-router";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
@@ -14,6 +15,8 @@ type Props = {
 export const Music = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
     const navigate = useNavigate()
+
+    ChangeTitle('музыка')
     return (
         <>
             <Header />
@@ -21,7 +24,7 @@ export const Music = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
                         <SmallCenterPlate>
-                            <div className="coniensmallwindow">
+                            <div className="coniensmallwindow" style={{padding: '50px'}}>
                                 <Repair />
                                 <p>раздел в разработке</p>
                                 <Button title="назад" function_={() => navigate('/')} />

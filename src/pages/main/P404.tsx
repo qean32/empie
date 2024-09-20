@@ -4,12 +4,14 @@ import { Button } from "../../components/ui/meny-time use/customButton";
 import { Header } from "../../components/ui/meny-time use/header";
 import Repair from "../../components/ui/meny-time use/repair";
 import { positioncenterbyabsolute } from "../../functions/GiveConst";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
 }
 export const P404 = ({ }: Props) => {
     const navigate = useNavigate()
+    ChangeTitle('страница не найдена')
     return (
         <>
             <Header />

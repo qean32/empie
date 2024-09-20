@@ -16,6 +16,7 @@ import { MeetingChild } from "../../childrens/meeting";
 import { InlineTeam, InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 import { MoveonGridChild } from "../../childrens/moveongrid";
 import { InputFile } from "../../components/ui/meny-time use/customInput";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
@@ -25,6 +26,7 @@ export const Test = ({ }: Props) => {
     const [value, setValue] = useState<any>()
 
     const clickHandler = useCallback(() => setValue((prev: any) => !prev), [])
+    ChangeTitle('тесты')
     return (
         <>
             {value && <Modal function_={clickHandler}> <ModalDirectionChildren function_={clickHandler} /> </Modal>}

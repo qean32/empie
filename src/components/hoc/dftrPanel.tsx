@@ -10,7 +10,7 @@ type Props = {
 export const DftRPanel = ({ direction }: Props) => {
     return (
         <div>
-            <RightPanel><RightPanelDirectionChildren /></RightPanel>
+            <RightPanel><RightPanelDirectionChildren direction={0} /></RightPanel>
             <RightPanel><RightTransferChild /></RightPanel>
             <RightPanel><TopTeamChild /></RightPanel>
             <RightPanel><StreamChild /></RightPanel>

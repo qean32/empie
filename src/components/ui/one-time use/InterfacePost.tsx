@@ -1,4 +1,5 @@
 import React from "react"
+import { colors } from "../../../functions/GiveConst"
 
 type Props = {
     value: string
@@ -22,5 +23,21 @@ export const InputComent = ({ value, setValue, title, width = 40 }: Props) => {
 }
 
 // like
+
+type Props_ = {
+    islike: boolean
+    value: boolean
+    setValue: Function
+}
+export const LikeComent = ({ islike, value, setValue }: Props_) => {
+    return (
+        <div className="likecoment" style={value ? { transition: '.2s' } : { outline: `2px solid ${colors.maincolor}`, transition: '.4s' }} onClick={() => setValue((prev: any) => setValue(!prev))}>
+            {
+                islike ? <>{value ? <img src="/svg/like.svg" /> : <img src="/svg/like_.svg" />}</> : <>{value ? <img src="/svg/coment.svg" /> : <img src="/svg/coment_.svg" />}</>
+            }
+            <p style={value ? { transition: '.4s' } : { color: colors.maincolor, transition: '.4s' }}> 14 </p>
+        </div>
+    );
+}
 
 // coment

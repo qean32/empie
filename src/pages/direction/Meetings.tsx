@@ -8,11 +8,13 @@ import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { MeetingChild } from "../../childrens/meeting";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 }
 export const Meetings = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
+    ChangeTitle('матчи')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

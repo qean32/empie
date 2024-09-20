@@ -12,6 +12,10 @@ import { Registration } from "./pages/main/registration"
 import { Music } from "./pages/main/music"
 import { Profile } from "./pages/main/profile"
 import { Team } from "./pages/direction/team"
+import { Cash } from "./pages/main/cash"
+import { Chat } from "./pages/main/chat"
+import { Wall } from "./pages/main/wall"
+import { Offers } from "./pages/main/offers"
 
 type Props = {
 
@@ -25,20 +29,20 @@ export const Router = ({ }: Props) => {
                     <Route element={<News direction={false} />} path="/" />
                     <Route element={<Registration />} path="/registration" />
                     <Route element={<Profile />} path="/profile/:id" />
-                    <Route element={<></>} path="/wall" />
+                    <Route element={<Wall />} path="/wall" />
 
                     <Route element={<Community />} path="/community" />
                     <Route element={<Transfers />} path="/transfers" />
                     <Route element={<Music />} path="/music" />
                     <Route element={<></>} path="/editprofile" />
-                    <Route element={<></>} path="/chat" />
-                    <Route element={<></>} path="/cash" />
+                    <Route element={<Chat />} path="/chat" />
+                    <Route element={<Cash />} path="/cash" />
 
                     <Route element={<Meetings />} path="/meetings/:iddirection" />
                     <Route element={<Tournaments />} path="/tournaments/:iddirection" />
                     <Route element={<Teams />} path="/teams/:iddirection" />
 
-                    <Route element={<></>} path="/offers" />
+                    <Route element={<Offers />} path="/offers" />
 
                     <Route element={<News direction={false} />} path="/dota" />
                     <Route element={<News direction={false} />} path="/cs" />

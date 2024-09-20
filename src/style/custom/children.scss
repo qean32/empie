@@ -61,11 +61,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: .3s;
+    transition: .4s;
     padding: 10px 20px;
 }
 
-.inline-conteiner:hover {
+.inline-conteiner:hover,
+.offer:hover {
     background-color: rgb(61, 61, 61);
     cursor: pointer;
 }
@@ -117,7 +118,6 @@
 .teamvstam>div>img {
     width: 4vh;
     height: 4vh;
-    margin: 10px 0 0 0;
 }
 
 .topteam {
@@ -155,4 +155,44 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+}
+
+.offer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 0 0 30px;
+    transition: .4s;
+}
+
+.offer>div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.postimg {
+    @include dftava;
+    width: 40vh;
+    height: 200px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.postsimg {
+    display: flex;
+    gap: 40px;
+}
+
+.coments {
+    padding: 30px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
 }

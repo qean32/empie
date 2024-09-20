@@ -4,7 +4,7 @@ type Props = {
 export const FullPlate = ({ children }: Props) => {
 
     return (
-        <div className="bigplate">
+        <div className="fullplate">
             {children}
         </div>
     );

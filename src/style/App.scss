@@ -12,6 +12,7 @@
   font-size: medium;
   letter-spacing: .2vh;
   color: rgba(255, 255, 255, 0.87);
+  // outline: #E74343 2px dashed;
 }
 
 body {
@@ -31,7 +32,6 @@ body {
 header {
   @include dftPlate;
   @include positioncenterbyflex;
-  width: 100%;
   height: 6vh;
   border-radius: 0;
   border: 0;
@@ -72,37 +72,49 @@ header>div>div {
   @include dftPlate;
   width: 58vh;
   margin: 0 0 3vh 0;
-  min-width: 440px;
+  min-width: 500px;
+}
+
+.container {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.containercolumn {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 
-.smallcenterplate:hover {
+.centerplate:hover,
+.smallcenterplate:hover,
+.fullplate:hover,
+.leftpanel:hover,
+.rightpanel:hover {
   transform: translateY(-3px);
   cursor: pointer;
 }
 
-.centerplate:hover {
-  transform: translateY(-3px);
-}
-
-.leftpanel:hover {
-  transform: translateY(-3px);
-}
-
-.rightpanel:hover {
-  transform: translateY(-3px);
-}
-
-.smallcenterplate>div {
-  padding: 20px 30px;
-}
-
 .leftpanel {
   @include dftPlate;
-  width: 21vh;
+  width: 22vh;
   padding: 1vh 0 0 0;
   margin: 0.5vh 0;
   min-width: 185px;
+}
+
+.fullplate {
+  @include dftPlate;
+  border-radius: 2px;
+  width: 76vh;
+  margin: 0 0 3vh 0;
+  min-width: 440px;
+  min-height: 800px;
 }
 
 .rightpanel {
@@ -111,7 +123,7 @@ header>div>div {
   margin: 1vh 0;
   padding: 2vh 0;
   min-width: 260px;
-  margin: 0 0 40px 0;
+  margin: 0 0 35px 0;
 }
 
 .main {
@@ -257,4 +269,36 @@ header>div>div {
 
 .kep {
   margin: 0 0 20px 0;
+}
+
+.cashheader {
+  display: grid;
+  grid-template-columns: 16% 40% 15% 30%;
+  gap: 10px;
+  grid-template-rows: 1fr;
+  padding: 20px 30px;
+}
+
+.cashheader>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.likecoment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include dftPlate;
+  background-color: $background-color-light-l;
+  outline: 1px solid $border-color;
+  gap: 10px;
+  padding: 5px 10px;
+}
+
+.coment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -12,6 +12,7 @@ import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import useBoolean from "../../customHooks/useBoolean";
+import ChangeTitle from "../../functions/ChangeTitle";
 
 type Props = {
 
@@ -27,6 +28,8 @@ export const Community = ({ }: Props) => {
 
     useEffect(() => {
     }, [debounsedValue])
+
+    ChangeTitle('сообщество')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
@@ -39,19 +42,17 @@ export const Community = ({ }: Props) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <div className="center">
                         <SmallCenterPlate>
-                            <div style={{ margin: '0 0 4vh 0' }}>
+                            <div style={{ margin: '2vh 0 4vh 2vh' }}>
                                 <Search value={search} setValue={setSearch} title="найти человека" width={45} />
                             </div>
-                            <InlineUser />
-                            <InlineUser />
-                            <InlineUser />
-                            <InlineUser />
-                            <InlineUser />
-                            <InlineUser />
-                            <InlineUser />
+                            <div style={{ minHeight: '500px' }}>
+                                <InlineUser />
+                                <InlineUser />
+                                <InlineUser />
+                            </div>
                         </SmallCenterPlate>
                     </div>
-                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn2={modalmeetings.on} fn3={modalmeetings.on} /></RightPanel>
+                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalmeetings.on} /></RightPanel>
                 </div>}
         </>
     );
