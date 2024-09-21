@@ -8,7 +8,6 @@ import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { FullPlate } from "../../components/hoc/plates/fullPlate";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
-import { colors } from "../../functions/GiveConst";
 
 type Props = {
 
@@ -26,35 +25,47 @@ export const Cash = ({ }: Props) => {
                     <>
                         <LeftPanel function_={modal.SwapFn} />
                         <FullPlate>
-                            <div className="cashheader greencash">
-                                <div>500 ₽</div>
-                                <div>история расхода</div>
-                                <div>дата <img src="/svg/calendar.svg" /></div>
-                                <div>дисциплина</div>
-                            </div>
-                            <div className="cashheader" style={{ padding: '10px 30px' }}>
-                                <div style={plus ? {color: `${colors.greencolor}`} : {color: `${colors.maincolor}`}}>+5000 ₽</div>
-                                <div>покупка мяча</div>
-                                <div>20.05.06</div>
-                                <div>dota</div>
-                            </div>
-                            <div className="cashheader" style={{ padding: '10px 30px' }}>
-                                <div style={!plus ? {color: `${colors.greencolor}`} : {color: `${colors.maincolor}`}}>-5000 ₽</div>
-                                <div>покупка мяча</div>
-                                <div>20.05.06</div>
-                                <div>dota</div>
-                            </div>
-                            <div className="cashheader" style={{ padding: '10px 30px' }}>
-                                <div style={!plus ? {color: `${colors.greencolor}`} : {color: `${colors.maincolor}`}}>-5000 ₽</div>
-                                <div>покупка мяча</div>
-                                <div>20.05.06</div>
-                                <div>dota</div>
-                            </div>
-                            <div className="cashheader" style={{ padding: '10px 30px' }}>
-                                <div style={plus ? {color: `${colors.greencolor}`} : {color: `${colors.maincolor}`}}>+5000 ₽</div>
-                                <div>покупка мяча</div>
-                                <div>20.05.06</div>
-                                <div>dota</div>
+                            <div style={{ padding: '100px 0 0 0' }}>
+                                <div className="cashheader">
+                                    <div>вс 500 ₽</div>
+                                    <div>история расхода</div>
+                                    <div>дата <img src="/svg/calendar.svg" /></div>
+                                    <div>дисциплина</div>
+                                </div>
+                                <br />
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
+                                    <div>+5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <br />
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
+                                    <div>-5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <br />
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
+                                    <div>-5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <br />
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
+                                    <div>+5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <br />
+                                <hr color="#262626" />
                             </div>
                         </FullPlate>
                         <RightPanel><></></RightPanel>

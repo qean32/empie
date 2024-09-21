@@ -58,7 +58,7 @@ export const Offers = ({ }: Props) => {
                             </div>
                         </SmallCenterPlate>
                     </div>
-                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalmeetings.on} /></RightPanel>
+                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                 </div>}
         </>
     );

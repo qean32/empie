@@ -22,7 +22,7 @@ export const Teams = ({ }: Props) => {
     useEffect(() => {
 
     }, [debounsedValue])
-    
+
     ChangeTitle('команды')
     return (
         <>
@@ -34,15 +34,14 @@ export const Teams = ({ }: Props) => {
                         <LeftPanel function_={modal.SwapFn} />
                         <div className="center">
                             <SmallCenterPlate>
-                                <div style={{ padding: '20px' }}>
-                                    <Search value={search} setValue={setSearch} title="найти команду" width={40} />
+                                <div style={{ margin: '2vh 0 4vh 2vh' }}>
+                                    <Search value={search} setValue={setSearch} title="найти человека" width={45} />
                                 </div>
-                                <InlineTeam />
-                                <InlineTeam />
-                                <InlineTeam />
-                                <InlineTeam />
-                                <InlineTeam />
-                                <InlineTeam />
+                                <div style={{ minHeight: '500px' }}>
+                                    <InlineTeam />
+                                    <InlineTeam />
+                                    <InlineTeam />
+                                </div>
                             </SmallCenterPlate>
                         </div>
                         <DftRPanel direction={4} />

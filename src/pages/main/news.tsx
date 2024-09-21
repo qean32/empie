@@ -14,6 +14,7 @@ import { StreamChild } from "../../childrens/stream";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { InputComent, LikeComent } from "../../components/ui/one-time use/InterfacePost";
+import { Post } from "../../components/ui/meny-time use/post";
 
 type Props = {
     direction: boolean | string
@@ -26,9 +27,6 @@ export const News = ({ direction = false }: Props) => {
     const modalteams = useBoolean(false)
 
     ChangeTitle('новости')
-    const [like, setLike] = useState(false)
-    const [like_, setLike_] = useState(false)
-    const [value, setValue] = useState('')
 
     if (!direction) {
         return (
@@ -45,49 +43,22 @@ export const News = ({ direction = false }: Props) => {
                             <div className="center">
                                 <SmallCenterPlate>
                                     <div className="container" style={{ padding: '20px 30px', flexDirection: 'column' }}>
-                                        <div className="post">
-                                            <div>
-                                                <div className="postsimg"><div className="ava"></div><img src="" alt="" className="postimg" /></div>
-                                            </div>
-                                            <div>
-                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, obcaecati rem! Dignissimos eveniet quisquam nulla obcaecati saepe </p>
-                                            </div>
-                                            <div style={{ display: 'flex', gap: '15px', justifyContent: 'end' }}>
-                                                <LikeComent islike={true} value={like} setValue={setLike} />
-                                                <LikeComent islike={false} value={like_} setValue={setLike_} />
-                                            </div>
-                                        </div>
-                                        <div className="coments" style={{ overflow: 'hidden', height: '0'}}>
-                                            <InputComent value={""} setValue={() => undefined} title={"ваш коментарий.."} />
-                                            <div className="postsimg" style={{ flexDirection: 'column', gap: '15px' }}><div className="ava"></div><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam. </p></div>
-                                            <div className="postsimg" style={{ flexDirection: 'column', gap: '15px' }}><div className="ava"></div><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam. </p></div>
-                                        </div>
+                                        <Post />
                                     </div>
                                 </SmallCenterPlate>
                                 <SmallCenterPlate>
                                     <div className="container" style={{ padding: '20px 30px', flexDirection: 'column' }}>
-                                        <div className="post">
-                                            <div>
-                                                <div className="postsimg"><div className="ava"></div><img src="" alt="" className="postimg" /></div>
-                                            </div>
-                                            <div>
-                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, obcaecati rem! Dignissimos eveniet quisquam nulla obcaecati saepe </p>
-                                            </div>
-                                            <div style={{ display: 'flex', gap: '15px', justifyContent: 'end' }}>
-                                                <LikeComent islike={true} value={like} setValue={setLike} />
-                                                <LikeComent islike={false} value={like_} setValue={setLike_} />
-                                            </div>
-                                        </div>
-                                        <div className="coments">
-                                            <InputComent value={""} setValue={() => undefined} title={"ваш коментарий.."} />
-                                            <div className="postsimg" style={{ flexDirection: 'column', gap: '15px' }}><div className="ava"></div><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam. </p></div>
-                                            <div className="postsimg" style={{ flexDirection: 'column', gap: '15px' }}><div className="ava"></div><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam. </p></div>
-                                        </div>
+                                        <Post />
+                                    </div>
+                                </SmallCenterPlate>
+                                <SmallCenterPlate>
+                                    <div className="container" style={{ padding: '20px 30px', flexDirection: 'column' }}>
+                                        <Post />
                                     </div>
                                 </SmallCenterPlate>
                             </div>
                             <div>
-                                <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalmeetings.on} /></RightPanel>
+                                <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                                 <RightPanel><RightTransferChild /></RightPanel>
                                 <RightPanel><TopTeamChild /></RightPanel>
                                 <RightPanel><StreamChild /></RightPanel>

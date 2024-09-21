@@ -37,7 +37,7 @@ export const Wall = ({ }: Props) => {
                             <SmallCenterPlate><div className="container"></div></SmallCenterPlate>
                         </div>
                         <div>
-                            <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalmeetings.on} /></RightPanel>
+                            <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                             <RightPanel><StreamChild /></RightPanel>
                         </div>
                     </>

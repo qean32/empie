@@ -27,15 +27,16 @@ export const InputComent = ({ value, setValue, title, width = 40 }: Props) => {
 type Props_ = {
     islike: boolean
     value: boolean
-    setValue: Function
+    fn: Function
+    count: number
 }
-export const LikeComent = ({ islike, value, setValue }: Props_) => {
+export const LikeComent = ({ islike, value, fn, count }: Props_) => {
     return (
-        <div className="likecoment" style={value ? { transition: '.2s' } : { outline: `2px solid ${colors.maincolor}`, transition: '.4s' }} onClick={() => setValue((prev: any) => setValue(!prev))}>
+        <div className="likecoment" style={!value ? { transition: '.2s' } : { outline: `2px solid ${colors.maincolor}`, transition: '.4s' }} onClick={() => fn()}>
             {
-                islike ? <>{value ? <img src="/svg/like.svg" /> : <img src="/svg/like_.svg" />}</> : <>{value ? <img src="/svg/coment.svg" /> : <img src="/svg/coment_.svg" />}</>
+                islike ? <>{!value ? <img src="/svg/like.svg" /> : <img src="/svg/like_.svg" />}</> : <>{!value ? <img src="/svg/coment.svg" /> : <img src="/svg/coment_.svg" />}</>
             }
-            <p style={value ? { transition: '.4s' } : { color: colors.maincolor, transition: '.4s' }}> 14 </p>
+            <p style={!value ? { transition: '.4s' } : { color: colors.maincolor, transition: '.4s' }}> {count} </p>
         </div>
     );
 }

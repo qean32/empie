@@ -12,7 +12,12 @@
   font-size: medium;
   letter-spacing: .2vh;
   color: rgba(255, 255, 255, 0.87);
+  text-decoration: none;
   // outline: #E74343 2px dashed;
+}
+
+a {
+  color: $main-color;
 }
 
 body {
@@ -114,7 +119,9 @@ header>div>div {
   width: 76vh;
   margin: 0 0 3vh 0;
   min-width: 440px;
-  min-height: 800px;
+  min-height: 1000px;
+  transform: translateY(-100px);
+  z-index: -1;
 }
 
 .rightpanel {
@@ -301,4 +308,45 @@ header>div>div {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#redcash>div {
+  color: $main-color;
+}
+
+.greencash>div {
+  color: $green-color;
+}
+
+.headmeeting {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+
+.headmeeting>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.headmeeting>div>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.meetingrepair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  height: 280px;
 }

@@ -38,7 +38,7 @@ export const InlineTeam = ({ }: Props__) => {
     return (
         <div className="inline-conteiner" onClick={() => navigate(`/team/2`)}>
             <InlinePrezent />
-            <section>
+            <section style={{minHeight: '50px'}}>
                 <img src="/svg/flag.svg" alt="" /> <p>7</p>
                 <img src="/svg/cup.svg" alt="" /> <p>8</p>
             </section>
