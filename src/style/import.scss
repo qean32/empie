@@ -1,10 +1,18 @@
 $main-color: #E74343;
+$green-color: #0d9e0d;
+$background-color: #242424;
+$background-color-dark: #222222;
+$background-color-light: #292929;
+$background-color-light-l: #303030;
+$border-color: #303030;
 
-@mixin dltPlite {
-    background-color: black;
-    border: 1px solid black;
-    border-radius: 5px;
+@mixin dftPlate {
+    background-color: $background-color-light;
+    border: 1px solid $border-color;
+    border-radius: 8px;
     position: relative;
+    z-index: 1;
+    transition: .7s;
 }
 
 @mixin positioncenterbyflex {
@@ -13,7 +21,20 @@ $main-color: #E74343;
     justify-content: center;
 }
 
-@mixin fillall{
+@mixin fillall {
+    position: absolute;
     width: 100%;
     height: 100%;
+}
+
+@mixin dftava {
+    width: 6vh;
+    height: 4vh;
+    min-height: 32px;
+    min-width: 48px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: $background-color-dark;
+    background-size: cover;
+    background-position: 50% 10%;
 }

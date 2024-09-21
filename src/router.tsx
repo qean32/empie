@@ -1,5 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { EmpieLogo } from "./components/ui/Logo"
+import { News } from "./pages/main/news"
+import { Context } from "./context"
+import { Test } from "./pages/main/1test"
+import { Community } from "./pages/main/community"
+import { Transfers } from "./pages/main/transfers"
+import { Meetings } from "./pages/direction/meetings"
+import { Tournaments } from "./pages/direction/tournaments"
+import { Teams } from "./pages/direction/teams"
+import { P404 } from "./pages/main/p404"
+import { Registration } from "./pages/main/registration"
+import { Music } from "./pages/main/music"
+import { Profile } from "./pages/main/profile"
+import { Team } from "./pages/direction/team"
+import { Cash } from "./pages/main/cash"
+import { Chat } from "./pages/main/chat"
+import { Wall } from "./pages/main/wall"
+import { Offers } from "./pages/main/offers"
+import { Meeting } from "./pages/direction/meeting"
 
 type Props = {
 
@@ -7,10 +24,39 @@ type Props = {
 export const Router = ({ }: Props) => {
     return (
         <BrowserRouter>
-            <Routes>
-                <Route element={<EmpieLogo />} path="/" />
+            <Context>
+                <Routes>
+                    <Route element={<Test />} path="/test" />
+                    <Route element={<News direction={false} />} path="/" />
+                    <Route element={<Registration />} path="/registration" />
+                    <Route element={<Profile />} path="/profile/:id" />
+                    <Route element={<Wall />} path="/wall" />
 
-            </Routes>
+                    <Route element={<Community />} path="/community" />
+                    <Route element={<Transfers />} path="/transfers" />
+                    <Route element={<Music />} path="/music" />
+                    <Route element={<></>} path="/editprofile" />
+                    <Route element={<Chat />} path="/chat" />
+                    <Route element={<Cash />} path="/cash" />
+
+                    <Route element={<Meetings />} path="/meetings/:iddirection" />
+                    <Route element={<Tournaments />} path="/tournaments/:iddirection" />
+                    <Route element={<Teams />} path="/teams/:iddirection" />
+
+                    <Route element={<Offers />} path="/offers" />
+
+                    <Route element={<News direction={false} />} path="/dota" />
+                    <Route element={<News direction={false} />} path="/cs" />
+                    <Route element={<News direction={false} />} path="/bascketball" />
+                    <Route element={<></>} path="/tournament/:id" />
+                    <Route element={<Meeting />} path="/meeting/:id" />
+                    <Route element={<Team />} path="/team/:id" />
+                    <Route element={<></>} path="/editteam/:id" />
+                    <Route element={<></>} path="/regteam/:iddirection" />
+                    <Route element={<></>} path="/protokols/:iddirection" />
+                    <Route element={<P404 />} path="*" />
+                </Routes>
+            </Context>
         </BrowserRouter>
     )
 }

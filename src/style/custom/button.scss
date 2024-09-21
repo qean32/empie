@@ -1,0 +1,52 @@
+@import '../import.scss';
+
+button {
+    border-radius: 6px;
+    border: 1px solid transparent;
+    padding: 0.5em 1.4em;
+    font-size: 1em;
+    background-color: #00000000;
+    cursor: pointer;
+    transition: 0.7s;
+    margin: 20px;
+    border-color: $background-color-dark;
+}
+
+button>p {
+    transition: .7s;
+    opacity: 0.6;
+}
+
+button:hover {
+    border-color: $main-color;
+}
+
+button:hover>p {
+    opacity: 1;
+    color: $main-color;
+}
+
+.btngreen:hover {
+    border-color: $green-color;
+}
+
+.btngreen:hover>p {
+    border-color: $green-color;
+    color: $green-color;
+}
+
+.btngreen {
+    background-color: #242424;
+}
+
+.btngreen>p {
+    border-color: $green-color;
+    color: $green-color;
+    opacity: 1;
+}
+
+
+// button:focus,
+// button:focus-visible {
+//     outline: 4px auto -webkit-focus-ring-color;
+// }

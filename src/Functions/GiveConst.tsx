@@ -5,7 +5,7 @@ export const techwork: boolean = false
 
 export enum colors {
     maincolor = '#E74343',
-    greencolor = 'asd',
+    greencolor = '#0d9e0d',
     backgroundcolor = ''
 }
 
@@ -15,9 +15,22 @@ export enum direction {
     dota = 'dota'
 }
 
-export const positioncenterbyabsolute:  React.CSSProperties = {
-    position: 'absolute',
+export enum idDirection {
+    bascketball = 1,
+    cs = 2,
+    dota = 3
+}
+
+export const positioncenterbyabsolute: React.CSSProperties = {
+    position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)'
+}
+
+export const positioncenterbyflex: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
 }

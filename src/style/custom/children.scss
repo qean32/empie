@@ -1,0 +1,200 @@
+.leftpanel>div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 4vh;
+    min-height: 31px;
+    padding: 0 0 0 2vh;
+    cursor: pointer;
+}
+
+
+.leftpanel>div>p {
+    transition: .7s;
+}
+
+
+.leftpanel>div:hover>p {
+    transform: translateX(7px);
+}
+
+.leftpanel>div>img {
+    margin: 0 2vh 0 0;
+}
+
+.leftpanel>article {
+    margin: 1vh 0 0 0;
+}
+
+.under-color>section {
+    padding: 1vh 0 0 0;
+}
+
+.under-color>section>div>p {
+    font-size: 11px;
+    margin: 2px 5px;
+    cursor: pointer;
+}
+
+
+.under-color>section>div {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0 0 0 2vh;
+}
+
+.rightpanellink {
+    padding: 0 3vh;
+    width: 100%;
+    height: 3vh;
+    min-height: 25px;
+    transition: .7s;
+    cursor: pointer;
+}
+
+.rightpanellink:hover {
+    transform: translateX(7px);
+}
+
+.inline-conteiner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .4s;
+    padding: 10px 20px;
+}
+
+.inline-conteiner:hover,
+.offer:hover {
+    background-color: rgb(61, 61, 61);
+    cursor: pointer;
+}
+
+.inline-conteiner>div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ava {
+    @include dftava
+}
+
+
+.inline-conteiner>span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.inline-conteiner>section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px 0 0;
+}
+
+.inline-conteiner>span>img {
+    width: 4vh;
+    height: 4vh;
+    min-height: 50px;
+    min-width: 50px;
+}
+
+.alightcenter {
+    display: flex;
+    align-items: center;
+}
+
+.teamvstam {
+    display: flex;
+    height: 100%;
+    gap: 20px;
+}
+
+.teamvstam>div>img {
+    width: 4vh;
+    height: 4vh;
+}
+
+.topteam {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.topteam>div {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    transition: .7s;
+}
+
+.topteam>div>div {
+    transition: .7s;
+}
+
+.topteam>div>div:hover {
+    transform: translateY(-5px);
+}
+
+.topteam>div>div {
+    @include dftava
+}
+
+
+.stream {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.offer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 0 0 30px;
+    transition: .4s;
+}
+
+.offer>div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.postimg {
+    @include dftava;
+    width: 40vh;
+    height: 200px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.postsimg {
+    display: flex;
+    gap: 40px;
+}
+
+.coments {
+    padding: 20px 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    transition: 1.4s;
+    overflow: hidden;
+}

@@ -7,5 +7,13 @@ export default function (defaultValue: boolean) {
         setBoolean(prev => !prev)
     }
 
-    return [boolean, SwapFn]
+    const on = () => {
+        setBoolean(true)
+    }
+
+    const off = () => {
+        setBoolean(false)
+    }
+
+    return { boolean, SwapFn: SwapFn, on: on, off: off}
 }
