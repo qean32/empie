@@ -7,6 +7,8 @@ import { LeftPanel } from "../../components/hoc/leftPanel";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Center } from "../../components/hoc/center";
+import { Right } from "../../components/hoc/right";
 
 type Props = {
 
@@ -21,42 +23,50 @@ export const Team = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <LeftPanel function_={() => undefined} />
-                        <div>
+                        <Center>
                             <CenterPlate>
-                                <div className="background"><img src="" alt="" /></div>
-                                <article className="about">
-                                    <p>teamname</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
-                                    <p style={{ fontSize: '1.6vh' }}>матчи: 23/32 турниры: 2/3 показатели: 52%</p>
-                                </article>
+                                <div className="dftcontainer">
+                                    <div className="background"><img src="" alt="" /></div>
+                                    <article className="about">
+                                        <p>teamname</p>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
+                                        <p style={{ fontSize: '1.6vh' }}>матчи: 23/32 турниры: 2/3 показатели: 52%</p>
+                                    </article>
+                                </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="trophy">
-                                    <div>
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
+                                <div className="dftcontainer">
+                                    <div className="trophy">
+                                        <div>
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                        </div>
                                     </div>
                                 </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div>
-                                    <div className="kep">
+                                <div className="dftcontainer">
+                                    <div>
+                                        <div className="kep">
+                                            <InlineUser />
+                                        </div>
+                                        <InlineUser />
+                                        <InlineUser />
+                                        <InlineUser />
                                         <InlineUser />
                                     </div>
-                                    <InlineUser />
-                                    <InlineUser />
-                                    <InlineUser />
-                                    <InlineUser />
                                 </div>
                             </CenterPlate>
-                        </div>
-                        <RightPanel><></></RightPanel>
+                        </Center>
+                        <Right>
+                            <RightPanel><></></RightPanel>
+                        </Right>
                     </>
                 }
             </div>

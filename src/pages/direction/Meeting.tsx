@@ -10,6 +10,8 @@ import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
 import Repair from "../../components/ui/meny-time use/repair";
+import { Center } from "../../components/hoc/center";
+import { Right } from "../../components/hoc/right";
 type Props = {
 }
 export const Meeting = ({ }: Props) => {
@@ -24,9 +26,9 @@ export const Meeting = ({ }: Props) => {
             {loading ? <div className="main"><MainLoader /></div> :
                 <div className="main">
                     <LeftPanel function_={modal.SwapFn} />
-                    <div className="center">
+                    <Center>
                         <SmallCenterPlate>
-                            <div className="container">
+                            <div className="dftcontainer">
                                 <div className="headmeeting">
                                     <div> <div className="ava"></div> <p>POKUZAN</p> </div>
                                     <div style={{ gap: '10px' }}> <img src="/svg/cup.svg" alt="" style={{ width: '30px' }} /> <div> <p>20:21</p><p style={{ fontSize: '12px' }}> 20.09 </p> </div> </div>
@@ -35,7 +37,7 @@ export const Meeting = ({ }: Props) => {
                             </div>
                         </SmallCenterPlate>
                         <SmallCenterPlate>
-                            <div className="container" style={{ padding: '40px 0 0 0' }}>
+                            <div className="dftcontainer" style={{ padding: '40px 0 0 0' }}>
                                 <div style={{ width: '100%' }}>
                                     <div className="headmeeting">
                                         <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/hands.svg" alt="" /> <p style={{ fontSize: '13px' }}>время 18:30</p>  <p style={{ fontSize: '13px' }}>id: 0000000000</p></div>
@@ -49,7 +51,7 @@ export const Meeting = ({ }: Props) => {
                             </div>
                         </SmallCenterPlate>
                         <SmallCenterPlate>
-                            <div className="container" style={{ padding: '40px 0 0 0' }}>
+                            <div className="dftcontainer" style={{ padding: '40px 0 0 0' }}>
                                 <div style={{ width: '100%' }}>
                                     <div className="headmeeting">
                                         <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/cup.svg" alt="" /> <p style={{ fontSize: '13px' }}>время 18:30</p>  <p style={{ fontSize: '13px' }}>id: 7948176944</p> </div>
@@ -62,10 +64,10 @@ export const Meeting = ({ }: Props) => {
                                 </div>
                             </div>
                         </SmallCenterPlate>
-                    </div>
-                    <div>
+                    </Center>
+                    <Right>
                         <RightPanel><RightPanelDirectionChildren direction={0} /></RightPanel>
-                    </div>
+                    </Right>
                 </div>}
         </>
     )

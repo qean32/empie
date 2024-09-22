@@ -15,6 +15,8 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { InputComent, LikeComent } from "../../components/ui/one-time use/InterfacePost";
 import { Post } from "../../components/ui/meny-time use/post";
+import { Center } from "../../components/hoc/center";
+import { Right } from "../../components/hoc/right";
 
 type Props = {
     direction: boolean | string
@@ -40,29 +42,23 @@ export const News = ({ direction = false }: Props) => {
                     {loading ? <MainLoader /> :
                         <>
                             <LeftPanel function_={modal.SwapFn} />
-                            <div className="center">
+                            <Center>
                                 <SmallCenterPlate>
-                                    <div className="container" style={{ padding: '20px 30px', flexDirection: 'column' }}>
-                                        <Post />
-                                    </div>
+                                    <Post />
                                 </SmallCenterPlate>
                                 <SmallCenterPlate>
-                                    <div className="container" style={{ padding: '20px 30px', flexDirection: 'column' }}>
-                                        <Post />
-                                    </div>
+                                    <Post />
                                 </SmallCenterPlate>
                                 <SmallCenterPlate>
-                                    <div className="container" style={{ padding: '20px 30px', flexDirection: 'column' }}>
-                                        <Post />
-                                    </div>
+                                    <Post />
                                 </SmallCenterPlate>
-                            </div>
-                            <div>
+                            </Center>
+                            <Right>
                                 <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                                 <RightPanel><RightTransferChild /></RightPanel>
                                 <RightPanel><TopTeamChild /></RightPanel>
                                 <RightPanel><StreamChild /></RightPanel>
-                            </div>
+                            </Right>
                         </>
                     }
                 </div>

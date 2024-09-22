@@ -5,7 +5,7 @@ type Props = {
 }
 export const MoveonGridChild = ({}: Props) => {
     return ( 
-        <div>
+        <div className="rightcontainer">
             <GridPoint />
         </div>
     );

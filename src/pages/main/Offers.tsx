@@ -14,6 +14,8 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Button } from "../../components/ui/meny-time use/customButton";
+import { Right } from "../../components/hoc/right";
+import { Center } from "../../components/hoc/center";
 
 type Props = {
 
@@ -36,9 +38,9 @@ export const Offers = ({ }: Props) => {
             {loading ? <div className="main"><MainLoader /></div> :
                 <div className="main">
                     <LeftPanel function_={modal.SwapFn} />
-                    <div className="center">
+                    <Center>
                         <SmallCenterPlate>
-                            <div style={{minHeight: '500px'}}>
+                            <div style={{ minHeight: '500px' }}>
                                 <div className="offer">
                                     <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
                                     <Button title="принять" function_={() => undefined} />
@@ -57,8 +59,10 @@ export const Offers = ({ }: Props) => {
                                 </div>
                             </div>
                         </SmallCenterPlate>
-                    </div>
-                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                    </Center>
+                    <Right>
+                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                    </Right>
                 </div>}
         </>
     );

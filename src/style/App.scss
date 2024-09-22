@@ -61,41 +61,6 @@ header>div>div {
   @include dftava;
 }
 
-.centerplate {
-  @include dftPlate;
-  width: 62vh;
-  margin: 0 0 40px 0;
-  min-width: 460px;
-  min-height: 220px;
-}
-
-.centerplate>div {
-  padding: 20px 0 0 0;
-}
-
-.smallcenterplate {
-  @include dftPlate;
-  width: 58vh;
-  margin: 0 0 3vh 0;
-  min-width: 500px;
-}
-
-.container {
-  padding: 20px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.containercolumn {
-  padding: 20px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-
 .centerplate:hover,
 .smallcenterplate:hover,
 .fullplate:hover,
@@ -103,34 +68,6 @@ header>div>div {
 .rightpanel:hover {
   transform: translateY(-3px);
   cursor: pointer;
-}
-
-.leftpanel {
-  @include dftPlate;
-  width: 22vh;
-  padding: 1vh 0 0 0;
-  margin: 0.5vh 0;
-  min-width: 185px;
-}
-
-.fullplate {
-  @include dftPlate;
-  border-radius: 2px;
-  width: 76vh;
-  margin: 0 0 3vh 0;
-  min-width: 440px;
-  min-height: 1000px;
-  transform: translateY(-100px);
-  z-index: -1;
-}
-
-.rightpanel {
-  @include dftPlate;
-  width: 30vh;
-  margin: 1vh 0;
-  padding: 2vh 0;
-  min-width: 260px;
-  margin: 0 0 35px 0;
 }
 
 .main {
@@ -199,14 +136,6 @@ header>div>div {
   display: flex;
   gap: 20px;
   flex-direction: column;
-}
-
-.coniensmallwindow {
-  @include positioncenterbyflex;
-  flex-direction: column;
-  gap: 20px;
-  min-height: 200px;
-  margin: 20px;
 }
 
 .background {
@@ -284,6 +213,7 @@ header>div>div {
   gap: 10px;
   grid-template-rows: 1fr;
   padding: 20px 30px;
+  margin: 10px 0;
 }
 
 .cashheader>div {
@@ -350,3 +280,10 @@ header>div>div {
   gap: 40px;
   height: 280px;
 }
+
+.positioncenterbyflex {
+  @include positioncenterbyflex;
+  flex-direction: column;
+}
+
+@import './new.scss';

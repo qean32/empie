@@ -17,6 +17,7 @@ import { InlineTeam, InlineUser } from "../../components/ui/meny-time use/inline
 import { MoveonGridChild } from "../../childrens/moveongrid";
 import { InputFile } from "../../components/ui/meny-time use/customInput";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Right } from "../../components/hoc/right";
 
 type Props = {
 
@@ -42,13 +43,13 @@ export const Test = ({ }: Props) => {
                         <SmallCenterPlate><MeetingChild /></SmallCenterPlate>
                         <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                     </div>
-                    <div>
+                    <Right>
                         <RightPanel><RightPanelChildren fn1={() => undefined} fn2={() => undefined} fn3={() => undefined} /></RightPanel>
                         <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
                         <RightPanel><MoveonGridChild /></RightPanel>
-                    </div>
+                    </Right>
                 </div>}
         </>
     );

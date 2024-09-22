@@ -22,9 +22,9 @@ export const Music = ({ }: Props) => {
             <Header />
             <div className="main">
                 {loading ? <MainLoader /> :
-                    <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
+                    <div style={{ ...positioncenterbyabsolute, top: '50%' }}>
                         <SmallCenterPlate>
-                            <div className="coniensmallwindow" style={{padding: '50px'}}>
+                            <div className="containernsmallwindow">
                                 <Repair />
                                 <p>раздел в разработке</p>
                                 <Button title="назад" function_={() => navigate('/')} />

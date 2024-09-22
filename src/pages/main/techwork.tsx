@@ -19,9 +19,9 @@ export const Techwork = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <div style={{ ...positioncenterbyabsolute, top: '40%' }}>
+                        <div style={{ ...positioncenterbyabsolute, top: '50%' }}>
                             <SmallCenterPlate>
-                                <div className="coniensmallwindow">
+                                <div className="containernsmallwindow">
                                     <Repair />
                                     <p>ведутся работы</p>
                                 </div>

@@ -21,7 +21,7 @@ export const Post = ({ }: Props) => {
     }
 
     return (
-        <>
+        <div className="dftcontainer" style={{ padding: '20px 30px', flexDirection: 'column' }}>
             <div className="post">
                 <div>
                     <div className="postsimg"><div className="ava"></div><img src="" alt="" className="postimg" /></div>
@@ -29,7 +29,7 @@ export const Post = ({ }: Props) => {
                 <div>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, obcaecati rem! Dignissimos eveniet quisquam nulla obcaecati saepe  </p>
                 </div>
-                <div style={{ display: 'flex', gap: '15px', justifyContent: 'end' }}>
+                <div style={{ display: 'flex', gap: '15px', justifyContent: 'end', padding: '0 10px 0 0' }}>
                     <LikeComent islike={true} value={ulike.boolean} fn={LikeHandler} count={countLike} />
                     <LikeComent islike={false} value={ucoment.boolean} fn={viewcoments.SwapFn} count={coments.length} />
                 </div>
@@ -39,6 +39,6 @@ export const Post = ({ }: Props) => {
                 <div className="postsimg" style={{ gap: '15px' }}><div className="ava"></div><p style={{ maxWidth: '420px' }}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam.ectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. ectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. ectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit.  </p></div>
                 <div className="postsimg" style={{ gap: '15px' }}><div className="ava"></div><p style={{ maxWidth: '420px' }}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam. </p></div>
             </div>
-        </>
+        </div>
     );
 }

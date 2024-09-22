@@ -11,6 +11,8 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { StreamChild } from "../../childrens/stream";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Right } from "../../components/hoc/right";
+import { Center } from "../../components/hoc/center";
 
 type Props = {
 }
@@ -33,13 +35,13 @@ export const Wall = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <LeftPanel function_={modal.SwapFn} />
-                        <div className="center">
+                        <Center>
                             <SmallCenterPlate><div className="container"></div></SmallCenterPlate>
-                        </div>
-                        <div>
+                        </Center>
+                        <Right>
                             <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                             <RightPanel><StreamChild /></RightPanel>
-                        </div>
+                        </Right>
                     </>
                 }
             </div>

@@ -6,9 +6,11 @@ type Props = {
 export const TournamentChild = ({ }: Props) => {
     const navigate = useNavigate()
     return (
-        <div style={{ justifyContent: 'space-between' }} className="container" onClick={() => navigate(`/tournament/2`)}>
-            <p>попытка номер два</p>
-            <p>ДОПЗ: 14.05</p>
+        <div className="dftcontainer" onClick={() => navigate(`/tournament/2`)}>
+            <div style={{ justifyContent: 'space-between', display: 'flex', width: '100%', padding: '0 30px' }}>
+                <p>попытка номер два</p>
+                <p>ДОПЗ: 14.05</p>
+            </div>
         </div>
     );
 }

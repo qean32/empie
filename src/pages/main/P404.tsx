@@ -18,7 +18,7 @@ export const P404 = ({ }: Props) => {
             <div className="main">
                 <div style={{ ...positioncenterbyabsolute }}>
                     <SmallCenterPlate>
-                        <div className="coniensmallwindow" style={{ height: '380px' }}>
+                        <div className="containernsmallwindow">
                             <Repair />
                             <p>страница не найдена</p>
                             <div>

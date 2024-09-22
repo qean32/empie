@@ -7,7 +7,7 @@ type Props = {
 }
 export const RightPanelChildren = ({ fn1, fn2, fn3 }: Props) => {
     return (
-        <div style={{ overflow: "hidden" }}>
+        <div className="rightcontainer">
             <div className="rightpanellink" onClick={() => fn1()}>турниры</div>
             <div className="rightpanellink">игроки</div>
             <div className="rightpanellink" onClick={() => fn2()}>команды</div>
@@ -23,7 +23,7 @@ export const RightPanelDirectionChildren = ({ direction }: Props_) => {
     const navigate = useNavigate()
 
     return (
-        <div style={{ overflow: "hidden" }}>
+        <div className="rightcontainer">
             <div className="rightpanellink" onClick={() => navigate(`/tournaments/${direction}`)}>турниры</div>
             <div className="rightpanellink" onClick={() => navigate(`/meetings/${direction}`)}>матчи</div>
             <div className="rightpanellink" onClick={() => navigate(`/${direction}`)}>новости</div>

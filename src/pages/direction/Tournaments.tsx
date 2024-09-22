@@ -9,6 +9,7 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { TournamentChild } from "../../childrens/tournament";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Center } from "../../components/hoc/center";
 
 type Props = {
 }
@@ -23,13 +24,13 @@ export const Tournaments = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <LeftPanel function_={modal.SwapFn} />
-                        <div className="center">
+                        <Center>
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
-                        </div>
+                        </Center>
                         <DftRPanel direction={4} />
                     </>
                 }

@@ -7,6 +7,8 @@ import { RightPanel } from "../../components/hoc/rightPanel";
 import { Modal } from "../../components/ui/meny-time use/modal";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Center } from "../../components/hoc/center";
+import { Right } from "../../components/hoc/right";
 
 type Props = {
 
@@ -21,34 +23,42 @@ export const Profile = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
-                        <div>
+                        <Center>
                             <CenterPlate>
-                                <div className="background"><img src="" alt="" /></div>
-                                <article className="about">
-                                    <p>username</p>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
-                                </article>
-                            </CenterPlate>
-                            <CenterPlate>
-                                <div className="aboutcareer" style={{ justifyContent: 'center' }}>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
-                                    <div><img src="" alt="" /><img src="" alt="" /></div>
+                                <div className="dftcontainer">
+                                    <div className="background"><img src="" alt="" /></div>
+                                    <article className="about">
+                                        <p>username</p>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
+                                    </article>
                                 </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="trophy">
-                                    <div>
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
-                                        <img src="" alt="" />
+                                <div className="dftcontainer">
+                                    <div className="aboutcareer" style={{ justifyContent: 'center' }}>
+                                        <div><img src="" alt="" /><img src="" alt="" /></div>
+                                        <div><img src="" alt="" /><img src="" alt="" /></div>
+                                        <div><img src="" alt="" /><img src="" alt="" /></div>
+                                        <div><img src="" alt="" /><img src="" alt="" /></div>
                                     </div>
                                 </div>
                             </CenterPlate>
-                        </div>
-                        <RightPanel><></></RightPanel>
+                            <CenterPlate>
+                                <div className="dftcontainer">
+                                    <div className="trophy">
+                                        <div>
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                            <img src="" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </CenterPlate>
+                        </Center>
+                        <Right>
+                            <RightPanel><></></RightPanel>
+                        </Right>
                     </>
                 }
             </div>
