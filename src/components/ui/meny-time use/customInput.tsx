@@ -76,7 +76,7 @@ export const InputPassword = ({ width, title, value, setValue }: PropsPassword) 
     const id_ = GenerateId()
     return (
         <div style={{ position: 'relative', width: '30vh' }}>
-            <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} alt="" onClick={() => view.SwapFn()} className="lockpass" />
+            <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} style={{zIndex: '10'}} alt="" onClick={() => view.SwapFn()} className="lockpass" />
             <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
                 <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
             </label>
