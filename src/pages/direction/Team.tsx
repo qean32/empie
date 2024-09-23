@@ -9,23 +9,26 @@ import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
+import { Modal } from "../../components/ui/meny-time use/modal";
+import { ModalDirectionChildren } from "../../childrens/modalDirection";
 
 type Props = {
 
 }
 export const Team = ({ }: Props) => {
-    const { loading } = useContext<any>(SomeContext)
+    const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('команда')
     return (
         <>
+            {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <LeftPanel function_={() => undefined} />
+                        <LeftPanel function_={modal.SwapFn} />
                         <Center>
                             <CenterPlate>
-                                <div className="dftcontainer">
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                                     <div className="background"><img src="" alt="" /></div>
                                     <article className="about">
                                         <p>teamname</p>
@@ -35,7 +38,7 @@ export const Team = ({ }: Props) => {
                                 </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="dftcontainer">
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                                     <div className="trophy">
                                         <div>
                                             <img src="" alt="" />
@@ -51,7 +54,7 @@ export const Team = ({ }: Props) => {
                                 </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="dftcontainer">
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '20px 0', alignItems: 'normal', justifyItems: 'normal' }}>
                                     <div>
                                         <div className="kep">
                                             <InlineUser />
@@ -65,7 +68,7 @@ export const Team = ({ }: Props) => {
                             </CenterPlate>
                         </Center>
                         <Right>
-                            <RightPanel><></></RightPanel>
+                            <></>
                         </Right>
                     </>
                 }

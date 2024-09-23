@@ -6,7 +6,6 @@ type Props = {
 
 }
 export const Post = ({ }: Props) => {
-    console.log('post rer')
     const ulike = useBoolean(false)
     const ucoment = useBoolean(false)
     const viewcoments = useBoolean(false)

@@ -9,6 +9,7 @@ import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
+import { LeftPanel } from "../../components/hoc/leftPanel";
 
 type Props = {
 
@@ -18,14 +19,15 @@ export const Profile = ({ }: Props) => {
     ChangeTitle('пользователь')
     return (
         <>
+            {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
+                        <LeftPanel function_={modal.SwapFn} />
                         <Center>
                             <CenterPlate>
-                                <div className="dftcontainer">
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                                     <div className="background"><img src="" alt="" /></div>
                                     <article className="about">
                                         <p>username</p>
@@ -34,7 +36,7 @@ export const Profile = ({ }: Props) => {
                                 </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="dftcontainer">
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                                     <div className="aboutcareer" style={{ justifyContent: 'center' }}>
                                         <div><img src="" alt="" /><img src="" alt="" /></div>
                                         <div><img src="" alt="" /><img src="" alt="" /></div>
@@ -44,7 +46,7 @@ export const Profile = ({ }: Props) => {
                                 </div>
                             </CenterPlate>
                             <CenterPlate>
-                                <div className="dftcontainer">
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                                     <div className="trophy">
                                         <div>
                                             <img src="" alt="" />

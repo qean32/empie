@@ -12,10 +12,12 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import Repair from "../../components/ui/meny-time use/repair";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
+import { useNavigate } from "react-router";
 type Props = {
 }
 export const Meeting = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
+    const navigate = useNavigate()
 
     ChangeTitle('матч')
 
@@ -30,9 +32,9 @@ export const Meeting = ({ }: Props) => {
                         <SmallCenterPlate>
                             <div className="dftcontainer">
                                 <div className="headmeeting">
-                                    <div> <div className="ava"></div> <p>POKUZAN</p> </div>
+                                    <div onClick={() => navigate('/team/2')}> <div className="ava"></div> <p>POKUZAN</p> </div>
                                     <div style={{ gap: '10px' }}> <img src="/svg/cup.svg" alt="" style={{ width: '30px' }} /> <div> <p>20:21</p><p style={{ fontSize: '12px' }}> 20.09 </p> </div> </div>
-                                    <div> <div className="ava"></div> <p>zxcclowns</p> </div>
+                                    <div onClick={() => navigate('/team/2')}> <div className="ava"></div> <p>zxcclowns</p> </div>
                                 </div>
                             </div>
                         </SmallCenterPlate>
@@ -40,7 +42,7 @@ export const Meeting = ({ }: Props) => {
                             <div className="dftcontainer" style={{ padding: '40px 0 0 0' }}>
                                 <div style={{ width: '100%' }}>
                                     <div className="headmeeting">
-                                        <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/hands.svg" alt="" /> <p style={{ fontSize: '13px', width: '200px' }}>id: 0 <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('0')} style={{ transform: 'translate(2px, 3px)' }} /></p></div>
+                                        <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/hands.svg" alt="" /> <p style={{ fontSize: '13px', width: '240px' }}>id: 0 <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('0')} style={{ transform: 'translate(2px, 3px)' }} /></p></div>
                                         <div><p>51:40</p></div>
                                     </div>
                                     <div className="meetingrepair">
@@ -54,7 +56,7 @@ export const Meeting = ({ }: Props) => {
                             <div className="dftcontainer" style={{ padding: '40px 0 0 0' }}>
                                 <div style={{ width: '100%' }}>
                                     <div className="headmeeting">
-                                        <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/cup.svg" alt="" /><p style={{ fontSize: '13px', width: '200px' }}>id: 7948176944 <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('7948176944')} style={{ transform: 'translate(2px, 3px)' }} /></p> </div>
+                                        <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/cup.svg" alt="" /><p style={{ fontSize: '13px', width: '240px' }}>id: 7948176944 <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('7948176944')} style={{ transform: 'translate(2px, 3px)' }} /></p> </div>
                                         <div><p>51:40</p></div>
                                     </div>
                                     <div className="meetingrepair">

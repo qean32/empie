@@ -20,9 +20,9 @@ export const Registration = ({ }: Props) => {
     const [password, setPassword] = useState<string>('')
     const [repassword, setRePassword] = useState<string>('')
     const [email, setEmail] = useState<string>('')
-    const reg = useBoolean(false)
-    const reg_ = useBoolean(false)
-    const on = useBoolean(false)
+    const reg = useBoolean(true)
+    const reg_ = useBoolean(true)
+    const on = useBoolean(true)
 
     useEffect(() => {
         if (on.boolean) {
@@ -46,25 +46,32 @@ export const Registration = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <div style={{ ...positioncenterbyabsolute, top: '50%' }}>
-                            <Button title="click" function_={on.SwapFn} />
                             <CenterPlate>
-                                <div className="dftcontainer regwindow transition03" style={reg.boolean ? { height: '500px' } : { height: '320px' }}>
-                                    <div style={{ zIndex: '2' }} className=""></div>
+                                <div className="dftcontainer regwindow transition07" style={reg.boolean ? { maxHeight: '500px' } : { maxHeight: '320px' }}>
+                                    <div style={{ zIndex: '12', backgroundColor: '#292929' }} className=""></div>
                                     <div className="regentrance" style={{ width: '200%' }}>
-                                        <div style={reg_.boolean ? { marginLeft: '-50%' } : {}} className="transition03">
+                                        <div className="navreg">
+                                            <p onClick={on.on}>вход <img src="/svg/door.svg" alt="" /></p>
+                                            <p onClick={on.off}>регистрация <img src="/svg/reg_user.svg" alt="" /></p>
+                                        </div>
+                                        <div style={reg_.boolean ? { marginLeft: '-50%' } : {}} className="transition07">
                                             <div>
-                                                <div><p>ВХОД</p></div>
                                                 <div><InputEmail value={email} setValue={setEmail} title="почта" /></div>
                                                 <div><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
+                                                <div className="regwarning">
+                                                    <p> забыли пароль? --анлак</p>
+                                                    <p onClick={on.off}> нет аккаунта? --регистрация</p>
+                                                </div>
                                                 <div><Button title="вход" function_={() => undefined} /></div>
                                             </div>
                                             <div>
-                                                <div><p>РЕГИСТРАЦИЯ</p></div>
                                                 <div><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
                                                 <div><InputText value={lastname} setValue={setLastname} title="фамилия" max={20} /></div>
                                                 <div><InputEmail value={email} setValue={setEmail} title="почта" /></div>
                                                 <div><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
-                                                <div><InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" /></div>
+                                                <div className="regwarning">
+                                                    <p onClick={on.on}> есть аккаунт? --войти</p>
+                                                </div>
                                                 <div><Button title="регистрация" function_={() => undefined} /></div>
                                             </div>
                                         </div>

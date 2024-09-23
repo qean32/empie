@@ -6,7 +6,7 @@ type Props = {
 export const TopTeamChild = ({ }: Props) => {
     const navigate = useNavigate()
     return (
-        <div className="topteam rightcontainer" style={{padding: '20px 20px'}}>
+        <div className="topteam rightcontainer" style={{padding: '15px'}}>
             <p>кол-во побед</p>
             <div>
                 <div onClick={() => navigate(`/team/2`)}></div>
