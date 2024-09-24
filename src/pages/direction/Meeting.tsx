@@ -32,9 +32,9 @@ export const Meeting = ({ }: Props) => {
                         <SmallCenterPlate>
                             <div className="dftcontainer">
                                 <div className="headmeeting">
-                                    <div onClick={() => navigate('/team/2')}> <div className="ava"></div> <p>POKUZAN</p> </div>
+                                    <Team />
                                     <div style={{ gap: '10px' }}> <img src="/svg/cup.svg" alt="" style={{ width: '30px' }} /> <div> <p>20:21</p><p style={{ fontSize: '12px' }}> 20.09 </p> </div> </div>
-                                    <div onClick={() => navigate('/team/2')}> <div className="ava"></div> <p>zxcclowns</p> </div>
+                                    <Team />
                                 </div>
                             </div>
                         </SmallCenterPlate>
@@ -73,4 +73,14 @@ export const Meeting = ({ }: Props) => {
                 </div>}
         </>
     )
+}
+
+type Props_ = {
+
+}
+export const Team = ({ }: Props_) => {
+    const navigate = useNavigate()
+    return (
+        <div onClick={() => navigate('/team/2')}> <div className="ava hover3 transition03"></div> <p>POKUZAN</p> </div>
+    );
 }

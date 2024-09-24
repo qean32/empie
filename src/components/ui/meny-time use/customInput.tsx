@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import useBoolean from "../../../customHooks/useBoolean"
 import ValidateRuName from "../../../functions/ValidateRuName"
 import moment from "moment"
 import ValidatePassword from "../../../functions/ValidatePassword"
 import ValidateEmail from "../../../functions/ValidateEmail"
-import { Button } from "./customButton"
 import { GenerateId } from "../../../functions/GenerateNumber"
 
 type PropsText = {
@@ -42,7 +41,7 @@ export const InputText = ({ width, title, value, setValue, max }: PropsText) => 
             <div style={{ transform: 'translateY(1vh)' }}>
                 <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не используйте латиницу / числа</p>
             </div>
-            <div style={{ transform: 'translate(22vh, -1vh)' }}>
+            <div style={{ transform: 'translate(27vh, -1vh)' }}>
                 <p className="inputwarning" style={value.length > max ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/{max} </p>
             </div>
         </div>
@@ -211,16 +210,13 @@ export const InputNumber = ({ width = 10, title, value, setValue, min, max }: Pr
 
 type PropsCheckbox = {
     value: boolean
-    setValue: Function
+    fn: Function
     title: string
 }
-export const Checkbox = ({ title, setValue, value }: PropsCheckbox) => {
-    const changeHandler = () => {
-        setValue((prev: boolean) => !prev)
-    }
+export const Checkbox = ({ title, fn, value }: PropsCheckbox) => {
     return (
-        <div onClick={changeHandler} style={{ cursor: 'pointer' }}>
-            <p style={{ position: 'relative' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
+        <div onClick={() => fn()} style={{ cursor: 'pointer' }}>
+            <p style={{ position: 'relative', fontSize: '14px' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
                 <img src="/svg/accept.svg" alt="" style={value ? { opacity: '1' } : { opacity: '0' }} className="transition03 checkbox_" /></p>
         </div>
     );
@@ -258,7 +254,7 @@ export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
             <input type="text" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
             <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не валидная почта</p>
-            <div style={{ transform: 'translate(22vh, -1vh)' }}>
+            <div style={{ transform: 'translate(27vh, -1vh)' }}>
                 <p className="inputwarning" style={value.length > 40 ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/40 </p>
             </div>
         </div>

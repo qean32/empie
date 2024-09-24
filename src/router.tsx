@@ -17,6 +17,7 @@ import { Chat } from "./pages/main/chat"
 import { Wall } from "./pages/main/wall"
 import { Offers } from "./pages/main/offers"
 import { Meeting } from "./pages/direction/meeting"
+import { Tournament } from "./pages/direction/tournament"
 
 type Props = {
 
@@ -48,7 +49,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<News direction={false} />} path="/dota" />
                     <Route element={<News direction={false} />} path="/cs" />
                     <Route element={<News direction={false} />} path="/bascketball" />
-                    <Route element={<></>} path="/tournament/:id" />
+                    <Route element={<Tournament />} path="/tournament/:id" />
                     <Route element={<Meeting />} path="/meeting/:id" />
                     <Route element={<Team />} path="/team/:id" />
                     <Route element={<></>} path="/editteam/:id" />

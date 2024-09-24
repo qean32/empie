@@ -22,7 +22,6 @@ export const InlineUser = ({ }: Props_) => {
             <span>
                 <img src="" alt="" />
                 <img src="" alt="" />
-                <img src="" alt="" />
             </span>
         </div>
     );

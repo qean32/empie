@@ -16,6 +16,7 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import { Button } from "../../components/ui/meny-time use/customButton";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
+import Repair from "../../components/ui/meny-time use/repair";
 
 type Props = {
 
@@ -26,6 +27,8 @@ export const Offers = ({ }: Props) => {
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
+
+    const [offers, setOffers] = useState([])
 
     ChangeTitle('приглашения')
     return (
@@ -40,23 +43,31 @@ export const Offers = ({ }: Props) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
                         <SmallCenterPlate>
-                            <div style={{ minHeight: '500px' }}>
-                                <div className="offer">
-                                    <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
-                                    <Button title="принять" function_={() => undefined} />
-                                </div>
-                                <div className="offer">
-                                    <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
-                                    <Button title="принять" function_={() => undefined} />
-                                </div>
-                                <div className="offer">
-                                    <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
-                                    <Button title="принять" function_={() => undefined} />
-                                </div>
-                                <div className="offer">
-                                    <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
-                                    <Button title="принять" function_={() => undefined} />
-                                </div>
+                            <div className="dftcontainer" style={{ flexDirection: 'column', alignItems: 'normal', minHeight: '500px', justifyContent: 'start', padding: '40px 0 0 0' }}>
+                                {offers.length > 0 ?
+                                    <>
+                                        <div className="offer">
+                                            <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
+                                            <Button title="принять" function_={() => undefined} />
+                                        </div>
+                                        <div className="offer">
+                                            <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
+                                            <Button title="принять" function_={() => undefined} />
+                                        </div>
+                                        <div className="offer">
+                                            <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
+                                            <Button title="принять" function_={() => undefined} />
+                                        </div>
+                                        <div className="offer">
+                                            <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
+                                            <Button title="принять" function_={() => undefined} />
+                                        </div>
+                                    </> :
+                                    <div className="dftcontainer" style={{ flexDirection: 'column', gap: '40px' }}>
+                                        <Repair />
+                                        <p>у тебя нет активных приглашений, бро</p>
+                                    </div>
+                                }
                             </div>
                         </SmallCenterPlate>
                     </Center>

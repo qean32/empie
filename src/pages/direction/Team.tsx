@@ -68,7 +68,7 @@ export const Team = ({ }: Props) => {
                             </CenterPlate>
                         </Center>
                         <Right>
-                            <></>
+                            <RightPanel><div className="dftcontainer"></div></RightPanel>
                         </Right>
                     </>
                 }

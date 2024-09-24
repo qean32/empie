@@ -39,10 +39,10 @@ export const Loader = () => {
     )
 }
 
-export const LoaderGreen = () => {
+export const LoaderWhite = () => {
     return (
         <div style={{ transform: 'translate(-1vh, -2.4vh)' }}>
-            <span className="loader loaderGreen"></span>
+            <span className="loader loaderWhite"></span>
         </div>
     )
 }
