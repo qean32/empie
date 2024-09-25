@@ -29,7 +29,7 @@ export const Chat = ({ }: Props) => {
                         <LeftPanel function_={modal.SwapFn} />
                         <Center>
                             <CenterPlate>
-                                <div className="dftcontainer" style={{ padding: '20px 50px' }}>
+                                <div className="dftcontainer" style={{ padding: '20px 40px' }}>
                                     <div className="chat">
                                         <div className="chatwindow">
                                             <Message elem={{ isorg: false }} />

@@ -13,7 +13,7 @@ type PropsText = {
     setValue: Function
     max: number
 }
-export const InputText = ({ width, title, value, setValue, max }: PropsText) => {
+export const InputText = ({ width = 31, title, value, setValue, max }: PropsText) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -41,7 +41,7 @@ export const InputText = ({ width, title, value, setValue, max }: PropsText) => 
             <div style={{ transform: 'translateY(1vh)' }}>
                 <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не используйте латиницу / числа</p>
             </div>
-            <div style={{ transform: 'translate(27vh, -1vh)' }}>
+            <div style={{ transform: `translate(${width - 3}vh, -1vh)` }}>
                 <p className="inputwarning" style={value.length > max ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/{max} </p>
             </div>
         </div>
@@ -178,7 +178,7 @@ type PropsNumber = {
     max: number
     min: number
 }
-export const InputNumber = ({ width = 10, title, value, setValue, min, max }: PropsNumber) => {
+export const InputNumber = ({ width = 31, title, value, setValue, min, max }: PropsNumber) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -228,7 +228,7 @@ type PropsEmail = {
     value: string
     setValue: Function
 }
-export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
+export const InputEmail = ({ width = 31, title, value, setValue }: PropsEmail) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -254,7 +254,7 @@ export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
             <input type="text" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
             <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не валидная почта</p>
-            <div style={{ transform: 'translate(27vh, -1vh)' }}>
+            <div style={{ transform: `translate(${width - 3}vh, -1vh)` }}>
                 <p className="inputwarning" style={value.length > 40 ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/40 </p>
             </div>
         </div>
