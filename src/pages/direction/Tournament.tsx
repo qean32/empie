@@ -6,43 +6,17 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { useNavigate } from "react-router";
+import Calendar from "react-calendar";
+import moment from "moment";
 type Props = {
 }
 export const Tournament = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
     const navigate = useNavigate()
+    const [meetings, setMeetings] = useState<any[]>([{ date: '' }])
 
     ChangeTitle('турнир')
 
-    const [date, setDate] = useState(new Date());
-    const [mark, setmark] = useState<any[]>([])
-    const [mark_, setmark_] = useState<any[]>([])
-    const [meeting, setmeeting] = useState<any[]>([{ date: '' }])
-
-    useEffect(() => {
-        if (meeting) {
-            for (let index = 0; index < meeting.length; index++) {
-                if (meeting[index].date) {
-                    setmark((prew: any) => [...prew, meeting[index].date])
-                }
-            }
-            for (let index = 0; index < meeting.length; index++) {
-                if (meeting[index].date) {
-                    setmark_((prew: any) => [...prew, { 'date': meeting[index].date, 'id': meeting[index].id }])
-                }
-            }
-        }
-    }, [meeting])
-
-    let CheckFunction = (array: any, value: any) => {
-        let result = false
-        for (let index = 0; index < array.length; index++) {
-            if (array[index].date == value) {
-                result = array[index].id
-            }
-        }
-        return result
-    }
     return (
         <>
             <Header />
@@ -52,18 +26,7 @@ export const Tournament = ({ }: Props) => {
                         <SmallCenterPlate>
                             <div className="dftcontainer" style={{ width: '120vh', flexDirection: 'column' }}>
                                 <div className="infotournamnet">
-                                    <Calendar onChange={setDate} value={date} defaultActiveStartDate={new Date(date.getFullYear(mark[0]), date.getMonth(mark[0]))}
-                                        onClickDay={(e) => {
-                                            let id = CheckFunction(mark_, moment(new Date(e).toISOString(), "YYYY-MM-DDTHH:mm:ss.sssZ").format("DD.MM.YY"))
-                                            if (id) {
-                                                navigate(`/${str_direction}/meeting/${id}`)
-                                            }
-                                        }}
-                                        tileClassName={({ date, view }) => {
-                                            if (mark.find(x => x === moment(date).format("DD.MM.YY"))) {
-                                                return 'highlight'
-                                            }
-                                        }} />
+                                    <CustomCalendar meetings={meetings} />
                                 </div>
                                 <div className="gridtournamnet"></div>
                                 <div className="undertournamnet"></div>
@@ -73,4 +36,54 @@ export const Tournament = ({ }: Props) => {
                 </div>}
         </>
     )
+}
+
+const CustomCalendar = ({ meetings }: { meetings: any }) => {
+    const [onlyDate, setOnlyDate] = useState<any>(['24.09.24', '21.09.24'])
+    const date = new Date()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (meetings) {
+            meetings.forEach(({ date }: { date: any }) => {
+                if (date) {
+                    setOnlyDate((prew: any) => [...prew, date])
+                }
+            })
+        }
+    }, [meetings])
+
+    let CheckFunction = (array: any, value: any) => {
+        let result = false
+        array.forEach((element: any) => {
+            if (element.date == value) {
+                result = element.id
+            }
+        });
+        return result
+    }
+    return (
+        <>
+
+            <Calendar value={date}
+                defaultActiveStartDate={date}
+
+                onClickDay={(e) => {
+                    let id = CheckFunction(meetings, moment(new Date(e).toISOString(), "YYYY-MM-DDTHH:mm:ss.sssZ").format("DD.MM.YY"))
+                    if (id) {
+                        navigate(`/meeting/${id}`)
+                    }
+                }}
+
+                tileClassName={({ date }) => {
+                    if (onlyDate.find((x: any) =>
+                        x === moment(date).format("DD.MM.YY")
+                    )) {
+                        return 'highlight'
+                    }
+                }}
+
+            />
+        </>
+    );
 }
