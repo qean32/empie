@@ -33,7 +33,10 @@ export const Profile = ({ }: Props) => {
                                         <p>username</p>
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
                                     </article>
-                                    <div style={{ width: '80%', margin: '0 0 25px 0', display: 'flex', gap: '20px', justifyContent: 'end' }}>
+                                    <div style={{ width: '80%', margin: '20px 0 0 0', display: 'flex', gap: '20px' }}>
+                                        <div className="role" style={{ backgroundColor: `#c78d11` }}>организатор</div>
+                                    </div>
+                                    <div style={{ width: '80%', margin: '20px 0 25px 0', display: 'flex', gap: '20px', justifyContent: 'end' }}>
                                         <a href={``}><img src="/svg/telegram.svg" alt="" style={{ width: '44px' }} className="hover3 transition07" /></a>
                                         <a href={``}><img src="/svg/steam.svg" alt="" style={{ width: '44px' }} className="hover3 transition07" /></a>
                                     </div>

@@ -24,11 +24,25 @@ export const Tournament = ({ }: Props) => {
                 <div className="main">
                     <Center>
                         <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ width: '120vh', flexDirection: 'column' }}>
+                            <div className="dftcontainer" style={{ width: '140vh', flexDirection: 'column' }}>
                                 <div className="infotournamnet">
+                                    <div>
+                                    <div className="teamtournament transition07" style={{backgroundColor: '#00000000'}}><p>команды</p></div>
+                                        <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07"><p>team</p></div>
+                                        <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07"><p>teamteamteam</p></div>
+                                        <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07"><p>team</p></div>
+                                    </div>
                                     <CustomCalendar meetings={meetings} />
                                 </div>
-                                <div className="gridtournamnet"></div>
+                                <div className="gridtournamnet">
+                                    <section></section>
+                                    <section></section>
+                                    <section></section>
+                                    <section></section>
+                                    <section></section>
+                                    <section></section>
+                                    <section></section>
+                                </div>
                                 <div className="undertournamnet"></div>
                             </div>
                         </SmallCenterPlate>

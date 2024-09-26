@@ -5,6 +5,7 @@
 @import './custom/modal.scss';
 @import './custom/calendar.scss';
 @import './custom/children.scss';
+@import './tournament.scss';
 
 * {
   margin: 0;
@@ -484,11 +485,17 @@ header>div>div {
 
 .edit > div{
   display: flex;
-  gap: 40px;
+  gap: 20px;
 }
 
 .edit > span{
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
+}
+
+.role {
+  background-color: #c78d11;
+  padding: 5px 10px;
+  border-radius: 5px;
 }

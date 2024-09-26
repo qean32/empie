@@ -1,0 +1,31 @@
+.infotournamnet {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.teamtournament {
+    background-color: $background-color-light-l;
+    padding: 7px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.teamtournament:hover {
+    transform: translate(6px, 0);
+}
+
+.gridtournamnet {
+    display: flex;
+    width: 100%;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gridtournamnet > section {
+    height: 80vh;
+    width: 14%;
+    outline: 1px solid $main-color;
+}

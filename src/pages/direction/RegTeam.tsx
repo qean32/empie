@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
-import { InputFile, InputNumber, InputText, Search } from "../../components/ui/meny-time use/customInput";
+import { InputFile, InputText } from "../../components/ui/meny-time use/customInput";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
-import useDebounce from "../../customHooks/useDebounce";
-import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
@@ -18,9 +16,9 @@ import { Button } from "../../components/ui/meny-time use/customButton";
 type Props = {
 
 }
-export const EditProfile = ({ }: Props) => {
+export const RegTeam = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    ChangeTitle('редактор профиля')
+    ChangeTitle('редактор команды')
 
     return (
         <>
@@ -31,34 +29,24 @@ export const EditProfile = ({ }: Props) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
                         <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start' }}>
+                            <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start', padding: '40px 0' }}>
                                 <div className="edit">
-                                    <span>
-                                        <InputText title={"имя"} value={""} setValue={() => undefined} max={0} width={16} />
-                                        <InputText title={"фамилия"} value={""} setValue={() => undefined} max={0} width={16} />
-                                    </span>
                                     <div>
-                                        <InputFile setValue={() => undefined} title="фон профиля" />
-                                        <InputFile setValue={() => undefined} title="изображение профиля" />
+                                        <InputText title={"название"} value={""} setValue={() => undefined} max={0} width={32} />
+                                    </div>
+
+                                    <div>
+                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} width={32} />
                                     </div>
 
                                     <span>
-                                        <InputText title={"ссылка стим"} value={""} setValue={() => undefined} max={0} />
-                                        <InputText title={"ссылка тг"} value={""} setValue={() => undefined} max={0} />
+                                        <InputFile setValue={() => undefined} title="фон команды" />
+                                        <InputFile setValue={() => undefined} title="изображение команды" />
                                     </span>
 
-                                    <Button title="сохранить" function_={() => undefined} />
-                                </div>
-                            </div>
-                        </SmallCenterPlate>
-                        <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ justifyContent: 'start' }}>
-                                <div className="edit" style={{ gap: '20px' }}>
-                                    <p>pts dota2</p>
-                                    <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
-                                    <p>elo cs2</p>
-                                    <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
-                                    <Button title="сохранить" function_={() => undefined} />
+                                    <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
+                                        <Button title="сохранить" function_={() => undefined} />
+                                    </div>
                                 </div>
                             </div>
                         </SmallCenterPlate>

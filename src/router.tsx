@@ -19,6 +19,8 @@ import { Offers } from "./pages/main/offers"
 import { Meeting } from "./pages/direction/meeting"
 import { Tournament } from "./pages/direction/tournament"
 import { EditProfile } from "./pages/main/editProfile"
+import { EditTeam } from "./pages/direction/editTeam"
+import { RegTeam } from "./pages/direction/regTeam"
 
 type Props = {
 
@@ -53,8 +55,8 @@ export const Router = ({ }: Props) => {
                     <Route element={<Tournament />} path="/tournament/:id" />
                     <Route element={<Meeting />} path="/meeting/:id" />
                     <Route element={<Team />} path="/team/:id" />
-                    <Route element={<></>} path="/editteam/:id" />
-                    <Route element={<></>} path="/regteam/:iddirection" />
+                    <Route element={<EditTeam />} path="/editteam/:id" />
+                    <Route element={<RegTeam />} path="/regteam/:iddirection" />
                     <Route element={<></>} path="/protokols/:iddirection" />
                     <Route element={<P404 />} path="*" />
                 </Routes>

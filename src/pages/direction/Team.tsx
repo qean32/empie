@@ -26,6 +26,9 @@ export const Team = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <LeftPanel function_={modal.SwapFn} />
+                        <div>
+                            <img src="/svg/dota.svg" alt="" style={{transform: 'translate(0, 10px)'}}/>
+                        </div>
                         <Center>
                             <CenterPlate>
                                 <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
@@ -35,6 +38,7 @@ export const Team = ({ }: Props) => {
                                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
                                         <p style={{ fontSize: '1.6vh' }}>матчи: 23/32 турниры: 2/3 показатели: 52%</p>
                                     </article>
+                                    <div style={{ padding: '20px 0' }}></div>
                                 </div>
                             </CenterPlate>
                             <CenterPlate>

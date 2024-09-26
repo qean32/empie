@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
-import { InputFile, InputNumber, InputText, Search } from "../../components/ui/meny-time use/customInput";
+import { InputFile, InputNumber, InputText, InputText_ } from "../../components/ui/meny-time use/customInput";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
-import useDebounce from "../../customHooks/useDebounce";
-import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
@@ -21,6 +19,7 @@ type Props = {
 export const EditProfile = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('редактор профиля')
+    const [steam, setSteam] = useState('')
 
     return (
         <>
@@ -34,24 +33,24 @@ export const EditProfile = ({ }: Props) => {
                             <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start', padding: '40px 0' }}>
                                 <div className="edit">
                                     <div>
-                                        <InputText title={"имя"} value={""} setValue={() => undefined} max={0} width={16} />
-                                        <InputText title={"фамилия"} value={""} setValue={() => undefined} max={0} width={16} />
+                                        <InputText title={"имя"} value={""} setValue={() => undefined} max={0} width={18} />
+                                        <InputText title={"фамилия"} value={""} setValue={() => undefined} max={0} width={18} />
                                     </div>
-                                    <div>
+                                    <span>
                                         <InputFile setValue={() => undefined} title="фон профиля" />
                                         <InputFile setValue={() => undefined} title="изображение профиля" />
-                                    </div>
-
-                                    <div>
-                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} />
-                                    </div>
-
-                                    <span>
-                                        <InputText title={"ссылка стим"} value={""} setValue={() => undefined} max={0} />
-                                        <InputText title={"ссылка тг"} value={""} setValue={() => undefined} max={0} />
                                     </span>
 
-                                    <div style={{display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0'}}>
+                                    <div>
+                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} width={43} />
+                                    </div>
+
+                                    <div style={{ margin: '20px 0' }}>
+                                        <InputText_ title={"ссылка стим"} value={steam} setValue={setSteam} max={0} word={"steam"} width={18} />
+                                        <InputText_ title={"ссылка тг"} value={""} setValue={() => undefined} max={0} word={"t.me"} width={18} />
+                                    </div>
+
+                                    <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
                                         <Button title="сохранить" function_={() => undefined} />
                                     </div>
                                 </div>
@@ -64,8 +63,7 @@ export const EditProfile = ({ }: Props) => {
                                     <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
                                     <p>elo cs2</p>
                                     <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
-
-                                    <div style={{display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0'}}>
+                                    <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
                                         <Button title="сохранить" function_={() => undefined} />
                                     </div>
                                 </div>
