@@ -5,10 +5,28 @@
 }
 
 .teamtournament {
-    background-color: $background-color-light-l;
-    padding: 7px 15px;
+    background-color: $background-color-dark;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    gap: 20px;
+    height: 50px;
     margin: 10px 0;
     border-radius: 5px;
+    min-width: 400px;
+}
+
+.teamtournament > div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.rcolor {
+    height: 50px;
+    width: 5px;
+    background-color: $main-color;
 }
 
 .teamtournament:hover {

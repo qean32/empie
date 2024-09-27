@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { CSSProperties, useContext, useEffect, useState } from "react";
 import { CenterPlate } from "../../components/hoc/plates/centerPlate";
 import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { SomeContext } from "../../context";
@@ -47,7 +47,7 @@ export const Registration = ({ }: Props) => {
     }
 
     const [carousel, setCarousel] = useState<number>(0)
-    const [carouselStyle, setCarouselStyle] = useState<any>()
+    const [carouselStyle, setCarouselStyle] = useState<CSSProperties>({ marginTop: '-20%' })
 
     useEffect(() => {
         const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 7000);
@@ -60,15 +60,15 @@ export const Registration = ({ }: Props) => {
     useEffect(() => {
         switch (carousel) {
             case 1: {
-                setCarouselStyle({ marginTop: '-150%' })
+                setCarouselStyle({ marginTop: '-160%' })
                 break;
             }
             case 2: {
-                setCarouselStyle({ marginTop: '-280%' })
+                setCarouselStyle({ marginTop: '-300%' })
                 break;
             }
             case 3: {
-                setCarouselStyle({ marginTop: '-420%' })
+                setCarouselStyle({ marginTop: '-440%' })
                 break;
             }
             default: {
@@ -84,7 +84,7 @@ export const Registration = ({ }: Props) => {
             {modal.boolean && <Modal function_={modal.SwapFn}>
                 <div className="dftcontainer" style={{ flexDirection: 'column', gap: '20px', alignItems: 'start', padding: '40px 0 40px 60px' }}>
                     <Repair size={24} />
-                    <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" width={0} />
+                    <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" />
                     <div style={{ fontSize: '12px' }}>
                         <Checkbox value={check.boolean} title="я согласен с пользовательским соглашениям" fn={check.SwapFn} />
                     </div>
@@ -115,8 +115,8 @@ export const Registration = ({ }: Props) => {
                                         </div>
                                         <div style={reg_.boolean ? { marginLeft: '-50%' } : {}} className="transition07">
                                             <div className="windowreg">
-                                                <div><InputEmail value={email} setValue={setEmail} title="почта" /></div>
-                                                <div><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
+                                                <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
+                                                <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
                                                 <div className="regwarning">
                                                     <p> забыли пароль? --анлак</p>
                                                     <p onClick={on.off}> нет аккаунта? --регистрация</p>
@@ -124,10 +124,10 @@ export const Registration = ({ }: Props) => {
                                                 <div><Button title="вход" function_={() => undefined} /></div>
                                             </div>
                                             <div className="windowreg">
-                                                <div><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
-                                                <div><InputText value={lastname} setValue={setLastname} title="фамилия" max={20} /></div>
-                                                <div><InputEmail value={email} setValue={setEmail} title="почта" /></div>
-                                                <div><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
+                                                <div style={{ width: '70%' }}><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
+                                                <div style={{ width: '70%' }}><InputText value={lastname} setValue={setLastname} title="фамилия" max={20} /></div>
+                                                <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
+                                                <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
                                                 <div className="regwarning">
                                                     <p onClick={on.on}> есть аккаунт? --войти</p>
                                                 </div>

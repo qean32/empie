@@ -8,12 +8,15 @@ input {
     border: 1px solid $border-color;
     outline: none;
     cursor: pointer;
+    width: 100%;
+    min-height: 26px;
 }
 
 label {
     @include positioncenterbyflex;
     justify-content: start;
-    padding: 0 0 0 2vh;
+    padding: 0 0 0 20px;
+    width: 100%;
 }
 
 label>p {
@@ -36,7 +39,7 @@ input:focus {
     position: absolute;
     bottom: -20px;
     left: 1vh;
-    font-size: 10px;
+    font-size: 12px;
     transition: .5s;
     cursor: pointer;
     white-space: nowrap;
@@ -136,7 +139,7 @@ input[type=time]::-webkit-calendar-picker-indicator {
 .lockpass {
     position: absolute;
     right: -2vh;
-    top: 1.7vh;
+    top: 2.2vh;
 }
 
 .checkbox_ {
@@ -161,4 +164,8 @@ input[type=checkbox] {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.smallinput > div{
+    width: 35%;
 }

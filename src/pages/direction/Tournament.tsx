@@ -8,6 +8,8 @@ import { Center } from "../../components/hoc/center";
 import { useNavigate } from "react-router";
 import Calendar from "react-calendar";
 import moment from "moment";
+import { colors } from "../../functions/GiveConst";
+import { Button } from "../../components/ui/meny-time use/customButton";
 type Props = {
 }
 export const Tournament = ({ }: Props) => {
@@ -24,13 +26,41 @@ export const Tournament = ({ }: Props) => {
                 <div className="main">
                     <Center>
                         <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ width: '140vh', flexDirection: 'column' }}>
+                            <div className="dftcontainer" style={{ width: '140vh', flexDirection: 'column', minWidth: '1000px' }}>
                                 <div className="infotournamnet">
                                     <div>
-                                    <div className="teamtournament transition07" style={{backgroundColor: '#00000000'}}><p>команды</p></div>
-                                        <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07"><p>team</p></div>
-                                        <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07"><p>teamteamteam</p></div>
-                                        <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07"><p>team</p></div>
+                                        <div><p>команды / расписание</p></div>
+                                        <div>
+                                            <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
+                                                <div>
+                                                    <div className="rcolor" style={{ backgroundColor: colors.greencolor }}></div>
+                                                    <div className="ava"></div>
+                                                    <p>team</p>
+                                                </div>
+                                                <img src="/svg/accept.svg" alt="" style={{ width: '19px', transform: 'translate(3px, 0)' }} />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
+                                                <div>
+                                                    <div className="rcolor"></div>
+                                                    <div className="ava"></div>
+                                                    <p>team</p>
+                                                </div>
+                                                <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
+                                                <div>
+                                                    <div className="rcolor"></div>
+                                                    <div className="ava"></div>
+                                                    <p>team</p>
+                                                </div>
+                                                <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />
+                                            </div>
+                                            <Button title="одобрить" function_={() => undefined} />
+                                        </div>
                                     </div>
                                     <CustomCalendar meetings={meetings} />
                                 </div>

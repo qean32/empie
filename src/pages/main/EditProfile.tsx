@@ -32,22 +32,21 @@ export const EditProfile = ({ }: Props) => {
                         <SmallCenterPlate>
                             <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start', padding: '40px 0' }}>
                                 <div className="edit">
-                                    <div>
-                                        <InputText title={"имя"} value={""} setValue={() => undefined} max={0} width={18} />
-                                        <InputText title={"фамилия"} value={""} setValue={() => undefined} max={0} width={18} />
+                                    <div style={{ margin: '20px 0', gap: '60px' }} className="smallinput">
+                                        <InputText title={"имя"} value={""} setValue={() => undefined} max={0} />
+                                        <InputText title={"фамилия"} value={""} setValue={() => undefined} max={0} />
                                     </div>
                                     <span>
                                         <InputFile setValue={() => undefined} title="фон профиля" />
                                         <InputFile setValue={() => undefined} title="изображение профиля" />
                                     </span>
-
                                     <div>
-                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} width={43} />
+                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} />
                                     </div>
 
-                                    <div style={{ margin: '20px 0' }}>
-                                        <InputText_ title={"ссылка стим"} value={steam} setValue={setSteam} max={0} word={"steam"} width={18} />
-                                        <InputText_ title={"ссылка тг"} value={""} setValue={() => undefined} max={0} word={"t.me"} width={18} />
+                                    <div style={{ margin: '20px 0', gap: '60px' }} className="smallinput">
+                                        <InputText_ title={"ссылка стим"} value={steam} setValue={setSteam} max={0} word={"steam"} />
+                                        <InputText_ title={"ссылка тг"} value={""} setValue={() => undefined} max={0} word={"t.me"} />
                                     </div>
 
                                     <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
@@ -60,9 +59,13 @@ export const EditProfile = ({ }: Props) => {
                             <div className="dftcontainer" style={{ justifyContent: 'start', padding: '40px 0' }}>
                                 <div className="edit" style={{ gap: '20px' }}>
                                     <p>pts dota2</p>
-                                    <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
+                                    <div>
+                                        <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
+                                    </div>
                                     <p>elo cs2</p>
-                                    <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
+                                    <div>
+                                        <InputNumber title={""} value={0} setValue={() => undefined} max={0} min={0} />
+                                    </div>
                                     <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
                                         <Button title="сохранить" function_={() => undefined} />
                                     </div>
