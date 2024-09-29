@@ -55,6 +55,7 @@ body {
 .right {
   width: 30vh;
   min-width: 260px;
+  overflow: hidden;
 }
 
 .leftpanel {
@@ -402,12 +403,14 @@ i {
 
 .regwarning>p {
   font-size: 13px;
+  cursor: pointer;
   padding: 0 0 0 10px;
 }
 
 .navreg {
   position: absolute;
   right: -10px;
+  cursor: pointer;
   top: -50px;
   display: flex;
   gap: 20px;

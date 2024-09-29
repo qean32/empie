@@ -50,7 +50,7 @@ export const Registration = ({ }: Props) => {
     const [carouselStyle, setCarouselStyle] = useState<CSSProperties>({ marginTop: '-20%' })
 
     useEffect(() => {
-        const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 2000);
+        const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 7000);
 
         return () => {
             clearInterval(intervalID)
@@ -60,15 +60,15 @@ export const Registration = ({ }: Props) => {
     useEffect(() => {
         switch (carousel) {
             case 1: {
-                setCarouselStyle({ marginTop: '-165%' })
+                setCarouselStyle({ marginTop: '-160%' })
                 break;
             }
             case 2: {
-                setCarouselStyle({ marginTop: '-305%' })
+                setCarouselStyle({ marginTop: '-300%' })
                 break;
             }
             case 3: {
-                setCarouselStyle({ marginTop: '-445%' })
+                setCarouselStyle({ marginTop: '-440%' })
                 break;
             }
             default: {
@@ -95,10 +95,10 @@ export const Registration = ({ }: Props) => {
             <div className="main">
                 {loading ? <MainLoader /> :
                     <>
-                        <div style={{ ...positioncenterbyabsolute, top: '50%' }}>
+                        <div style={{ ...positioncenterbyabsolute, top: '55%' }}>
                             <CenterPlate>
                                 <div className="dftcontainer regwindow transition07" style={reg.boolean ? { maxHeight: '500px' } : { maxHeight: '320px' }}>
-                                    <div style={{ zIndex: '12', backgroundColor: '#292929' }} className="">
+                                    <div style={{ zIndex: '12', backgroundColor: '#292929' }}>
                                         <div style={{ width: '100%' }}>
                                             <div style={carouselStyle} className="carousel">
                                                 <div><img src="/svg/cs.svg" alt="" className="carouselimg" /><p>играй в CS2 c нами</p></div>
