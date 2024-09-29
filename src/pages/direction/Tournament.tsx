@@ -10,6 +10,7 @@ import Calendar from "react-calendar";
 import moment from "moment";
 import { colors } from "../../functions/GiveConst";
 import { Button } from "../../components/ui/meny-time use/customButton";
+import { GridPoint } from "../../components/ui/meny-time use/gridPoint";
 type Props = {
 }
 export const Tournament = ({ }: Props) => {
@@ -65,7 +66,7 @@ export const Tournament = ({ }: Props) => {
                                     <CustomCalendar meetings={meetings} />
                                 </div>
                                 <div className="gridtournamnet">
-                                    <section></section>
+                                    <section><GridPoint /></section>
                                     <section></section>
                                     <section></section>
                                     <section></section>

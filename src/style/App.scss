@@ -137,7 +137,6 @@ header>div>div {
 .leftpanel:hover,
 .rightpanel:hover {
   transform: translateY(-3px);
-  cursor: pointer;
 }
 
 .main {
@@ -188,8 +187,7 @@ header>div>div {
 
 .gridpoint {
   background-color: rgb(53, 53, 53);
-  width: 200px;
-  padding: 5px 20px;
+  height: 70px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -198,8 +196,10 @@ header>div>div {
 
 .gridpoint>div {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  width: 200px;
+  padding: 0 10px;
+  height: 100%;
 }
 
 .transfers {
@@ -303,6 +303,11 @@ header>div>div {
   outline: 1px solid $border-color;
   gap: 10px;
   padding: 5px 10px;
+  cursor: pointer;
+}
+
+i {
+  cursor: pointer;
 }
 
 .coment {
@@ -485,12 +490,12 @@ header>div>div {
   width: 100%;
 }
 
-.edit > div{
+.edit>div {
   display: flex;
   gap: 20px;
 }
 
-.edit > span{
+.edit>span {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -500,4 +505,14 @@ header>div>div {
   background-color: #c78d11;
   padding: 5px 10px;
   border-radius: 5px;
+}
+
+.reference>a>img {
+  margin: 40px 20px 0 0;
+  width: 40px;
+  transition: .3s;
+}
+
+.reference>a>img:hover {
+  transform: translate(0, -6px);
 }

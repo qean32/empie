@@ -50,7 +50,7 @@ export const Registration = ({ }: Props) => {
     const [carouselStyle, setCarouselStyle] = useState<CSSProperties>({ marginTop: '-20%' })
 
     useEffect(() => {
-        const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 7000);
+        const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 2000);
 
         return () => {
             clearInterval(intervalID)
@@ -60,15 +60,15 @@ export const Registration = ({ }: Props) => {
     useEffect(() => {
         switch (carousel) {
             case 1: {
-                setCarouselStyle({ marginTop: '-160%' })
+                setCarouselStyle({ marginTop: '-165%' })
                 break;
             }
             case 2: {
-                setCarouselStyle({ marginTop: '-300%' })
+                setCarouselStyle({ marginTop: '-305%' })
                 break;
             }
             case 3: {
-                setCarouselStyle({ marginTop: '-440%' })
+                setCarouselStyle({ marginTop: '-445%' })
                 break;
             }
             default: {
@@ -101,10 +101,10 @@ export const Registration = ({ }: Props) => {
                                     <div style={{ zIndex: '12', backgroundColor: '#292929' }} className="">
                                         <div style={{ width: '100%' }}>
                                             <div style={carouselStyle} className="carousel">
-                                                <div><img src="/svg/empieLogo.svg" alt="" className="carouselimg" /><p>цитата 10.10</p></div>
                                                 <div><img src="/svg/cs.svg" alt="" className="carouselimg" /><p>играй в CS2 c нами</p></div>
                                                 <div><img src="/svg/bascketball.svg" alt="" className="carouselimg" /><p>корт зовет нас...</p></div>
                                                 <div><img src="/svg/dota.svg" alt="" className="carouselimg" /><p>ГОТОВ ???</p></div>
+                                                <div><img src="/svg/empieLogo.svg" alt="" className="carouselimg" /><p>цитата 10.10</p></div>
                                             </div>
                                         </div>
                                     </div>

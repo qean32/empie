@@ -14,13 +14,14 @@ import { Profile } from "./pages/main/profile"
 import { Team } from "./pages/direction/team"
 import { Cash } from "./pages/main/cash"
 import { Chat } from "./pages/main/chat"
-import { Wall } from "./pages/main/wall"
 import { Offers } from "./pages/main/offers"
 import { Meeting } from "./pages/direction/meeting"
 import { Tournament } from "./pages/direction/tournament"
 import { EditProfile } from "./pages/main/editProfile"
 import { EditTeam } from "./pages/direction/editTeam"
 import { RegTeam } from "./pages/direction/regTeam"
+import { Protokols } from "./pages/direction/protokols"
+import { Wall } from "./pages/main/Wall"
 
 type Props = {
 
@@ -57,7 +58,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<Team />} path="/team/:id" />
                     <Route element={<EditTeam />} path="/editteam/:id" />
                     <Route element={<RegTeam />} path="/regteam/:iddirection" />
-                    <Route element={<></>} path="/protokols/:iddirection" />
+                    <Route element={<Protokols />} path="/protokols/:iddirection" />
                     <Route element={<P404 />} path="*" />
                 </Routes>
             </Context>

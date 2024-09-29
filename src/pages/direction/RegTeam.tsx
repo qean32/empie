@@ -32,11 +32,11 @@ export const RegTeam = ({ }: Props) => {
                             <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start', padding: '40px 0' }}>
                                 <div className="edit">
                                     <div>
-                                        <InputText title={"название"} value={""} setValue={() => undefined} max={0} width={32} />
+                                        <InputText title={"название"} value={""} setValue={() => undefined} max={0} />
                                     </div>
 
                                     <div>
-                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} width={32} />
+                                        <InputText title={"статус"} value={""} setValue={() => undefined} max={0} />
                                     </div>
 
                                     <span>
