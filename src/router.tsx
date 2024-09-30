@@ -58,7 +58,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<Team />} path="/team/:id" />
                     <Route element={<EditTeam />} path="/editteam/:id" />
                     <Route element={<RegTeam />} path="/regteam/:iddirection" />
-                    <Route element={<Protokols />} path="/protokols/:iddirection" />
+                    <Route element={<Protokols />} path="/protokols" />
                     <Route element={<P404 />} path="*" />
                 </Routes>
             </Context>

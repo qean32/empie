@@ -44,7 +44,9 @@ export const Wall = ({ }: Props) => {
                                 <div className="dftcontainer" style={{ flexDirection: 'column', gap: '20px' }}>
                                     <div style={{ padding: '0 40px' }}>
                                         <p style={{ margin: '10px 0' }}>действующая версия: 3.00</p>
-                                        <Repair />
+                                        <div style={{ margin: '25px 0' }}>
+                                            <Repair />
+                                        </div>
                                         <div>
                                             <p style={{ margin: '5px 0' }}>о нас</p>
                                             <p>приложение разработанно как платформа для организации и проведения турниров и товарищеских встреч по различным спортивным - киберспортивным дисциплинам</p>

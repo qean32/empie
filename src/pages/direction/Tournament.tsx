@@ -34,7 +34,6 @@ export const Tournament = ({ }: Props) => {
                                         <div>
                                             <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
                                                 <div>
-                                                    <div className="rcolor" style={{ backgroundColor: colors.greencolor }}></div>
                                                     <div className="ava"></div>
                                                     <p>team</p>
                                                 </div>
@@ -44,7 +43,6 @@ export const Tournament = ({ }: Props) => {
                                         <div>
                                             <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
                                                 <div>
-                                                    <div className="rcolor"></div>
                                                     <div className="ava"></div>
                                                     <p>team</p>
                                                 </div>
@@ -54,7 +52,6 @@ export const Tournament = ({ }: Props) => {
                                         <div>
                                             <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
                                                 <div>
-                                                    <div className="rcolor"></div>
                                                     <div className="ava"></div>
                                                     <p>team</p>
                                                 </div>

@@ -32,7 +32,7 @@ export const InputText = ({ title, value, setValue, max }: PropsText) => {
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
                 <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
@@ -73,7 +73,7 @@ export const InputPassword = ({ title, value, setValue }: PropsPassword) => {
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} style={{ zIndex: '10' }} alt="" onClick={() => view.SwapFn()} className="lockpass" />
             <label htmlFor={`${id_}`} className="fill" >
                 <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
@@ -160,7 +160,7 @@ export const InputDate = ({ value, setValue }: PropsDate) => {
         }
     }, [value])
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <input type="date" value={value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
             <p className="inputwarning" style={{ color: 'whitesmoke' }}>{notification}</p>
@@ -195,7 +195,7 @@ export const InputNumber = ({ title, value, setValue, min, max }: PropsNumber) =
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
                 <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
@@ -244,7 +244,7 @@ export const InputEmail = ({ title, value, setValue }: PropsEmail) => {
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
                 <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
@@ -271,7 +271,7 @@ export const Search = ({ value, setValue, title }: PropsSearch) => {
 
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} />
             <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '1.2vh', right: '-3.1vh' }} />
         </div>
@@ -333,7 +333,7 @@ export const InputText_ = ({ title, value, setValue, max, word }: PropsText_) =>
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
                 <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>

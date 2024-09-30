@@ -31,11 +31,11 @@ export const RegTeam = ({ }: Props) => {
                         <SmallCenterPlate>
                             <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start', padding: '40px 0' }}>
                                 <div className="edit">
-                                    <div>
+                                    <div style={{ width: '50%' }}>
                                         <InputText title={"название"} value={""} setValue={() => undefined} max={0} />
                                     </div>
 
-                                    <div>
+                                    <div style={{ width: '80%' }}>
                                         <InputText title={"статус"} value={""} setValue={() => undefined} max={0} />
                                     </div>
 

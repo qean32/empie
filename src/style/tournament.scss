@@ -17,16 +17,11 @@
     min-width: 400px;
 }
 
-.teamtournament > div {
+.teamtournament>div {
     display: flex;
     align-items: center;
     gap: 20px;
-}
-
-.rcolor {
-    height: 50px;
-    width: 5px;
-    background-color: $main-color;
+    padding: 0 0 0 10px;
 }
 
 .teamtournament:hover {
@@ -42,8 +37,26 @@
     justify-content: center;
 }
 
-.gridtournamnet > section {
+.gridtournamnet>section {
     height: 80vh;
     width: 14%;
     // outline: 1px solid $main-color;
+}
+
+.gridpoint {
+    background-color: rgb(53, 53, 53);
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.gridpoint>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 100%;
 }

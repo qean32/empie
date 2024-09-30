@@ -18,8 +18,8 @@ export const LeftPanel = memo(({ function_ }: Props) => {
             <div onClick={() => navigate('/cash')}><img src="/svg/cash.svg" alt="" /><p>расходы</p></div>
             <article className="under-color" style={{ minHeight: '48px' }}>
                 <section>
-                    <div><p onClick={() => navigate('/well')}>разработчикам</p><p onClick={() => navigate('/well')}>блог</p></div>
-                    <div> <p onClick={() => navigate('/well')}>еще</p><p onClick={() => navigate('/well')}>помощь</p></div>
+                    <div><p onClick={() => navigate('/wall')}>разработчикам</p><p onClick={() => navigate('/wall')}>блог</p></div>
+                    <div> <p onClick={() => navigate('/wall')}>еще</p><p onClick={() => navigate('/wall')}>помощь</p></div>
                 </section>
             </article>
         </div>
