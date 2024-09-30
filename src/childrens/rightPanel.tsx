@@ -6,10 +6,12 @@ type Props = {
     fn3: Function
 }
 export const RightPanelChildren = ({ fn1, fn2, fn3 }: Props) => {
+    const navigate = useNavigate()
+    
     return (
         <div className="rightcontainer">
             <div className="rightpanellink" onClick={() => fn1()}>турниры</div>
-            <div className="rightpanellink">игроки</div>
+            <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
             <div className="rightpanellink" onClick={() => fn2()}>команды</div>
             <div className="rightpanellink" onClick={() => fn3()}>матчи</div>
         </div>

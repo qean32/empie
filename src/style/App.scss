@@ -3,7 +3,10 @@
 @import './custom/input.scss';
 @import './import.scss';
 @import './custom/modal.scss';
+@import './custom/calendar.scss';
 @import './custom/children.scss';
+@import './tournament.scss';
+@import './pages.scss';
 
 * {
   margin: 0;
@@ -22,6 +25,75 @@ a {
 
 body {
   background-color: $background-color;
+}
+
+.centerplate {
+  @include dftPlate;
+  margin: 0 0 30px 0;
+}
+
+.smallcenterplate {
+  @include dftPlate;
+  margin: 0 0 30px 0;
+}
+
+.dftcontainer {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 56vh;
+  min-width: 460px;
+}
+
+.rightcontainer {
+  padding: 2vh 0;
+  width: 30vh;
+  min-width: 260px;
+}
+
+.right {
+  width: 30vh;
+  min-width: 260px;
+  overflow: hidden;
+}
+
+.leftpanel {
+  @include dftPlate;
+  margin: 0.5vh 0;
+
+  width: 22vh;
+  min-width: 185px;
+  padding: 1vh 0 0 0;
+}
+
+.leftpanel>div {
+  height: 37px;
+}
+
+.fullplate {
+  @include dftPlate;
+  border-radius: 2px;
+  width: 76vh;
+  margin: 0 0 3vh 0;
+  min-width: 560px;
+  min-height: 1000px;
+  transform: translateY(-100px);
+  z-index: -1;
+}
+
+.rightpanel {
+  @include dftPlate;
+  margin: 0 0 30px 0;
+}
+
+.containernsmallwindow {
+  @include positioncenterbyflex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 80px 60px;
+  min-width: 320px;
 }
 
 .logo {
@@ -67,7 +139,6 @@ header>div>div {
 .leftpanel:hover,
 .rightpanel:hover {
   transform: translateY(-3px);
-  cursor: pointer;
 }
 
 .main {
@@ -75,13 +146,14 @@ header>div>div {
   padding: 4vh 0 0 0;
   align-items: start;
   justify-content: center;
-  gap: 4vh;
+  gap: 30px;
 }
 
 .under-color {
-  height: 5.8vh;
+  height: 6vh;
   min-height: 40px;
   width: 100%;
+  padding: 0 0 5px 0;
   background-color: #242424d7;
   border-radius: 0 0 8px 8px;
 }
@@ -106,184 +178,3 @@ header>div>div {
   display: flex;
   flex-direction: column;
 }
-
-.onlineindicator {
-  height: 14px;
-  width: 14px;
-  background-color: $background-color-light-l;
-  display: flex;
-  border-radius: 50%;
-}
-
-
-.gridpoint {
-  background-color: rgb(53, 53, 53);
-  width: 200px;
-  padding: 5px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  border-radius: 5px;
-}
-
-.gridpoint>div {
-  display: flex;
-  justify-content: space-between;
-  width: 200px;
-}
-
-.transfers {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-}
-
-.background {
-  height: 14vh;
-  border-radius: 8px 8px 0 0;
-  background-color: rgba(0, 0, 0, 0.377);
-  position: relative;
-}
-
-.background>img {
-  @include dftava;
-  width: 9vh;
-  height: 6vh;
-  position: absolute;
-  bottom: -30px;
-  left: 40px;
-}
-
-.about {
-  display: flex;
-  align-items: start;
-  flex-direction: column;
-  padding: 40px;
-  gap: 20px;
-}
-
-.aboutcareer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-.aboutcareer>div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 40px;
-  padding: 40px 0;
-}
-
-.aboutcareer>div>img {
-  height: 50px;
-  width: 70px;
-}
-
-.scrollhandlerref {
-  width: 100%;
-  height: 100px;
-  background-color: #E74343;
-}
-
-.trophy>div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 40px 0;
-  flex-wrap: wrap;
-}
-
-.trophy>div>img {
-  height: 50px;
-  width: 70px;
-}
-
-.kep {
-  margin: 0 0 20px 0;
-}
-
-.cashheader {
-  display: grid;
-  grid-template-columns: 16% 40% 15% 30%;
-  gap: 10px;
-  grid-template-rows: 1fr;
-  padding: 20px 30px;
-  margin: 10px 0;
-}
-
-.cashheader>div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.likecoment {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @include dftPlate;
-  background-color: $background-color-light-l;
-  outline: 1px solid $border-color;
-  gap: 10px;
-  padding: 5px 10px;
-}
-
-.coment {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#redcash>div {
-  color: $main-color;
-}
-
-.greencash>div {
-  color: $green-color;
-}
-
-.headmeeting {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-}
-
-
-.headmeeting>div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-}
-
-
-.headmeeting>div>div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.meetingrepair {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 40px;
-  height: 280px;
-}
-
-.positioncenterbyflex {
-  @include positioncenterbyflex;
-  flex-direction: column;
-}
-
-@import './new.scss';

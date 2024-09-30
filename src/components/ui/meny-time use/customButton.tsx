@@ -1,5 +1,5 @@
 import useBoolean from "../../../customHooks/useBoolean"
-import { Loader, LoaderGreen } from "./loader"
+import { Loader, LoaderWhite } from "./loader"
 
 type Props = {
     title: string,
@@ -18,7 +18,7 @@ export const Button = ({ title, function_ }: Props) => {
     return (
         <button className="btngreen" onClick={fn}>
             <p style={color.boolean ? { opacity: '0' } : {}}>{title}</p>
-            {color.boolean && <LoaderGreen />}
+            {color.boolean && <LoaderWhite />}
         </button>
     );
 }

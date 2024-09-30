@@ -44,9 +44,9 @@ export const Community = ({ }: Props) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
                         <SmallCenterPlate>
-                            <div className="dftcontainer"  style={{flexDirection: 'column', padding: '0', alignItems: 'normal'}}>
-                                <div style={{ margin: '2vh 0 4vh 2vh' }}>
-                                    <Search value={search} setValue={setSearch} title="найти человека" width={45} />
+                            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
+                                <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
+                                    <Search value={search} setValue={setSearch} title="найти человека" />
                                 </div>
                                 <div style={{ minHeight: '500px' }}>
                                     <InlineUser />

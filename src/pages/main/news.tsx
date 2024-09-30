@@ -17,6 +17,8 @@ import { InputComent, LikeComent } from "../../components/ui/one-time use/Interf
 import { Post } from "../../components/ui/meny-time use/post";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
+import { TournamentChild } from "../../childrens/tournament";
+import { MoveonGridChild } from "../../childrens/moveongrid";
 
 type Props = {
     direction: boolean | string
@@ -44,6 +46,17 @@ export const News = ({ direction = false }: Props) => {
                             <LeftPanel function_={modal.SwapFn} />
                             <Center>
                                 <SmallCenterPlate>
+                                    <div className="dftcontainer" style={{ justifyContent: 'start' }}>
+                                        <div style={{ margin: '10px 60px' }}>
+                                            <p style={{ fontSize: '30px' }}>СТАНЬ</p>
+                                            <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
+                                        </div>
+                                    </div>
+                                </SmallCenterPlate >
+                                <SmallCenterPlate>
+                                    <TournamentChild />
+                                </SmallCenterPlate>
+                                <SmallCenterPlate>
                                     <Post />
                                 </SmallCenterPlate>
                                 <SmallCenterPlate>
@@ -55,6 +68,7 @@ export const News = ({ direction = false }: Props) => {
                             </Center>
                             <Right>
                                 <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                                <RightPanel><MoveonGridChild /></RightPanel>
                                 <RightPanel><RightTransferChild /></RightPanel>
                                 <RightPanel><TopTeamChild /></RightPanel>
                                 <RightPanel><StreamChild /></RightPanel>

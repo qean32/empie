@@ -5,7 +5,7 @@ type Props = {
 }
 export const StreamChild = ({ }: Props) => {
     return (
-        <div className="rightcontainer positioncenterbyflex" style={{padding: '40px 0'}}>
+        <div className="rightcontainer positioncenterbyflex" style={{padding: '40px 0', gap: '20px'}}>
             <Repair />
             <p>стрим не идет</p>
         </div>

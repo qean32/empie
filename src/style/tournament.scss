@@ -1,0 +1,62 @@
+.infotournamnet {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.teamtournament {
+    background-color: $background-color-dark;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    gap: 20px;
+    height: 50px;
+    margin: 10px 0;
+    border-radius: 5px;
+    min-width: 400px;
+}
+
+.teamtournament>div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 0 0 10px;
+}
+
+.teamtournament:hover {
+    transform: translate(6px, 0);
+}
+
+.gridtournamnet {
+    display: flex;
+    width: 100%;
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gridtournamnet>section {
+    height: 80vh;
+    width: 14%;
+    // outline: 1px solid $main-color;
+}
+
+.gridpoint {
+    background-color: rgb(53, 53, 53);
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.gridpoint>div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 100%;
+}

@@ -1,56 +1,79 @@
-import { useCallback, useContext, useState } from "react";
-import { Header } from "../../components/ui/meny-time use/header"
-import { SomeContext } from "../../context";
+import { useContext } from "react";
+import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
-import { LeftPanel } from "../../components/hoc/leftPanel";
+import { SomeContext } from "../../context";
 import { RightPanel } from "../../components/hoc/rightPanel";
-import { RightPanelChildren } from "../../childrens/rightPanel";
-import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { Modal } from "../../components/ui/meny-time use/modal";
-import { TopTeamChild } from "../../childrens/topTeam";
-import { StreamChild } from "../../childrens/stream";
-import { RightTransferChild } from "../../childrens/rightTransfer";
-import { TournamentChild } from "../../childrens/tournament";
-import { MeetingChild } from "../../childrens/meeting";
-import { InlineTeam, InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
-import { MoveonGridChild } from "../../childrens/moveongrid";
-import { InputFile } from "../../components/ui/meny-time use/customInput";
+import { ModalDirectionChildren } from "../../childrens/modalDirection";
+import { FullPlate } from "../../components/hoc/plates/fullPlate";
+import { LeftPanel } from "../../components/hoc/leftPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
+import { Center } from "../../components/hoc/center";
 
 type Props = {
 
 }
 export const Test = ({ }: Props) => {
-    const { loading } = useContext<any>(SomeContext)
-    const [value, setValue] = useState<any>()
-
-    const clickHandler = useCallback(() => setValue((prev: any) => !prev), [])
-    ChangeTitle('тесты')
+    const { loading, modal } = useContext<any>(SomeContext)
+    const plus = true
+    ChangeTitle('расходы')
     return (
         <>
-            {value && <Modal function_={clickHandler}> <ModalDirectionChildren function_={clickHandler} /> </Modal>}
+            {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
-            ТЕСТОВАЯ СТРАНИЦА
-            {loading ? <div className="main"><MainLoader /></div> :
-                <div className="main">
-                    <LeftPanel function_={() => undefined} />
-                    <div className="center">
-                        <SmallCenterPlate><InputFile setValue={() => undefined} /></SmallCenterPlate>
-                        <SmallCenterPlate><InlineUser /></SmallCenterPlate>
-                        <SmallCenterPlate><InlineTeam /></SmallCenterPlate>
-                        <SmallCenterPlate><MeetingChild /></SmallCenterPlate>
-                        <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
-                    </div>
-                    <Right>
-                        <RightPanel><RightPanelChildren fn1={() => undefined} fn2={() => undefined} fn3={() => undefined} /></RightPanel>
-                        <RightPanel><RightTransferChild /></RightPanel>
-                        <RightPanel><TopTeamChild /></RightPanel>
-                        <RightPanel><StreamChild /></RightPanel>
-                        <RightPanel><MoveonGridChild /></RightPanel>
-                    </Right>
-                </div>}
+            <div className="main">
+                {loading ? <MainLoader /> :
+                    <>
+                        <LeftPanel function_={modal.SwapFn} />
+                        <Center>
+
+                            <FullPlate>
+                                <div style={{ padding: '100px 0 0 0' }}>
+                                    <div className="cashheader">
+                                        <div>вс 500 ₽</div>
+                                        <div>история расхода</div>
+                                        <div>дата <img src="/svg/calendar.svg" /></div>
+                                        <div>дисциплина</div>
+                                    </div>
+                                    <hr color="#262626" />
+                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
+                                        <div>+5000 ₽</div>
+                                        <div>покупка мяча</div>
+                                        <div>20.05.06</div>
+                                        <div>dota</div>
+                                    </div>
+                                    <hr color="#262626" />
+                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
+                                        <div>-5000 ₽</div>
+                                        <div>покупка мяча</div>
+                                        <div>20.05.06</div>
+                                        <div>dota</div>
+                                    </div>
+                                    <hr color="#262626" />
+                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
+                                        <div>-5000 ₽</div>
+                                        <div>покупка мяча</div>
+                                        <div>20.05.06</div>
+                                        <div>dota</div>
+                                    </div>
+                                    <hr color="#262626" />
+                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
+                                        <div>+5000 ₽</div>
+                                        <div>покупка мяча</div>
+                                        <div>20.05.06</div>
+                                        <div>dota</div>
+                                    </div>
+                                    <hr color="#262626" />
+                                </div>
+                            </FullPlate>
+                        </Center>
+                        <Right>
+                            <RightPanel><div className="dftcontainer"></div></RightPanel>
+                        </Right>
+                    </>
+                }
+            </div>
         </>
     );
 }

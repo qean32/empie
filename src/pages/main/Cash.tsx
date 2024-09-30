@@ -69,7 +69,7 @@ export const Cash = ({ }: Props) => {
                             </FullPlate>
                         </Center>
                         <Right>
-                            <></>
+                            <RightPanel><div className="dftcontainer"></div></RightPanel>
                         </Right>
                     </>
                 }
