@@ -9,7 +9,7 @@ type Props = {
 }
 export const DftRPanel = ({ direction }: Props) => {
     return (
-        <div>
+        <div className="right">
             <RightPanel><RightPanelDirectionChildren direction={direction} /></RightPanel>
             <RightPanel><RightTransferChild /></RightPanel>
             <RightPanel><TopTeamChild /></RightPanel>

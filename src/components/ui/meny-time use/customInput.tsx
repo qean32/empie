@@ -1,20 +1,19 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import useBoolean from "../../../customHooks/useBoolean"
 import ValidateRuName from "../../../functions/ValidateRuName"
 import moment from "moment"
 import ValidatePassword from "../../../functions/ValidatePassword"
 import ValidateEmail from "../../../functions/ValidateEmail"
-import { Button } from "./customButton"
 import { GenerateId } from "../../../functions/GenerateNumber"
+import ValidateWordToWord from "../../../functions/ValidateWordToWord"
 
 type PropsText = {
-    width?: number
     title: string
     value: string
     setValue: Function
     max: number
 }
-export const InputText = ({ width, title, value, setValue, max }: PropsText) => {
+export const InputText = ({ title, value, setValue, max }: PropsText) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -33,16 +32,16 @@ export const InputText = ({ width, title, value, setValue, max }: PropsText) => 
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
-            <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
+        <div style={{ position: 'relative', width: '100%' }}>
+            <label htmlFor={`${id_}`} className="fill" >
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
-            <input type="text" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
+            <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
-            <div style={{ transform: 'translateY(1vh)' }}>
+            <div style={{ transform: 'translateY(0.6vh)' }}>
                 <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не используйте латиницу / числа</p>
             </div>
-            <div style={{ transform: 'translate(22vh, -1vh)' }}>
+            <div style={{ position: 'absolute', right: '20px', bottom: '12px' }}>
                 <p className="inputwarning" style={value.length > max ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/{max} </p>
             </div>
         </div>
@@ -50,12 +49,11 @@ export const InputText = ({ width, title, value, setValue, max }: PropsText) => 
 }
 
 type PropsPassword = {
-    width?: number
     title: string
     value: string
     setValue: Function
 }
-export const InputPassword = ({ width, title, value, setValue }: PropsPassword) => {
+export const InputPassword = ({ title, value, setValue }: PropsPassword) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
     const view = useBoolean(false)
@@ -75,14 +73,14 @@ export const InputPassword = ({ width, title, value, setValue }: PropsPassword) 
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative', width: '30vh' }}>
-            <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} alt="" onClick={() => view.SwapFn()} className="lockpass" />
-            <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
+        <div style={{ position: 'relative', width: '100%' }}>
+            <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} style={{ zIndex: '10' }} alt="" onClick={() => view.SwapFn()} className="lockpass" />
+            <label htmlFor={`${id_}`} className="fill" >
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
-            <input type={view.boolean ? 'text' : 'password'} name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
+            <input type={view.boolean ? 'text' : 'password'} name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
-            <p className="inputwarning" style={!valide.boolean ? { opacity: '0', bottom: '-2.6vh' } : { bottom: '-2.6vh' }}> используйте латиницу и цифры. минимальная длина - 6</p>
+            <p className="inputwarning" style={!valide.boolean ? { opacity: '0', bottom: '-4vh' } : { bottom: '-4vh' }}> используйте латиницу и цифры. <br /> минимальная длина - 6</p>
         </div>
     );
 }
@@ -162,7 +160,7 @@ export const InputDate = ({ value, setValue }: PropsDate) => {
         }
     }, [value])
     return (
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
             <input type="date" value={value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
             <p className="inputwarning" style={{ color: 'whitesmoke' }}>{notification}</p>
@@ -172,14 +170,13 @@ export const InputDate = ({ value, setValue }: PropsDate) => {
 
 
 type PropsNumber = {
-    width?: number
     title: string
     value: number
     setValue: Function
     max: number
     min: number
 }
-export const InputNumber = ({ width = 10, title, value, setValue, min, max }: PropsNumber) => {
+export const InputNumber = ({ title, value, setValue, min, max }: PropsNumber) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -198,11 +195,11 @@ export const InputNumber = ({ width = 10, title, value, setValue, min, max }: Pr
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
-            <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
+        <div style={{ position: 'relative', width: '100%' }}>
+            <label htmlFor={`${id_}`} className="fill" >
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
-            <input type="number" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
+            <input type="number" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
             <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>минимальное значение - {min} максимальное - {max}</p>
         </div>
@@ -211,28 +208,24 @@ export const InputNumber = ({ width = 10, title, value, setValue, min, max }: Pr
 
 type PropsCheckbox = {
     value: boolean
-    setValue: Function
+    fn: Function
     title: string
 }
-export const Checkbox = ({ title, setValue, value }: PropsCheckbox) => {
-    const changeHandler = () => {
-        setValue((prev: boolean) => !prev)
-    }
+export const Checkbox = ({ title, fn, value }: PropsCheckbox) => {
     return (
-        <div onClick={changeHandler} style={{ cursor: 'pointer' }}>
-            <p style={{ position: 'relative' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
+        <div onClick={() => fn()} style={{ cursor: 'pointer' }}>
+            <p style={{ position: 'relative', fontSize: '14px' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
                 <img src="/svg/accept.svg" alt="" style={value ? { opacity: '1' } : { opacity: '0' }} className="transition03 checkbox_" /></p>
         </div>
     );
 }
 
 type PropsEmail = {
-    width?: number
     title: string
     value: string
     setValue: Function
 }
-export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
+export const InputEmail = ({ title, value, setValue }: PropsEmail) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -251,14 +244,14 @@ export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
 
     const id_ = GenerateId()
     return (
-        <div style={{ position: 'relative' }}>
-            <label htmlFor={`${id_}`} className="fill" style={width ? { width: `${width + 10}vh` } : {}}>
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.4vh)' } : {}}>{title}</p>
+        <div style={{ position: 'relative', width: '100%' }}>
+            <label htmlFor={`${id_}`} className="fill" >
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
             </label>
-            <input type="text" name="" id={`${id_}`} style={width ? { width: `${width}vh` } : {}}
+            <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
             <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не валидная почта</p>
-            <div style={{ transform: 'translate(22vh, -1vh)' }}>
+            <div style={{ position: 'absolute', right: '20px', bottom: '12px' }}>
                 <p className="inputwarning" style={value.length > 40 ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/40 </p>
             </div>
         </div>
@@ -268,10 +261,9 @@ export const InputEmail = ({ width, title, value, setValue }: PropsEmail) => {
 type PropsSearch = {
     value: string
     setValue: Function
-    width?: number
     title: string
 }
-export const Search = ({ value, setValue, title, width = 40 }: PropsSearch) => {
+export const Search = ({ value, setValue, title }: PropsSearch) => {
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -279,8 +271,8 @@ export const Search = ({ value, setValue, title, width = 40 }: PropsSearch) => {
 
 
     return (
-        <div style={{ width: `${width}vh`, position: 'relative' }}>
-            <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} style={{ width: `${width}vh` }} />
+        <div style={{ position: 'relative', width: '100%' }}>
+            <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} />
             <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '1.2vh', right: '-3.1vh' }} />
         </div>
     );
@@ -310,6 +302,49 @@ export const InputFile = ({ title = 'изображение', setValue }: PropsF
                 <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '90px', height: '60px' }}>{src.length > 0 ? <></> : <img src="/svg/upload.svg" />}</div>
                 <p>{title}</p>
             </label>
+        </div>
+    );
+}
+
+
+type PropsText_ = {
+    title: string
+    value: string
+    setValue: Function
+    max: number
+    word: string
+}
+export const InputText_ = ({ title, value, setValue, max, word }: PropsText_) => {
+    const valide = useBoolean(false)
+    const color = useBoolean(false)
+
+    const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value)
+    }
+
+    useEffect(() => {
+        if (value != '') check()
+    }, [value])
+
+    const check = () => {
+        if (value != '') { color.on() } else { color.off() }
+        if (!ValidateWordToWord(value, word)) { valide.on() } else { valide.off() }
+    }
+
+    const id_ = GenerateId()
+    return (
+        <div style={{ position: 'relative', width: '100%' }}>
+            <label htmlFor={`${id_}`} className="fill" >
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
+            </label>
+            <input type="text" name="" id={`${id_}`}
+                onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
+            <div style={{ transform: 'translateY(1vh)' }}>
+                <p className="inputwarning" style={!valide.boolean ? { opacity: '0' } : {}}>не валидная ссылка</p>
+            </div>
+            <div style={{ position: 'absolute', right: '20px', bottom: '12px' }}>
+                <p className="inputwarning" style={value.length > max ? { opacity: '1' } : { color: 'whitesmoke', opacity: '.6' }}> {value.length}/{max} </p>
+            </div>
         </div>
     );
 }

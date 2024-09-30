@@ -10,6 +10,8 @@ import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Center } from "../../components/hoc/center";
+import { Right } from "../../components/hoc/right";
 
 type Props = {
 
@@ -34,7 +36,7 @@ export const Transfers = ({ }: Props) => {
                 {loading ? <MainLoader /> :
                     <>
                         <LeftPanel function_={modal.SwapFn} />
-                        <div className="center">
+                        <Center>
                             <SmallCenterPlate>
                                 <div className="transfers">
                                     <Transfer />
@@ -46,8 +48,10 @@ export const Transfers = ({ }: Props) => {
                                     <Transfer />
                                 </div>
                             </SmallCenterPlate>
-                        </div>
-                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                        </Center>
+                        <Right>
+                            <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                        </Right>
                     </>
                 }
             </div>

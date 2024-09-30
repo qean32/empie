@@ -8,8 +8,7 @@ button {
     background-color: #00000000;
     cursor: pointer;
     transition: 0.7s;
-    margin: 20px;
-    border-color: $background-color-dark;
+    border-color: $background-color-light-l;
 }
 
 button>p {
@@ -18,12 +17,11 @@ button>p {
 }
 
 button:hover {
-    border-color: $main-color;
+    border-color: rgb(117, 117, 117);
 }
 
 button:hover>p {
     opacity: 1;
-    color: $main-color;
 }
 
 .btngreen:hover {
@@ -32,16 +30,15 @@ button:hover>p {
 
 .btngreen:hover>p {
     border-color: $green-color;
-    color: $green-color;
 }
 
 .btngreen {
-    background-color: #242424;
+    background-color: $green-color;
 }
 
 .btngreen>p {
     border-color: $green-color;
-    color: $green-color;
+    color: white;
     opacity: 1;
 }
 

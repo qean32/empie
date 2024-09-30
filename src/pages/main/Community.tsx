@@ -13,6 +13,8 @@ import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { Right } from "../../components/hoc/right";
+import { Center } from "../../components/hoc/center";
 
 type Props = {
 
@@ -40,19 +42,23 @@ export const Community = ({ }: Props) => {
             {loading ? <div className="main"><MainLoader /></div> :
                 <div className="main">
                     <LeftPanel function_={modal.SwapFn} />
-                    <div className="center">
+                    <Center>
                         <SmallCenterPlate>
-                            <div style={{ margin: '2vh 0 4vh 2vh' }}>
-                                <Search value={search} setValue={setSearch} title="найти человека" width={45} />
-                            </div>
-                            <div style={{ minHeight: '500px' }}>
-                                <InlineUser />
-                                <InlineUser />
-                                <InlineUser />
+                            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
+                                <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
+                                    <Search value={search} setValue={setSearch} title="найти человека" />
+                                </div>
+                                <div style={{ minHeight: '500px' }}>
+                                    <InlineUser />
+                                    <InlineUser />
+                                    <InlineUser />
+                                </div>
                             </div>
                         </SmallCenterPlate>
-                    </div>
-                    <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                    </Center>
+                    <Right>
+                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                    </Right>
                 </div>}
         </>
     );

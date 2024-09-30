@@ -14,9 +14,14 @@ import { Profile } from "./pages/main/profile"
 import { Team } from "./pages/direction/team"
 import { Cash } from "./pages/main/cash"
 import { Chat } from "./pages/main/chat"
-import { Wall } from "./pages/main/wall"
 import { Offers } from "./pages/main/offers"
 import { Meeting } from "./pages/direction/meeting"
+import { Tournament } from "./pages/direction/tournament"
+import { EditProfile } from "./pages/main/editProfile"
+import { EditTeam } from "./pages/direction/editTeam"
+import { RegTeam } from "./pages/direction/regTeam"
+import { Protokols } from "./pages/direction/protokols"
+import { Wall } from "./pages/main/Wall"
 
 type Props = {
 
@@ -35,7 +40,7 @@ export const Router = ({ }: Props) => {
                     <Route element={<Community />} path="/community" />
                     <Route element={<Transfers />} path="/transfers" />
                     <Route element={<Music />} path="/music" />
-                    <Route element={<></>} path="/editprofile" />
+                    <Route element={<EditProfile />} path="/editprofile" />
                     <Route element={<Chat />} path="/chat" />
                     <Route element={<Cash />} path="/cash" />
 
@@ -48,12 +53,12 @@ export const Router = ({ }: Props) => {
                     <Route element={<News direction={false} />} path="/dota" />
                     <Route element={<News direction={false} />} path="/cs" />
                     <Route element={<News direction={false} />} path="/bascketball" />
-                    <Route element={<></>} path="/tournament/:id" />
+                    <Route element={<Tournament />} path="/tournament/:id" />
                     <Route element={<Meeting />} path="/meeting/:id" />
                     <Route element={<Team />} path="/team/:id" />
-                    <Route element={<></>} path="/editteam/:id" />
-                    <Route element={<></>} path="/regteam/:iddirection" />
-                    <Route element={<></>} path="/protokols/:iddirection" />
+                    <Route element={<EditTeam />} path="/editteam/:id" />
+                    <Route element={<RegTeam />} path="/regteam/:iddirection" />
+                    <Route element={<Protokols />} path="/protokols" />
                     <Route element={<P404 />} path="*" />
                 </Routes>
             </Context>

@@ -147,23 +147,11 @@
     @include dftava
 }
 
-
-.stream {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-}
-
 .offer {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    padding: 0 0 0 30px;
     transition: .4s;
+    padding: 20px;
 }
 
 .offer>div {
@@ -175,6 +163,7 @@
 .postimg {
     @include dftava;
     width: 40vh;
+    min-width: 340px;
     height: 200px;
 }
 

@@ -4,10 +4,9 @@ import { colors } from "../../../functions/GiveConst"
 type Props = {
     value: string
     setValue: Function
-    width?: number
     title: string
 }
-export const InputComent = ({ value, setValue, title, width = 40 }: Props) => {
+export const InputComent = ({ value, setValue, title }: Props) => {
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -15,14 +14,12 @@ export const InputComent = ({ value, setValue, title, width = 40 }: Props) => {
 
 
     return (
-        <div style={{ width: `${width}vh`, position: 'relative' }}>
-            <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} style={{ width: `${width}vh` }} />
-            <img src="/svg/send.svg" alt="" style={{ position: 'absolute', top: '1.6vh', right: '-9vh', cursor: "pointer" }} />
+        <div style={{ width: `70%`, position: 'relative' }}>
+            <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} />
+            <img src="/svg/send.svg" alt="" style={{ position: 'absolute', top: '1.6vh', right: '-12vh', cursor: "pointer" }} />
         </div>
     );
 }
-
-// like
 
 type Props_ = {
     islike: boolean
@@ -40,5 +37,3 @@ export const LikeComent = ({ islike, value, fn, count }: Props_) => {
         </div>
     );
 }
-
-// coment
