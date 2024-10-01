@@ -23,56 +23,57 @@ export const Test = ({ }: Props) => {
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
-                {loading ? <MainLoader /> :
-                    <>
-                        <LeftPanel function_={modal.SwapFn} />
-                        <Center>
-
-                            <FullPlate>
-                                <div style={{ padding: '100px 0 0 0' }}>
-                                    <div className="cashheader">
-                                        <div>вс 500 ₽</div>
-                                        <div>история расхода</div>
-                                        <div>дата <img src="/svg/calendar.svg" /></div>
-                                        <div>дисциплина</div>
-                                    </div>
-                                    <hr color="#262626" />
-                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
-                                        <div>+5000 ₽</div>
-                                        <div>покупка мяча</div>
-                                        <div>20.05.06</div>
-                                        <div>dota</div>
-                                    </div>
-                                    <hr color="#262626" />
-                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
-                                        <div>-5000 ₽</div>
-                                        <div>покупка мяча</div>
-                                        <div>20.05.06</div>
-                                        <div>dota</div>
-                                    </div>
-                                    <hr color="#262626" />
-                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
-                                        <div>-5000 ₽</div>
-                                        <div>покупка мяча</div>
-                                        <div>20.05.06</div>
-                                        <div>dota</div>
-                                    </div>
-                                    <hr color="#262626" />
-                                    <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
-                                        <div>+5000 ₽</div>
-                                        <div>покупка мяча</div>
-                                        <div>20.05.06</div>
-                                        <div>dota</div>
-                                    </div>
-                                    <hr color="#262626" />
-                                </div>
-                            </FullPlate>
-                        </Center>
-                        <Right>
-                            <RightPanel><div className="dftcontainer"></div></RightPanel>
-                        </Right>
-                    </>
+                {loading &&
+                    <MainLoader />
                 }
+                <>
+                    <LeftPanel function_={modal.SwapFn} />
+                    <Center>
+
+                        <FullPlate>
+                            <div style={{ padding: '100px 0 0 0' }}>
+                                <div className="cashheader">
+                                    <div>вс 500 ₽</div>
+                                    <div>история расхода</div>
+                                    <div>дата <img src="/svg/calendar.svg" /></div>
+                                    <div>дисциплина</div>
+                                </div>
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
+                                    <div>+5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
+                                    <div>-5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={plus && 'redcash'}>
+                                    <div>-5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <hr color="#262626" />
+                                <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={'' && 'redcash'}>
+                                    <div>+5000 ₽</div>
+                                    <div>покупка мяча</div>
+                                    <div>20.05.06</div>
+                                    <div>dota</div>
+                                </div>
+                                <hr color="#262626" />
+                            </div>
+                        </FullPlate>
+                    </Center>
+                    <Right>
+                        <RightPanel><div className="dftcontainer"></div></RightPanel>
+                    </Right>
+                </>
             </div>
         </>
     );

@@ -21,24 +21,25 @@ export const Protokols = ({ }: Props) => {
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
-                {loading ? <MainLoader /> :
-                    <>
-                        <LeftPanel function_={modal.SwapFn} />
-                        <Center>
-                            <SmallCenterPlate>
-                                <div className="dftcontainer">
-                                    <span style={{ padding: '0 30px' }}>
-                                        <p style={{ margin: '10px 0 30px 0'}}>протоколы проведения встреч и организации турниров</p>
-                                        <a href="/svg/word.svg" download={''}>
-                                            <img src="/svg/word.svg" alt="" />
-                                        </a>
-                                    </span>
-                                </div>
-                            </SmallCenterPlate>
-                        </Center>
-                        <DftRPanel direction={4} />
-                    </>
+                {loading &&
+                    <MainLoader />
                 }
+                <>
+                    <LeftPanel function_={modal.SwapFn} />
+                    <Center>
+                        <SmallCenterPlate>
+                            <div className="dftcontainer">
+                                <span style={{ padding: '0 30px' }}>
+                                    <p style={{ margin: '10px 0 30px 0' }}>протоколы проведения встреч и организации турниров</p>
+                                    <a href="/svg/word.svg" download={''}>
+                                        <img src="/svg/word.svg" alt="" />
+                                    </a>
+                                </span>
+                            </div>
+                        </SmallCenterPlate>
+                    </Center>
+                    <DftRPanel direction={4} />
+                </>
             </div>
         </>
     );

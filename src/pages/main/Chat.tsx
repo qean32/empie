@@ -24,31 +24,32 @@ export const Chat = ({ }: Props) => {
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
-                {loading ? <MainLoader /> :
-                    <>
-                        <LeftPanel function_={modal.SwapFn} />
-                        <Center>
-                            <CenterPlate>
-                                <div className="dftcontainer" style={{ padding: '20px 40px' }}>
-                                    <div className="chat">
-                                        <div className="chatwindow">
-                                            <Message elem={{ isorg: false }} />
-                                            <Message elem={{ isorg: true }} />
-                                            <Message elem={{ isorg: false }} />
-                                            <Message elem={{ isorg: false }} />
-                                            <Message elem={{ isorg: false }} />
-                                            <Message elem={{ isorg: false }} />
-                                        </div>
-                                        <div style={{ marginLeft: '20px' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></div>
-                                    </div>
-                                </div>
-                            </CenterPlate>
-                        </Center>
-                        <Right>
-                            <RightPanel><div className="dftcontainer"></div></RightPanel>
-                        </Right>
-                    </>
+                {loading &&
+                    <MainLoader />
                 }
+                <>
+                    <LeftPanel function_={modal.SwapFn} />
+                    <Center>
+                        <CenterPlate>
+                            <div className="dftcontainer" style={{ padding: '20px 40px' }}>
+                                <div className="chat">
+                                    <div className="chatwindow">
+                                        <Message elem={{ isorg: false }} />
+                                        <Message elem={{ isorg: true }} />
+                                        <Message elem={{ isorg: false }} />
+                                        <Message elem={{ isorg: false }} />
+                                        <Message elem={{ isorg: false }} />
+                                        <Message elem={{ isorg: false }} />
+                                    </div>
+                                    <form style={{ marginLeft: '20px' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></form>
+                                </div>
+                            </div>
+                        </CenterPlate>
+                    </Center>
+                    <Right>
+                        <RightPanel><div className="dftcontainer"></div></RightPanel>
+                    </Right>
+                </>
             </div>
         </>
     );

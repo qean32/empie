@@ -10,6 +10,10 @@ export const Context: any = ({ children }: { children: any }) => {
     const modal = useBoolean(false)
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
         modal.off()
         loading.SwapFn()
 

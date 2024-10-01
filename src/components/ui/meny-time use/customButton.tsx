@@ -7,7 +7,8 @@ type Props = {
 }
 export const Button = ({ title, function_ }: Props) => {
     const color = useBoolean(false)
-    const fn = () => {
+    const fn = (e: any) => {
+        e.preventDefault()
         color.SwapFn()
 
         setTimeout(() => {
@@ -29,7 +30,8 @@ type Props_ = {
 }
 export const ButtonDisabled = ({ title, function_ }: Props_) => {
     const color = useBoolean(false)
-    const fn = () => {
+    const fn = (e: any) => {
+        e.preventDefault()
         color.SwapFn()
 
         setTimeout(() => {

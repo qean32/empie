@@ -14,7 +14,7 @@
   font-family: cursive;
   font-size: medium;
   letter-spacing: .2vh;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(216, 216, 216, 0.87);
   text-decoration: none;
   // outline: #E74343 2px dashed;
 }
@@ -112,7 +112,8 @@ header {
   height: 6vh;
   border-radius: 0;
   border: 0;
-  min-height: 50px
+  min-height: 50px;
+  z-index: 11;
 }
 
 header>div {

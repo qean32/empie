@@ -84,8 +84,10 @@ export const Registration = ({ }: Props) => {
             {modal.boolean && <Modal function_={modal.SwapFn}>
                 <div className="dftcontainer" style={{ flexDirection: 'column', gap: '20px', alignItems: 'start', padding: '40px 0 40px 60px' }}>
                     <Repair size={24} />
-                    <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" />
-                    <div style={{ fontSize: '12px' }}>
+                    <div style={{width: '70%'}}>
+                        <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" />
+                    </div>
+                    <div style={{ fontSize: '17px' }}>
                         <Checkbox value={check.boolean} title="я согласен с пользовательским соглашениям" fn={check.SwapFn} />
                     </div>
                     <Button title="регистрация" function_={() => undefined} />
@@ -93,53 +95,54 @@ export const Registration = ({ }: Props) => {
             </Modal >}
             <Header />
             <div className="main">
-                {loading ? <MainLoader /> :
-                    <>
-                        <div style={{ ...positioncenterbyabsolute, top: '55%' }}>
-                            <CenterPlate>
-                                <div className="dftcontainer regwindow transition07" style={reg.boolean ? { maxHeight: '500px' } : { maxHeight: '320px' }}>
-                                    <div style={{ zIndex: '12', backgroundColor: '#292929' }}>
-                                        <div style={{ width: '100%' }}>
-                                            <div style={carouselStyle} className="carousel">
-                                                <div><img src="/svg/cs.svg" alt="" className="carouselimg" /><p>играй в CS2 c нами</p></div>
-                                                <div><img src="/svg/bascketball.svg" alt="" className="carouselimg" /><p>корт зовет нас...</p></div>
-                                                <div><img src="/svg/dota.svg" alt="" className="carouselimg" /><p>ГОТОВ ???</p></div>
-                                                <div><img src="/svg/empieLogo.svg" alt="" className="carouselimg" /><p>цитата 10.10</p></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="regentrance" style={{ width: '200%' }}>
-                                        <div className="navreg">
-                                            <p onClick={on.on}>вход <img src="/svg/door.svg" alt="" /></p>
-                                            <p onClick={on.off}>регистрация <img src="/svg/reg_user.svg" alt="" /></p>
-                                        </div>
-                                        <div style={reg_.boolean ? { marginLeft: '-50%' } : {}} className="transition07">
-                                            <div className="windowreg">
-                                                <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
-                                                <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
-                                                <div className="regwarning">
-                                                    <p> забыли пароль? --анлак</p>
-                                                    <p onClick={on.off}> нет аккаунта? --регистрация</p>
-                                                </div>
-                                                <div><Button title="вход" function_={() => undefined} /></div>
-                                            </div>
-                                            <div className="windowreg">
-                                                <div style={{ width: '70%' }}><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
-                                                <div style={{ width: '70%' }}><InputText value={lastname} setValue={setLastname} title="фамилия" max={20} /></div>
-                                                <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
-                                                <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
-                                                <div className="regwarning">
-                                                    <p onClick={on.on}> есть аккаунт? --войти</p>
-                                                </div>
-                                                <div><Button title="регистрация" function_={clickHandler} /></div>
-                                            </div>
+                {loading &&
+                    <MainLoader />
+                }
+                <>
+                    <div style={{ ...positioncenterbyabsolute, top: '55%' }}>
+                        <CenterPlate>
+                            <div className="regwindow transition07" style={reg.boolean ? { maxHeight: '500px' } : { maxHeight: '320px' }}>
+                                <div style={{ zIndex: '12', backgroundColor: '#292929' }}>
+                                    <div style={{ width: '100%' }}>
+                                        <div style={carouselStyle} className="carousel">
+                                            <div><img src="/svg/cs.svg" alt="" className="carouselimg" /><p>играй в CS2 c нами</p></div>
+                                            <div><img src="/svg/bascketball.svg" alt="" className="carouselimg" /><p>корт зовет нас...</p></div>
+                                            <div><img src="/svg/dota.svg" alt="" className="carouselimg" /><p>ГОТОВ ???</p></div>
+                                            <div><img src="/svg/empieLogo.svg" alt="" className="carouselimg" /><p>цитата 10.10</p></div>
                                         </div>
                                     </div>
                                 </div>
-                            </CenterPlate>
-                        </div>
-                    </>
-                }
+                                <div className="regentrance" style={{ width: '200%' }}>
+                                    <div className="navreg">
+                                        <p onClick={on.on}>вход <img src="/svg/door.svg" alt="" /></p>
+                                        <p onClick={on.off}>регистрация <img src="/svg/reg_user.svg" alt="" /></p>
+                                    </div>
+                                    <div style={reg_.boolean ? { marginLeft: '-50%' } : {}} className="transition07">
+                                        <form className="windowreg">
+                                            <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
+                                            <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
+                                            <div className="regwarning">
+                                                <p> забыли пароль? --анлак</p>
+                                                <p onClick={on.off}> нет аккаунта? --регистрация</p>
+                                            </div>
+                                            <div><Button title="вход" function_={() => undefined} /></div>
+                                        </form>
+                                        <form className="windowreg">
+                                            <div style={{ width: '70%' }}><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
+                                            <div style={{ width: '70%' }}><InputText value={lastname} setValue={setLastname} title="фамилия" max={20} /></div>
+                                            <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
+                                            <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
+                                            <div className="regwarning">
+                                                <p onClick={on.on}> есть аккаунт? --войти</p>
+                                            </div>
+                                            <div><Button title="регистрация" function_={clickHandler} /></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </CenterPlate>
+                    </div>
+                </>
             </div >
         </>
     );

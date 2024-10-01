@@ -21,11 +21,13 @@ export const MainLoader = () => {
     }, [points])
     return (
         <>
-            <div style={{ ...positioncenterbyabsolute, top: '37%' }} className="mainloader">
-                <div className="dropswadow">
-                    <EmpieLogo size={8.6} />
+            <div style={{ position: 'fixed', backgroundColor: '#242424', inset: '0', zIndex: '10' }} >
+                <div style={{ ...positioncenterbyabsolute, top: '37%' }} className="mainloader">
+                    <div className="dropswadow">
+                        <EmpieLogo size={8.6} />
+                    </div>
+                    <p style={{ position: 'absolute', bottom: '-65px', width: '82px' }}>загрузка{points}</p>
                 </div>
-                <p style={{ position: 'absolute', bottom: '-65px', width: '82px' }}>загрузка{points}</p>
             </div>
         </>
     );

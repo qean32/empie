@@ -34,3 +34,5 @@ export const positioncenterbyflex: React.CSSProperties = {
     justifyContent: 'center',
     flexDirection: 'column'
 }
+
+export const arrey = [{}, {}, {}]

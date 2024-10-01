@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -12,12 +12,27 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
+import useHandlerScroll from "../../customHooks/useHandlerScroll";
+import { arrey } from "../../functions/GiveConst";
 
 type Props = {
 
 }
 export const Transfers = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
+    const [transfers, setTransfers] = useState<any[]>([{}, {}])
+
+    const scrollRef = useRef<any>()
+    const HandlerScroll = useHandlerScroll(scrollRef)
+
+    useEffect(() => {
+        console.log(scrollRef, HandlerScroll)
+        if (HandlerScroll) {
+            setTimeout(() =>
+                setTransfers((prew: any[]) => [...prew, ...arrey])
+                , 600)
+        }
+    }, [HandlerScroll])
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -33,27 +48,26 @@ export const Transfers = ({ }: Props) => {
             {modaltournaments.boolean && <Modal function_={modaltournaments.off}><ModalDirectionChildren function_={modaltournaments.off} link="tournaments" /></Modal>}
             <Header />
             <div className="main">
-                {loading ? <MainLoader /> :
-                    <>
-                        <LeftPanel function_={modal.SwapFn} />
-                        <Center>
-                            <SmallCenterPlate>
-                                <div className="transfers">
-                                    <Transfer />
-                                    <Transfer />
-                                    <Transfer />
-                                    <Transfer />
-                                    <Transfer />
-                                    <Transfer />
-                                    <Transfer />
-                                </div>
-                            </SmallCenterPlate>
-                        </Center>
-                        <Right>
-                            <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
-                        </Right>
-                    </>
+                {loading &&
+                    <MainLoader />
                 }
+                <>
+                    <LeftPanel function_={modal.SwapFn} />
+                    <Center>
+                        <SmallCenterPlate>
+                            <div className="transfers">
+                                {transfers.map((el, index) => (
+                                    <Transfer key={index} />
+                                ))}
+
+                                <div ref={scrollRef} className="scrollhandlerref"></div>
+                            </div>
+                        </SmallCenterPlate>
+                    </Center>
+                    <Right>
+                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                    </Right>
+                </>
             </div>
         </>
     );
