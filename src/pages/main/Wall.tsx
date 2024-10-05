@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -17,8 +17,8 @@ import { Post } from "../../components/ui/meny-time use/post";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import Repair from "../../components/ui/meny-time use/repair";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
 import { arrey } from "../../functions/GiveConst";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 
 type Props = {
 }
@@ -26,17 +26,7 @@ export const Wall = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [posts, setPosts] = useState<any[]>([{}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef, HandlerScroll)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setPosts((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -66,7 +56,7 @@ export const Wall = ({ }: Props) => {
                                     </div>
                                     <div>
                                         <p style={{ margin: '5px 0' }}>о нас</p>
-                                        <p>приложение разработанно как платформа для организации и проведения турниров и товарищеских встреч по различным спортивным - киберспортивным дисциплинам</p>
+                                        <p>приложение разработанно как некомерческая платформа для организации и проведения турниров и товарищеских встреч по различным спортивным - киберспортивным дисциплинам</p>
                                     </div>
                                     <div className="reference">
                                         <a title="наш дискорд" href="https://t.me/+xJIMXDHnrvwyMjMy" target="_blank"><img src="/svg/telegram.svg" alt="" /></a>
@@ -82,7 +72,7 @@ export const Wall = ({ }: Props) => {
                             <DftPost key={index} />
                         ))}
 
-                        <div ref={scrollRef} className="scrollhandlerref"></div>
+                        <div ref={ref} className="scrollhandlerref"></div>
                     </Center>
                     <Right>
                         <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>

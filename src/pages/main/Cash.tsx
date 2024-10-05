@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { SomeContext } from "../../context";
@@ -10,8 +10,8 @@ import { LeftPanel } from "../../components/hoc/leftPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
 import { arrey } from "../../functions/GiveConst";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 
 type Props = {
 
@@ -20,17 +20,7 @@ export const Cash = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [cash, setCash] = useState<any[]>([{}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setCash((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setCash((prev: any) => [...prev, ...arrey]))
 
     ChangeTitle('расходы')
     return (
@@ -61,7 +51,7 @@ export const Cash = ({ }: Props) => {
                                 ))}
 
 
-                                <div ref={scrollRef} className="scrollhandlerref"></div>
+                                <div ref={ref} className="scrollhandlerref"></div>
                             </div>
                         </FullPlate>
                     </Center>

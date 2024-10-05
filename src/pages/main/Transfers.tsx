@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -12,8 +12,8 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
 import { arrey } from "../../functions/GiveConst";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 
 type Props = {
 
@@ -22,17 +22,7 @@ export const Transfers = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [transfers, setTransfers] = useState<any[]>([{}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef, HandlerScroll)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setTransfers((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setTransfers((prev: any) => [...prev, ...arrey]))
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -60,7 +50,7 @@ export const Transfers = ({ }: Props) => {
                                     <Transfer key={index} />
                                 ))}
 
-                                <div ref={scrollRef} className="scrollhandlerref"></div>
+                                <div ref={ref} className="scrollhandlerref"></div>
                             </div>
                         </SmallCenterPlate>
                     </Center>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { SomeContext } from "../../context";
@@ -11,14 +11,54 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { InputComent } from "../../components/ui/one-time use/InterfacePost";
-import { colors } from "../../functions/GiveConst";
+import { arrey, colors } from "../../functions/GiveConst";
 
 type Props = {
 
 }
 export const Chat = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
+    const [masseges, setMesseges] = useState<any[]>([{}, {}, {}, {}, {}])
+    const chatRef: any = useRef()
+    const handlerRef: any = useRef()
     ChangeTitle("чат")
+
+    const [boolean, setBoolean] = useState<boolean>(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMesseges((prev: any) => [...prev, arrey])
+        }, 600);
+    }, [boolean])
+
+    useEffect(() => {
+        console.log(handlerRef)
+        console.log(chatRef)
+    }, [])
+
+    const on = () => setBoolean(true)
+    const off = () => setBoolean(false)
+
+    useEffect(() => {
+        const node: any = chatRef.current
+        const node_: any = handlerRef.current
+
+        const fn = () => {
+            if (node_.getBoundingClientRect().top < 120) {
+                on()
+            }
+            else {
+                off()
+            }
+        }
+
+        node.addEventListener('scroll', fn)
+
+        return function () {
+            node.removeEventListener('scroll', fn)
+        }
+    }, [])
+
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
@@ -33,15 +73,13 @@ export const Chat = ({ }: Props) => {
                         <CenterPlate>
                             <div className="dftcontainer" style={{ padding: '20px 40px' }}>
                                 <div className="chat">
-                                    <div className="chatwindow">
-                                        <Message elem={{ isorg: false }} />
-                                        <Message elem={{ isorg: true }} />
-                                        <Message elem={{ isorg: false }} />
-                                        <Message elem={{ isorg: false }} />
-                                        <Message elem={{ isorg: false }} />
-                                        <Message elem={{ isorg: false }} />
+                                    <div className="chatwindow" ref={chatRef}>
+                                        {masseges.map(() => (
+                                            <Message elem={{ isorg: false }} />
+                                        ))}
+                                        <div ref={handlerRef} className="scrollhandlerref"></div>
                                     </div>
-                                    <form style={{ marginLeft: '20px' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></form>
+                                    <form style={{ transform: 'translate(0, 2vh)' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></form>
                                 </div>
                             </div>
                         </CenterPlate>

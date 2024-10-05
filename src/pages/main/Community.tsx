@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -15,8 +15,8 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
 import { arrey } from "../../functions/GiveConst";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 
 type Props = {
 
@@ -27,17 +27,7 @@ export const Community = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [users, setUsers] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef, HandlerScroll)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setUsers((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setUsers((prev: any) => [...prev, ...arrey]))
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -61,7 +51,7 @@ export const Community = ({ }: Props) => {
                 <LeftPanel function_={modal.SwapFn} />
                 <Center>
                     <SmallCenterPlate>
-                        <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal', minWidth: '560px' }}>
+                        <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal'}}>
                             <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
                                 <Search value={search} setValue={setSearch} title="найти человека" />
                             </div>
@@ -70,7 +60,7 @@ export const Community = ({ }: Props) => {
                                     <InlineUser key={index} />
                                 ))}
 
-                                <div ref={scrollRef} className="scrollhandlerref"></div>
+                                <div ref={ref} className="scrollhandlerref"></div>
                             </div>
                         </div>
                     </SmallCenterPlate>

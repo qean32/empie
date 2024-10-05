@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -18,8 +18,9 @@ import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { TournamentChild } from "../../childrens/tournament";
 import { MoveonGridChild } from "../../childrens/moveongrid";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 import { arrey } from "../../functions/GiveConst";
+import { ScrollHandlerRef } from "../../components/ux/scrollhandlerRef";
 
 type Props = {
     direction: boolean | string
@@ -28,17 +29,7 @@ export const News = ({ direction = false }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [posts, setPosts] = useState<any[]>([{}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef, HandlerScroll)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setPosts((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -63,7 +54,10 @@ export const News = ({ direction = false }: Props) => {
                         <Center>
 
                             <SmallCenterPlate>
-                                <div className="dftcontainer" style={{ justifyContent: 'start' }}>
+                                <div className="dftcontainer" style={{
+                                    justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
+                                    backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
+                                }}>
                                     <div style={{ margin: '10px 60px' }}>
                                         <p style={{ fontSize: '30px' }}>СТАНЬ</p>
                                         <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
@@ -81,7 +75,7 @@ export const News = ({ direction = false }: Props) => {
                                 <DftPost key={index} />
                             ))}
 
-                            <div ref={scrollRef} className="scrollhandlerref"></div>
+                            <div ref={ref} className="scrollhandlerref"></div>
                         </Center>
                         <Right>
                             <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>

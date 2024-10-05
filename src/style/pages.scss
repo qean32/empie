@@ -261,7 +261,8 @@ i {
 }
 
 .chat {
-    min-height: 500px;
+    min-height: 600px;
+    min-width: 500px;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
@@ -319,6 +320,7 @@ i {
 .role {
     background-color: #c78d11;
     padding: 5px 10px;
+    cursor: pointer;
     border-radius: 5px;
 }
 
@@ -330,4 +332,10 @@ i {
 
 .reference>a>img:hover {
     transform: translate(0, -6px);
+}
+
+.adminpanel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }

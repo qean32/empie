@@ -46,7 +46,7 @@ export const Team = ({ }: Props) => {
                         <CenterPlate>
                             <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                                 <div className="trophy">
-                                    <div>
+                                    <div style={{ padding: '20px 40px' }}>
                                         <img src="" alt="" />
                                         <img src="" alt="" />
                                         <img src="" alt="" />

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
@@ -10,8 +10,8 @@ import { TournamentChild } from "../../childrens/tournament";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
 import { arrey } from "../../functions/GiveConst";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 
 type Props = {
 }
@@ -19,17 +19,8 @@ export const Tournaments = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [tournameents, setTournaments] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef, HandlerScroll)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setTournaments((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setTournaments((prev: any) => [...prev, ...arrey]))
+    
     ChangeTitle('турниры')
     return (
         <>
@@ -47,7 +38,7 @@ export const Tournaments = ({ }: Props) => {
                             <SmallCenterPlate key={index}><TournamentChild /></SmallCenterPlate>
                         ))}
 
-                        <div ref={scrollRef} className="scrollhandlerref"></div>
+                        <div ref={ref} className="scrollhandlerref"></div>
                     </Center>
                     <DftRPanel direction={4} />
                 </>

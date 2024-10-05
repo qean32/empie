@@ -17,7 +17,7 @@ export const Button = ({ title, function_ }: Props) => {
         }, 700);
     }
     return (
-        <button className="btngreen" onClick={fn}>
+        <button className="btngreen" onClick={fn} type="submit">
             <p style={color.boolean ? { opacity: '0' } : {}}>{title}</p>
             {color.boolean && <LoaderWhite />}
         </button>
@@ -40,7 +40,7 @@ export const ButtonDisabled = ({ title, function_ }: Props_) => {
         }, 700);
     }
     return (
-        <button onClick={fn}>
+        <button onClick={fn} type="submit">
             <p style={color.boolean ? { opacity: '0' } : {}}>{title}</p>
             {color.boolean && <Loader />}
         </button>

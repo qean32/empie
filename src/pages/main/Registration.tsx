@@ -10,6 +10,7 @@ import useBoolean from "../../customHooks/useBoolean";
 import { Checkbox, InputEmail, InputPassword, InputText } from "../../components/ui/meny-time use/customInput";
 import { Modal } from "../../components/ui/meny-time use/modal";
 import Repair from "../../components/ui/meny-time use/repair";
+import { Cross } from "../../components/ui/meny-time use/cross";
 
 type Props = {
 
@@ -83,11 +84,14 @@ export const Registration = ({ }: Props) => {
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}>
                 <div className="dftcontainer" style={{ flexDirection: 'column', gap: '20px', alignItems: 'start', padding: '40px 0 40px 60px' }}>
+                    <span style={{ position: 'absolute', right: '2vh', top: '1vh' }} onClick={modal.SwapFn}>
+                        <Cross />
+                    </span>
                     <Repair size={24} />
-                    <div style={{width: '70%'}}>
+                    <div style={{ width: '50%' }}>
                         <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" />
                     </div>
-                    <div style={{ fontSize: '17px' }}>
+                    <div style={{ fontSize: '17px', margin: '0 0 0 5px' }}>
                         <Checkbox value={check.boolean} title="я согласен с пользовательским соглашениям" fn={check.SwapFn} />
                     </div>
                     <Button title="регистрация" function_={() => undefined} />

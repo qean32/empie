@@ -7,16 +7,24 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { useNavigate } from "react-router";
 import Calendar from "react-calendar";
-import moment from "moment";
-import { colors } from "../../functions/GiveConst";
 import { Button } from "../../components/ui/meny-time use/customButton";
+import moment from "moment";
+import { AdminPlate } from "../../components/hoc/plates/adminPlate";
+import { Tournament_6 } from "../../components/ui/one-time use/grid/6_tournament";
+import { Tournament_7 } from "../../components/ui/one-time use/grid/7_tournament";
+import { Tournament_8 } from "../../components/ui/one-time use/grid/8_tournament";
+import { Tournament_9 } from "../../components/ui/one-time use/grid/9_tournament";
+import { Tournament_10 } from "../../components/ui/one-time use/grid/10_tournament copy";
+import { Tournament_11 } from "../../components/ui/one-time use/grid/11_tournament";
+import { Tournament_12 } from "../../components/ui/one-time use/grid/12_tournament";
 import { GridPoint } from "../../components/ui/meny-time use/gridPoint";
 type Props = {
 }
 export const Tournament = ({ }: Props) => {
     const { loading } = useContext<any>(SomeContext)
     const navigate = useNavigate()
-    const [meetings, setMeetings] = useState<any[]>([{ date: '' }])
+    const [meetings, setMeetings] = useState<any[]>([{}, {}, {}, {}, {}, {}])
+    const [teamWin, setTeamWin] = useState<any>()
 
     ChangeTitle('турнир')
 
@@ -29,7 +37,7 @@ export const Tournament = ({ }: Props) => {
             <div className="main">
                 <Center>
                     <SmallCenterPlate>
-                        <div className="dftcontainer" style={{ width: '140vh', flexDirection: 'column', minWidth: '1000px' }}>
+                        <div className="dftcontainer" style={{ width: '140vh', flexDirection: 'column', minWidth: '1400px' }}>
                             <div className="infotournamnet">
                                 <div>
                                     <div><p>команды / расписание</p></div>
@@ -64,18 +72,43 @@ export const Tournament = ({ }: Props) => {
                                 </div>
                                 <CustomCalendar meetings={meetings} />
                             </div>
-                            <div className="gridtournamnet">
-                                <section><GridPoint /></section>
-                                <section></section>
-                                <section></section>
-                                <section></section>
-                                <section></section>
-                                <section></section>
-                                <section></section>
+
+                            {meetings.length < 6 && <div className="gridtournamnet"> <p>идет набор команд...<img src="/img/cezar.webp" alt="" /></p> </div>}
+
+                            {meetings.length > 12 && <div className="gridtournamnet"> <p>набор команд окончен...<img src="/img/cezar.webp" alt="" /></p> </div>}
+                            { /* ПОТОМ ЗАМЕНИТЬ УСЛОВИЕ!!! */}
+
+                            {meetings.length == 6 && <Tournament_6 />}
+                            {meetings.length == 7 && <Tournament_7 />}
+                            {meetings.length == 8 && <Tournament_8 />}
+                            {meetings.length == 9 && <Tournament_9 />}
+                            {meetings.length == 10 && <Tournament_10 />}
+                            {meetings.length == 11 && <Tournament_11 />}
+                            {meetings.length == 12 && <Tournament_12 />}
+
+
+                            <div className="undertournamnet">
+                                <p style={{ padding: '0 0 0 50px' }}>матчи - квалицикации</p>
+                                <div>
+                                    {meetings.map((el, index) => (<GridPoint key={index} />))}
+                                </div>
                             </div>
-                            <div className="undertournamnet"></div>
                         </div>
                     </SmallCenterPlate>
+                    <AdminPlate>
+                        <div className="adminpanel">
+                            <Button title={"открыть турнир"} function_={() => undefined} />
+                            <Button title={"генерация матчей"} function_={() => undefined} />
+                            <div>
+                                team win : <div className="role" onClick={() => setTeamWin({})}> {teamWin?.name} </div>
+                            </div>
+
+                            <div className="adminpanel" style={{ flexDirection: 'row', gap: '20px', flexWrap: 'wrap' }}>
+                                {meetings.map((el, index) => <div className="role" onClick={() => setTeamWin({ name: String(index) })}> ROKUZAN </div>)}
+                            </div>
+                            <Button title={"установить победителя"} function_={() => undefined} />
+                        </div>
+                    </AdminPlate>
                 </Center>
             </div>
         </>

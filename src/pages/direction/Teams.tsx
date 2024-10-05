@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
@@ -12,8 +12,8 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import useHandlerScroll from "../../customHooks/useHandlerScroll";
 import { arrey } from "../../functions/GiveConst";
+import useDinamicPagination from "../../customHooks/useDinamicPagination";
 
 type Props = {
 }
@@ -23,17 +23,7 @@ export const Teams = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [teams, setTeams] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
 
-    const scrollRef = useRef<any>()
-    const HandlerScroll = useHandlerScroll(scrollRef)
-
-    useEffect(() => {
-        console.log(scrollRef, HandlerScroll)
-        if (HandlerScroll) {
-            setTimeout(() =>
-                setTeams((prew: any[]) => [...prew, ...arrey])
-                , 600)
-        }
-    }, [HandlerScroll])
+    const ref = useDinamicPagination(() => setTeams((prev: any) => [...prev, ...arrey]))
 
     useEffect(() => {
 
@@ -52,7 +42,7 @@ export const Teams = ({ }: Props) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
                         <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal', minWidth: '560px'}}>
+                            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
                                 <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
                                     <Search value={search} setValue={setSearch} title="найти команду" />
                                 </div>
@@ -62,7 +52,7 @@ export const Teams = ({ }: Props) => {
                                         <InlineTeam key={index} />
                                     ))}
 
-                                    <div ref={scrollRef} className="scrollhandlerref"></div>
+                                    <div ref={ref} className="scrollhandlerref"></div>
                                 </div>
                             </div>
                         </SmallCenterPlate>
