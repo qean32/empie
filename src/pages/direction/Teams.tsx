@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/modalDirection";
+import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Search } from "../../components/ui/meny-time use/customInput";
@@ -14,6 +14,7 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { arrey } from "../../functions/GiveConst";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import { useParams } from "react-router";
 
 type Props = {
 }
@@ -28,6 +29,7 @@ export const Teams = ({ }: Props) => {
     useEffect(() => {
 
     }, [debounsedValue])
+    const direction = useParams()
 
     ChangeTitle('команды')
     return (
@@ -57,7 +59,7 @@ export const Teams = ({ }: Props) => {
                             </div>
                         </SmallCenterPlate>
                     </Center>
-                    <DftRPanel direction={4} />
+                    <DftRPanel direction={Number(direction.iddirection)} />
                 </>
             </div>
         </>

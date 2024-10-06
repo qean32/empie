@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/modalDirection";
-import { RightPanelChildren } from "../../childrens/rightPanel";
+import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
+import { RightPanelChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
@@ -51,7 +51,7 @@ export const Community = ({ }: Props) => {
                 <LeftPanel function_={modal.SwapFn} />
                 <Center>
                     <SmallCenterPlate>
-                        <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal'}}>
+                        <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
                             <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
                                 <Search value={search} setValue={setSearch} title="найти человека" />
                             </div>

@@ -1,32 +1,25 @@
-import { useContext, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/modalDirection";
-import { RightPanelChildren } from "../../childrens/rightPanel";
+import { useContext } from "react";
+import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
+import { RightPanelChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
-import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { RightTransferChild } from "../../childrens/rightTransfer";
-import { TopTeamChild } from "../../childrens/topTeam";
-import { StreamChild } from "../../childrens/stream";
+import { RightTransferChild } from "../../childrens/other/rightTransfer";
+import { TopTeamChild } from "../../childrens/other/topTeam";
+import { StreamChild } from "../../childrens/other/stream";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
-import { Post } from "../../components/ui/meny-time use/post";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
-import Repair from "../../components/ui/meny-time use/repair";
-import { arrey } from "../../functions/GiveConst";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import { WallChild } from "../../childrens/pages/main/wall";
 
 type Props = {
 }
 export const Wall = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    const [posts, setPosts] = useState<any[]>([{}, {}])
-
-    const ref = useDinamicPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -46,34 +39,7 @@ export const Wall = ({ }: Props) => {
                 }
                 <>
                     <LeftPanel function_={modal.SwapFn} />
-                    <Center>
-                        <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ flexDirection: 'column', gap: '20px' }}>
-                                <div style={{ padding: '0 40px' }}>
-                                    <p style={{ margin: '10px 0' }}>действующая версия: 3.00</p>
-                                    <div style={{ margin: '25px 0' }}>
-                                        <Repair />
-                                    </div>
-                                    <div>
-                                        <p style={{ margin: '5px 0' }}>о нас</p>
-                                        <p>приложение разработанно как некомерческая платформа для организации и проведения турниров и товарищеских встреч по различным спортивным - киберспортивным дисциплинам</p>
-                                    </div>
-                                    <div className="reference">
-                                        <a title="наш дискорд" href="https://t.me/+xJIMXDHnrvwyMjMy" target="_blank"><img src="/svg/telegram.svg" alt="" /></a>
-                                        <a title="наш телеграм" href="https://discord.gg/saN3mAmyyp" target="_blank"><img src="/svg/discord.svg" alt="" /></a>
-                                        <a title="исходный код" href=""><img src="/svg/github.svg" alt="" /></a>
-                                        <a title="исходный код" href=""><img src="/svg/github.svg" alt="" /></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </SmallCenterPlate>
-
-                        {posts.map((el, index) => (
-                            <DftPost key={index} />
-                        ))}
-
-                        <div ref={ref} className="scrollhandlerref"></div>
-                    </Center>
+                    <Center><WallChild /></Center>
                     <Right>
                         <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                         <RightPanel><RightTransferChild /></RightPanel>
@@ -83,16 +49,5 @@ export const Wall = ({ }: Props) => {
                 </>
             </div>
         </>
-    );
-}
-
-type PropsDftPost = {
-
-}
-export const DftPost = ({ }: PropsDftPost) => {
-    return (
-        <SmallCenterPlate>
-            <Post />
-        </SmallCenterPlate>
     );
 }

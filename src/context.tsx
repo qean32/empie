@@ -19,7 +19,7 @@ export const Context: any = ({ children }: { children: any }) => {
 
         const timeOut = setTimeout(() => {
             loading.SwapFn()
-        }, 1000)
+        }, 800)
 
         return () => {
             clearTimeout(timeOut)

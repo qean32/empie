@@ -1,4 +1,4 @@
-import Repair from "../components/ui/meny-time use/repair";
+import Repair from "../../components/ui/meny-time use/repair";
 
 type Props = {
 

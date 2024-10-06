@@ -1,4 +1,4 @@
-import { GridPoint } from "../components/ui/meny-time use/gridPoint";
+import { GridPoint } from "../../components/ui/meny-time use/gridPoint";
 
 type Props = {
 

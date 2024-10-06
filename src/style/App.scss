@@ -5,7 +5,7 @@
 @import './custom/modal.scss';
 @import './custom/calendar.scss';
 @import './custom/children.scss';
-@import './tournament.scss';
+@import  './custom/tournament.scss';
 @import './pages.scss';
 
 * {
@@ -113,7 +113,7 @@ header {
   border-radius: 0;
   border: 0;
   min-height: 50px;
-  z-index: 11;
+  // z-index: 11;
 }
 
 header>div {

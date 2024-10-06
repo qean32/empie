@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/modalDirection";
-import { RightPanelChildren } from "../../childrens/rightPanel";
+import { useContext } from "react";
+import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
+import { RightPanelChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
-import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
@@ -12,24 +11,19 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
-import { arrey } from "../../functions/GiveConst";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import { TransfersChild } from "../../childrens/pages/main/transfers";
 
 type Props = {
 
 }
 export const Transfers = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    const [transfers, setTransfers] = useState<any[]>([{}, {}])
-
-    const ref = useDinamicPagination(() => setTransfers((prev: any) => [...prev, ...arrey]))
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
 
     ChangeTitle('трансферы')
-
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
@@ -43,31 +37,10 @@ export const Transfers = ({ }: Props) => {
                 }
                 <>
                     <LeftPanel function_={modal.SwapFn} />
-                    <Center>
-                        <SmallCenterPlate>
-                            <div className="transfers">
-                                {transfers.map((el, index) => (
-                                    <Transfer key={index} />
-                                ))}
-
-                                <div ref={ref} className="scrollhandlerref"></div>
-                            </div>
-                        </SmallCenterPlate>
-                    </Center>
-                    <Right>
-                        <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
-                    </Right>
+                    <Center><TransfersChild /></Center>
+                    <Right><RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel></Right>
                 </>
             </div>
         </>
     );
-}
-
-interface Props_ {
-
-}
-const Transfer = ({ }: Props_) => {
-    return (
-        <div className="transfer"><i>Сашка Бирюков</i> покинул команду <i>Астартес</i></div>
-    )
 }

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/modalDirection";
-import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/rightPanel";
+import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
+import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
@@ -8,24 +8,23 @@ import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/ui/meny-time use/modal";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { RightTransferChild } from "../../childrens/rightTransfer";
-import { TopTeamChild } from "../../childrens/topTeam";
-import { StreamChild } from "../../childrens/stream";
+import { RightTransferChild } from "../../childrens/other/rightTransfer";
+import { TopTeamChild } from "../../childrens/other/topTeam";
+import { StreamChild } from "../../childrens/other/stream";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Post } from "../../components/ui/meny-time use/post";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
-import { TournamentChild } from "../../childrens/tournament";
-import { MoveonGridChild } from "../../childrens/moveongrid";
+import { TournamentChild } from "../../childrens/other/tournament";
+import { MoveonGridChild } from "../../childrens/other/moveongrid";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
 import { arrey } from "../../functions/GiveConst";
-import { ScrollHandlerRef } from "../../components/ux/scrollhandlerRef";
+import { useParams } from "react-router";
 
 type Props = {
-    direction: boolean | string
 }
-export const News = ({ direction = false }: Props) => {
+export const News = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const [posts, setPosts] = useState<any[]>([{}, {}])
 
@@ -35,9 +34,13 @@ export const News = ({ direction = false }: Props) => {
     const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
 
+    const direction = useParams()
+
+    console.log(direction)
+
     ChangeTitle('новости')
 
-    if (!direction) {
+    if (!direction.iddirection) {
         return (
             <>
                 {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
@@ -67,15 +70,14 @@ export const News = ({ direction = false }: Props) => {
 
                             <DftPost />
 
-                            <SmallCenterPlate>
-                                <TournamentChild />
-                            </SmallCenterPlate>
+                            <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
 
                             {posts.map((el, index) => (
                                 <DftPost key={index} />
                             ))}
 
                             <div ref={ref} className="scrollhandlerref"></div>
+
                         </Center>
                         <Right>
                             <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
@@ -94,23 +96,47 @@ export const News = ({ direction = false }: Props) => {
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
-            {loading ? <div className="main"><MainLoader /></div> :
-                <div className="main">
+            <div className="main">
+                {loading &&
+                    <MainLoader />
+                }
+                <>
                     <LeftPanel function_={modal.SwapFn} />
-                    <div className="center">
+
+                    <Center>
+
                         <SmallCenterPlate>
-                            <div className="likecoment">
-                                <img src="/svg/like.svg" alt="" />
+                            <div className="dftcontainer" style={{
+                                justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
+                                backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
+                            }}>
+                                <div style={{ margin: '10px 60px' }}>
+                                    <p style={{ fontSize: '30px' }}>СТАНЬ</p>
+                                    <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
+                                </div>
                             </div>
-                        </SmallCenterPlate>
-                    </div>
-                    <div>
-                        <RightPanel><RightPanelDirectionChildren direction={0} /></RightPanel>
-                        <RightPanel><TopTeamChild /></RightPanel>
+                        </SmallCenterPlate >
+
+                        <DftPost />
+
+                        <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
+
+                        {posts.map((el, index) => (
+                            <DftPost key={index} />
+                        ))}
+
+                        <div ref={ref} className="scrollhandlerref"></div>
+                    </Center>
+
+                    <Right>
+                        <RightPanel><RightPanelDirectionChildren direction={Number(direction.iddirection)} /></RightPanel>
+                        <RightPanel><MoveonGridChild /></RightPanel>
                         <RightPanel><RightTransferChild /></RightPanel>
+                        <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
-                    </div>
-                </div>}
+                    </Right>
+                </>
+            </div>
         </>
     )
 }
