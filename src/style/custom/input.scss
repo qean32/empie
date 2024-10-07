@@ -127,7 +127,7 @@ input[type=time]::-webkit-calendar-picker-indicator {
 
 .circkle {
     opacity: 1;
-    @include on-circle($item-count: 16, $circle-size: 280px, $item-size: 11vh);
+    @include on-circle($item-count: 16, $circle-size: 370px, $item-size: 11vh);
 }
 
 .timeinput {
@@ -138,18 +138,18 @@ input[type=time]::-webkit-calendar-picker-indicator {
 
 .lockpass {
     position: absolute;
-    right: -2vh;
-    top: 2.2vh;
+    right: -2.5vh;
+    top: 1.5vh;
 }
 
 .checkbox_ {
     position: absolute;
-    transform: translate(1vh, .5vh);
+    transform: translate(1vh, 0);
 }
 
 input[type=checkbox] {
-    height: 1.7vh;
-    width: 1.3vh;
+    height: 10px;
+    width: 11px;
     border: 2px solid $background-color-dark;
 }
 
@@ -166,6 +166,18 @@ input[type=checkbox] {
     align-items: center;
 }
 
-.smallinput > div{
+.smallinput>div {
     width: 35%;
+}
+
+select {
+    background-color: $background-color-dark;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid $border-color;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+    min-height: 22px;
 }

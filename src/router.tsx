@@ -21,7 +21,7 @@ import { EditProfile } from "./pages/main/editProfile"
 import { EditTeam } from "./pages/direction/editTeam"
 import { RegTeam } from "./pages/direction/regTeam"
 import { Protokols } from "./pages/direction/protokols"
-import { Wall } from "./pages/main/Wall"
+import { Wall } from "./pages/main/wall"
 
 type Props = {
 
@@ -32,7 +32,8 @@ export const Router = ({ }: Props) => {
             <Context>
                 <Routes>
                     <Route element={<Test />} path="/test" />
-                    <Route element={<News direction={false} />} path="/" />
+                    <Route element={<News />} path="/" />
+                    <Route element={<News />} path="/:iddirection" />
                     <Route element={<Registration />} path="/registration" />
                     <Route element={<Profile />} path="/profile/:id" />
                     <Route element={<Wall />} path="/wall" />
@@ -50,9 +51,6 @@ export const Router = ({ }: Props) => {
 
                     <Route element={<Offers />} path="/offers" />
 
-                    <Route element={<News direction={false} />} path="/dota" />
-                    <Route element={<News direction={false} />} path="/cs" />
-                    <Route element={<News direction={false} />} path="/bascketball" />
                     <Route element={<Tournament />} path="/tournament/:id" />
                     <Route element={<Meeting />} path="/meeting/:id" />
                     <Route element={<Team />} path="/team/:id" />

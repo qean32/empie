@@ -7,7 +7,8 @@ type Props = {
 }
 export const Button = ({ title, function_ }: Props) => {
     const color = useBoolean(false)
-    const fn = () => {
+    const fn = (e: any) => {
+        e.preventDefault()
         color.SwapFn()
 
         setTimeout(() => {
@@ -16,7 +17,7 @@ export const Button = ({ title, function_ }: Props) => {
         }, 700);
     }
     return (
-        <button className="btngreen" onClick={fn}>
+        <button className="btngreen" onClick={fn} type="submit">
             <p style={color.boolean ? { opacity: '0' } : {}}>{title}</p>
             {color.boolean && <LoaderWhite />}
         </button>
@@ -29,7 +30,8 @@ type Props_ = {
 }
 export const ButtonDisabled = ({ title, function_ }: Props_) => {
     const color = useBoolean(false)
-    const fn = () => {
+    const fn = (e: any) => {
+        e.preventDefault()
         color.SwapFn()
 
         setTimeout(() => {
@@ -38,7 +40,7 @@ export const ButtonDisabled = ({ title, function_ }: Props_) => {
         }, 700);
     }
     return (
-        <button onClick={fn}>
+        <button onClick={fn} type="submit">
             <p style={color.boolean ? { opacity: '0' } : {}}>{title}</p>
             {color.boolean && <Loader />}
         </button>

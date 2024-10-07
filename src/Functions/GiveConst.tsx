@@ -6,7 +6,8 @@ export const techwork: boolean = false
 export enum colors {
     maincolor = '#E74343',
     greencolor = '#0d9e0d',
-    backgroundcolor = ''
+    backgroundcolor = '#242424',
+    backgroundcolor_l = '#292929'
 }
 
 export enum direction {
@@ -34,3 +35,5 @@ export const positioncenterbyflex: React.CSSProperties = {
     justifyContent: 'center',
     flexDirection: 'column'
 }
+
+export const arrey = [{}, {}, {}]

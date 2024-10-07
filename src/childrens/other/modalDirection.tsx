@@ -1,6 +1,6 @@
-import { Cross } from "../components/ui/meny-time use/cross"
+import { Cross } from "../../components/ui/meny-time use/cross"
 import { useNavigate } from "react-router"
-import { direction, idDirection } from "../functions/GiveConst"
+import { direction, idDirection } from "../../functions/GiveConst"
 
 type Props = {
     link?: string

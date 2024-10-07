@@ -10,12 +10,16 @@ export const Context: any = ({ children }: { children: any }) => {
     const modal = useBoolean(false)
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    useEffect(() => {
         modal.off()
         loading.SwapFn()
 
         const timeOut = setTimeout(() => {
             loading.SwapFn()
-        }, 1000)
+        }, 800)
 
         return () => {
             clearTimeout(timeOut)
