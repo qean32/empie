@@ -5,16 +5,23 @@ import { Header } from "../../components/ui/meny-time use/header";
 import Repair from "../../components/ui/meny-time use/repair";
 import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import ChangeTitle from "../../functions/ChangeTitle";
+import { useContext } from "react";
+import { SomeContext } from "../../context";
+import { MainLoader } from "../../components/ui/meny-time use/loader";
 
 type Props = {
 
 }
 export const P404 = ({ }: Props) => {
     const navigate = useNavigate()
+    const { loading } = useContext<any>(SomeContext)
     ChangeTitle('страница не найдена')
     return (
         <>
             <Header />
+            {loading &&
+                <MainLoader />
+            }
             <div className="main">
                 <div style={{ ...positioncenterbyabsolute }}>
                     <SmallCenterPlate>

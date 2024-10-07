@@ -23,12 +23,12 @@ export const Header = () => {
                     <span onClick={() => navigate('/')}>
                         <EmpieLogo />
                     </span>
-                    <div onClick={() => navigate('/offers')} style={{cursor: 'pointer'}}>
+                    <div onClick={() => navigate('/offers')} style={{ cursor: 'pointer' }}>
                         {notification.boolean ? <img src="/svg/notification.svg" alt="" /> : <img src="/svg/notificationun.svg" alt="" />}
                     </div>
                 </div>
                 <div onClick={avaClickHandler} style={{ cursor: 'pointer' }}>
-                    <p>username</p>
+                    {localStorage.getItem('token') ? <p>username</p> : <p>войти</p>}
                     <div className="headerava"></div>
                 </div>
             </div>

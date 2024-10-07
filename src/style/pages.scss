@@ -61,8 +61,12 @@
 
 .scrollhandlerref {
     width: 100%;
-    height: 100px;
-    background-color: #E74343;
+    padding: 20px 0 0 0;
+    height: 60px;
+    background-color: #e7434300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .trophy>div {
@@ -173,6 +177,8 @@ i {
     grid-template-rows: auto;
     width: 640px;
     overflow: hidden;
+
+    padding: 20px 0;
 }
 
 .regwindow>div {
@@ -185,6 +191,7 @@ i {
 .windowreg {
     display: flex;
     align-items: start;
+    width: 50%;
     gap: 30px;
     flex-direction: column;
 }
@@ -192,6 +199,7 @@ i {
 .regentrance {
     display: flex;
     position: relative;
+    overflow: hidden;
 }
 
 .regentrance>div {
@@ -253,7 +261,8 @@ i {
 }
 
 .chat {
-    min-height: 500px;
+    min-height: 600px;
+    min-width: 500px;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
@@ -311,6 +320,7 @@ i {
 .role {
     background-color: #c78d11;
     padding: 5px 10px;
+    cursor: pointer;
     border-radius: 5px;
 }
 
@@ -322,4 +332,10 @@ i {
 
 .reference>a>img:hover {
     transform: translate(0, -6px);
+}
+
+.adminpanel {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }

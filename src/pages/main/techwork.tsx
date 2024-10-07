@@ -17,16 +17,17 @@ export const Techwork = ({ }: Props) => {
         <>
             <FakeHeader />
             <div className="main">
-                {loading ? <MainLoader /> :
-                    <div style={{ ...positioncenterbyabsolute, top: '50%' }}>
-                        <SmallCenterPlate>
-                            <div className="containernsmallwindow">
-                                <Repair />
-                                <p>ведутся работы</p>
-                            </div>
-                        </SmallCenterPlate>
-                    </div>
+                {loading &&
+                    <MainLoader />
                 }
+                <div style={{ ...positioncenterbyabsolute, top: '50%' }}>
+                    <SmallCenterPlate>
+                        <div className="containernsmallwindow">
+                            <Repair />
+                            <p>ведутся работы</p>
+                        </div>
+                    </SmallCenterPlate>
+                </div>
             </div>
         </>
     );

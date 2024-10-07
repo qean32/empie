@@ -215,7 +215,7 @@ export const Checkbox = ({ title, fn, value }: PropsCheckbox) => {
     return (
         <div onClick={() => fn()} style={{ cursor: 'pointer' }}>
             <p style={{ position: 'relative', fontSize: '14px' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
-                <img src="/svg/accept.svg" alt="" style={value ? { opacity: '1' } : { opacity: '0' }} className="transition03 checkbox_" /></p>
+                <img src="/svg/accept.svg" alt="" style={value ? { opacity: '1', transform: 'translate(1vh, .3vh)' } : { opacity: '0', transform: 'translate(1vh, .3vh)' }} className="transition03 checkbox_" /></p>
         </div>
     );
 }

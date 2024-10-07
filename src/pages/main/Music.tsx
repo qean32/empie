@@ -20,6 +20,9 @@ export const Music = ({ }: Props) => {
     return (
         <>
             <Header />
+            {loading &&
+                <MainLoader />
+            }
             <div className="main">
                 {loading ? <MainLoader /> :
                     <div style={{ ...positioncenterbyabsolute, top: '50%' }}>

@@ -1,11 +1,13 @@
+import { memo } from "react";
+
 type Props = {
     children: any
 }
-export const FullPlate = ({ children }: Props) => {
+export const FullPlate = memo(({ children }: Props) => {
 
     return (
         <div className="fullplate">
             {children}
         </div>
     );
-}
+})

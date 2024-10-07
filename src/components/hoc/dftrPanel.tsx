@@ -1,7 +1,7 @@
-import { RightPanelDirectionChildren } from "../../childrens/rightPanel";
-import { RightTransferChild } from "../../childrens/rightTransfer";
-import { StreamChild } from "../../childrens/stream";
-import { TopTeamChild } from "../../childrens/topTeam";
+import { RightPanelDirectionChildren } from "../../childrens/other/rightPanel";
+import { RightTransferChild } from "../../childrens/other/rightTransfer";
+import { StreamChild } from "../../childrens/other/stream";
+import { TopTeamChild } from "../../childrens/other/topTeam";
 import { RightPanel } from "./rightPanel";
 
 type Props = {
