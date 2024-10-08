@@ -3,17 +3,14 @@ import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const LIKEServices = {
-    GETLikes: (idpost: number) => {
-        RQRequestGET(`${idpost} ${host}`)
+    GETLike: (idpost: number, author?: number) => {
+        return RQRequestGET(`${host}news/search/like/?post=${idpost}&author=${author}`)
     },
     CREATELike: (body: any) => {
-        RQRequestPOST(`${host}`, body)
-    },
-    GETLike: (id: number, idpost: number) => {
-        RQRequestGET(`${host} ${id} ${idpost}`)
+        return RQRequestPOST(`${host}news/reg/like/`, body)
     },
     DELETELike: (id: number) => {
-        return fetch(`${host} ${id}`, {
+        return fetch(`${host}news/delete/like/${id}/`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',

@@ -4,16 +4,16 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const TOURNAMENTServices = {
-    GETTournamets: (offset: number) => {
-        RQRequestGET(`${host} ${offset}`)
+    GETTournamet: (id?: number | string) => {
+        return RQRequestGET(`${host}unification/search/tournament/?id=${id}`)
     },
-    GETTourament: (id: number) => {
-        RQRequestGET(`${host} ${id}`)
+    GETTouramentShort: (offset?: number) => {
+        return RQRequestGET(`${host}unification/search/tournament/short/?offset=${offset}`)
     },
     CREATETournament: (body: any) => {
-        RQRequestPOST(`${host} `, body)
+        return RQRequestPOST(`${host}unification/reg/tournament/`, body)
     },
     UPDATETournamet: (body: any, id: number) => {
-        RQRequestPATCH(`${host} ${id}`, body)
+        return RQRequestPATCH(`${host}unification/update/tournament/${id}/`, body)
     }
 }

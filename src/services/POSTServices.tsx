@@ -1,19 +1,14 @@
 import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
-import RQRequestPATCH from "../functions/RQRequestPATCH"
-import RQRequestPOST from "../functions/RQRequestPOST"
 
-export const TEAMServices = {
-    GETTeams: (offset: number) => {
-        RQRequestGET(`${offset} ${host}`)
+export const POSTServices = {
+    GETPost: (offset: number, limit: number = 4) => {
+        return RQRequestGET(`${host}news/search/news/?offset=${offset}&limit=${limit}`)
     },
-    CREATETeam: (body: any) => {
-        RQRequestPOST(`${host}`, body)
-    },
-    GETTeam: (id: number) => {
-        RQRequestGET(`${host} ${id}`)
-    },
-    UPDATETeam: (body: any, id: number) => {
-        RQRequestPATCH(`${host} ${id}`, body)
-    }
+    // CREATEPost: (body: any) => {
+    //     return RQRequestPOST(`${host}`, body)
+    // },
+    // UPDATEPost: (body: any, id: number) => {
+    //     return RQRequestPATCH(`${host} ${id}`, body)
+    // }
 }

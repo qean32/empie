@@ -4,16 +4,16 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const TEAMServices = {
-    GETTeams: (offset: number) => {
-        RQRequestGET(`${offset} ${host}`)
+    GETTeam: (offset?: number, id?: number | string) => {
+        return RQRequestGET(`${host}unification/search/team/?offset=${offset}?id=${id}`)
     },
     CREATETeam: (body: any) => {
-        RQRequestPOST(`${host}`, body)
+        return RQRequestPOST(`${host}unification/reg/team/`, body)
     },
-    GETTeam: (id: number) => {
-        RQRequestGET(`${host} ${id}`)
+    GETTeamShort: (offset?: number) => {
+        return RQRequestGET(`${host}unification/search/team/short/?offset=${offset}`)
     },
     UPDATETeam: (body: any, id: number) => {
-        RQRequestPATCH(`${host} ${id}`, body)
+        return RQRequestPATCH(`${host}unification/update/team/${id}/`, body)
     }
 }

@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
-import { Modal } from "../../components/ui/meny-time use/modal";
+import { Modal } from "../../components/hoc/modal";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { RightTransferChild } from "../../childrens/other/rightTransfer";
@@ -19,24 +19,23 @@ import { Right } from "../../components/hoc/right";
 import { TournamentChild } from "../../childrens/other/tournament";
 import { MoveonGridChild } from "../../childrens/other/moveongrid";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
-import { arrey } from "../../functions/GiveConst";
 import { useParams } from "react-router";
+import { POSTServices } from "../../services/POSTServices";
+import useOneRequest from "../../customHooks/useOneRequest";
 
 type Props = {
 }
 export const News = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    const [posts, setPosts] = useState<any[]>([{}, {}])
 
-    const ref = useDinamicPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
+    const post: any = useDinamicPagination(() => POSTServices.GETPost(post.offset), 'post', 4, 1)
+    const firstpost = useOneRequest(() => POSTServices.GETPost(0, 1), 'firstpost')
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
 
     const direction = useParams()
-
-    console.log(direction)
 
     ChangeTitle('новости')
 
@@ -68,15 +67,17 @@ export const News = ({ }: Props) => {
                                 </div>
                             </SmallCenterPlate >
 
-                            <DftPost />
+                            {firstpost && firstpost.finaldata.map((el: any) => (
+                                <DftPost key={el.id} el={el} />
+                            ))}
 
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
 
-                            {posts.map((el, index) => (
-                                <DftPost key={index} />
+                            {post && post.finaldata.map((el: any) => (
+                                <DftPost key={el.id} el={el} />
                             ))}
 
-                            <div ref={ref} className="scrollhandlerref"></div>
+                            <div ref={post.scrollRef} className="scrollhandlerref"></div>
 
                         </Center>
                         <Right>
@@ -117,15 +118,15 @@ export const News = ({ }: Props) => {
                             </div>
                         </SmallCenterPlate >
 
-                        <DftPost />
+                        <DftPost el={undefined} />
 
                         <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
 
-                        {posts.map((el, index) => (
-                            <DftPost key={index} />
+                        {post && post.finaldata.map((el: any, index: number) => (
+                            <DftPost key={index} el={el} />
                         ))}
 
-                        <div ref={ref} className="scrollhandlerref"></div>
+                        <div ref={post.scrollRef} className="scrollhandlerref"></div>
                     </Center>
 
                     <Right>
@@ -142,12 +143,12 @@ export const News = ({ }: Props) => {
 }
 
 type PropsDftPost = {
-
+    el: any
 }
-export const DftPost = ({ }: PropsDftPost) => {
+export const DftPost = ({ el }: PropsDftPost) => {
     return (
         <SmallCenterPlate>
-            <Post />
+            <Post el={el} />
         </SmallCenterPlate>
     );
 }

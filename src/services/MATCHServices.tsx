@@ -4,16 +4,13 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const MATCHServices = {
-    GETMatchs: (offset: number) => {
-        RQRequestGET(`${offset} ${host}`)
+    GETMatch: (id: number, offset?: number) => {
+        return RQRequestGET(`${host}unification/search/match/?offset=${offset}&id=${id}`)
     },
     CREATEMatch: (body: any) => {
-        RQRequestPOST(`${host}`, body)
-    },
-    GETMatch: (id: number) => {
-        RQRequestGET(`${host} ${id}`)
+        return RQRequestPOST(`${host}unification/reg/match/`, body)
     },
     UPDATEMatch: (body: any, id: number) => {
-        RQRequestPATCH(`${host} ${id}`, body)
+        return RQRequestPATCH(`${host}unification/update/match/${id}/`, body)
     }
 }

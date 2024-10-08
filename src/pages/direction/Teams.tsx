@@ -4,7 +4,7 @@ import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Search } from "../../components/ui/meny-time use/customInput";
 import { Header } from "../../components/ui/meny-time use/header";
-import { Modal } from "../../components/ui/meny-time use/modal";
+import { Modal } from "../../components/hoc/modal";
 import useDebounce from "../../customHooks/useDebounce";
 import { InlineTeam } from "../../components/ui/meny-time use/inlinePrezentation";
 import { SomeContext } from "../../context";

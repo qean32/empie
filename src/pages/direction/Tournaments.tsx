@@ -3,7 +3,7 @@ import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
-import { Modal } from "../../components/ui/meny-time use/modal";
+import { Modal } from "../../components/hoc/modal";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { TournamentChild } from "../../childrens/other/tournament";

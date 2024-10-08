@@ -3,14 +3,14 @@ import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const CASHServices = {
-    GETCashes(offset: number) {
-        RQRequestGET(`${host}/...${offset}`)
+    GETCash(offset?: number) {
+        return RQRequestGET(`${host}cash/search/cash/?offset=${offset}`)
     },
     CREATECash(body: any) {
-        RQRequestPOST('', body)
+        return RQRequestPOST(`${host}cash/reg/cash/`, body)
     },
     GETCashList() {
-        RQRequestGET(`${host}/...`)
+        return RQRequestGET(`${host}cash/search/cash/list/?id=1`)
     },
     DELETECash: (id: number) => {
         return fetch(`${host} ${id}`, {

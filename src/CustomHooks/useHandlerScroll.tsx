@@ -11,10 +11,10 @@ export default function (ref: any, daley: number = 50) {
 
         const fn = () => {
             if (node.getBoundingClientRect().top < window.innerHeight - daley) {
-                on(); console.log('on', window.innerHeight - daley, node.getBoundingClientRect().top)
+                on()
             }
             else {
-                off(); console.log('off', window.innerHeight - daley, node.getBoundingClientRect().top)
+                off()
             }
         }
 

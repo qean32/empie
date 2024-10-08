@@ -7,7 +7,7 @@ import { RightPanel } from "../../components/hoc/rightPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
-import { Modal } from "../../components/ui/meny-time use/modal";
+import { Modal } from "../../components/hoc/modal";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { TeamChild } from "../../childrens/pages/direction/team";
 

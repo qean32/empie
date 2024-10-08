@@ -4,13 +4,29 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const USERServices = {
-    GETUser(id: number) {
-        RQRequestGET(`${host}/...${id}`)
+    GETUser(offset?: number, id?: number | string) {
+        return RQRequestGET(`${host}users/search/?id=${id}&offset=${offset}`)
+    },
+    GETUsersShort(offset?: number) {
+        return RQRequestGET(`${host}users/search/short/?offset=${offset}`)
     },
     CREATEUser(body: any) {
-        RQRequestPOST('', body)
+        return RQRequestPOST(`${host}users/reg/`, {
+            method: 'POST',
+            headers: {
+                'Cross-Origin-Opener-Policy' : 'same-origin',
+                'Content-Length' : '<calculated when request is sent>'
+            },
+            body: JSON.stringify(body)
+        })
     },
     UPDATEUser: (body: any, id: number) => {
-        RQRequestPATCH(`${host} ${id}`, body)
-    }
+        return RQRequestPATCH(`${host}update/user/${id}/`, body)
+    },
+    REFRESHUser: (body: any) => {
+        return RQRequestPATCH(`${host}users/token/refresh/`, body)
+    },
+    ACCESSUser: (body: any) => {
+        return RQRequestPATCH(`${host}users/token/access/`, body)
+    },
 }
