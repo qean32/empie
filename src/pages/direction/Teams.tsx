@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
@@ -12,9 +12,9 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import { arrey } from "../../functions/GiveConst";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
 import { useParams } from "react-router";
+import { TEAMServices } from "../../services/TEAMServices";
 
 type Props = {
 }
@@ -22,9 +22,9 @@ export const Teams = ({ }: Props) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
     const { loading, modal } = useContext<any>(SomeContext)
-    const [teams, setTeams] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}, {}, {}])
 
-    const ref = useDinamicPagination(() => setTeams((prev: any) => [...prev, ...arrey]))
+    const scrollRef: any = useRef()
+    const teams: any = useDinamicPagination(() => TEAMServices.GETTeamShort(teams.offset), scrollRef, 'teams')
 
     useEffect(() => {
 
@@ -50,11 +50,11 @@ export const Teams = ({ }: Props) => {
                                 </div>
                                 <div style={{ minHeight: '500px' }}>
 
-                                    {teams.map((el, index) => (
-                                        <InlineTeam key={index} />
+                                    {teams && teams.finaldata.map((el: any) => (
+                                        <InlineTeam />
                                     ))}
 
-                                    <div ref={ref} className="scrollhandlerref"></div>
+                                    <div ref={scrollRef} className="scrollhandlerref"></div>
                                 </div>
                             </div>
                         </SmallCenterPlate>

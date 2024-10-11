@@ -4,7 +4,7 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const TOURNAMENTServices = {
-    GETTournamet: (id?: number | string) => {
+    GETTournamet: (id: number | string = '') => {
         return RQRequestGET(`${host}unification/search/tournament/?id=${id}`)
     },
     GETTouramentShort: (offset?: number) => {

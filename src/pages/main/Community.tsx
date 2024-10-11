@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { RightPanelChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -15,8 +15,8 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
-import { arrey } from "../../functions/GiveConst";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import { USERServices } from "../../services/USERServices";
 
 type Props = {
 
@@ -25,9 +25,9 @@ export const Community = ({ }: Props) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
     const { loading, modal } = useContext<any>(SomeContext)
-    const [users, setUsers] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}, {}])
 
-    const ref = useDinamicPagination(() => setUsers((prev: any) => [...prev, ...arrey]))
+    const scrollRef: any = useRef()
+    const users: any = useDinamicPagination(() => USERServices.GETUser(users.offset), scrollRef, 'users')
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -56,11 +56,12 @@ export const Community = ({ }: Props) => {
                                 <Search value={search} setValue={setSearch} title="найти человека" />
                             </div>
                             <div style={{ minHeight: '500px' }}>
-                                {users.map((el, index) => (
-                                    <InlineUser key={index} />
+
+                                {users && users.finaldata.map((el: any) => (
+                                    <InlineUser />
                                 ))}
 
-                                <div ref={ref} className="scrollhandlerref"></div>
+                                <div ref={scrollRef} className="scrollhandlerref"></div>
                             </div>
                         </div>
                     </SmallCenterPlate>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
@@ -10,18 +10,17 @@ import { TournamentChild } from "../../childrens/other/tournament";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import { arrey } from "../../functions/GiveConst";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
 import { useParams } from "react-router";
+import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
 
 type Props = {
 }
 export const Tournaments = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    const [tournameents, setTournaments] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}])
-
-    const ref = useDinamicPagination(() => setTournaments((prev: any) => [...prev, ...arrey]))
     const direction = useParams()
+    const scrollRef: any = useRef()
+    const tournaments: any = useDinamicPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset), scrollRef, 'tournaments')
 
     ChangeTitle('турниры')
     return (
@@ -36,11 +35,11 @@ export const Tournaments = ({ }: Props) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
 
-                        {tournameents.map((el, index) => (
-                            <SmallCenterPlate key={index}><TournamentChild /></SmallCenterPlate>
+                        {tournaments && tournaments.finaldata.map((el: any) => (
+                            <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
                         ))}
 
-                        <div ref={ref} className="scrollhandlerref"></div>
+                        <div ref={scrollRef} className="scrollhandlerref"></div>
 
                     </Center>
                     <DftRPanel direction={Number(direction.iddirection)} />

@@ -1,26 +1,25 @@
-import { memo, useState } from "react";
+import { memo, useRef } from "react";
 import useDinamicPagination from "../../../customHooks/useDinamicPagination";
-import { arrey } from "../../../functions/GiveConst";
 import { FullPlate } from "../../../components/hoc/plates/fullPlate";
+import { CASHServices } from "../../../services/CASHServices";
 
 type Props = {
 
 }
 export const CashChild = ({ }: Props) => {
-    const [cash, setCash] = useState<any[]>([{}, {}])
-
-    const ref = useDinamicPagination(() => setCash((prev: any) => [...prev, ...arrey]))
+    const scrollRef: any = useRef()
+    const cash: any = useDinamicPagination(() => CASHServices.GETCash(cash.offset), scrollRef, 'cash')
     return (
         <>
             <FullPlate>
                 <div style={{ padding: '100px 0 0 0' }}>
                     <CashHeader />
 
-                    {cash.map((el, index) => (
-                        <DftCash key={index} />
+                    {cash && cash.finaldata.map((el: any) => (
+                        <DftCash />
                     ))}
 
-                    <div ref={ref} className="scrollhandlerref"></div>
+                    <div ref={scrollRef} className="scrollhandlerref"></div>
                 </div>
             </FullPlate>
         </>

@@ -4,7 +4,7 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const MEETINGServices = {
-    GETMeeting: (offset?: number, id?: number | string,) => {
+    GETMeeting: (offset?: number, id: number | string = '') => {
         return RQRequestGET(`${host}unification/search/meeting/?offset=${offset}&id=${id}`)
     },
     CREATEMeeting: (body: any) => {

@@ -54,32 +54,27 @@ export const Registration = ({ }: Props) => {
         modal.SwapFn()
     }
 
-    // const Registration_: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname, lastname, password, email }))
-    const Registration_: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname: 'zxczxc', lastname: 'zxczcxxzc', password: 'zxczxc12', email: 'zxc123954@gmail.com' }))
+    const RegistrationRQ: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname, lastname, password, email }))
+    const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email }))
 
+    useEffect(() => {
+        if (RegistrationRQ.isSuccess) {
+            LoginRQ.mutate()
+        }
+    }, [RegistrationRQ.isSuccess])
+    
     const Registration = () => {
-        Registration_.mutate()
-
-        // if (repassword == password) {
-        //     if (ValidateEmail(email) && ValidatePassword(password) && ValidateRuName(firstname) && ValidateRuName(lastname)) {
-        //         Registration_.mutate()
-        //         // fetch(`${host}users/reg/`, {
-        //         //     method: 'POST',
-        //         //     headers: {
-        //         //         // 'Content-Type': 'application/json',
-        //         //         // "Access-Control-Allow-Headers": "Content-Type",
-        //         //         // "Access-Control-Allow-Origin": "*",
-        //         //         // "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PATCH"
-        //         //     },
-        //         //     body: JSON.stringify({ firstname, lastname, password, email })
-        //         // }).catch(error => console.log(error))
-        //     } else {
-        //         alert("некорректные данные")
-        //     }
-        // } else {
-        //     alert("пароли не совпадают")
-        // }
+        if (repassword == password) {
+            if (ValidateEmail(email) && ValidatePassword(password) && ValidateRuName(firstname) && ValidateRuName(lastname)) {
+                RegistrationRQ.mutate()
+            } else {
+                alert("некорректные данные")
+            }
+        } else {
+            alert("пароли не совпадают")
+        }
     }
+
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}>
@@ -87,6 +82,7 @@ export const Registration = ({ }: Props) => {
                     <span style={{ position: 'absolute', right: '2vh', top: '1vh' }} onClick={modal.SwapFn}>
                         <Cross />
                     </span>
+                    <Repair size={24} />
                     <div style={{ width: '50%' }}>
                         <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" />
                     </div>
@@ -116,7 +112,7 @@ export const Registration = ({ }: Props) => {
                                                 <p> забыли пароль? --анлак</p>
                                                 <p onClick={on.off}> нет аккаунта? --регистрация</p>
                                             </div>
-                                            <div><Button title="вход" function_={() => undefined} /></div>
+                                            <div><Button title="вход" function_={() => LoginRQ.mutate()} /></div>
                                         </form>
                                         <form className="windowreg" onSubmit={clickHandler}>
                                             <div style={{ width: '70%' }}><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
@@ -126,7 +122,7 @@ export const Registration = ({ }: Props) => {
                                             <div className="regwarning">
                                                 <p onClick={on.on}> есть аккаунт? --войти</p>
                                             </div>
-                                            <div><Button title="регистрация" function_={Registration} /></div>
+                                            <div><Button title="регистрация" function_={clickHandler} /></div>
                                         </form>
                                     </div>
                                 </div>
@@ -201,8 +197,4 @@ export const NavPanel = ({ on }: Props__) => {
             <p onClick={on.off}>регистрация <img src="/svg/reg_user.svg" alt="" /></p>
         </div>
     );
-}
-
-function RQRequestPOST(arg0: string, arg1: { method: string; headers: { 'Content-Type': string; "Access-Control-Allow-Headers": string; "Access-Control-Allow-Origin": string; "Access-Control-Allow-Methods": string; }; body: string; }) {
-    throw new Error("Function not implemented.");
 }

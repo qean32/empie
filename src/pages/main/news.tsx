@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useRef } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -21,14 +21,15 @@ import { MoveonGridChild } from "../../childrens/other/moveongrid";
 import useDinamicPagination from "../../customHooks/useDinamicPagination";
 import { useParams } from "react-router";
 import { POSTServices } from "../../services/POSTServices";
-import useOneRequest from "../../customHooks/useOneRequest";
+import useOneRequest from "../../customHooks/useRequest";
 
 type Props = {
 }
 export const News = ({ }: Props) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
-    const post: any = useDinamicPagination(() => POSTServices.GETPost(post.offset), 'post', 4, 1)
+    const scrollRef: any = useRef()
+    const post: any = useDinamicPagination(() => POSTServices.GETPost(post.offset), scrollRef, 'post', 4, 1)
     const firstpost = useOneRequest(() => POSTServices.GETPost(0, 1), 'firstpost')
 
     const modaltournaments = useBoolean(false)
@@ -73,11 +74,11 @@ export const News = ({ }: Props) => {
 
                             <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
 
-                            {post && post.finaldata.map((el: any) => (
+                            {/* {post && post.finaldata.map((el: any) => (
                                 <DftPost key={el.id} el={el} />
-                            ))}
+                            ))} */}
 
-                            <div ref={post.scrollRef} className="scrollhandlerref"></div>
+                            {/* <div ref={scrollRef} className="scrollhandlerref"></div> */}
 
                         </Center>
                         <Right>

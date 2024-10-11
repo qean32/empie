@@ -1,26 +1,26 @@
-import { useState } from "react"
+import { useRef } from "react"
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate"
 import useDinamicPagination from "../../../customHooks/useDinamicPagination"
-import { arrey } from "../../../functions/GiveConst"
+import { TRANSFERServices } from "../../../services/TRANSFERServices copy"
 
 
 type Props = {
 
 }
 export const TransfersChild = ({ }: Props) => {
-    const [transfers, setTransfers] = useState<any[]>([{}, {}])
-
-    const ref = useDinamicPagination(() => setTransfers((prev: any) => [...prev, ...arrey]))
+    const scrollRef: any = useRef()
+    const transfers: any = useDinamicPagination(() => TRANSFERServices.GETTransfer(transfers.offset), scrollRef, 'transfers')
 
     return (
         <>
             <SmallCenterPlate>
                 <div className="transfers">
-                    {transfers.map((el, index) => (
-                        <Transfer key={index} />
+
+                    {transfers && transfers.finaldata.map((el: any) => (
+                        <Transfer />
                     ))}
 
-                    <div ref={ref} className="scrollhandlerref"></div>
+                    <div ref={scrollRef} className="scrollhandlerref"></div>
                 </div>
             </SmallCenterPlate>
         </>

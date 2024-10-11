@@ -26,7 +26,7 @@ export const Profile = ({ }: Props) => {
                 }
                 <>
                     <LeftPanel function_={modal.SwapFn} />
-                    <Center><Profile /></Center>
+                    {/* <Center><Profile /></Center> */}
                     <Right><RightPanel><div className="dftcontainer"></div></RightPanel></Right>
                 </>
             </div>

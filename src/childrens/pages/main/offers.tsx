@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Button } from "../../../components/ui/meny-time use/customButton";
 import Repair from "../../../components/ui/meny-time use/repair";
 import useDinamicPagination from "../../../customHooks/useDinamicPagination";
-import { arrey } from "../../../functions/GiveConst";
+import { OFFERServices } from "../../../services/OFFERServices";
 
 
 type Props = {
 
 }
 export const OffersChild = ({ }: Props) => {
-    const [offers, setOffers] = useState<any[]>([])
-
-    const ref = useDinamicPagination(() => setOffers((prev: any) => [...prev, ...arrey]))
+    const scrollRef: any = useRef()
+    const offers: any = useDinamicPagination(() => OFFERServices.GETOffer(offers.offset), scrollRef, 'offers')
 
     return (
         <>
@@ -20,11 +19,12 @@ export const OffersChild = ({ }: Props) => {
                 <div className="dftcontainer" style={{ flexDirection: 'column', alignItems: 'normal', minHeight: '500px', justifyContent: 'start', padding: '40px 0 0 0' }}>
                     {offers.length > 0 ?
                         <>
-                            {offers.map((el, index) => (
-                                <DftOffer key={index} />
+
+                            {offers && offers.finaldata.map((el: any) => (
+                                <DftOffer />
                             ))}
 
-                            <div ref={ref} className="scrollhandlerref"></div>
+                            <div ref={scrollRef} className="scrollhandlerref"></div>
                         </> :
                         <div className="dftcontainer" style={{ flexDirection: 'column', gap: '40px' }}>
                             <Repair />
