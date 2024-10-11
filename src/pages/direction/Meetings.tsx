@@ -10,19 +10,17 @@ import { MeetingChild } from "../../childrens/other/meeting";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { MEETINGServices } from "../../services/MEETINGServices";
 
-type Props = {
 
-}
-export const Meetings = ({ }: Props) => {
+export const Meetings = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const direction = useParams()
 
     const scrollRef: any = useRef()
-    const meetings: any = useDinamicPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, 'meetings')
+    const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, 'meetings')
 
     ChangeTitle('матчи')
     return (
@@ -36,9 +34,9 @@ export const Meetings = ({ }: Props) => {
                 <>
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
-                        
+
                         {meetings && meetings.finaldata.map((el: any) => (
-                            <SmallCenterPlate><MeetingChild /></SmallCenterPlate>
+                            <SmallCenterPlate><MeetingChild el={el} /></SmallCenterPlate>
                         ))}
 
                         <div ref={scrollRef} className="scrollhandlerref"></div>

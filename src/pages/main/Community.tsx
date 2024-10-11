@@ -15,19 +15,17 @@ import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { USERServices } from "../../services/USERServices";
 
-type Props = {
 
-}
-export const Community = ({ }: Props) => {
+export const Community = ({ }: {}) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
-    const users: any = useDinamicPagination(() => USERServices.GETUser(users.offset), scrollRef, 'users')
+    const users: any = useDinamickPagination(() => USERServices.GETUser(users.offset), scrollRef, 'users')
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)

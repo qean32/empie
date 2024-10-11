@@ -1,15 +1,13 @@
 import { useRef } from "react"
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate"
-import useDinamicPagination from "../../../customHooks/useDinamicPagination"
+import useDinamickPagination from "../../../customHooks/useDinamickPagination"
 import { TRANSFERServices } from "../../../services/TRANSFERServices copy"
 
 
-type Props = {
 
-}
-export const TransfersChild = ({ }: Props) => {
+export const TransfersChild = ({ }: {}) => {
     const scrollRef: any = useRef()
-    const transfers: any = useDinamicPagination(() => TRANSFERServices.GETTransfer(transfers.offset), scrollRef, 'transfers')
+    const transfers: any = useDinamickPagination(() => TRANSFERServices.GETTransfer(transfers.offset), scrollRef, 'transfers')
 
     return (
         <>
@@ -27,10 +25,8 @@ export const TransfersChild = ({ }: Props) => {
     );
 }
 
-interface Props_ {
 
-}
-const Transfer = ({ }: Props_) => {
+const Transfer = ({ }: {}) => {
     return (
         <div className="transfer"><i>Сашка Бирюков</i> покинул команду <i>Астартес</i></div>
     )

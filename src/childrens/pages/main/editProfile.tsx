@@ -4,10 +4,8 @@ import { Button } from "../../../components/ui/meny-time use/customButton";
 import { InputText, InputFile, InputText_, InputNumber } from "../../../components/ui/meny-time use/customInput";
 
 
-type Props = {
 
-}
-export const EditProfileChild = ({ }: Props) => {
+export const EditProfileChild = ({ }: {}) => {
     const [steam, setSteam] = useState('')
 
     return (

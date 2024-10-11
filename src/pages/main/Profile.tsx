@@ -6,14 +6,11 @@ import { RightPanel } from "../../components/hoc/rightPanel";
 import { Modal } from "../../components/hoc/modal";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import ChangeTitle from "../../functions/ChangeTitle";
-import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 
-type Props = {
 
-}
-export const Profile = ({ }: Props) => {
+export const Profile = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('пользователь')
     return (

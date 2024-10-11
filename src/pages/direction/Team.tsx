@@ -11,10 +11,8 @@ import { Modal } from "../../components/hoc/modal";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { TeamChild } from "../../childrens/pages/direction/team";
 
-type Props = {
 
-}
-export const Team = ({ }: Props) => {
+export const Team = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('команда')
     return (

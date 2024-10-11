@@ -80,7 +80,7 @@
 
 .gridtournamnet>p>img {
     position: absolute;
-    top: 50%;
+    top: 40%;
 }
 
 .line {
@@ -122,4 +122,9 @@
     padding: 50px;
     gap: 40px;
     flex-wrap: wrap;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
 }

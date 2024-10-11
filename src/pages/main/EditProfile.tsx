@@ -11,10 +11,8 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { EditProfileChild } from "../../childrens/pages/main/editProfile";
 
-type Props = {
 
-}
-export const EditProfile = ({ }: Props) => {
+export const EditProfile = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('редактор профиля')
 

@@ -3,10 +3,7 @@ import { CenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { InlineUser } from "../../../components/ui/meny-time use/inlinePrezentation";
 
 
-type Props = {
-
-}
-export const TeamChild = ({ }: Props) => {
+export const TeamChild = ({ }: {}) => {
     return (
         <>
             <CenterPlate>
@@ -49,10 +46,9 @@ export const TeamChild = ({ }: Props) => {
         </>
     );
 }
-type Props__ = {
 
-}
-const Players = memo(({ }: Props__) => {
+
+const Players = memo(({ }: {}) => {
     const [player, setPlayer] = useState<any[]>([{}, {}, {}, {}])
     return (
         <CenterPlate>

@@ -13,10 +13,8 @@ import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { TransfersChild } from "../../childrens/pages/main/transfers";
 
-type Props = {
 
-}
-export const Transfers = ({ }: Props) => {
+export const Transfers = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     const modaltournaments = useBoolean(false)

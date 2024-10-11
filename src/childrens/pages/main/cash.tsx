@@ -1,14 +1,12 @@
 import { memo, useRef } from "react";
-import useDinamicPagination from "../../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../../customHooks/useDinamickPagination";
 import { FullPlate } from "../../../components/hoc/plates/fullPlate";
 import { CASHServices } from "../../../services/CASHServices";
 
-type Props = {
 
-}
-export const CashChild = ({ }: Props) => {
+export const CashChild = ({ }: {}) => {
     const scrollRef: any = useRef()
-    const cash: any = useDinamicPagination(() => CASHServices.GETCash(cash.offset), scrollRef, 'cash')
+    const cash: any = useDinamickPagination(() => CASHServices.GETCash(cash.offset), scrollRef, 'cash')
     return (
         <>
             <FullPlate>
@@ -26,10 +24,8 @@ export const CashChild = ({ }: Props) => {
     );
 }
 
-type PropsDftCash = {
 
-}
-export const DftCash = ({ }: PropsDftCash) => {
+export const DftCash = ({ }: {}) => {
     return (
         <>
             <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={false ? 'redcash' : ''}>
@@ -43,10 +39,8 @@ export const DftCash = ({ }: PropsDftCash) => {
     );
 }
 
-type PropsCashheader = {
 
-}
-export const CashHeader = memo(({ }: PropsCashheader) => {
+export const CashHeader = memo(({ }: {}) => {
     return (
         <>
             <div className="cashheader">

@@ -1,9 +1,7 @@
 import { memo } from "react";
 
-type Props = {
-    children: any
-}
-export const RightPanel = memo(({ children }: Props) => {
+
+export const RightPanel = memo(({ children }: { children: any }) => {
     return (
         <div className="rightpanel">
             {children}

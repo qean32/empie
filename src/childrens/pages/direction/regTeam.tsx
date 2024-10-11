@@ -3,10 +3,7 @@ import { Button } from "../../../components/ui/meny-time use/customButton";
 import { InputText, InputFile } from "../../../components/ui/meny-time use/customInput";
 
 
-type Props = {
-
-}
-export const RegTeamChild = ({ }: Props) => {
+export const RegTeamChild = ({ }: {}) => {
 
     return (
         <>

@@ -10,17 +10,16 @@ import { TournamentChild } from "../../childrens/other/tournament";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
 
-type Props = {
-}
-export const Tournaments = ({ }: Props) => {
+
+export const Tournaments = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const direction = useParams()
     const scrollRef: any = useRef()
-    const tournaments: any = useDinamicPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset), scrollRef, 'tournaments')
+    const tournaments: any = useDinamickPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset), scrollRef, 'tournaments')
 
     ChangeTitle('турниры')
     return (
@@ -36,7 +35,7 @@ export const Tournaments = ({ }: Props) => {
                     <Center>
 
                         {tournaments && tournaments.finaldata.map((el: any) => (
-                            <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
+                            <SmallCenterPlate><TournamentChild el={el} key={el.id} /></SmallCenterPlate>
                         ))}
 
                         <div ref={scrollRef} className="scrollhandlerref"></div>

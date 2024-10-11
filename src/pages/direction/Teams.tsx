@@ -12,19 +12,18 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { TEAMServices } from "../../services/TEAMServices";
 
-type Props = {
-}
-export const Teams = ({ }: Props) => {
+
+export const Teams = ({ }: {}) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
-    const teams: any = useDinamicPagination(() => TEAMServices.GETTeamShort(teams.offset), scrollRef, 'teams')
+    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset), scrollRef, 'teams')
 
     useEffect(() => {
 

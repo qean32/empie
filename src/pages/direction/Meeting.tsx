@@ -12,10 +12,8 @@ import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { MeetingChild } from "../../childrens/pages/direction/meeting";
 
-type Props = {
 
-}
-export const Meeting = ({ }: Props) => {
+export const Meeting = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     ChangeTitle('матч')
@@ -29,7 +27,7 @@ export const Meeting = ({ }: Props) => {
             }
             <div className="main">
                 <LeftPanel function_={modal.SwapFn} />
-                <Center><MeetingChild element={undefined} /></Center>
+                <Center><MeetingChild /></Center>
                 <Right><RightPanel><RightPanelDirectionChildren direction={0} /></RightPanel></Right>
             </div>
         </>

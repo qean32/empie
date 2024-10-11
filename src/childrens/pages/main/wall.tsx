@@ -2,16 +2,15 @@ import { useState } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Post } from "../../../components/ui/meny-time use/post";
 import Repair from "../../../components/ui/meny-time use/repair";
-import useDinamicPagination from "../../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../../customHooks/useDinamickPagination";
 import { arrey } from "../../../functions/GiveConst";
 
 
-type Props = {
-}
-export const WallChild = ({ }: Props) => {
+
+export const WallChild = ({ }: {}) => {
     const [posts, setPosts] = useState<any[]>([{}, {}])
 
-    const ref = useDinamicPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
+    // const ref = useDinamickPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
     return (
         <>
             <SmallCenterPlate>
@@ -40,18 +39,16 @@ export const WallChild = ({ }: Props) => {
                 <DftPost key={index} />
             ))}
 
-            <div ref={ref} className="scrollhandlerref"></div>
+            {/* <div ref={ref} className="scrollhandlerref"></div> */}
         </>
     );
 }
 
-type PropsDftPost = {
 
-}
-const DftPost = ({ }: PropsDftPost) => {
+const DftPost = ({ }: {}) => {
     return (
         <SmallCenterPlate>
-            <Post />
+            <Post el={undefined} />
         </SmallCenterPlate>
     );
 }

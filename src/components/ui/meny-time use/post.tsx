@@ -6,12 +6,10 @@ import useOneRequest from "../../../customHooks/useRequest";
 import { COMENTServices } from "../../../services/COMENTServices";
 import { LIKEServices } from "../../../services/LIKEServices";
 import { SomeContext } from "../../../context";
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import useRequest from "../../../customHooks/useRequest";
-type Props = {
-    el: any
-}
-export const Post = ({ el }: Props) => {
+
+export const Post = ({ el }: { el: any }) => {
     const { user }: any = useContext(SomeContext)
     const ulike = useBoolean(false)
     const ucoment = useBoolean(false)
@@ -78,10 +76,7 @@ export const Post = ({ el }: Props) => {
     );
 }
 
-type Props_ = {
-    el: any
-}
-export const Coment = ({ el }: Props_) => {
+export const Coment = ({ el }: { el: any }) => {
     const navigate = useNavigate()
     return (
 

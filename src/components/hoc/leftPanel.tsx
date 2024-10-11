@@ -1,10 +1,8 @@
 import { memo } from "react";
 import { useNavigate } from "react-router";
 
-type Props = {
-    function_: Function
-}
-export const LeftPanel = memo(({ function_ }: Props) => {
+
+export const LeftPanel = memo(({ function_ }: { function_: Function }) => {
     const navigate = useNavigate()
 
     const fn = () => { function_() }

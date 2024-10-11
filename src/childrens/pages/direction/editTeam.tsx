@@ -5,10 +5,7 @@ import { InputText, InputFile } from "../../../components/ui/meny-time use/custo
 import { InlineUser } from "../../../components/ui/meny-time use/inlinePrezentation";
 
 
-type Props__ = {
-
-}
-export const EditTeamChild = ({ }: Props__) => {
+export const EditTeamChild = ({ }: {}) => {
     return (
         <>
             <SmallCenterPlate>
@@ -38,10 +35,8 @@ export const EditTeamChild = ({ }: Props__) => {
     );
 }
 
-type Props_ = {
 
-}
-const Player = ({ }: Props_) => {
+const Player = ({ }: {}) => {
     return (
         <div style={{ position: 'relative' }}>
             <InlineUser />
@@ -53,10 +48,8 @@ const Player = ({ }: Props_) => {
     );
 }
 
-type Props = {
 
-}
-const Players = memo(({ }: Props) => {
+const Players = memo(({ }: {}) => {
     const [player, setPlayer] = useState<any[]>([{}, {}, {}, {}])
     return (
         <SmallCenterPlate>

@@ -7,10 +7,8 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { FakeHeader } from "../../components/ui/meny-time use/header";
 import ChangeTitle from "../../functions/ChangeTitle";
 
-type Props = {
 
-}
-export const Techwork = ({ }: Props) => {
+export const Techwork = ({ }: {}) => {
     const { loading } = useContext<any>(SomeContext)
     ChangeTitle('тех работы')
     return (

@@ -5,9 +5,9 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import { TournamentChild } from "../../childrens/pages/direction/tournament";
-type Props = {
-}
-export const Tournament = ({ }: Props) => {
+
+
+export const Tournament = ({ }: {}) => {
     const { loading } = useContext<any>(SomeContext)
 
     ChangeTitle('турнир')

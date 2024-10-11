@@ -2,16 +2,14 @@ import { useRef } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Button } from "../../../components/ui/meny-time use/customButton";
 import Repair from "../../../components/ui/meny-time use/repair";
-import useDinamicPagination from "../../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../../customHooks/useDinamickPagination";
 import { OFFERServices } from "../../../services/OFFERServices";
 
 
-type Props = {
 
-}
-export const OffersChild = ({ }: Props) => {
+export const OffersChild = ({ }: {}) => {
     const scrollRef: any = useRef()
-    const offers: any = useDinamicPagination(() => OFFERServices.GETOffer(offers.offset), scrollRef, 'offers')
+    const offers: any = useDinamickPagination(() => OFFERServices.GETOffer(offers.offset), scrollRef, 'offers')
 
     return (
         <>
@@ -37,10 +35,8 @@ export const OffersChild = ({ }: Props) => {
     );
 }
 
-type PropsDft = {
 
-}
-export const DftOffer = ({ }: PropsDft) => {
+export const DftOffer = ({ }: {}) => {
     return (
         <div className="offer">
             <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>

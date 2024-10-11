@@ -11,9 +11,8 @@ import { Center } from "../../components/hoc/center";
 import { ProtokolsChild } from "../../childrens/pages/direction/protokols";
 import { useParams } from "react-router";
 
-type Props = {
-}
-export const Protokols = ({ }: Props) => {
+
+export const Protokols = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('протоколы')
     const direction = useParams()

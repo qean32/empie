@@ -16,9 +16,8 @@ import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { WallChild } from "../../childrens/pages/main/wall";
 
-type Props = {
-}
-export const Wall = ({ }: Props) => {
+
+export const Wall = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     const modaltournaments = useBoolean(false)
@@ -42,7 +41,7 @@ export const Wall = ({ }: Props) => {
                     <Center><WallChild /></Center>
                     <Right>
                         <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
-                        <RightPanel><RightTransferChild /></RightPanel>
+                        <RightPanel><RightTransferChild el={undefined} /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
                     </Right>

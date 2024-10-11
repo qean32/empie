@@ -1,9 +1,7 @@
 import { memo } from "react";
 
-type Props = {
-    children: any
-}
-export const CenterPlate = memo(({ children }: Props) => {
+
+export const CenterPlate = memo(({ children }: { children: any }) => {
 
     return (
         <div className="centerplate">
@@ -12,10 +10,8 @@ export const CenterPlate = memo(({ children }: Props) => {
     );
 })
 
-type Props_ = {
-    children: any
-}
-export const SmallCenterPlate = memo(({ children }: Props_) => {
+
+export const SmallCenterPlate = memo(({ children }: { children: any }) => {
 
     return (
         <div className="smallcenterplate">

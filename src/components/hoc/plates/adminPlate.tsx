@@ -1,17 +1,23 @@
+import { useContext } from "react";
 import { SmallCenterPlate } from "./centerPlate";
+import { SomeContext } from "../../../context";
 
-type Props = {
-    children: any
-}
-export const AdminPlate = ({ children }: Props) => {
+
+export const AdminPlate = ({ children }: { children: any }) => {
+    const { user }: any = useContext(SomeContext)
+
     return (
-        <SmallCenterPlate>
-            <div className="dftcontainer" style={{ justifyContent: 'start' }}>
-                <div className="dftcontainer" style={{ flexDirection: 'column', gap: '60px', alignItems: 'start', padding: '0 0 100px 50px' }}>
-                    <p>ADMIN PANEL</p>
-                    {children}
-                </div>
-            </div>
-        </SmallCenterPlate>
+        <>
+            {user?.is_org &&
+                <SmallCenterPlate>
+                    <div className="dftcontainer" style={{ justifyContent: 'start' }}>
+                        <div className="dftcontainer" style={{ flexDirection: 'column', gap: '60px', alignItems: 'start', padding: '0 0 100px 50px' }}>
+                            <p>ADMIN PANEL</p>
+                            {children}
+                        </div>
+                    </div>
+                </SmallCenterPlate>
+            }
+        </>
     );
 }

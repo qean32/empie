@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import useBoolean from "../../../customHooks/useBoolean";
 import { useContext } from "react";
 import { SomeContext } from "../../../context";
-import useOneRequest from "../../../customHooks/useRequest";
+import useRequest from "../../../customHooks/useRequest";
 import { tokenStorage, USERServices } from "../../../services/USERServices";
 
 export const Header = () => {
@@ -13,7 +13,7 @@ export const Header = () => {
     const notification = useBoolean(false)
 
     const { user }: any = useContext(SomeContext)
-    const userinfo = useOneRequest(() => USERServices.GETUser(0, user.user_id), 'userinfo')
+    const userinfo = useRequest(() => USERServices.GETUser(0, user.user_id), 'userinfo')
 
     const avaClickHandler = () => {
         if (localStorage.getItem(tokenStorage)) {

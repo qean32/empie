@@ -1,6 +1,6 @@
 import { CSSProperties, useContext, useEffect, useState } from "react";
 import { CenterPlate } from "../../components/hoc/plates/centerPlate";
-import { host, positioncenterbyabsolute } from "../../functions/GiveConst";
+import { positioncenterbyabsolute } from "../../functions/GiveConst";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { Header } from "../../components/ui/meny-time use/header";
@@ -17,10 +17,8 @@ import ValidateEmail from "../../functions/ValidateEmail";
 import ValidatePassword from "../../functions/ValidatePassword";
 import ValidateRuName from "../../functions/ValidateRuName";
 
-type Props = {
 
-}
-export const Registration = ({ }: Props) => {
+export const Registration = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('вход')
 
@@ -62,7 +60,7 @@ export const Registration = ({ }: Props) => {
             LoginRQ.mutate()
         }
     }, [RegistrationRQ.isSuccess])
-    
+
     const Registration = () => {
         if (repassword == password) {
             if (ValidateEmail(email) && ValidatePassword(password) && ValidateRuName(firstname) && ValidateRuName(lastname)) {
@@ -136,10 +134,7 @@ export const Registration = ({ }: Props) => {
 }
 
 
-type Props_ = {
-
-}
-export const Carousel = ({ }: Props_) => {
+export const Carousel = ({ }: {}) => {
 
     const [carousel, setCarousel] = useState<number>(0)
     const [carouselStyle, setCarouselStyle] = useState<CSSProperties>({ marginTop: '-20%' })
@@ -187,10 +182,8 @@ export const Carousel = ({ }: Props_) => {
     );
 }
 
-type Props__ = {
-    on: any
-}
-export const NavPanel = ({ on }: Props__) => {
+
+export const NavPanel = ({ on }: { on: any }) => {
     return (
         <div className="navreg">
             <p onClick={on.on}>вход <img src="/svg/door.svg" alt="" /></p>

@@ -9,10 +9,8 @@ import { Button } from "../../components/ui/meny-time use/customButton";
 import { useNavigate } from "react-router";
 import ChangeTitle from "../../functions/ChangeTitle";
 
-type Props = {
 
-}
-export const Music = ({ }: Props) => {
+export const Music = ({ }: {}) => {
     const { loading } = useContext<any>(SomeContext)
     const navigate = useNavigate()
 

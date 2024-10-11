@@ -9,10 +9,8 @@ import { useContext } from "react";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 
-type Props = {
 
-}
-export const P404 = ({ }: Props) => {
+export const P404 = ({ }: {}) => {
     const navigate = useNavigate()
     const { loading } = useContext<any>(SomeContext)
     ChangeTitle('страница не найдена')

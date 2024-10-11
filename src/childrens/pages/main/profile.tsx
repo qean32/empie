@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate";
 
-type Props = {
 
-}
-export const ProfileChild = ({ }: Props) => {
+export const ProfileChild = ({ }: {}) => {
     const [trophy, setTrophy] = useState<any[]>([{}, {}, {}, {}])
     return (
         <>

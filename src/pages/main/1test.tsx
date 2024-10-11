@@ -12,12 +12,9 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { useQuery } from "react-query";
 import { USERServices } from "../../services/USERServices";
-import { MEETINGServices } from "../../services/MEETINGServices";
 
-type Props = {
 
-}
-export const Test = ({ }: Props) => {
+export const Test = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('ТЕСТ ПАДЕ')
     const [offset, setOffset] = useState<any>(0)

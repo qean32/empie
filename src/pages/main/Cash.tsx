@@ -11,10 +11,8 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { CashChild } from "../../childrens/pages/main/cash";
 
-type Props = {
 
-}
-export const Cash = ({ }: Props) => {
+export const Cash = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('расходы')
 

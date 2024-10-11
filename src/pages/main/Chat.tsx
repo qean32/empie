@@ -11,10 +11,8 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { ChatChild } from "../../childrens/pages/main/chat";
 
-type Props = {
 
-}
-export const Chat = ({ }: Props) => {
+export const Chat = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle("чат")
 

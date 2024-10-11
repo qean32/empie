@@ -18,19 +18,20 @@ import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { TournamentChild } from "../../childrens/other/tournament";
 import { MoveonGridChild } from "../../childrens/other/moveongrid";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { POSTServices } from "../../services/POSTServices";
-import useOneRequest from "../../customHooks/useRequest";
+import useRequest from "../../customHooks/useRequest";
+import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
 
-type Props = {
-}
-export const News = ({ }: Props) => {
+
+export const News = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
-    const post: any = useDinamicPagination(() => POSTServices.GETPost(post.offset), scrollRef, 'post', 4, 1)
-    const firstpost = useOneRequest(() => POSTServices.GETPost(0, 1), 'firstpost')
+    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset), scrollRef, 'post', 4, 1)
+    const firstpost = useRequest(() => POSTServices.GETPost(0, 1), 'firstpost')
+    const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), 'firsttournament')
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -72,7 +73,7 @@ export const News = ({ }: Props) => {
                                 <DftPost key={el.id} el={el} />
                             ))}
 
-                            <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
+                            <SmallCenterPlate><TournamentChild el={tournament.finaldata[0]} /></SmallCenterPlate>
 
                             {/* {post && post.finaldata.map((el: any) => (
                                 <DftPost key={el.id} el={el} />
@@ -84,7 +85,7 @@ export const News = ({ }: Props) => {
                         <Right>
                             <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                             <RightPanel><MoveonGridChild /></RightPanel>
-                            <RightPanel><RightTransferChild /></RightPanel>
+                            <RightPanel><RightTransferChild el={undefined} /></RightPanel>
                             <RightPanel><TopTeamChild /></RightPanel>
                             <RightPanel><StreamChild /></RightPanel>
                         </Right>
@@ -121,7 +122,7 @@ export const News = ({ }: Props) => {
 
                         <DftPost el={undefined} />
 
-                        <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
+                        <SmallCenterPlate><TournamentChild el={undefined} /></SmallCenterPlate>
 
                         {post && post.finaldata.map((el: any, index: number) => (
                             <DftPost key={index} el={el} />
@@ -133,7 +134,7 @@ export const News = ({ }: Props) => {
                     <Right>
                         <RightPanel><RightPanelDirectionChildren direction={Number(direction.iddirection)} /></RightPanel>
                         <RightPanel><MoveonGridChild /></RightPanel>
-                        <RightPanel><RightTransferChild /></RightPanel>
+                        <RightPanel><RightTransferChild el={undefined} /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
                     </Right>
@@ -143,10 +144,8 @@ export const News = ({ }: Props) => {
     )
 }
 
-type PropsDftPost = {
-    el: any
-}
-export const DftPost = ({ el }: PropsDftPost) => {
+
+export const DftPost = ({ el }: { el: any }) => {
     return (
         <SmallCenterPlate>
             <Post el={el} />

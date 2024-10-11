@@ -11,10 +11,8 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { RegTeamChild } from "../../childrens/pages/direction/regTeam";
 
-type Props = {
 
-}
-export const RegTeam = ({ }: Props) => {
+export const RegTeam = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     ChangeTitle('редактор команды')
 

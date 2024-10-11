@@ -4,10 +4,8 @@ import { CenterPlate } from "../../../components/hoc/plates/centerPlate"
 import { InputComent } from "../../../components/ui/one-time use/InterfacePost"
 
 
-type Props = {
 
-}
-export const ChatChild = ({ }: Props) => {
+export const ChatChild = ({ }: {}) => {
     const [masseges, setMesseges] = useState<any[]>([{}, {}, {}, {}, {}])
     const chatRef: any = useRef()
     const handlerRef: any = useRef()
@@ -50,7 +48,7 @@ export const ChatChild = ({ }: Props) => {
                     <div className="chat">
                         <div className="chatwindow" ref={chatRef}>
                             {masseges.map(() => (
-                                <Message elem={{ isorg: false }} />
+                                <Message el={{ isorg: false }} />
                             ))}
                             <div ref={handlerRef} className="scrollhandlerref"></div>
                         </div>
@@ -62,14 +60,12 @@ export const ChatChild = ({ }: Props) => {
     );
 }
 
-type Props_ = {
-    elem: any
-}
-export const Message = ({ elem }: Props_) => {
+
+export const Message = ({ el }: { el: any }) => {
     return (
-        <div className="message" style={elem.isorg ? { transform: 'scale(-1, 1)' } : {}}>
+        <div className="message" style={el.isorg ? { transform: 'scale(-1, 1)' } : {}}>
             <div className="ava"></div>
-            <div className="messagecontext" style={elem.isorg ? { transform: 'scale(-1, 1)' } : {}}>
+            <div className="messagecontext" style={el.isorg ? { transform: 'scale(-1, 1)' } : {}}>
                 <p style={{ color: `${colors.maincolor}`, transform: 'translate(0, -10px)' }}>name </p>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. aperiam unde saepe a explicabo?</p>
             </div>

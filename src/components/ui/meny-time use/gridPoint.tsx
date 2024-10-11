@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router";
 
-type Props = {
-
-}
-export const GridPoint = ({ }: Props) => {
+export const GridPoint = ({ el }: { el: any }) => {
     const navigate = useNavigate()
     return (
         <div className="gridpoint" onClick={() => navigate('/meeting/2')}>

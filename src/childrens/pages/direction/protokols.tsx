@@ -1,9 +1,7 @@
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 
-type Props = {
-}
 
-export const ProtokolsChild = ({ }: Props) => {
+export const ProtokolsChild = ({ }: {}) => {
 
     return (
         <>
