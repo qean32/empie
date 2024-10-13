@@ -7,7 +7,10 @@ export const tokenStorage: any = 'tokenStorage'
 
 export const USERServices = {
     GETUser(offset?: number, id: number | string = '') {
-        return RQRequestGET(`${host}users/search/?id=${id}&offset=${offset}`)
+        return RQRequestGET(`${host}users/search/?id=${id}&offset=${offset}&limit=10`)
+    },
+    GETPlayer(offset: number = 0, teamDota: number | string = '', teamCS: number | string = '') {
+        return RQRequestGET(`${host}users/search/?offset=${offset}&limit=10&team_dota=${teamDota}&team_cs=${teamCS}`)
     },
     GETUsersShort(offset?: number) {
         return RQRequestGET(`${host}users/search/short/?offset=${offset}`)

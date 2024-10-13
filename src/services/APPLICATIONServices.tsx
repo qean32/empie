@@ -4,8 +4,8 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const APPLICATIONServices = {
-    GETApplication: (id: number) => {
-        return RQRequestGET(`${host}unification/search/application/tournament/?id=${id}&limit=99`)
+    GETApplication: (tournament: number | string = '', team: number | string = '') => {
+        return RQRequestGET(`${host}unification/search/application/tournament/?tournament=${tournament}&limit=99&team=${team}`)
     },
     CREATEApplication: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/application/tournament/`, body)

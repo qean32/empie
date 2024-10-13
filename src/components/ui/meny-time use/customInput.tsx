@@ -6,13 +6,15 @@ import ValidatePassword from "../../../functions/ValidatePassword"
 import ValidateEmail from "../../../functions/ValidateEmail"
 import { GenerateId } from "../../../functions/GenerateNumber"
 import ValidateWordToWord from "../../../functions/ValidateWordToWord"
+import RenameFile from "../../../functions/RenameFile"
 
 
-export const InputText = ({ title, value, setValue, max }: {
+export const InputText = ({ title, value, setValue, max, validate = true }: {
     title: string
     value: string
     setValue: Function
     max: number
+    validate?: boolean
 }) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
@@ -27,7 +29,9 @@ export const InputText = ({ title, value, setValue, max }: {
 
     const check = () => {
         if (value != '') { color.on() } else { color.off() }
-        if (!ValidateRuName(value)) { valide.on() } else { valide.off() }
+
+        if (validate)
+            if (!ValidateRuName(value)) { valide.on() } else { valide.off() }
     }
 
     const id_ = GenerateId()
@@ -290,13 +294,14 @@ export const InputFile = ({ title = 'изображение', setValue }: {
         if (!e.target.files[0]) return
 
         setSrc([e.target.files[0]])
-        setValue(e.target.files[0])
+        setValue(RenameFile(e))
     }
     return (
         <div>
             <input accept="image/png, image/jpeg, image/svg, image/jpg, image/webp" type="file" id={`${id_}`} style={{ display: 'none' }} onChange={changeHandler} />
             <label htmlFor={`${id_}`} className="inputfile">
-                <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '90px', height: '60px' }}>{src.length > 0 ? <></> : <img src="/svg/upload.svg" />}</div>
+                <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '70px', height: '50px' }}>{src.length > 0 ? <></> :
+                    <img src="/svg/upload.svg" style={{ width: '27px' }} />}</div>
                 <p>{title}</p>
             </label>
         </div>

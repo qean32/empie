@@ -25,7 +25,7 @@ export const Community = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
-    const users: any = useDinamickPagination(() => USERServices.GETUser(users.offset), scrollRef, 'users')
+    const users: any = useDinamickPagination(() => USERServices.GETUser(users.offset), scrollRef, 'users', 10, 0)
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -56,7 +56,7 @@ export const Community = ({ }: {}) => {
                             <div style={{ minHeight: '500px' }}>
 
                                 {users && users.finaldata.map((el: any) => (
-                                    <InlineUser />
+                                    <InlineUser el={el} key={el.id} />
                                 ))}
 
                                 <div ref={scrollRef} className="scrollhandlerref"></div>

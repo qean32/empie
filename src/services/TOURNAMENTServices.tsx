@@ -7,8 +7,8 @@ export const TOURNAMENTServices = {
     GETTournamet: (id: number | string = '') => {
         return RQRequestGET(`${host}unification/search/tournament/?id=${id}`)
     },
-    GETTouramentShort: (offset?: number) => {
-        return RQRequestGET(`${host}unification/search/tournament/short/?offset=${offset}`)
+    GETTouramentShort: (offset: number = 0, winteam: number | string = '') => {
+        return RQRequestGET(`${host}unification/search/tournament/short/?offset=${offset}&win_team=${winteam}`)
     },
     CREATETournament: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/tournament/`, body)

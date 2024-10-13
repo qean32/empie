@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import useHandlerScroll from "./useHandlerScroll"
 import { useQuery } from "react-query"
 
-export default (fetch_: Function, ref: any , RQkey: string, daley: number = 4, offset_: number = 0, arguments_: any = '') => {
+export default (fetch_: Function, ref: any, RQkey: string, step: number = 4, offset_: number = 0) => {
     const HandlerScroll = useHandlerScroll(ref)
 
     const [offset, setOffset] = useState<any>(offset_)
     const [finaldata, setFinalData] = useState<any[]>([])
-    const RQData: any = useQuery([RQkey, offset, ...arguments_], () => fetch_(offset), { keepPreviousData: true, refetchOnWindowFocus: false })
+    const RQData: any = useQuery([RQkey, offset], () => fetch_(offset), { keepPreviousData: true, refetchOnWindowFocus: false })
 
 
     useEffect(() => {
@@ -15,9 +15,9 @@ export default (fetch_: Function, ref: any , RQkey: string, daley: number = 4, o
     }, [RQData.data])
 
     useEffect(() => {
-        if (HandlerScroll) {
+        if (HandlerScroll && RQData?.data.next) {
             setTimeout(() =>
-                setOffset((prev: number) => prev + daley)
+                setOffset((prev: number) => prev + step)
                 , 600)
         }
     }, [HandlerScroll])

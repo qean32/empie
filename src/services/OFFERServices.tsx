@@ -4,8 +4,8 @@ import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const OFFERServices = {
-    GETOffer: (offset?: number, id?: number | string) => {
-        return RQRequestGET(`${host}unification/search/offers/?offseet=${offset}?id=${id}`)
+    GETOffer: (id?: number | string) => {
+        return RQRequestGET(`${host}unification/search/offers/?user=${id}`)
     },
     CREATEOffer: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/offers/`, body)

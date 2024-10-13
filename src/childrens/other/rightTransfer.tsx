@@ -1,15 +1,13 @@
-import { useNavigate } from "react-router";
+import useRequest from "../../customHooks/useRequest";
+import { TRANSFERServices } from "../../services/TRANSFERServices copy";
+import { Transfer } from "../pages/main/transfers";
 
-type Props = {
-    el: any
-}
-export const RightTransferChild = ({ el }: Props) => {
-    const navigate = useNavigate()
+
+export const RightTransferChild = ({ }: {}) => {
+    const lasttransfer = useRequest(() => TRANSFERServices.GETTransfer(0, 1), 'lasttransfer')
     return (
         <div className="rightcontainer" style={{ padding: '10px 0 ' }}>
-            <div style={{ padding: '0 27px' }}><i onClick={() => navigate(`/profile/${el?.user?.id}`)}>
-                {el?.user?.first_name} {el?.user?.last_name}
-            </i> {el?.script} <i onClick={() => navigate(`/team/${el?.id}`)}>{el?.team?.name}</i></div>
+            <Transfer el={lasttransfer.finaldata[0]} />
         </div>
     );
 }
