@@ -41,7 +41,7 @@ export const Wall = ({ }: {}) => {
                     <Center><WallChild /></Center>
                     <Right>
                         <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
-                        <RightPanel><RightTransferChild el={undefined} /></RightPanel>
+                        <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
                     </Right>

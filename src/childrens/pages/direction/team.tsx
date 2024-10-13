@@ -23,16 +23,18 @@ export const TeamChild = ({ }: {}) => {
         <>
             <CenterPlate>
                 <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
-                    <div className="background ava" style={{ backgroundImage: `url(${team?.finaldata[0]?.background})` }}><img src={`${team?.finaldata[0]?.logo}`} alt="" /></div>
+                    <div className="background ava" style={{ backgroundImage: `url(${team?.finaldata[0]?.background})` }}>
+                        <div style={{ backgroundImage: `url(${team?.finaldata[0]?.logo})` }}></div>
+                    </div>
                     <article className="about">
                         <p>{team?.finaldata[0]?.name}</p>
-                        <p style={{ transform: 'translate(0, -10px)' }}>{team?.finaldata[0]?.detail}</p>
+                        <p style={{ transform: 'translate(0, -10px)' }}>{team?.finaldata[0]?.status}</p>
                         <p>матчи: {winmatches?.count}/
                             {matches?.count + matches_?.count} турниры: {tournaments?.count}/
                             {wintournaments?.count} показатели: {winmatches?.count / (matches?.count + matches_?.count)}</p>
                     </article>
                 </div>
-            </CenterPlate>
+            </CenterPlate >
             <CenterPlate>
                 <div className="dftcontainer" style={{ flexDirection: 'column', padding: '40px 0' }}>
                     <div className="trophy">

@@ -7,7 +7,7 @@ type Props = {
 }
 export const TopTeamChild = ({ }: Props) => {
     const navigate = useNavigate()
-    const teamstop = useRequest(() => TEAMServices.GETTeamShort(0), 'teamstop')
+    const teamstop = useRequest(() => TEAMServices.GETTeamShort(0, '', 4), 'teamstop')
     return (
         <div className="topteam rightcontainer" style={{ padding: '15px' }}>
             <p>кол-во побед</p>

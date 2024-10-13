@@ -5,25 +5,43 @@ import { InputText, InputFile } from "../../../components/ui/meny-time use/custo
 import { TEAMServices } from "../../../services/TEAMServices";
 import { useContext, useEffect, useState } from "react";
 import { SomeContext } from "../../../context";
+import { useParams } from "react-router";
 
 
 export const RegTeamChild = ({ }: {}) => {
     const { user }: any = useContext(SomeContext)
-    const registration = useMutation(() => (TEAMServices.CREATETeam({ name, detail, director: user.user_id })).then((results: any) => console.log(results)))
-    // const establishFile = useMutation(() => TEAMServices.UPDATETeam({ logo, background }, ))
-    const regHandler = () => {
-        if (name.length > 1 && name.length < 15 && detail.length > 1 && detail.length < 43) {
-            registration.mutate()
-        } else {
-            alert("невалидные данные")
+    const [idnewteam, setIdnewTeam] = useState<number>()
+    const params = useParams()
+    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), idnewteam, true))
+    const registration = useMutation(() => (TEAMServices.CREATETeam({ name, detail, director: user.user_id, direction: params.iddirection }))
+        .then((results: any) => { setIdnewTeam(results?.id) }),
+        {
+            // onSuccess(data) {
+            //     // establishFile.mutate()
+            //     console.log(data)
+            // },
         }
+    )
+
+    const regHandler = () => {
+        (name.length > 1 && name.length < 15 && detail.length > 1 && detail.length < 43) ?
+            registration.mutate()
+            :
+            alert("невалидные данные")
     }
 
     useEffect(() => {
-        if (registration.isSuccess)
-            // establishFile()
-            console.log(registration)
-    }, [registration])
+        idnewteam && establishFile.mutate()
+    }, [idnewteam])
+
+    const returnformData = () => {
+        const data = new FormData
+        logo && data.append('logo', logo)
+        background && data.append('background', background)
+
+        return data
+    }
+
 
     const [name, setName] = useState<string>('')
     const [detail, setDetail] = useState<string>('')

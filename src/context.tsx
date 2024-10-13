@@ -15,8 +15,8 @@ export const Context: any = ({ children }: { children: any }) => {
     useEffect(() => {
         window.scrollTo(0, 0);
         modal.off()
-        loading.SwapFn()
         USERServices.REFRESHUser()
+        loading.SwapFn()
 
         const refresh = setInterval(() => {
             USERServices.REFRESHUser()

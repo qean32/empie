@@ -8,9 +8,9 @@ import { MATCHServices } from "../../../services/MATCHServices"
 
 
 export const MeetingChild = ({ }: {}) => {
-    const id: any = useParams()
-    const matches = useRequest(() => MATCHServices.GETMatch(id.id), 'mathes')
-    const meeting = useRequest(() => MEETINGServices.GETMeeting(0, id.id), 'meeting')
+    const params: any = useParams()
+    const matches = useRequest(() => MATCHServices.GETMatch(params.id), 'mathes')
+    const meeting = useRequest(() => MEETINGServices.GETMeeting(0, params.id), 'meeting')
 
     return (
         <>{meeting.finaldata[0] ?

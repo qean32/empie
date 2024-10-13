@@ -1,9 +1,10 @@
 import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
+import { numsrting } from "../models/numsrting"
 
 export const LIKEServices = {
-    GETLike: (idpost: number, author: number | string = '') => {
+    GETLike: (idpost: number, author: numsrting = '') => {
         return RQRequestGET(`${host}news/search/like/?post=${idpost}&author=${author}&limit=1`)
     },
     CREATELike: (body: any) => {

@@ -21,11 +21,11 @@ import { AdminSmallPanel } from "../../../components/hoc/plates/adminSmallPanel"
 
 
 export const TournamentChild = ({ }: {}) => {
-    const id: any = useParams()
-    const tournament = useRequest(() => TOURNAMENTServices.GETTournamet(id.id), 'tournament')
-    const applications = useRequest(() => APPLICATIONServices.GETApplication(id.id), 'applications')
-    const meetings = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, id.id), 'meetings')
-    const meetingsq = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, id.id, true), 'meetingsq')
+    const params: any = useParams()
+    const tournament = useRequest(() => TOURNAMENTServices.GETTournamet(params.id), 'tournament')
+    const applications = useRequest(() => APPLICATIONServices.GETApplication(params.id), 'applications')
+    const meetings = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id), 'meetings')
+    const meetingsq = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id, true), 'meetingsq')
 
     console.log(meetings)
 

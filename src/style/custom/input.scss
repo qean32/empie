@@ -9,7 +9,7 @@ input {
     outline: none;
     cursor: pointer;
     width: 100%;
-    min-height: 22px;
+    min-height: 31px;
 }
 
 label {
@@ -17,6 +17,7 @@ label {
     justify-content: start;
     padding: 0 0 0 20px;
     width: 100%;
+    pointer-events: none;
 }
 
 label>p {

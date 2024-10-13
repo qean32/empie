@@ -23,7 +23,8 @@ export const Teams = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
-    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset), scrollRef, 'teams')
+    const params = useParams()
+    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset, params.iddirection), scrollRef, 'teams')
 
     useEffect(() => {
 
@@ -50,7 +51,7 @@ export const Teams = ({ }: {}) => {
                                 <div style={{ minHeight: '500px' }}>
 
                                     {teams && teams.finaldata.map((el: any) => (
-                                        <InlineTeam />
+                                        <InlineTeam el={el} key={el.id} />
                                     ))}
 
                                     <div ref={scrollRef} className="scrollhandlerref"></div>

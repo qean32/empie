@@ -2,9 +2,10 @@ import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
+import { numsrting } from "../models/numsrting"
 
 export const MATCHServices = {
-    GETMatch: (meeting: number | string = '', offset: number | string = '', team: number | string = '', team_: number | string = '', team__: number | string = '') => {
+    GETMatch: (meeting: numsrting = '', offset: numsrting = '', team: numsrting = '', team_: numsrting = '', team__: numsrting = '') => {
         return RQRequestGET(`${host}unification/search/match/?offset=${offset}&meeting=${meeting}&team_one=${team}&team_two=${team_}&win_team=${team__}`)
     },
     CREATEMatch: (body: any) => {

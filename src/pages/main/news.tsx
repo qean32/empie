@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { memo, useContext, useRef } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -28,20 +28,19 @@ import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
 export const News = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
+    const params = useParams()
     const scrollRef: any = useRef()
-    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset), scrollRef, 'post', 4, 1)
-    const firstpost = useRequest(() => POSTServices.GETPost(0, 1), 'firstpost')
+    const firstpost = useRequest(() => POSTServices.GETPost(0, params.iddirection, 1), 'firstpost')
     const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), 'firsttournament')
+    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, params.iddirection), scrollRef, 'post', 4, 1)
 
     const modaltournaments = useBoolean(false)
-    const modalmeetings = useBoolean(false)
     const modalteams = useBoolean(false)
+    const modalmeetings = useBoolean(false)
 
-    const direction = useParams()
 
     ChangeTitle('новости')
-
-    if (!direction.iddirection) {
+    if (!params.iddirection) {
         return (
             <>
                 {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
@@ -62,16 +61,16 @@ export const News = ({ }: {}) => {
                                     justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
                                     backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
                                 }}>
-                                    <div style={{ margin: '10px 60px' }}>
+                                    <div style={{ margin: '10px 40px' }}>
                                         <p style={{ fontSize: '30px' }}>СТАНЬ</p>
                                         <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
                                     </div>
                                 </div>
                             </SmallCenterPlate >
 
-                            {firstpost && firstpost.finaldata.map((el: any) => (
+                            {/* {firstpost && firstpost.finaldata.map((el: any) => (
                                 <DftPost key={el.id} el={el} />
-                            ))}
+                            ))} */}
 
                             <SmallCenterPlate><TournamentChild el={tournament.finaldata[0]} /></SmallCenterPlate>
 
@@ -85,7 +84,7 @@ export const News = ({ }: {}) => {
                         <Right>
                             <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                             <RightPanel><MoveonGridChild /></RightPanel>
-                            <RightPanel><RightTransferChild el={undefined} /></RightPanel>
+                            <RightPanel><RightTransferChild /></RightPanel>
                             <RightPanel><TopTeamChild /></RightPanel>
                             <RightPanel><StreamChild /></RightPanel>
                         </Right>
@@ -132,9 +131,9 @@ export const News = ({ }: {}) => {
                     </Center>
 
                     <Right>
-                        <RightPanel><RightPanelDirectionChildren direction={Number(direction.iddirection)} /></RightPanel>
+                        <RightPanel><RightPanelDirectionChildren direction={Number(params.iddirection)} /></RightPanel>
                         <RightPanel><MoveonGridChild /></RightPanel>
-                        <RightPanel><RightTransferChild el={undefined} /></RightPanel>
+                        <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
                         <RightPanel><StreamChild /></RightPanel>
                     </Right>
@@ -145,10 +144,10 @@ export const News = ({ }: {}) => {
 }
 
 
-export const DftPost = ({ el }: { el: any }) => {
+export const DftPost = memo(({ el }: { el: any }) => {
     return (
         <SmallCenterPlate>
             <Post el={el} />
         </SmallCenterPlate>
     );
-}
+})

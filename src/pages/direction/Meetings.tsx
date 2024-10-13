@@ -17,7 +17,7 @@ import { MEETINGServices } from "../../services/MEETINGServices";
 
 export const Meetings = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    const direction = useParams()
+    const params = useParams()
 
     const scrollRef: any = useRef()
     const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, 'meetings')
@@ -41,7 +41,7 @@ export const Meetings = ({ }: {}) => {
 
                         <div ref={scrollRef} className="scrollhandlerref"></div>
                     </Center>
-                    <DftRPanel direction={Number(direction.iddirection)} />
+                    <DftRPanel direction={Number(params.iddirection)} />
                 </>
             </div>
         </>

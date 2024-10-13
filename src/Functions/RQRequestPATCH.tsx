@@ -1,10 +1,18 @@
-export default function (body: any, link: string) {
+import { tokenStorage } from "../services/USERServices";
+
+export default function (link: string, body: any, file: boolean = false) {
+    const body_ = file ? (body) : JSON.stringify(body)
+    const headers: any = file ?
+        { 'Authorization': `JWT ${JSON.parse(localStorage.getItem(tokenStorage) as any).access}` }
+        :
+        {
+            'Content-Type': 'application/json',
+            'Authorization': `JWT ${JSON.parse(localStorage.getItem(tokenStorage) as any).access}`
+        }
+
     return fetch(link, {
         method: 'PATCH',
-        headers: {
-            // 'Content-Type': 'application/json',
-            'Autorization': `JWT ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(body)
+        headers: headers,
+        body: body_
     })
 }

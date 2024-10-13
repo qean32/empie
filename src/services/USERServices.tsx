@@ -2,14 +2,15 @@ import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
+import { numsrting } from "../models/numsrting"
 
 export const tokenStorage: any = 'tokenStorage'
 
 export const USERServices = {
-    GETUser(offset?: number, id: number | string = '') {
+    GETUser(offset?: number, id: numsrting = '') {
         return RQRequestGET(`${host}users/search/?id=${id}&offset=${offset}&limit=10`)
     },
-    GETPlayer(offset: number = 0, teamDota: number | string = '', teamCS: number | string = '') {
+    GETPlayer(offset: number = 0, teamDota: numsrting = '', teamCS: numsrting = '') {
         return RQRequestGET(`${host}users/search/?offset=${offset}&limit=10&team_dota=${teamDota}&team_cs=${teamCS}`)
     },
     GETUsersShort(offset?: number) {
@@ -18,8 +19,8 @@ export const USERServices = {
     CREATEUser(body: any) {
         return RQRequestPOST(`${host}users/reg/`, body, false)
     },
-    UPDATEUser: (body: any, id: number) => {
-        return RQRequestPATCH(`${host}update/user/${id}/`, body)
+    UPDATEUser: (body: any, id: number, file: boolean = false) => {
+        return RQRequestPATCH(`${host}update/user/${id}/`, body, file)
     },
     REFRESHUser: () => {
         const token: any = JSON.parse(localStorage.getItem(tokenStorage) as string)

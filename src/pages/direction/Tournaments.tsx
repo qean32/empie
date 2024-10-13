@@ -17,7 +17,7 @@ import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
 
 export const Tournaments = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
-    const direction = useParams()
+    const params = useParams()
     const scrollRef: any = useRef()
     const tournaments: any = useDinamickPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset), scrollRef, 'tournaments')
 
@@ -41,7 +41,7 @@ export const Tournaments = ({ }: {}) => {
                         <div ref={scrollRef} className="scrollhandlerref"></div>
 
                     </Center>
-                    <DftRPanel direction={Number(direction.iddirection)} />
+                    <DftRPanel direction={Number(params.iddirection)} />
                 </>
             </div>
         </>
