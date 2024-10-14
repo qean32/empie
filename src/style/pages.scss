@@ -274,6 +274,7 @@ i {
 
 .chatwindow {
     max-height: 600px;
+    min-height: 600px;
     display: flex;
     gap: 20px;
     flex-direction: column-reverse;

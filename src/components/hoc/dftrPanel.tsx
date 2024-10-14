@@ -9,7 +9,7 @@ export const DftRPanel = ({ direction }: { direction: number }) => {
     return (
         <div className="right">
             <RightPanel><RightPanelDirectionChildren direction={direction} /></RightPanel>
-            <RightPanel><RightTransferChild el={undefined} /></RightPanel>
+            <RightPanel><RightTransferChild /></RightPanel>
             <RightPanel><TopTeamChild /></RightPanel>
             <RightPanel><StreamChild /></RightPanel>
         </div>

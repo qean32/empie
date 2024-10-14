@@ -11,7 +11,7 @@ export const SelectTeam = ({ teams, setTeam }: Props) => {
     return (
         <div>
             <select onChange={SelectTeam}>
-                {teams.map((el, index) =>
+                {teams.map((item, index) =>
                     <option
                         key={index}>
                         ROKUZAN asdas - 22

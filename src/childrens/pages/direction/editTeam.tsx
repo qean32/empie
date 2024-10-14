@@ -9,7 +9,7 @@ import useRequest from "../../../customHooks/useRequest";
 
 
 export const EditTeamChild = ({ }: {}) => {
-    const team = useRequest(() => TEAMServices.GETTeam(0, params.id), 'team')
+    const team = useRequest(() => TEAMServices.GETTeam(0, params.id), ['team'])
 
     useEffect(() => {
         if (team.finaldata[0]) {
@@ -79,7 +79,7 @@ export const EditTeamChild = ({ }: {}) => {
 // const Player = ({ }: {}) => {
 //     return (
 //         <div style={{ position: 'relative' }}>
-//             <InlineUser el={undefined} />
+//             <InlineUser item={undefined} />
 //             <div style={{ position: 'absolute', right: '-90px', top: '20px', display: 'flex', gap: '20px' }}>
 //                 <img src="/svg/crown.svg" alt="" title="передать корону" />
 //                 <img src="/svg/delete.svg" alt="" title="исключить" />
@@ -95,7 +95,7 @@ export const EditTeamChild = ({ }: {}) => {
 //         <SmallCenterPlate>
 //             <div className="dftcontainer" style={{ flexDirection: 'column', padding: '40px 0', alignItems: 'normal' }}>
 //                 <div>
-//                     {player.map((el, index) => (
+//                     {player.map((item, index) => (
 //                         <Player key={index} />
 //                     ))}
 //                 </div>

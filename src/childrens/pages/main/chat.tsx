@@ -1,21 +1,32 @@
 import { useEffect, useRef, useState } from "react"
-import { arrey, colors } from "../../../functions/GiveConst"
+import { colors } from "../../../functions/GiveConst"
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate"
 import { InputComent } from "../../../components/ui/one-time use/InterfacePost"
+import { MESSAGEServices } from "../../../services/MESSAGEServices"
+import { useQuery } from "react-query"
+import { useNavigate } from "react-router"
 
 
 
 export const ChatChild = ({ }: {}) => {
-    const [masseges, setMesseges] = useState<any[]>([{}, {}, {}, {}, {}])
+    const [masseges, setMesseges] = useState<any[]>([])
     const chatRef: any = useRef()
     const handlerRef: any = useRef()
+    const [offset, setOffset] = useState<number>(0)
+    const RQdata = useQuery(['messages', offset], () => MESSAGEServices.GETMessage(offset))
+
+    useEffect(() => {
+        RQdata?.data?.results && setMesseges((prev: any) => [...prev, ...RQdata?.data?.results])
+    }, [RQdata?.data?.results])
 
     const [boolean, setBoolean] = useState<boolean>(false)
 
     useEffect(() => {
-        setTimeout(() => {
-            setMesseges((prev: any) => [...prev, arrey])
-        }, 600);
+        if (RQdata?.data?.next) {
+            setTimeout(() => {
+                setOffset((prev: number) => prev + 12)
+            }, 600);
+        }
     }, [boolean])
 
     const on = () => setBoolean(true)
@@ -44,15 +55,17 @@ export const ChatChild = ({ }: {}) => {
     return (
         <>
             <CenterPlate>
-                <div className="dftcontainer" style={{ padding: '20px 40px' }}>
+                <div className="dftcontainer" style={{ padding: '20px 40px 10px 40px' }}>
                     <div className="chat">
                         <div className="chatwindow" ref={chatRef}>
-                            {masseges.map(() => (
-                                <Message el={{ isorg: false }} />
+
+                            {masseges.length > 0 && masseges.map((item: any) => (
+                                <Message item={item} key={item.id} />
                             ))}
+
                             <div ref={handlerRef} className="scrollhandlerref"></div>
                         </div>
-                        <form style={{ transform: 'translate(0, 2vh)' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></form>
+                        <form style={{ padding: '20px 0 0 20px' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></form>
                     </div>
                 </div>
             </CenterPlate>
@@ -61,13 +74,19 @@ export const ChatChild = ({ }: {}) => {
 }
 
 
-export const Message = ({ el }: { el: any }) => {
+export const Message = ({ item }: { item: any }) => {
+    const navigate = useNavigate()
+    console.log(item)
     return (
-        <div className="message" style={el.isorg ? { transform: 'scale(-1, 1)' } : {}}>
-            <div className="ava"></div>
-            <div className="messagecontext" style={el.isorg ? { transform: 'scale(-1, 1)' } : {}}>
-                <p style={{ color: `${colors.maincolor}`, transform: 'translate(0, -10px)' }}>name </p>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. aperiam unde saepe a explicabo?</p>
+        <div className="message" style={item.isorg ? { transform: 'scale(-1, 1)' } : {}}>
+            <div className="ava" style={{ backgroundImage: `url(${item?.author?.ava})` }}
+                onClick={() => navigate(`/profile/${item?.author?.id}`)}></div>
+            <div className="messagecontext" style={item.isorg ? { transform: 'scale(-1, 1)' } : {}}>
+                <p style={{ color: `${colors.maincolor}`, transform: 'translate(0, -10px)', cursor: 'pointer' }}
+                    onClick={() => navigate(`/profile/${item?.author?.id}`)}>
+                    {item?.author?.first_name} {item?.author?.first_name}
+                </p>
+                <p>{item?.content}</p>
             </div>
         </div>
     );

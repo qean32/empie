@@ -13,7 +13,7 @@ export const Header = () => {
     const notification = useBoolean(false)
 
     const { user }: any = useContext(SomeContext)
-    const userinfo = useRequest(() => USERServices.GETUser(0, user.user_id), 'userinfo')
+    const userinfo = useRequest(() => USERServices.GETUser(0, user.user_id), ['userinfo'])
 
     const avaClickHandler = () => {
         if (localStorage.getItem(tokenStorage)) {

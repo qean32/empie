@@ -5,7 +5,7 @@
 @import './custom/modal.scss';
 @import './custom/calendar.scss';
 @import './custom/children.scss';
-@import  './custom/tournament.scss';
+@import './custom/tournament.scss';
 @import './pages.scss';
 
 * {
@@ -43,8 +43,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  width: 56vh;
   min-width: 490px;
+  width: 55vh;
 }
 
 .rightcontainer {
@@ -142,7 +142,7 @@ header>div>div {
   transform: translateY(-3px);
 }
 
-.center > div {
+.center>div {
   width: 100%;
 }
 

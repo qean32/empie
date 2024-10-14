@@ -2,30 +2,35 @@ import { useNavigate } from "react-router";
 import useRequest from "../../../customHooks/useRequest";
 import { APPLICATIONServices } from "../../../services/APPLICATIONServices";
 import { MATCHServices } from "../../../services/MATCHServices";
-export const InlineUser = ({ el }: { el: any }) => {
+export const InlineUser = ({ item }: { item: any }) => {
     const navigate = useNavigate()
 
-    return (
-        <div className="inline-conteiner" onClick={() => navigate(`/profile/${el?.id}`)}>
-            <div><div className="ava" style={{ backgroundImage: `url(${el?.ava})` }}></div><p>{el?.first_name} {el?.last_name}</p></div>
+    if (item?.user) return (
+        <div className="inline-conteiner" onClick={() => navigate(`/profile/${item?.id}`)}>
+            <div><div className="ava" style={{ backgroundImage: `url(${item?.user?.ava})` }}></div><p>{item?.user?.first_name} {item?.user?.last_name}</p></div>
             <span>
-                <img src="" alt="" />
-                <img src="" alt="" />
+                <img src={`${item?.rank_cs?.image}`} alt="" />
+                <img src={`${item?.rank_dota?.image}`} alt="" />
             </span>
         </div>
-    );
+    )
+    return (
+        <div className="inline-conteiner" onClick={() => navigate(`/profile/${item?.id}`)}>
+            <div><div className="ava" style={{ backgroundImage: `url(${item?.ava})` }}></div><p>{item?.first_name} {item?.last_name}</p></div>
+        </div>
+    )
 }
 
 
-export const InlineTeam = ({ el }: { el: any }) => {
+export const InlineTeam = ({ item }: { item: any }) => {
     const navigate = useNavigate()
-    const tournaments = useRequest(() => APPLICATIONServices.GETApplication('', el.id), `wintournamentsteam${el.id}`)
-    const matches = useRequest(() => MATCHServices.GETMatch('', 0, el.id), `matchesteam${el.id}`)
-    const matches_ = useRequest(() => MATCHServices.GETMatch('', 0, '', el.id), `matchesteam_${el.id}`)
+    const tournaments = useRequest(() => APPLICATIONServices.GETApplication('', item.id), [`wintournamentsteam${item.id}`])
+    const matches = useRequest(() => MATCHServices.GETMatch('', 0, item.id), [`matchesteam${item.id}`])
+    const matches_ = useRequest(() => MATCHServices.GETMatch('', 0, '', item.id), [`matchesteam_${item.id}`])
 
     return (
-        <div className="inline-conteiner" onClick={() => navigate(`/team/${el?.id}`)}>
-            <div><div className="ava" style={{ backgroundImage: `url(${el?.logo})` }}></div><p>{el?.name}</p></div>
+        <div className="inline-conteiner" onClick={() => navigate(`/team/${item?.id}`)}>
+            <div><div className="ava" style={{ backgroundImage: `url(${item?.logo})` }}></div><p>{item?.name}</p></div>
             <section style={{ minHeight: '50px' }}>
                 <img src="/svg/flag.svg" alt="" /> <p>{tournaments?.count}</p>
                 <img src="/svg/cup.svg" alt="" /> <p>{matches?.count + matches_?.count}</p>

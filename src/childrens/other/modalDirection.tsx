@@ -2,11 +2,11 @@ import { Cross } from "../../components/ui/meny-time use/cross"
 import { useNavigate } from "react-router"
 import { direction, idDirection } from "../../functions/GiveConst"
 
-type Props = {
+
+export const ModalDirectionChildren = ({ link = '', function_ }: {
     link?: string
     function_: React.MouseEventHandler<HTMLSpanElement>
-}
-export const ModalDirectionChildren = ({ link = '', function_ }: Props) => {
+}) => {
     const navigate = useNavigate()
 
     const navigate_ = (id: number, direction: string) => {

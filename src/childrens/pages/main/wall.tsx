@@ -9,7 +9,7 @@ import { DftPost } from "../../../pages/main/news";
 
 
 export const WallChild = ({ }: {}) => {
-    const [posts, setPosts] = useState<any[]>([{ el: '' }, {}])
+    const [posts, setPosts] = useState<any[]>([{ item: '' }, {}])
 
     // const ref = useDinamickPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
     return (
@@ -36,8 +36,8 @@ export const WallChild = ({ }: {}) => {
                 </div>
             </SmallCenterPlate>
 
-            {posts.map((el) => (
-                // <DftPost el={el.id} el={el} />
+            {posts.map((item) => (
+                // <DftPost item={item.id} item={item} />
                 <></>
             ))}
 

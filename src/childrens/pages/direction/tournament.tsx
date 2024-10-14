@@ -22,10 +22,10 @@ import { AdminSmallPanel } from "../../../components/hoc/plates/adminSmallPanel"
 
 export const TournamentChild = ({ }: {}) => {
     const params: any = useParams()
-    const tournament = useRequest(() => TOURNAMENTServices.GETTournamet(params.id), 'tournament')
-    const applications = useRequest(() => APPLICATIONServices.GETApplication(params.id), 'applications')
-    const meetings = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id), 'meetings')
-    const meetingsq = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id, true), 'meetingsq')
+    const tournament = useRequest(() => TOURNAMENTServices.GETTournamet(params.id), ['tournament'])
+    const applications = useRequest(() => APPLICATIONServices.GETApplication(params.id), ['applications'])
+    const meetings = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id), ['meetings'])
+    const meetingsq = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id, true), ['meetingsq'])
 
     console.log(meetings)
 
@@ -36,8 +36,8 @@ export const TournamentChild = ({ }: {}) => {
                     <div className="infotournamnet">
                         <div>
                             <div><p>команды / расписание</p></div>
-                            {applications && applications.finaldata.map((el: any) => (
-                                <Application el={el} />
+                            {applications && applications.finaldata.map((item: any) => (
+                                <Application item={item} />
                             ))}
                         </div>
                         <div>
@@ -45,9 +45,11 @@ export const TournamentChild = ({ }: {}) => {
                         </div>
                     </div>
 
-                    {meetings.finaldata && meetings.finaldata.length < 6 && <div className="gridtournamnet center"> <p style={{ height: '20px' }}>идет набор команд...</p> <img src="/img/cezar.webp" alt="" /> </div>}
+                    {meetings.finaldata && meetings.finaldata.length < 6 && <div className="gridtournamnet center">
+                        <p style={{ height: '20px' }}>идет набор команд...</p> <img src="/img/cezar.webp" alt="" /> </div>}
 
-                    {tournament?.finaldata[0]?.is_on && <div className="gridtournamnet center"> <p style={{ height: '20px' }}>набор команд окончен...</p> <img src="/img/cezar.webp" alt="" /> </div>}
+                    {tournament?.finaldata[0]?.is_on && <div className="gridtournamnet center"> <p style={{ height: '20px' }}>
+                        набор команд окончен...</p> <img src="/img/cezar.webp" alt="" /> </div>}
                     { /* ПОТОМ ЗАМЕНИТЬ УСЛОВИЕ!!! */}
 
                     {meetings.finaldata && meetings.finaldata.length == 6 && <Tournament_6 />}
@@ -62,7 +64,7 @@ export const TournamentChild = ({ }: {}) => {
                     <div className="undertournamnet">
                         <p style={{ padding: '0 0 0 50px' }}>матчи - квалицикации</p>
                         <div>
-                            {meetingsq.finaldata && meetingsq.finaldata.map((el) => (<GridPoint key={el.id} el={el} />))}
+                            {meetingsq.finaldata && meetingsq.finaldata.map((item) => (<GridPoint key={item.id} item={item} />))}
                         </div>
                     </div>
                 </div>
@@ -114,19 +116,19 @@ const CustomCalendar = memo(({ meetings }: { meetings: any }) => {
 
 
 
-export const Application = ({ el }: { el: any }) => {
+export const Application = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
         <div>
-            <div onClick={() => navigate(`/team/${el?.team?.id}`)} className="teamtournament transition07">
+            <div onClick={() => navigate(`/team/${item?.team?.id}`)} className="teamtournament transition07">
                 <div>
-                    <div className="ava" style={{ backgroundImage: `url(${el?.team?.logo})` }}></div>
-                    <p>{el?.team?.name}</p>
+                    <div className="ava" style={{ backgroundImage: `url(${item?.team?.logo})` }}></div>
+                    <p>{item?.team?.name}</p>
                 </div>
-                {el?.is_on ? <img src="/svg/accept.svg" alt="" style={{ width: '18px' }} /> : <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />}
+                {item?.is_on ? <img src="/svg/accept.svg" alt="" style={{ width: '18px' }} /> : <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />}
             </div>
             {
-                el?.is_on &&
+                item?.is_on &&
                 <AdminSmallPanel>
                     <Button title={""} function_={() => undefined} />
                 </AdminSmallPanel>

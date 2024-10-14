@@ -23,6 +23,7 @@ import { useParams } from "react-router";
 import { POSTServices } from "../../services/POSTServices";
 import useRequest from "../../customHooks/useRequest";
 import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
+import Cezar from "../../components/ui/meny-time use/cezar";
 
 
 export const News = ({ }: {}) => {
@@ -30,9 +31,9 @@ export const News = ({ }: {}) => {
 
     const params = useParams()
     const scrollRef: any = useRef()
-    const firstpost = useRequest(() => POSTServices.GETPost(0, params.iddirection, 1), 'firstpost')
-    const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), 'firsttournament')
-    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, params.iddirection), scrollRef, 'post', 4, 1)
+    const firstpost = useRequest(() => POSTServices.GETPost(0, params.iddirection, 1), ['firstpost'])
+    const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), ['firsttournament'])
+    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, params.iddirection), scrollRef, ['post'], 4, 1)
 
     const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
@@ -56,26 +57,16 @@ export const News = ({ }: {}) => {
                         <LeftPanel function_={modal.SwapFn} />
                         <Center>
 
-                            <SmallCenterPlate>
-                                <div className="dftcontainer" style={{
-                                    justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
-                                    backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
-                                }}>
-                                    <div style={{ margin: '10px 40px' }}>
-                                        <p style={{ fontSize: '30px' }}>СТАНЬ</p>
-                                        <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
-                                    </div>
-                                </div>
-                            </SmallCenterPlate >
+                            <Cezar />
 
-                            {/* {firstpost && firstpost.finaldata.map((el: any) => (
-                                <DftPost key={el.id} el={el} />
+                            {/* {firstpost && firstpost.finaldata.map((item: any) => (
+                                <DftPost key={item.id} item={item} />
                             ))} */}
 
-                            <SmallCenterPlate><TournamentChild el={tournament.finaldata[0]} /></SmallCenterPlate>
+                            <SmallCenterPlate><TournamentChild item={tournament.finaldata[0]} /></SmallCenterPlate>
 
-                            {/* {post && post.finaldata.map((el: any) => (
-                                <DftPost key={el.id} el={el} />
+                            {/* {post && post.finaldata.map((item: any) => (
+                                <DftPost key={item.id} item={item} />
                             ))} */}
 
                             {/* <div ref={scrollRef} className="scrollhandlerref"></div> */}
@@ -107,24 +98,14 @@ export const News = ({ }: {}) => {
 
                     <Center>
 
-                        <SmallCenterPlate>
-                            <div className="dftcontainer" style={{
-                                justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
-                                backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
-                            }}>
-                                <div style={{ margin: '10px 60px' }}>
-                                    <p style={{ fontSize: '30px' }}>СТАНЬ</p>
-                                    <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
-                                </div>
-                            </div>
-                        </SmallCenterPlate >
+                        <Cezar />
 
-                        <DftPost el={undefined} />
+                        <DftPost item={undefined} />
 
-                        <SmallCenterPlate><TournamentChild el={undefined} /></SmallCenterPlate>
+                        <SmallCenterPlate><TournamentChild item={undefined} /></SmallCenterPlate>
 
-                        {post && post.finaldata.map((el: any, index: number) => (
-                            <DftPost key={index} el={el} />
+                        {post && post.finaldata.map((item: any, index: number) => (
+                            <DftPost key={index} item={item} />
                         ))}
 
                         <div ref={post.scrollRef} className="scrollhandlerref"></div>
@@ -144,10 +125,10 @@ export const News = ({ }: {}) => {
 }
 
 
-export const DftPost = memo(({ el }: { el: any }) => {
+export const DftPost = memo(({ item }: { item: any }) => {
     return (
-        <SmallCenterPlate>
-            <Post el={el} />
+        <SmallCenterPlate key={item.id}>
+            <Post item={item} />
         </SmallCenterPlate>
     );
 })

@@ -18,8 +18,8 @@ export enum direction {
 
 export enum idDirection {
     bascketball = 1,
-    cs = 2,
-    dota = 3
+    cs = 1,
+    dota = 2
 }
 
 export const positioncenterbyabsolute: React.CSSProperties = {

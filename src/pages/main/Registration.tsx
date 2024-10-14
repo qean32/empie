@@ -53,6 +53,7 @@ export const Registration = ({ }: {}) => {
     }
 
     const RegistrationRQ: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname, lastname, password, email }))
+    const RegistrationRQPlayer: any = useMutation(['regplayer'], () => USERServices.CREATEUser({ name: `${firstname} ${lastname}`,  }))
     const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email }))
 
     useEffect(() => {

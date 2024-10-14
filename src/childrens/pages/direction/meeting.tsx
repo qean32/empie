@@ -9,8 +9,8 @@ import { MATCHServices } from "../../../services/MATCHServices"
 
 export const MeetingChild = ({ }: {}) => {
     const params: any = useParams()
-    const matches = useRequest(() => MATCHServices.GETMatch(params.id), 'mathes')
-    const meeting = useRequest(() => MEETINGServices.GETMeeting(0, params.id), 'meeting')
+    const matches = useRequest(() => MATCHServices.GETMatch(params.id), ['mathes'])
+    const meeting = useRequest(() => MEETINGServices.GETMeeting(0, params.id), ['meeting'])
 
     return (
         <>{meeting.finaldata[0] ?
@@ -18,17 +18,17 @@ export const MeetingChild = ({ }: {}) => {
                 <SmallCenterPlate>
                     <div className="dftcontainer">
                         <div className="headmeeting">
-                            <Team el={meeting.finaldata[0].team_one} />
+                            <Team item={meeting.finaldata[0].team_one} />
                             <div style={{ gap: '10px' }}> <img src="/svg/cup.svg" alt="" style={{ width: '30px' }} />
                                 <div> <p>
                                     {meeting.finaldata[0].team_one_score}:{meeting.finaldata[0].team_two_score}</p>
                                     <p style={{ fontSize: '12px' }}> {meeting.finaldata[0].date} </p> </div> </div>
-                            <Team el={meeting.finaldata[0].team_two} />
+                            <Team item={meeting.finaldata[0].team_two} />
                         </div>
                     </div>
                 </SmallCenterPlate>
-                {matches?.finaldata && matches.finaldata.map((el) => (
-                    <Match key={el.id} el={el} />
+                {matches?.finaldata && matches.finaldata.map((item) => (
+                    <Match key={item.id} item={item} />
                 ))}
             </>
             :
@@ -51,7 +51,7 @@ export const MeetingChild = ({ }: {}) => {
 }
 
 
-export const Match = ({ el }: { el: any }) => {
+export const Match = ({ item }: { item: any }) => {
     return (
         <>
             <SmallCenterPlate>
@@ -59,17 +59,17 @@ export const Match = ({ el }: { el: any }) => {
                     <div style={{ width: '100%' }}>
                         <div className="headmeeting">
                             <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/cup.svg" alt="" />
-                                <p style={{ fontSize: '13px', width: '240px', cursor: 'pointer' }}>id: {el?.id_match}
+                                <p style={{ fontSize: '13px', width: '240px', cursor: 'pointer' }}>id: {item?.id_match}
                                     <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('7948176944')} style={{ transform: 'translate(2px, 3px)' }} /></p> </div>
-                            <div><p>{el?.team_one_score} : {el?.team_two_score}</p></div>
+                            <div><p>{item?.team_one_score} : {item?.team_two_score}</p></div>
                         </div>
                         <div className="meetingrepair">
                             <Repair />
                             {
-                                el?.id_match == 0 ?
+                                item?.id_match == 0 ?
                                     <p style={{ fontSize: '15px' }}>информация отсутствует</p>
                                     :
-                                    <a style={{ fontSize: '16px' }} href={`https://www.dotabuff.com/matches/${el?.id_match}`} target="_blank">ссылка дотабафф</a>
+                                    <a style={{ fontSize: '16px' }} href={`https://www.dotabuff.com/matches/${item?.id_match}`} target="_blank">ссылка дотабафф</a>
                             }
                         </div>
                     </div>
@@ -81,9 +81,9 @@ export const Match = ({ el }: { el: any }) => {
 }
 
 
-export const Team = ({ el }: { el: any }) => {
+export const Team = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-        <div onClick={() => navigate(`/team/${el?.id}`)} style={{ cursor: 'pointer' }}> <div className="ava hover3 transition03"></div> <p>{el?.name}</p> </div>
+        <div onClick={() => navigate(`/team/${item?.id}`)} style={{ cursor: 'pointer' }}> <div className="ava hover3 transition03"></div> <p>{item?.name}</p> </div>
     );
 }

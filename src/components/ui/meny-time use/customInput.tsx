@@ -38,7 +38,7 @@ export const InputText = ({ title, value, setValue, max, validate = true }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -80,7 +80,7 @@ export const InputPassword = ({ title, value, setValue }: {
         <div style={{ position: 'relative', width: '100%' }}>
             <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} style={{ zIndex: '10' }} alt="" onClick={() => view.SwapFn()} className="lockpass" />
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type={view.boolean ? 'text' : 'password'} name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -199,7 +199,7 @@ export const InputNumber = ({ title, value, setValue, min, max }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="number" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -248,7 +248,7 @@ export const InputEmail = ({ title, value, setValue }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -299,7 +299,7 @@ export const InputFile = ({ title = 'изображение', setValue }: {
     return (
         <div>
             <input accept="image/png, image/jpeg, image/svg, image/jpg, image/webp" type="file" id={`${id_}`} style={{ display: 'none' }} onChange={changeHandler} />
-            <label htmlFor={`${id_}`} className="inputfile">
+            <label htmlFor={`${id_}`} className="inputfile" style={{ pointerEvents: 'auto' }}>
                 <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '70px', height: '50px' }}>{src.length > 0 ? <></> :
                     <img src="/svg/upload.svg" style={{ width: '27px' }} />}</div>
                 <p>{title}</p>
@@ -336,7 +336,7 @@ export const InputText_ = ({ title, value, setValue, max, word }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -349,3 +349,19 @@ export const InputText_ = ({ title, value, setValue, max, word }: {
         </div>
     );
 }
+
+const InpuRange = ({ min, max, step, setValue }: {
+    max: number
+    min: number
+    step: number
+    setValue: Function
+}) => {
+    return (
+        <>
+            <input type="range" name="" id="" list="tickmarks" min={min} max={max}
+                step={step} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+        </>
+    );
+}
+
+export default InpuRange;

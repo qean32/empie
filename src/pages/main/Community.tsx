@@ -16,7 +16,7 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
-import { USERServices } from "../../services/USERServices";
+import { PLAYERServices } from "../../services/PLAYERServices";
 
 
 export const Community = ({ }: {}) => {
@@ -25,7 +25,7 @@ export const Community = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
-    const users: any = useDinamickPagination(() => USERServices.GETUser(users.offset), scrollRef, 'users', 10, 0)
+    const player: any = useDinamickPagination(() => PLAYERServices.GETPlayer(player.offset), scrollRef, ['users'], 10, 0)
 
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
@@ -55,8 +55,8 @@ export const Community = ({ }: {}) => {
                             </div>
                             <div style={{ minHeight: '500px' }}>
 
-                                {users && users.finaldata.map((el: any) => (
-                                    <InlineUser el={el} key={el.id} />
+                                {player && player.finaldata.map((item: any) => (
+                                    <InlineUser item={item} key={item.id} />
                                 ))}
 
                                 <div ref={scrollRef} className="scrollhandlerref"></div>

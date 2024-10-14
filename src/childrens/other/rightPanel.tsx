@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router"
 
-type Props = {
+
+export const RightPanelChildren = ({ fn1, fn2, fn3 }: {
     fn1: Function
     fn2: Function
     fn3: Function
-}
-export const RightPanelChildren = ({ fn1, fn2, fn3 }: Props) => {
+}) => {
     const navigate = useNavigate()
-    
+
     return (
         <div className="rightcontainer">
             <div className="rightpanellink" onClick={() => fn1()}>турниры</div>
@@ -18,10 +18,8 @@ export const RightPanelChildren = ({ fn1, fn2, fn3 }: Props) => {
     );
 }
 
-type Props_ = {
-    direction: number
-}
-export const RightPanelDirectionChildren = ({ direction }: Props_) => {
+
+export const RightPanelDirectionChildren = ({ direction }: { direction: number }) => {
     const navigate = useNavigate()
 
     return (

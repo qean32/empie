@@ -4,7 +4,7 @@ import RQRequestPOST from "../functions/RQRequestPOST"
 
 export const CASHServices = {
     GETCash(offset?: number) {
-        return RQRequestGET(`${host}cash/search/cash/?offset=${offset}`)
+        return RQRequestGET(`${host}cash/search/cash/?offset=${offset}?limit=12`)
     },
     CREATECash(body: any) {
         return RQRequestPOST(`${host}cash/reg/cash/`, body)

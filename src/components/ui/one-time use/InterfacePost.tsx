@@ -1,12 +1,12 @@
 import React from "react"
 import { colors } from "../../../functions/GiveConst"
 
-type Props = {
+
+export const InputComent = ({ value, setValue, title }: {
     value: string
     setValue: Function
     title: string
-}
-export const InputComent = ({ value, setValue, title }: Props) => {
+}) => {
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -21,13 +21,13 @@ export const InputComent = ({ value, setValue, title }: Props) => {
     );
 }
 
-type Props_ = {
+
+export const LikeComent = ({ islike, value, fn, count }: {
     islike: boolean
     value: boolean
     fn: Function
     count: number
-}
-export const LikeComent = ({ islike, value, fn, count }: Props_) => {
+}) => {
     return (
         <div className="likecoment" style={!value ? { transition: '.2s' } : { outline: `2px solid ${colors.maincolor}`, transition: '.4s' }} onClick={() => fn()}>
             {

@@ -19,7 +19,7 @@ export const Tournaments = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const params = useParams()
     const scrollRef: any = useRef()
-    const tournaments: any = useDinamickPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset), scrollRef, 'tournaments')
+    const tournaments: any = useDinamickPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset, '', params.id), scrollRef, ['tournaments'])
 
     ChangeTitle('турниры')
     return (
@@ -34,8 +34,8 @@ export const Tournaments = ({ }: {}) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
 
-                        {tournaments && tournaments.finaldata.map((el: any) => (
-                            <SmallCenterPlate><TournamentChild el={el} key={el.id} /></SmallCenterPlate>
+                        {tournaments && tournaments.finaldata.map((item: any) => (
+                            <SmallCenterPlate key={item.id}><TournamentChild item={item} /></SmallCenterPlate>
                         ))}
 
                         <div ref={scrollRef} className="scrollhandlerref"></div>

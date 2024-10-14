@@ -1,20 +1,21 @@
-import { memo, useRef } from "react";
+import { useRef } from "react";
 import useDinamickPagination from "../../../customHooks/useDinamickPagination";
 import { FullPlate } from "../../../components/hoc/plates/fullPlate";
 import { CASHServices } from "../../../services/CASHServices";
+import useRequest from "../../../customHooks/useRequest";
 
 
 export const CashChild = ({ }: {}) => {
     const scrollRef: any = useRef()
-    const cash: any = useDinamickPagination(() => CASHServices.GETCash(cash.offset), scrollRef, 'cash')
+    const cash: any = useDinamickPagination(() => CASHServices.GETCash(cash.offset), scrollRef, ['cashs'])
     return (
         <>
             <FullPlate>
                 <div style={{ padding: '100px 0 0 0' }}>
                     <CashHeader />
 
-                    {cash && cash.finaldata.map((el: any) => (
-                        <DftCash />
+                    {cash && cash.finaldata.map((item: any) => (
+                        <DftCash item={item} key={item.id} />
                     ))}
 
                     <div ref={scrollRef} className="scrollhandlerref"></div>
@@ -25,14 +26,14 @@ export const CashChild = ({ }: {}) => {
 }
 
 
-export const DftCash = ({ }: {}) => {
+export const DftCash = ({ item }: { item: any }) => {
     return (
         <>
-            <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={false ? 'redcash' : ''}>
-                <div>+5000 ₽</div>
-                <div>покупка мяча</div>
-                <div>20.05.06</div>
-                <div>dota</div>
+            <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={item?.price < 0 ? 'redcash' : ''}>
+                <div>{item?.price > 0 ? '+' : ''}{item?.price} ₽</div>
+                <div style={{ width: '200px', textAlign: 'center' }}>{item?.content}</div>
+                <div>{(item?.created_at).split(' ')[1]}</div>
+                <div>{item?.direction?.direction_name}</div>
             </div>
             <hr color="#262626" />
         </>
@@ -40,11 +41,12 @@ export const DftCash = ({ }: {}) => {
 }
 
 
-export const CashHeader = memo(({ }: {}) => {
+export const CashHeader = ({ }: {}) => {
+    const cash = useRequest(() => CASHServices.GETCashList(), ['cashlist'])
     return (
         <>
             <div className="cashheader">
-                <div>вс 500 ₽</div>
+                <div>{cash?.finaldata[0]?.price} ₽</div>
                 <div>история расхода</div>
                 <div>дата <img src="/svg/calendar.svg" /></div>
                 <div>дисциплина</div>
@@ -52,4 +54,4 @@ export const CashHeader = memo(({ }: {}) => {
             <hr color="#262626" />
         </>
     );
-})
+}

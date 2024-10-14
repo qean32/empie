@@ -10,9 +10,6 @@ export const USERServices = {
     GETUser(offset?: number, id: numsrting = '') {
         return RQRequestGET(`${host}users/search/?id=${id}&offset=${offset}&limit=10`)
     },
-    GETPlayer(offset: number = 0, teamDota: numsrting = '', teamCS: numsrting = '') {
-        return RQRequestGET(`${host}users/search/?offset=${offset}&limit=10&team_dota=${teamDota}&team_cs=${teamCS}`)
-    },
     GETUsersShort(offset?: number) {
         return RQRequestGET(`${host}users/search/short/?offset=${offset}`)
     },

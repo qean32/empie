@@ -20,7 +20,7 @@ export const Meetings = ({ }: {}) => {
     const params = useParams()
 
     const scrollRef: any = useRef()
-    const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, 'meetings')
+    const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, ['meetings'])
 
     ChangeTitle('матчи')
     return (
@@ -35,8 +35,8 @@ export const Meetings = ({ }: {}) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
 
-                        {meetings && meetings.finaldata.map((el: any) => (
-                            <SmallCenterPlate><MeetingChild el={el} /></SmallCenterPlate>
+                        {meetings && meetings.finaldata.map((item: any) => (
+                            <SmallCenterPlate key={item.id}><MeetingChild item={item} /></SmallCenterPlate>
                         ))}
 
                         <div ref={scrollRef} className="scrollhandlerref"></div>

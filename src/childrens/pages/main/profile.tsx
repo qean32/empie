@@ -34,7 +34,7 @@ export const ProfileChild = ({ }: {}) => {
                 <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                     <div className="trophy">
                         <div>
-                            {trophy.map((el, index) => (<img src="" alt="" key={index} />))}
+                            {trophy.map((item, index) => (<img src="" alt="" key={index} />))}
                         </div>
                     </div>
                 </div>

@@ -9,17 +9,17 @@ import { SomeContext } from "../../../context";
 import { useMutation } from "react-query";
 import useRequest from "../../../customHooks/useRequest";
 
-export const Post = ({ el }: { el: any }) => {
+export const Post = ({ item }: { item: any }) => {
     const { user }: any = useContext(SomeContext)
     const ulike = useBoolean(false)
     const ucoment = useBoolean(false)
     const viewcoments = useBoolean(false)
 
-    const coments = useOneRequest(() => COMENTServices.GETComent(el.id), `coments${el.id}`)
-    const coment = useOneRequest(() => COMENTServices.GETComent(el.id, 0,), `coments${el.id}`)
+    const coments = useOneRequest(() => COMENTServices.GETComent(item.id), [`coments${item.id}`])
+    const coment = useOneRequest(() => COMENTServices.GETComent(item.id, 0,), [`coments${item.id}`])
 
-    const likes = useRequest(() => LIKEServices.GETLike(el.id), `likes${el.id}`)
-    const like = useRequest(() => LIKEServices.GETLike(el.id, user?.user_id), `like${el.id}`)
+    const likes = useRequest(() => LIKEServices.GETLike(item.id), [`likes${item.id}`])
+    const like = useRequest(() => LIKEServices.GETLike(item.id, user?.user_id), [`like${item.id}`])
     // const golike = useMutation('golike', () => LIKEServices.CREATELike({ author: user?.user_id }))
     const [countLike, setCountLike] = useState<number>(0)
 
@@ -61,7 +61,7 @@ export const Post = ({ el }: { el: any }) => {
                     <div className="postsimg"><div className="ava" onClick={() => navigate('/profile/2')}></div><img src="" alt="" className="postimg" /></div>
                 </div>
                 <div>
-                    <p> {el?.content} </p>
+                    <p> {item?.content} </p>
                 </div>
                 <div style={{ display: 'flex', gap: '15px', justifyContent: 'end', padding: '0 -20px 0 0' }}>
                     <LikeComent islike={true} value={ulike.boolean} fn={LikeHandler} count={countLike} />
@@ -73,25 +73,25 @@ export const Post = ({ el }: { el: any }) => {
                     <div style={{ padding: '0 0 0 30px' }}>
                         <InputComent value={""} setValue={() => undefined} title={"ваш коментарий.."} />
                     </div>
-                    {coments && coments.finaldata.map((el) => <Coment el={el} key={el.id} />)}
+                    {coments && coments.finaldata.map((item) => <Coment item={item} key={item.id} />)}
                 </div>
             </div>
         </div>
     );
 }
 
-export const Coment = ({ el }: { el: any }) => {
+export const Coment = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
         <div className="postsimg" style={{ gap: '15px', padding: '20px 0 0 35px', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', gap: '20px' }}>
-                <div className="ava" onClick={() => navigate(`/profile/${el?.author?.id}`)} style={{ backgroundImage: `url(${el?.author?.ava})` }}></div>
-                <p>{el?.author?.first_name} {el?.author?.last_name}</p>
+                <div className="ava" onClick={() => navigate(`/profile/${item?.author?.id}`)} style={{ backgroundImage: `url(${item?.author?.ava})` }}></div>
+                <p>{item?.author?.first_name} {item?.author?.last_name}</p>
             </div>
             <div style={{ display: 'flex', gap: '20px' }}>
                 <div className="ava" style={{ opacity: 0 }}></div>
                 <p style={{ maxWidth: '420px' }}>
-                    {el.content}
+                    {item.content}
                 </p>
             </div>
         </div>

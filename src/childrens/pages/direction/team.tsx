@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { InlineUser } from "../../../components/ui/meny-time use/inlinePrezentation";
 import useRequest from "../../../customHooks/useRequest";
@@ -7,18 +7,21 @@ import { useParams } from "react-router";
 import { TOURNAMENTServices } from "../../../services/TOURNAMENTServices";
 import { APPLICATIONServices } from "../../../services/APPLICATIONServices";
 import { MATCHServices } from "../../../services/MATCHServices";
+import { PLAYERServices } from "../../../services/PLAYERServices";
 
 
 export const TeamChild = ({ }: {}) => {
     const params = useParams()
-    const team = useRequest(() => TEAMServices.GETTeam(0, params.id), 'team')
+    const team = useRequest(() => TEAMServices.GETTeam(0, params.id), ['team'])
 
-    const wintournaments = useRequest(() => TOURNAMENTServices.GETTouramentShort(0, params.id), 'tournamentsteam')
-    const tournaments = useRequest(() => APPLICATIONServices.GETApplication('', params.id), 'wintournamentsteam')
+    const wintournaments = useRequest(() => TOURNAMENTServices.GETTouramentShort(0, params.id), ['tournamentsteam'])
+    const tournaments = useRequest(() => APPLICATIONServices.GETApplication('', params.id), ['wintournamentsteam'])
 
-    const matches = useRequest(() => MATCHServices.GETMatch('', 0, params.id), 'matchesteam')
-    const matches_ = useRequest(() => MATCHServices.GETMatch('', 0, '', params.id), 'matchesteam_')
-    const winmatches = useRequest(() => MATCHServices.GETMatch('', 0, '', '', params.id), 'winmatches')
+    const matches = useRequest(() => MATCHServices.GETMatch('', 0, params.id), ['matchesteam'])
+    const matches_ = useRequest(() => MATCHServices.GETMatch('', 0, '', params.id), ['matchesteam_'])
+    const winmatches = useRequest(() => MATCHServices.GETMatch('', 0, '', '', params.id), ['winmatches'])
+
+    console.log(team.finaldata[0])
     return (
         <>
             <CenterPlate>
@@ -39,36 +42,36 @@ export const TeamChild = ({ }: {}) => {
                 <div className="dftcontainer" style={{ flexDirection: 'column', padding: '40px 0' }}>
                     <div className="trophy">
                         <div style={{ padding: '20px 40px' }}>
-                            <img src="" alt="" />
-                            <img src="" alt="" />
-                            <img src="" alt="" />
-                            <img src="" alt="" />
-                            <img src="" alt="" />
-                            <img src="" alt="" />
-                            <img src="" alt="" />
-                            <img src="" alt="" />
+
+                            {team?.finaldata[0] && team.finaldata[0].cups?.map((item: any) => {
+                                <img src={`${item?.image}`} key={item.id} alt="" />
+                            })}
+
                         </div>
                     </div>
                 </div>
             </CenterPlate>
             <CenterPlate>
                 <div style={{ padding: '20px 0' }}>
-                    <InlineUser el={team?.finaldata[0]?.director} />
+                    <InlineUser item={team?.finaldata[0]?.director} />
                 </div>
-                <Players />
+                <Players teamDirection={team?.finaldata[0]?.direction?.id}
+                    idDirectror={team?.finaldata[0]?.director?.id} />
             </CenterPlate>
         </>
     );
 }
 
 
-const Players = memo(({ }: {}) => {
-    const [player, setPlayer] = useState<any[]>([{}, {}, {}, {}])
+const Players = memo(({ teamDirection, idDirectror }: { teamDirection: number, idDirectror: number }) => {
+    const params = useParams()
+    const player = useRequest(() => PLAYERServices.GETPlayer(0, teamDirection == 1 ? '' : params.iddirection,
+        teamDirection == 2 ? '' : params.iddirection), ['playersteam'])
     return (
         <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0 0 10px 0', alignItems: 'normal', justifyItems: 'normal' }}>
             <div>
-                {player.map((el: any) => (
-                    <InlineUser el={el} key={el.id} />
+                {player && player.finaldata.map((item: any) => (
+                    idDirectror != item?.user?.id && <InlineUser item={item} key={item.id} />
                 ))}
             </div>
         </div>
