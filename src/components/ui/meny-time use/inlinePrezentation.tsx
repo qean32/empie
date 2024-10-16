@@ -9,8 +9,8 @@ export const InlineUser = ({ item }: { item: any }) => {
         <div className="inline-conteiner" onClick={() => navigate(`/profile/${item?.id}`)}>
             <div><div className="ava" style={{ backgroundImage: `url(${item?.user?.ava})` }}></div><p>{item?.user?.first_name} {item?.user?.last_name}</p></div>
             <span>
-                <img src={`${item?.rank_cs?.image}`} alt="" />
-                <img src={`${item?.rank_dota?.image}`} alt="" />
+                <img src={`${item?.rank_cs?.image}`} alt=""  className="rankcs" style={{width: '36px'}}/>
+                <img src={`${item?.rank_dota?.image}`} alt="" className="rankcs" style={{width: '50px'}} />
             </span>
         </div>
     )

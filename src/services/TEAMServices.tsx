@@ -3,10 +3,11 @@ import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 import { numsrting } from "../models/numsrting"
+import { tokenStorage } from "./USERServices"
 
 export const TEAMServices = {
-    GETTeam: (offset?: number, id?: numsrting) => {
-        return RQRequestGET(`${host}unification/search/team/?offset=${offset}&id=${id}`)
+    GETTeam: (offset?: number, id?: numsrting, director: numsrting = '') => {
+        return RQRequestGET(`${host}unification/search/team/?offset=${offset}&id=${id}&director=${director}`)
     },
     CREATETeam: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/team/`, body)
@@ -16,5 +17,14 @@ export const TEAMServices = {
     },
     UPDATETeam: (body: any, id: number | undefined, file: boolean = false) => {
         return RQRequestPATCH(`${host}unification/update/team/${id}/`, body, file)
+    },
+    DELETETeam: (id: numsrting) => {
+        return fetch(`${host}unification/update/team/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `JWT ${JSON.parse(localStorage.getItem(tokenStorage) as any).access}`
+            }
+        })
     }
 }

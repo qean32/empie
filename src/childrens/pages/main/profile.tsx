@@ -1,44 +1,84 @@
-import { useState } from "react";
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate";
+import { useNavigate, useParams } from "react-router";
+import useRequest from "../../../customHooks/useRequest";
+import { USERServices } from "../../../services/USERServices";
+import { PLAYERServices } from "../../../services/PLAYERServices";
 
 
 export const ProfileChild = ({ }: {}) => {
-    const [trophy, setTrophy] = useState<any[]>([{}, {}, {}, {}])
+    const params = useParams()
+    const user_ = useRequest(() => USERServices.GETUser(0, params.id), ['user'])
     return (
         <>
             <CenterPlate>
-                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
-                    <div className="background"><img src="" alt="" /></div>
+                <div className="dftcontainer profile" style={{ flexDirection: 'column', padding: '0' }}>
+                    <div className="background ava" style={{ backgroundImage: `url(${user_?.finaldata[0]?.background})` }}>
+                        <div className="ava" style={{ backgroundImage: `url(${user_?.finaldata[0]?.ava})` }}></div>
+                    </div>
                     <article className="about">
-                        <p>username</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, laudantium?</p>
+                        <p>{user_?.finaldata[0]?.first_name} {user_?.finaldata[0]?.last_name}</p>
+                        <p>{user_?.finaldata[0]?.status}</p>
                     </article>
-                    <div style={{ width: '80%', margin: '20px 0 0 0', display: 'flex', gap: '20px' }}>
-                        <div className="role" style={{ backgroundColor: `#c78d11` }}>организатор</div>
-                    </div>
-                    <div style={{ width: '80%', margin: '20px 0 25px 0', display: 'flex', gap: '20px', justifyContent: 'end' }}>
-                        <a href={``}><img src="/svg/telegram.svg" alt="" style={{ width: '44px' }} className="hover3 transition07" /></a>
-                        <a href={``}><img src="/svg/steam.svg" alt="" style={{ width: '44px' }} className="hover3 transition07" /></a>
-                    </div>
+                    <section>
+                        <a href={`${user_?.finaldata[0]?.telegram}`} target="_blank"><img src="/svg/telegram.svg" alt="" style={{ width: '32px' }} className="hover3 transition07" /></a>
+                        <a href={`${user_?.finaldata[0]?.steam}`} target="_blank"><img src="/svg/steam.svg" alt="" style={{ width: '32px' }} className="hover3 transition07" /></a>
+                    </section>
+                    <section style={{ padding: '40px 0 25px 0' }}>
+                        {user_?.finaldata[0]?.roles.length > 0 && user_?.finaldata[0]?.roles.map((item: any) => (
+                            <div className="role" style={{ backgroundColor: `${item?.color}` }} key={item?.id}>{item?.name}</div>
+                        ))}
+                    </section>
                 </div>
             </CenterPlate>
-            <CenterPlate>
-                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
-                    <div className="aboutcareer" style={{ justifyContent: 'center' }}>
-                        <div><img src="" alt="" /><img src="" alt="" /></div>
-                        <div><img src="" alt="" /><img src="" alt="" /></div>
-                    </div>
-                </div>
-            </CenterPlate>
-            <CenterPlate>
-                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
-                    <div className="trophy">
-                        <div>
-                            {trophy.map((item, index) => (<img src="" alt="" key={index} />))}
-                        </div>
-                    </div>
-                </div>
-            </CenterPlate>
+            <Cups cups={user_?.finaldata[0]?.cups} />
+            <PlayerInfo />
         </>
+    );
+}
+
+const PlayerInfo = () => {
+    const params = useParams()
+    const player = useRequest(() => PLAYERServices.GETPlayer(0, '', '', params.id), ['getplayer'])
+    const navigate = useNavigate()
+
+    return (
+        <CenterPlate>
+            <div className="dftcontainer" style={{ flexDirection: 'column', alignItems: 'start' }}>
+                <div className="aboutcareer" style={{ justifyContent: 'center', padding: '15px 0 0 30px' }}>
+                    <div>
+                        <div onClick={() => navigate(`/team/${player?.finaldata[0]?.team_cs?.id}`)}
+                            className="teamimg ava"
+                            style={{ backgroundImage: `url(${player?.finaldata[0]?.team_cs?.logo})` }}></div>
+                        <img src={player?.finaldata[0]?.rank_cs?.image} alt="" className="rankcs btnabsolute" />
+                    </div>
+                    <div>
+                        <div onClick={() => navigate(`/team/${player?.finaldata[0]?.team_dota?.id}`)}
+                            className="teamimg ava"
+                            style={{ backgroundImage: `url(${player?.finaldata[0]?.team_dota?.logo})` }}></div>
+                        <img src={player?.finaldata[0]?.rank_dota?.image} alt="" className="rankdota btnabsolute" style={{ transform: 'translate(0, 8px)' }} />
+                    </div>
+                </div>
+            </div>
+        </CenterPlate>
+    );
+}
+
+const Cups = ({ cups }: { cups: any }) => {
+    return (
+        <CenterPlate>
+            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
+                <div className="trophy">
+                    {cups?.length > 0 ?
+                        cups.map((item: any) => (
+                            <img src={item?.image} alt="" key={item?.id} />
+                        ))
+                        :
+                        <div className="dftcontainer">
+                            <p>нет кубков</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </CenterPlate>
     );
 }

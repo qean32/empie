@@ -72,6 +72,7 @@ export const News = ({ }: {}) => {
                             {/* <div ref={scrollRef} className="scrollhandlerref"></div> */}
 
                         </Center>
+                        
                         <Right>
                             <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
                             <RightPanel><MoveonGridChild /></RightPanel>

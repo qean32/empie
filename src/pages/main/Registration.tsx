@@ -16,6 +16,7 @@ import { USERServices } from "../../services/USERServices";
 import ValidateEmail from "../../functions/ValidateEmail";
 import ValidatePassword from "../../functions/ValidatePassword";
 import ValidateRuName from "../../functions/ValidateRuName";
+import { useNavigate } from "react-router";
 
 
 export const Registration = ({ }: {}) => {
@@ -52,15 +53,18 @@ export const Registration = ({ }: {}) => {
         modal.SwapFn()
     }
 
-    const RegistrationRQ: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname, lastname, password, email }))
-    const RegistrationRQPlayer: any = useMutation(['regplayer'], () => USERServices.CREATEUser({ name: `${firstname} ${lastname}`,  }))
+    const [id, setId] = useState<number>()
+    const RegistrationRQ: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname, lastname, password, email }).then((results: any) => setId(results?.id)))
+    const RegistrationRQPlayer: any = useMutation(['regplayer'], () => USERServices.CREATEUser({ name: `${firstname} ${lastname}`, }))
     const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email }))
+    const navigate = useNavigate()
 
     useEffect(() => {
-        if (RegistrationRQ.isSuccess) {
+        if (id) {
             LoginRQ.mutate()
+            RegistrationRQPlayer.mutate().then(() => navigate(`/profile/${id}`))
         }
-    }, [RegistrationRQ.isSuccess])
+    }, [id])
 
     const Registration = () => {
         if (repassword == password) {
@@ -99,7 +103,7 @@ export const Registration = ({ }: {}) => {
                 <>
                     <div style={{ ...positioncenterbyabsolute, top: '55%' }}>
                         <CenterPlate>
-                            <div className="regwindow transition07" style={reg.boolean ? { maxHeight: '500px' } : { maxHeight: '320px' }}>
+                            <div className="regwindow transition07" style={reg.boolean ? { maxHeight: '510px' } : { maxHeight: '340px' }}>
                                 <Carousel />
                                 <div className="regentrance" style={{ width: '200%' }}>
                                     <NavPanel on={on} />
@@ -111,13 +115,24 @@ export const Registration = ({ }: {}) => {
                                                 <p> забыли пароль? --анлак</p>
                                                 <p onClick={on.off}> нет аккаунта? --регистрация</p>
                                             </div>
-                                            <div><Button title="вход" function_={() => LoginRQ.mutate()} /></div>
+                                            <div>
+                                                <Button title="вход"
+                                                    function_={() => LoginRQ.mutate().then(() => navigate('/'))} />
+                                            </div>
                                         </form>
                                         <form className="windowreg" onSubmit={clickHandler}>
-                                            <div style={{ width: '70%' }}><InputText value={firstname} setValue={setFirstname} title="имя" max={20} /></div>
-                                            <div style={{ width: '70%' }}><InputText value={lastname} setValue={setLastname} title="фамилия" max={20} /></div>
-                                            <div style={{ width: '70%' }}><InputEmail value={email} setValue={setEmail} title="почта" /></div>
-                                            <div style={{ width: '70%' }}><InputPassword value={password} setValue={setPassword} title="пароль" /></div>
+                                            <div style={{ width: '70%' }}>
+                                                <InputText value={firstname} setValue={setFirstname} title="имя" max={20} />
+                                            </div>
+                                            <div style={{ width: '70%' }}>
+                                                <InputText value={lastname} setValue={setLastname} title="фамилия" max={20} />
+                                            </div>
+                                            <div style={{ width: '70%' }}>
+                                                <InputEmail value={email} setValue={setEmail} title="почта" />
+                                            </div>
+                                            <div style={{ width: '70%' }}>
+                                                <InputPassword value={password} setValue={setPassword} title="пароль" />
+                                            </div>
                                             <div className="regwarning">
                                                 <p onClick={on.on}> есть аккаунт? --войти</p>
                                             </div>
@@ -141,7 +156,7 @@ export const Carousel = ({ }: {}) => {
     const [carouselStyle, setCarouselStyle] = useState<CSSProperties>({ marginTop: '-20%' })
 
     useEffect(() => {
-        const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 14000);
+        const intervalID = setInterval(() => setCarousel((prev: any) => prev + 1), 12000);
 
         return () => {
             clearInterval(intervalID)
@@ -151,26 +166,26 @@ export const Carousel = ({ }: {}) => {
     useEffect(() => {
         switch (carousel) {
             case 1: {
-                setCarouselStyle({ marginTop: '-160%' })
+                setCarouselStyle({ marginTop: '-180%' })
                 break;
             }
             case 2: {
-                setCarouselStyle({ marginTop: '-300%' })
+                setCarouselStyle({ marginTop: '-330%' })
                 break;
             }
             case 3: {
-                setCarouselStyle({ marginTop: '-440%' })
+                setCarouselStyle({ marginTop: '-480%' })
                 break;
             }
             default: {
-                setCarouselStyle({ marginTop: '-20%' })
+                setCarouselStyle({ marginTop: '-30%' })
                 setCarousel(0)
                 break;
             }
         }
     }, [carousel])
     return (
-        <div style={{ zIndex: '12', backgroundColor: '#292929' }}>
+        <div style={{ zIndex: '12', backgroundColor: '#292929' }} onClick={() => setCarousel((prev: any) => prev + 1)}>
             <div style={{ width: '100%' }}>
                 <div style={carouselStyle} className="carousel">
                     <div><img src="/svg/cs.svg" alt="" className="carouselimg" /><p>играй в CS2 c нами</p></div>

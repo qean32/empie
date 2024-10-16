@@ -8,10 +8,16 @@ import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { LeftPanel } from "../../components/hoc/leftPanel";
+import { Center } from "../../components/hoc/center";
+import { ProfileChild } from "../../childrens/pages/main/profile";
+import { useParams } from "react-router";
+import { USERServices } from "../../services/USERServices";
 
 
 export const Profile = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
+    const params = useParams()
+    const { user }: any = useContext(SomeContext)
     ChangeTitle('пользователь')
     return (
         <>
@@ -23,8 +29,14 @@ export const Profile = ({ }: {}) => {
                 }
                 <>
                     <LeftPanel function_={modal.SwapFn} />
-                    {/* <Center><Profile /></Center> */}
-                    <Right><RightPanel><div className="dftcontainer"></div></RightPanel></Right>
+                    <Center><ProfileChild /></Center>
+                    <Right>
+                        <RightPanel>
+                            <div className="rightcontainer">
+                                {params.id == user?.user_id && <div className="rightpanellink" onClick={USERServices.LOGOUTUser}>выйти</div>}
+                            </div>
+                        </RightPanel>
+                    </Right>
                 </>
             </div>
         </>

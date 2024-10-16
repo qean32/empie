@@ -10,8 +10,8 @@ export const GridPoint = ({ item }: { item: any }) => {
                 <img src={`${item?.team_two?.logo}`} alt="" style={{ width: '30px', height: '20px', borderRadius: '2px' }} />
             </div>
             <span className="line" style={{ position: 'static', backgroundColor: '#00000030', height: '2px' }}></span>
-            <div><p>{item?.team_two?.name}</p><p>{item?.team_one_score}</p></div>
-            <div><p>{item?.team_two?.name}</p><p>{item?.team_one_score}</p></div>
+            <div><p>{item?.team_one?.name}</p><p>{item?.team_one_score}</p></div>
+            <div><p>{item?.team_two?.name}</p><p>{item?.team_two_score}</p></div>
         </div>
     );
 }

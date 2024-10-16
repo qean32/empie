@@ -5,13 +5,16 @@ import { InputText, InputFile } from "../../../components/ui/meny-time use/custo
 import { TEAMServices } from "../../../services/TEAMServices";
 import { useContext, useEffect, useState } from "react";
 import { SomeContext } from "../../../context";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { TRANSFERServices } from "../../../services/TRANSFERServices copy";
+import useRequest from "../../../customHooks/useRequest";
 
 
 export const RegTeamChild = ({ }: {}) => {
     const { user }: any = useContext(SomeContext)
     const [idnewteam, setIdnewTeam] = useState<number>()
     const params = useParams()
+    const navigate = useNavigate()
     const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), idnewteam, true))
     const registration = useMutation(() => (TEAMServices.CREATETeam({ name, detail, director: user.user_id, direction: params.iddirection }))
         .then((results: any) => { setIdnewTeam(results?.id) }),
@@ -23,6 +26,10 @@ export const RegTeamChild = ({ }: {}) => {
         }
     )
 
+    const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id), ['getteamdirector'])
+
+    const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
+
     const regHandler = () => {
         (name.length > 1 && name.length < 15 && detail.length > 1 && detail.length < 43) ?
             registration.mutate()
@@ -31,7 +38,12 @@ export const RegTeamChild = ({ }: {}) => {
     }
 
     useEffect(() => {
-        idnewteam && establishFile.mutate()
+        const fn = () => {
+            regtransfer.mutate()
+            establishFile.mutate()
+            navigate(`/team/${idnewteam}`)
+        }
+        idnewteam && fn()
     }, [idnewteam])
 
     const returnformData = () => {
@@ -48,6 +60,7 @@ export const RegTeamChild = ({ }: {}) => {
 
     const [logo, setLogo] = useState<any>()
     const [background, setBackground] = useState<any>()
+
     return (
         <>
             <SmallCenterPlate>
@@ -67,7 +80,7 @@ export const RegTeamChild = ({ }: {}) => {
                         </span>
 
                         <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
-                            <Button title="сохранить" function_={regHandler} />
+                            {getteam.finaldata[0] ? <p>вы уже являетесь капитаном команды</p> : <Button title="сохранить" function_={regHandler} />}
                         </div>
                     </form>
                 </div>

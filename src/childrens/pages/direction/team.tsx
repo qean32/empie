@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { InlineUser } from "../../../components/ui/meny-time use/inlinePrezentation";
 import useRequest from "../../../customHooks/useRequest";
@@ -8,6 +8,10 @@ import { TOURNAMENTServices } from "../../../services/TOURNAMENTServices";
 import { APPLICATIONServices } from "../../../services/APPLICATIONServices";
 import { MATCHServices } from "../../../services/MATCHServices";
 import { PLAYERServices } from "../../../services/PLAYERServices";
+import { useMutation } from "react-query";
+import { TRANSFERServices } from "../../../services/TRANSFERServices copy";
+import { SomeContext } from "../../../context";
+import { ButtonDisabled } from "../../../components/ui/meny-time use/customButton";
 
 
 export const TeamChild = ({ }: {}) => {
@@ -20,8 +24,6 @@ export const TeamChild = ({ }: {}) => {
     const matches = useRequest(() => MATCHServices.GETMatch('', 0, params.id), ['matchesteam'])
     const matches_ = useRequest(() => MATCHServices.GETMatch('', 0, '', params.id), ['matchesteam_'])
     const winmatches = useRequest(() => MATCHServices.GETMatch('', 0, '', '', params.id), ['winmatches'])
-
-    console.log(team.finaldata[0])
     return (
         <>
             <CenterPlate>
@@ -56,24 +58,37 @@ export const TeamChild = ({ }: {}) => {
                     <InlineUser item={team?.finaldata[0]?.director} />
                 </div>
                 <Players teamDirection={team?.finaldata[0]?.direction?.id}
-                    idDirectror={team?.finaldata[0]?.director?.id} />
+                    idDirector={team?.finaldata[0]?.director?.id} />
             </CenterPlate>
         </>
     );
 }
 
 
-const Players = memo(({ teamDirection, idDirectror }: { teamDirection: number, idDirectror: number }) => {
+const Players = memo(({ teamDirection, idDirector }: { teamDirection: number, idDirector: number }) => {
+    const { user }: any = useContext(SomeContext)
     const params = useParams()
-    const player = useRequest(() => PLAYERServices.GETPlayer(0, teamDirection == 1 ? '' : params.iddirection,
-        teamDirection == 2 ? '' : params.iddirection), ['playersteam'])
+    const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 1, user: user?.user_id, team: params.id }))
+
+    const exitteam: any = useMutation(['exitteam'], () => PLAYERServices.UPDATEPlayer(teamDirection == 1 ?
+        { team_cs: null }
+        :
+        { team_dota: null }
+        , user?.user_id))
+
+    const players = useRequest(() => PLAYERServices.GETPlayer(0,
+        teamDirection == 1 ? '' : params.iddirection,
+        teamDirection == 2 ? '' : params.iddirection
+    ), ['playersteam'])
+
     return (
         <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0 0 10px 0', alignItems: 'normal', justifyItems: 'normal' }}>
             <div>
-                {player && player.finaldata.map((item: any) => (
-                    idDirectror != item?.user?.id && <InlineUser item={item} key={item.id} />
+                {players && players.finaldata.map((item: any) => (
+                    idDirector != item?.user?.id && <InlineUser item={item} key={item.id} />
                 ))}
             </div>
+            <ButtonDisabled title={"покинуть команду"} function_={exitteam.mutate().then(() => regtransfer.mutate())} />
         </div>
     );
 })

@@ -1,10 +1,13 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Button } from "../../../components/ui/meny-time use/customButton";
 import Repair from "../../../components/ui/meny-time use/repair";
 import { OFFERServices } from "../../../services/OFFERServices";
 import useRequest from "../../../customHooks/useRequest";
 import { SomeContext } from "../../../context";
+import { PLAYERServices } from "../../../services/PLAYERServices";
+import { useMutation } from "react-query";
+import { TRANSFERServices } from "../../../services/TRANSFERServices copy";
 
 
 
@@ -36,11 +39,27 @@ export const OffersChild = ({ }: {}) => {
 
 
 export const DftOffer = ({ item }: { item: any }) => {
+    const { user }: any = useContext(SomeContext)
+    const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
+        item?.direction?.id == 2 ?
+            { team_dota: item?.team?.id }
+            :
+            { team_cs: item?.team?.id }
+        , user?.id))
+    const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 2, user: user?.user_id, team: item?.team?.id }))
 
     return (
         <div className="offer">
-            <div><img src="./svg/dota.svg" alt="" /> <div className="ava" style={{ backgroundImage: `url(${item?.team?.logo})` }} /> <p>{item?.team?.name}</p></div>
-            <Button title="принять" function_={() => undefined} />
+            <div>
+                {item?.direction?.id == 2 ?
+                    <img src="./svg/dota.svg" alt="" />
+                    :
+                    <img src="./svg/cs.svg" alt="" />
+                }
+                <div className="ava" style={{ backgroundImage: `url(${item?.team?.logo})` }} />
+                <p>{item?.team?.name}</p>
+            </div>
+            <Button title="принять" function_={acceptance.mutate().then(() => regtransfer.mutate())} />
         </div>
     );
 }

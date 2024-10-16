@@ -35,27 +35,25 @@
     align-items: start;
     flex-direction: column;
     padding: 50px 0 30px 70px;
-    gap: 20px;
+    gap: 15px;
     width: 100%;
 }
 
 .aboutcareer {
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 40px;
+    min-height: 130px;
 }
 
 .aboutcareer>div {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
-    gap: 40px;
-    padding: 40px 0;
+    position: relative;
 }
 
-.aboutcareer>div>img {
+.aboutcareer>div>.teamimg {
     height: 50px;
     width: 70px;
 }
@@ -340,4 +338,40 @@ i {
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.rankdota {
+    width: 60px;
+    transform: translateX(-8px);
+}
+
+.rankcs {
+    width: 42px;
+}
+
+.btnabsolute {
+    position: absolute;
+    bottom: 0;
+}
+
+.profile>section {
+    width: 85%;
+    display: flex;
+    gap: 20px;
+}
+
+.dotaBG {
+    width: 400px;
+    position: fixed;
+    bottom: 0;
+    left: 50px;
+    z-index: -1;
+}
+
+.csBG {
+    width: 1500px;
+    position: fixed;
+    top: 14%;
+    left: 10%;
+    z-index: -1;
 }

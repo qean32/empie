@@ -1,11 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { Dispatch, useContext, useEffect, useState } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Button } from "../../../components/ui/meny-time use/customButton";
-import InpuRange, { InputText, InputFile, InputText_, InputNumber } from "../../../components/ui/meny-time use/customInput";
+import InpuRange, { InputText, InputFile, InputText_ } from "../../../components/ui/meny-time use/customInput";
 import useRequest from "../../../customHooks/useRequest";
 import { USERServices } from "../../../services/USERServices";
 import { SomeContext } from "../../../context";
 import { useMutation } from "react-query";
+import { ChangeElo, ChangePts } from "../../../functions/one-use-fucntion/GiveRank";
+import { PLAYERServices } from "../../../services/PLAYERServices";
 
 
 
@@ -90,70 +92,52 @@ export const EditProfileChild = ({ }: {}) => {
 
 
 const PlayerData = ({ userid }: { userid: number }) => {
+    const getPlayer = useRequest(() => PLAYERServices.GETPlayer(0, '', '', userid), ['getplayer'])
+    const updatePlayer = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer({}, userid))
+
+    useEffect(() => {
+        const fn = () => {
+            setRankDOTA(getPlayer?.finaldata[0]?.rank_dota?.id)
+            setRankCS(getPlayer?.finaldata[0]?.rank_cs?.id)
+        }
+        getPlayer?.finaldata[0] && fn()
+    }, [getPlayer?.finaldata[0]])
+
     const [pts, setPts] = useState<number>(100)
     const [elo, setElo] = useState<number>(100)
 
-    const [idpts, setIdPts] = useState<number>(100)
-    const [idelo, setIdElo] = useState<number>(100)
+    const [rankDOTA, setRankDOTA] = useState<number>(1)
+    const [rankCS, setRankCS] = useState<number>(24)
 
     useEffect(() => {
-        ChangePts(pts, setIdPts)
+        ChangePts(pts, setRankDOTA)
     }, [pts])
 
     useEffect(() => {
-        ChangeElo(elo, setIdElo)
+        ChangeElo(elo, setRankCS)
     }, [elo])
-
 
     return (
         <SmallCenterPlate>
             <div className="dftcontainer" style={{ justifyContent: 'start', padding: '40px 0' }}>
                 <form className="edit" style={{ gap: '20px' }}>
                     <p>pts dota2</p>
-                    <img src="/rank/1.png" alt="" style={{ width: '40px' }} />
+                    <img src={`/rank/${rankDOTA}.webp`} alt="" className="rankdota" />
                     <div style={{ width: '60%' }}>
-                        <InpuRange max={4000} min={0} step={200} setValue={setPts} />
+                        <InpuRange max={3320} min={100} step={140} setValue={setPts} />
                         <p style={{ width: '0px' }}>{pts}</p>
                     </div>
                     <p>elo cs2</p>
-                    <img src="/rank/1.png" alt="" style={{ width: '40px' }} />
+                    <img src={`/rank/${rankCS}.webp`} alt="" className="rankcs" />
                     <div style={{ width: '60%' }}>
-                        <InpuRange max={0} min={0} step={0} setValue={setElo} />
+                        <InpuRange max={1400} min={100} step={100} setValue={setElo} />
                         <p style={{ width: '0px' }}>{elo}</p>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
-                        <Button title="сохранить" function_={() => undefined} />
+                        <Button title="сохранить" function_={updatePlayer.mutate} />
                     </div>
                 </form>
             </div>
         </SmallCenterPlate>
     )
-}
-
-const ChangePts = (value: any, setValue: Function) => {
-    switch (value) {
-        case value > 0 && value < 200:
-            setValue(1)
-            break
-        case value > 0 && value < 200:
-            setValue(1)
-            break
-        default:
-            setValue(1)
-            break
-    }
-}
-
-const ChangeElo = (value: any, setValue: Function) => {
-    switch (value) {
-        case value > 0 && value < 200:
-            setValue(1)
-            break
-        case value > 0 && value < 200:
-            setValue(1)
-            break
-        default:
-            setValue(1)
-            break
-    }
 }

@@ -15,6 +15,7 @@ import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { TEAMServices } from "../../services/TEAMServices";
+import { BGCs, BGDota } from "../../components/ui/meny-time use/background";
 
 
 export const Teams = ({ }: {}) => {
@@ -34,6 +35,7 @@ export const Teams = ({ }: {}) => {
     ChangeTitle('команды')
     return (
         <>
+            {Number(params.iddirection) == 3 && <BGCs />}
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">

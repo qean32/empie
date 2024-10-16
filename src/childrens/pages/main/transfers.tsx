@@ -35,7 +35,7 @@ export const Transfer = ({ item }: { item: any }) => {
         <div style={{ padding: '0 27px' }}>
             <i onClick={() => navigate(`/profile/${item?.user?.id}`)}>
                 {item?.user?.first_name} {item?.user?.last_name}</i> {item?.script?.content} <i onClick={() => navigate(`/team/${item?.id}`)}>
-                {item?.team?.name}</i>
+                {item?.team?.name ? item?.team?.name : 'команда удалена'}</i>
         </div>
     )
 }

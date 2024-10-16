@@ -10,16 +10,16 @@ export const Context: any = ({ children }: { children: any }) => {
     const location = useLocation()
     const loading = useBoolean(false)
     const modal = useBoolean(false)
-    const user: any = localStorage.getItem(tokenStorage) ? jwtDecode(localStorage.getItem(tokenStorage) as any) : null
+    const user: any = localStorage.getItem(tokenStorage) ? jwtDecode(localStorage.getItem(tokenStorage) as any) : 'no user'
 
     useEffect(() => {
         window.scrollTo(0, 0);
         modal.off()
-        USERServices.REFRESHUser()
+        user != 'no user' && USERServices.REFRESHUser()
         loading.SwapFn()
 
         const refresh = setInterval(() => {
-            USERServices.REFRESHUser()
+            user != 'no user' && USERServices.REFRESHUser()
         }, 210000)
 
         const timeOut = setTimeout(() => {

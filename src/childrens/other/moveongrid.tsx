@@ -9,7 +9,7 @@ export const MoveonGridChild = ({ }: {}) => {
         <div className="rightcontainer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }}>
             <div style={{ width: '70%', padding: '0 0 0 20px' }}>
                 <div className="line" style={{ width: '200px' }}>
-                    <div className="linevertical" style={{ height: '52px' }}></div>
+                    <div className="linevertical asd" style={{ height: '52px', background: 'linear-gradient(rgba(56, 56, 56, 0.603), rgba(56, 56, 56, 0.053))' }}></div>
                 </div>
                 <GridPoint item={meeting?.finaldata[0]} />
             </div>

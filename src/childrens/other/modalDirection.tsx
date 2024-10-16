@@ -12,7 +12,7 @@ export const ModalDirectionChildren = ({ link = '', function_ }: {
     const navigate_ = (id: number, direction: string) => {
         if (link)
             return `/${link}/${id}`
-        return `/${direction}`
+        return `/direction/${direction}`
     }
 
     return (
