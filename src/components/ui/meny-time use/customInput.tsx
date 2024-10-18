@@ -275,7 +275,7 @@ export const Search = ({ value, setValue, title }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} />
-            <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '1.2vh', right: '-3.1vh' }} />
+            <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '15px', right: '-22px' }} />
         </div>
     );
 }

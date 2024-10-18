@@ -14,7 +14,7 @@ export const TransfersChild = ({ }: {}) => {
     return (
         <>
             <SmallCenterPlate>
-                <div className="transfers">
+                <div className="transfers" style={{ maxWidth: '550px' }}>
 
                     {transfers && transfers.finaldata.map((item: any) => (
                         <Transfer item={item} key={item.id} />

@@ -1,4 +1,4 @@
-import { Dispatch, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Button } from "../../../components/ui/meny-time use/customButton";
 import InpuRange, { InputText, InputFile, InputText_ } from "../../../components/ui/meny-time use/customInput";

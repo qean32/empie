@@ -6,8 +6,7 @@
 
 .teamtournament {
     background-color: $background-color-dark;
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-between;
     padding: 0 20px 0 0;
     gap: 20px;
@@ -61,8 +60,7 @@
 }
 
 .gridpoint>div {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-between;
     padding: 0 10px;
     gap: 10px;

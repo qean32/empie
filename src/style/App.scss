@@ -39,9 +39,7 @@ body {
 
 .dftcontainer {
   padding: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include positioncenterbyflex;
 
   min-width: 490px;
   width: 55vh;
@@ -112,7 +110,7 @@ header {
   border-radius: 0;
   border: 0;
   min-height: 50px;
-  // z-index: 11;
+  // z-index: 10;
 }
 
 header>div {
@@ -181,4 +179,5 @@ header>div>div {
 .center {
   display: flex;
   flex-direction: column;
+  min-width: 200px;
 }

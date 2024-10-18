@@ -7,6 +7,7 @@
 }
 
 .transfers {
+    padding: 40px 0;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -46,8 +47,7 @@
 }
 
 .aboutcareer>div {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: start;
     flex-direction: column;
     position: relative;
@@ -61,17 +61,13 @@
 .scrollhandlerref {
     width: 100%;
     padding: 20px 0 0 0;
-    height: 10px;
+    height: 60px;
     background-color: #e7434300;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
 }
 
 .trophy>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     gap: 40px;
     padding: 40px 0;
     flex-wrap: wrap;
@@ -96,16 +92,12 @@
 }
 
 .cashheader>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     gap: 10px;
 }
 
 .likecoment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     @include dftPlate;
     background-color: $background-color-light-l;
     outline: 1px solid $border-color;
@@ -119,9 +111,7 @@ i {
 }
 
 .coment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
 }
 
 #redcash>div {
@@ -133,33 +123,26 @@ i {
 }
 
 .headmeeting {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-around;
     width: 100%;
 }
 
 
 .headmeeting>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     flex-direction: column;
     gap: 20px;
 }
 
 
 .headmeeting>div>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     flex-direction: column;
 }
 
 .meetingrepair {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     flex-direction: column;
     gap: 40px;
     height: 280px;
@@ -243,9 +226,7 @@ i {
 }
 
 .carousel>div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     flex-direction: column;
     height: 25%;
     transform: translate(0, -50px);

@@ -8,6 +8,6 @@ export const COMENTServices = {
         return RQRequestGET(`${host}news/search/coment/?offset=${offset}&post=${idpost}&author=${author}`)
     },
     CREATEComent: (body: any) => {
-        return RQRequestPOST(`${host}news/reg/coment/`, body)
+        return RQRequestPOST(`${host}news/reg/coment/`, body).then((results) => console.log(results))
     },
 }

@@ -13,6 +13,7 @@ export const RightPanelChildren = ({ fn1, fn2, fn3 }: {
             <div className="rightpanellink" onClick={() => fn1()}>турниры</div>
             <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
             <div className="rightpanellink" onClick={() => fn2()}>команды</div>
+            <div className="rightpanellink" onClick={() => navigate(`/protokols`)}>протоколы</div>
             <div className="rightpanellink" onClick={() => fn3()}>матчи</div>
         </div>
     );
@@ -30,7 +31,6 @@ export const RightPanelDirectionChildren = ({ direction }: { direction: number }
             <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
             <div className="rightpanellink" onClick={() => navigate(`/transfers/`)}>трансферы</div>
             <div className="rightpanellink" onClick={() => navigate(`/teams/${direction}`)}>команды</div>
-            {/* <div>протоколы</div> */}
         </div>
     );
 }

@@ -9,13 +9,14 @@ import useDebounce from "../../customHooks/useDebounce";
 import { InlineTeam } from "../../components/ui/meny-time use/inlinePrezentation";
 import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { TEAMServices } from "../../services/TEAMServices";
-import { BGCs, BGDota } from "../../components/ui/meny-time use/background";
+import { BGCs } from "../../components/ui/meny-time use/background";
+import { Right } from "../../components/hoc/right";
+import { RightPanel } from "../../components/hoc/rightPanel";
 
 
 export const Teams = ({ }: {}) => {
@@ -25,12 +26,13 @@ export const Teams = ({ }: {}) => {
 
     const scrollRef: any = useRef()
     const params = useParams()
-    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset, params.iddirection), scrollRef, ['teams'])
+    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset), scrollRef, ['teams'], 10)
 
     useEffect(() => {
 
     }, [debounsedValue])
     const direction = useParams()
+    const navigate = useNavigate()
 
     ChangeTitle('команды')
     return (
@@ -46,22 +48,39 @@ export const Teams = ({ }: {}) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
                         <SmallCenterPlate>
-                            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
-                                <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
-                                    <Search value={search} setValue={setSearch} title="найти команду" />
-                                </div>
-                                <div style={{ minHeight: '500px' }}>
+                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
+                                    <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
+                                        <Search value={search} setValue={setSearch} title="найти команду" />
+                                    </div>
+                                    <div style={{ minHeight: '500px' }}>
 
-                                    {teams && teams.finaldata.map((item: any) => (
-                                        <InlineTeam item={item} key={item.id} />
-                                    ))}
+                                        {teams && teams.finaldata.map((item: any) => (
+                                            <InlineTeam item={item} key={item.id} />
+                                        ))}
 
-                                    <div ref={scrollRef} className="scrollhandlerref"></div>
+                                        <div ref={scrollRef} className="scrollhandlerref"></div>
+                                    </div>
                                 </div>
-                            </div>
                         </SmallCenterPlate>
                     </Center>
-                    <DftRPanel direction={Number(direction.iddirection)} />
+                    <Right>
+                        <RightPanel>
+                            <div className="rightcontainer">
+                                <div className="rightpanellink" onClick={() => navigate(`/tournaments/${Number(direction.iddirection)}`)}>турниры</div>
+                                <div className="rightpanellink" onClick={() => navigate(`/meetings/${Number(direction.iddirection)}`)}>матчи</div>
+                                <div className="rightpanellink" onClick={() => navigate(`/${Number(direction.iddirection)}`)}>новости</div>
+                                <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
+                                <div className="rightpanellink" onClick={() => navigate(`/transfers/`)}>трансферы</div>
+                                <div className="rightpanellink" onClick={() => navigate(`/teams/${Number(direction.iddirection)}`)}>команды</div>
+                            </div>
+                        </RightPanel>
+                        <RightPanel>
+                            <div className="rightcontainer">
+                                <div className="rightpanellink"
+                                    onClick={() => navigate(`/regteam/${Number(direction.iddirection)}`)}>регистрация команды</div>
+                            </div>
+                        </RightPanel>
+                    </Right>
                 </>
             </div>
         </>

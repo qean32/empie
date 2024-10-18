@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function (ref: any, daley: number = 50) {
+export default function (ref: any, daley: number = 200) {
     const [boolean, setBoolean] = useState<boolean>(false)
 
     const on = () => setBoolean(true)
@@ -10,7 +10,7 @@ export default function (ref: any, daley: number = 50) {
         const node: HTMLElement = ref.current
 
         const fn = () => {
-            if (node.getBoundingClientRect().top < window.innerHeight - daley) {
+            if (node.getBoundingClientRect().top < window.innerHeight + daley) {
                 on()
             }
             else {

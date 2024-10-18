@@ -27,7 +27,7 @@ export const USERServices = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ refresh: token.refresh })
-        }).then(results => results.json()).then(results => localStorage.setItem(tokenStorage, JSON.stringify(results)))
+        }).then(results => results.json()).then(results => localStorage.setItem(tokenStorage, JSON.stringify(results))).catch((error) => console.log(error))
     },
     ACCESSUser: (body: any) => {
         return fetch(`${host}users/token/access/`, {

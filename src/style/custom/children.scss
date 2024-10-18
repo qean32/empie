@@ -58,8 +58,7 @@
 }
 
 .inline-conteiner {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-between;
     transition: .4s;
     padding: 10px 10px 10px 20px;
@@ -83,16 +82,12 @@
 
 
 .inline-conteiner>span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include positioncenterbyflex;
     gap: 5px;
 }
 
 .inline-conteiner>section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include positioncenterbyflex;
     gap: 8px;
     padding: 0 20px 0 0;
 }
@@ -121,8 +116,7 @@
 }
 
 .topteam>div {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: start;
     gap: 10px;
     transition: .7s;
@@ -137,7 +131,8 @@
 }
 
 .topteam>div>div {
-    @include dftava
+    @include dftava;
+    width: 5.8vh;
 }
 
 .offer {

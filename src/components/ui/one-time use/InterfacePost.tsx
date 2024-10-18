@@ -1,11 +1,12 @@
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { colors } from "../../../functions/GiveConst"
 
 
-export const InputComent = ({ value, setValue, title }: {
+export const InputComent = ({ value, setValue, title, submit }: {
     value: string
     setValue: Function
     title: string
+    submit: React.MouseEventHandler<HTMLImageElement>
 }) => {
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,13 +17,13 @@ export const InputComent = ({ value, setValue, title }: {
     return (
         <div style={{ width: `70%`, position: 'relative' }}>
             <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} />
-            <img src="/svg/send.svg" alt="" style={{ position: 'absolute', top: '1.6vh', right: '-12vh', cursor: "pointer" }} />
+            <img src="/svg/send.svg" alt="" style={{ position: 'absolute', top: '1.6vh', right: '-12vh', cursor: "pointer" }} onClick={submit} />
         </div>
     );
 }
 
 
-export const LikeComent = ({ islike, value, fn, count }: {
+export const ShellLikeComent = ({ islike, value, fn, count }: {
     islike: boolean
     value: boolean
     fn: Function
@@ -37,3 +38,82 @@ export const LikeComent = ({ islike, value, fn, count }: {
         </div>
     );
 }
+
+
+const HOCLike =
+    ({ islike, value, fn, count }:
+        {
+            islike: boolean
+            value: boolean
+            fn: Function
+            count: number
+        }
+    ) => {
+        const [countclick, setCountclick] = useState<number>(0)
+        const controller: any = useRef(new AbortController())
+        const signal = useRef(controller?.signal)
+
+        // const controller = new AbortController();
+        // const signal = controller.signal;
+
+        useEffect(() => {
+            countclick == 1 && setCountclick(0)
+            const timeout = setTimeout(() => {
+                setCountclick(0)
+            }, 3600)
+
+            return () => {
+                clearTimeout(timeout)
+            }
+        }, [countclick])
+
+        function doSomethingAsync({ signal }: any) {
+            console.log(signal)
+            if (signal?.aborted) {
+                return Promise.reject(new DOMException('Aborted', 'AbortError'));
+            }
+
+            return new Promise((resolve, reject) => {
+                console.log('Promise Started');
+
+                // Something fake async
+                const timeout = window.setTimeout(resolve, 2500, 'Promise Resolved')
+
+                // Listen for abort event on signal
+                signal.addEventListener('abort', () => {
+                    window.clearTimeout(timeout);
+                    reject(new DOMException('Aborted', 'AbortError'));
+                });
+            });
+        }
+
+        const fn_ = () => {
+            setCountclick((prev: number) => prev + 1)
+            fn();
+
+            doSomethingAsync({ signal })
+                .then(result => {
+                    console.log(result);
+                })
+                .catch(err => {
+                    if (err.name === 'AbortError') {
+                        console.log('Promise Aborted');
+                    } else {
+                        console.log(err)
+                        console.log('Promise Rejected');
+                    }
+                });
+
+            if (countclick == 1) {
+                console.log(controller)
+                controller?.abort();
+                console.log('abort fn')
+            }
+        }
+
+        return (
+            <ShellLikeComent islike={islike} value={value} fn={fn_} count={count} />
+        );
+    }
+
+export default HOCLike;

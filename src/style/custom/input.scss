@@ -162,9 +162,7 @@ input[type=checkbox] {
 }
 
 .inputfile>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include positioncenterbyflex;
 }
 
 .smallinput>div {
@@ -182,11 +180,6 @@ select {
     width: 100%;
     min-height: 22px;
 }
-
-
-
-
-
 
 input[type=range] {
     -webkit-appearance: none;
@@ -211,7 +204,7 @@ input[type=range] {
     position: relative;
 }
 
-// input[type=range]::after {
+// ::-webkit-slider-thumb::after {
 //     content: '|||';
 //     font-size: 10px;
 //     color: $background-color-light-l;

@@ -17,6 +17,7 @@ import ValidateEmail from "../../functions/ValidateEmail";
 import ValidatePassword from "../../functions/ValidatePassword";
 import ValidateRuName from "../../functions/ValidateRuName";
 import { useNavigate } from "react-router";
+import { userwashere } from "./news";
 
 
 export const Registration = ({ }: {}) => {
@@ -65,6 +66,10 @@ export const Registration = ({ }: {}) => {
             RegistrationRQPlayer.mutate().then(() => navigate(`/profile/${id}`))
         }
     }, [id])
+
+    useEffect(() => {
+        localStorage.setItem(userwashere, JSON.stringify({ userwashere: true }))
+    }, [])
 
     const Registration = () => {
         if (repassword == password) {
