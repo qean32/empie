@@ -8,15 +8,15 @@ export const MainLoader = () => {
     const up = useBoolean(false)
 
     useEffect(() => {
-        const int = setInterval(() => {
-            if (up.boolean) { setPoints(prev => prev + '.') }
-            if (!up.boolean) { setPoints(prev => prev.slice(0, -1)) }
+        const interval = setInterval(() => {
+            up.boolean && setPoints(prev => prev + '.')
+            !up.boolean && setPoints(prev => prev.slice(0, -1))
             if (points == '.') { up.on(); return }
             if (points == '..') { up.off(); return }
         }, 200)
 
         return () => {
-            clearInterval(int)
+            clearInterval(interval)
         }
     }, [points])
     return (

@@ -11,11 +11,11 @@ export default (fetch_: Function, ref: any, RQkey: string[], step: number = 4, o
 
 
     useEffect(() => {
-        if (RQData.data) { setFinalData((prev: any) => [...prev, ...RQData.data?.results]) }
+        RQData.data && setFinalData((prev: any) => [...prev, ...RQData.data?.results])
     }, [RQData.data])
 
     useEffect(() => {
-        if (HandlerScroll && RQData?.data.next) {
+        if (HandlerScroll && RQData?.data?.next) {
             setTimeout(() =>
                 setOffset((prev: number) => prev + step)
                 , 600)

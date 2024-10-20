@@ -57,6 +57,7 @@ export const EditProfileChild = ({ }: {}) => {
         user_.finaldata[0] && fn()
         console.log(user_.finaldata[0])
     }, [user_.finaldata[0]])
+    
     return (
         <>
             <SmallCenterPlate>

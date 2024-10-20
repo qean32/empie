@@ -16,11 +16,10 @@ export const Header = () => {
     const userinfo = useRequest(() => USERServices.GETUser(0, user.user_id), ['userinfo'])
 
     const avaClickHandler = () => {
-        if (localStorage.getItem(tokenStorage)) {
+        localStorage.getItem(tokenStorage) ?
             navigate(`/profile/${userinfo.finaldata[0]?.id}`)
-        } else {
+            :
             navigate('/registration')
-        }
     }
 
     return (

@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useContext } from "react"
 import { colors } from "../../../functions/GiveConst"
+import { LIKEServices } from "../../../services/LIKEServices"
+import { SomeContext } from "../../../context"
 
 
 export const InputComent = ({ value, setValue, title, submit }: {
@@ -23,24 +25,7 @@ export const InputComent = ({ value, setValue, title, submit }: {
 }
 
 
-export const ShellLikeComent = ({ islike, value, fn, count }: {
-    islike: boolean
-    value: boolean
-    fn: Function
-    count: number
-}) => {
-    return (
-        <div className="likecoment" style={!value ? { transition: '.2s' } : { outline: `2px solid ${colors.maincolor}`, transition: '.4s' }} onClick={() => fn()}>
-            {
-                islike ? <>{!value ? <img src="/svg/like.svg" /> : <img src="/svg/like_.svg" />}</> : <>{!value ? <img src="/svg/coment.svg" /> : <img src="/svg/coment_.svg" />}</>
-            }
-            <p style={!value ? { transition: '.4s' } : { color: colors.maincolor, transition: '.4s' }}> {count} </p>
-        </div>
-    );
-}
-
-
-const HOCLike =
+export const ShellLikeComent =
     ({ islike, value, fn, count }:
         {
             islike: boolean
@@ -49,71 +34,43 @@ const HOCLike =
             count: number
         }
     ) => {
-        const [countclick, setCountclick] = useState<number>(0)
-        const controller: any = useRef(new AbortController())
-        const signal = useRef(controller?.signal)
-
-        // const controller = new AbortController();
-        // const signal = controller.signal;
-
-        useEffect(() => {
-            countclick == 1 && setCountclick(0)
-            const timeout = setTimeout(() => {
-                setCountclick(0)
-            }, 3600)
-
-            return () => {
-                clearTimeout(timeout)
-            }
-        }, [countclick])
-
-        function doSomethingAsync({ signal }: any) {
-            console.log(signal)
-            if (signal?.aborted) {
-                return Promise.reject(new DOMException('Aborted', 'AbortError'));
-            }
-
-            return new Promise((resolve, reject) => {
-                console.log('Promise Started');
-
-                // Something fake async
-                const timeout = window.setTimeout(resolve, 2500, 'Promise Resolved')
-
-                // Listen for abort event on signal
-                signal.addEventListener('abort', () => {
-                    window.clearTimeout(timeout);
-                    reject(new DOMException('Aborted', 'AbortError'));
-                });
-            });
-        }
-
-        const fn_ = () => {
-            setCountclick((prev: number) => prev + 1)
-            fn();
-
-            doSomethingAsync({ signal })
-                .then(result => {
-                    console.log(result);
-                })
-                .catch(err => {
-                    if (err.name === 'AbortError') {
-                        console.log('Promise Aborted');
-                    } else {
-                        console.log(err)
-                        console.log('Promise Rejected');
-                    }
-                });
-
-            if (countclick == 1) {
-                console.log(controller)
-                controller?.abort();
-                console.log('abort fn')
-            }
-        }
-
         return (
-            <ShellLikeComent islike={islike} value={value} fn={fn_} count={count} />
+            <div className="likecoment" style={!value ? { transition: '.2s' } : { outline: `2px solid ${colors.maincolor}`, transition: '.4s' }} onClick={() => fn()}>
+                {
+                    islike ? <>{!value ? <img src="/svg/like.svg" /> : <img src="/svg/like_.svg" />}</> : <>{!value ? <img src="/svg/coment.svg" /> : <img src="/svg/coment_.svg" />}</>
+                }
+                <p style={!value ? { transition: '.4s' } : { color: colors.maincolor, transition: '.4s' }}> {count} </p>
+            </div>
         );
     }
+
+
+const HOCLike = ({ islike, value, fn, count, likeid }:
+    {
+        islike: boolean
+        value: boolean
+        fn: Function
+        count: number
+        likeid: number
+    }
+) => {
+
+    const { user }: any = useContext(SomeContext)
+
+    const fn_ = () => {
+        fn();
+
+        value ?
+            LIKEServices.CREATELike({ user: user.user_id })
+            :
+            LIKEServices.DELETELike(likeid)
+    }
+
+    // позже заменить на запрос с задержкой с возможнотью отмены
+
+    return (
+        <ShellLikeComent islike={islike} value={value} fn={fn_} count={count} />
+    );
+}
 
 export default HOCLike;

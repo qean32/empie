@@ -28,10 +28,10 @@ export const InputText = ({ title, value, setValue, max, validate = true }: {
     }, [value])
 
     const check = () => {
-        if (value != '') { color.on() } else { color.off() }
+        value != '' ? color.on() : color.off()
 
         if (validate)
-            if (!ValidateRuName(value)) { valide.on() } else { valide.off() }
+            ValidateRuName(value) ? valide.off() : valide.on()
     }
 
     const id_ = GenerateId()
@@ -67,12 +67,12 @@ export const InputPassword = ({ title, value, setValue }: {
     }
 
     useEffect(() => {
-        if (value != '') check()
+        value != '' && check()
     }, [value])
 
     const check = () => {
-        if (value != '') { color.on() } else { color.off() }
-        if (!ValidatePassword(value)) { valide.on() } else { valide.off() }
+        value != '' ? color.on() : color.off()
+        ValidatePassword(value) ? valide.on() : valide.off()
     }
 
     const id_ = GenerateId()
@@ -324,12 +324,12 @@ export const InputText_ = ({ title, value, setValue, max, word }: {
     }
 
     useEffect(() => {
-        if (value != '') check()
+        value != '' && check()
     }, [value])
 
     const check = () => {
-        if (value != '') { color.on() } else { color.off() }
-        if (!ValidateWordToWord(value, word)) { valide.on() } else { valide.off() }
+        value != '' ? color.on() : color.off()
+        ValidateWordToWord(value, word) ? valide.on() : valide.off()
     }
 
     const id_ = GenerateId()

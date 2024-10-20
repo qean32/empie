@@ -4,8 +4,8 @@ const Cezar = () => {
     return (
         <SmallCenterPlate>
             <div className="dftcontainer" style={{
-                justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
-                backgroundSize: '40%', backgroundRepeat: 'no-repeat', backgroundPosition: '106%'
+                justifyContent: 'start', backgroundImage: 'url(/svg/dragon-fire.svg)',
+                backgroundSize: '30%', backgroundRepeat: 'no-repeat', backgroundPosition: '95%',
             }}>
                 <div style={{ margin: '10px 40px' }}>
                     <p style={{ fontSize: '30px' }}>СТАНЬ</p>

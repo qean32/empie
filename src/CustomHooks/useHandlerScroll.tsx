@@ -10,12 +10,10 @@ export default function (ref: any, daley: number = 200) {
         const node: HTMLElement = ref.current
 
         const fn = () => {
-            if (node.getBoundingClientRect().top < window.innerHeight + daley) {
+            node.getBoundingClientRect().top < window.innerHeight + daley ?
                 on()
-            }
-            else {
+                :
                 off()
-            }
         }
 
         window.addEventListener('scroll', fn)
