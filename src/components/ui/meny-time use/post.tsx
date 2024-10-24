@@ -8,6 +8,7 @@ import { LIKEServices } from "../../../services/LIKEServices";
 import { SomeContext } from "../../../context";
 import { useMutation } from "react-query";
 import { USERServices } from "../../../services/USERServices";
+import useUserInfo from "../../../customHooks/useUserInfo";
 
 export const Post = ({ item }: { item: any }) => {
     const { user }: any = useContext(SomeContext)
@@ -55,7 +56,8 @@ export const Post = ({ item }: { item: any }) => {
                     <p> {item?.content} </p>
                 </div>
                 <div style={{ display: 'flex', gap: '15px', justifyContent: 'end', padding: '0 -20px 0 0' }}>
-                    <HOCLike islike={true} value={ulike.boolean} fn={LikeHandler} count={countLike} likeid={like?.finaldata[0]?.id} />
+                    <HOCLike islike={true} value={ulike.boolean}
+                        fn={LikeHandler} count={countLike} likeid={like?.finaldata[0]?.id} postid={item?.id} />
                     <ShellLikeComent islike={false} value={ucoment.boolean} fn={viewcoments.SwapFn} count={coments.finaldata.length} />
                 </div>
             </div>
@@ -83,9 +85,7 @@ const Coment = ({ item }: { item: any }) => {
 }
 
 const Coments = ({ itemid, viewcoments, coments_ }: { itemid: number, viewcoments: any, coments_: any }) => {
-    const { user }: any = useContext(SomeContext)
-
-    const userinfo = useRequest(() => USERServices.GETUser(0, user.user_id), ['userinfo'])
+    const { userinfo }: any = useUserInfo()
 
     const SubmitHandler = (e: any) => {
         e.preventDefault()
@@ -93,14 +93,10 @@ const Coments = ({ itemid, viewcoments, coments_ }: { itemid: number, viewcoment
     }
 
     const createcomment = useMutation('createcomment',
-        () => COMENTServices.CREATEComent({ author: user?.user_id, content: comentValue, post: itemid })
+        () => COMENTServices.CREATEComent({ author: userinfo?.id, content: comentValue, post: itemid })
             .then(() => {
                 coments_.setFinalData((prev: any) => [...prev, {
-                    author: {
-                        first_name: userinfo?.finaldata[0].first_name,
-                        last_name: userinfo?.finaldata[0].last_name,
-                        ava: userinfo?.finaldata[0].ava
-                    }, content: comentValue, post: itemid
+                    author: userinfo, content: comentValue, post: itemid
                 }]); setComentValue('')
             }))
 

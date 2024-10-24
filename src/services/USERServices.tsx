@@ -40,5 +40,6 @@ export const USERServices = {
     },
     LOGOUTUser: () => {
         localStorage.removeItem(tokenStorage)
+        location.reload()
     }
 }

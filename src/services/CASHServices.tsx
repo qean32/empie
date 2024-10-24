@@ -1,6 +1,7 @@
 import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
+import { tokenStorage } from "./USERServices"
 
 export const CASHServices = {
     GETCash(offset?: number) {
@@ -17,7 +18,7 @@ export const CASHServices = {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Autorization': `JWT ${localStorage.getItem('token')}`
+                'Autorization': `JWT ${localStorage.getItem(tokenStorage)}`
             }
         }).then(results => results.json())
     }

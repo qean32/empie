@@ -12,12 +12,25 @@ import { Center } from "../../components/hoc/center";
 import { ProfileChild } from "../../childrens/pages/main/profile";
 import { useParams } from "react-router";
 import { USERServices } from "../../services/USERServices";
+import useRequest from "../../customHooks/useRequest";
+import { TEAMServices } from "../../services/TEAMServices";
+import { useMutation } from "react-query";
+import { OFFERServices } from "../../services/OFFERServices";
 
 
 export const Profile = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
     const params = useParams()
     const { user }: any = useContext(SomeContext)
+    const getteamCS = user?.user_id ? useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, 1), ['getteamdirector__']) : null
+    const getteamDOTA = user?.user_id ? useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, 2), ['getteamdirector_']) : null
+
+    const crateofferDOTA = useMutation(() => OFFERServices.CREATEOffer({ team: getteamDOTA?.finaldata[0]?.id, direction: 2, user: params.id })
+        .then(() => location.reload())
+    )
+    const crateofferCS = useMutation(() => OFFERServices.CREATEOffer({ team: getteamCS?.finaldata[0]?.id, direction: 2, user: params.id })
+        .then(() => location.reload())
+    )
     ChangeTitle('пользователь')
     return (
         <>
@@ -34,6 +47,16 @@ export const Profile = ({ }: {}) => {
                         <RightPanel>
                             <div className="rightcontainer">
                                 {params.id == user?.user_id && <div className="rightpanellink" onClick={USERServices.LOGOUTUser}>выйти</div>}
+                                {
+                                    getteamCS && getteamCS.finaldata[0] &&
+                                    params.id != getteamCS?.finaldata[0]?.director?.id &&
+                                    <div className="rightpanellink" onClick={() => crateofferCS.mutate()}>инвайт CS</div>
+                                }
+                                {
+                                    getteamDOTA && getteamDOTA.finaldata[0] &&
+                                    params.id != getteamCS?.finaldata[0]?.director?.id &&
+                                    <div className="rightpanellink" onClick={() => crateofferDOTA.mutate()}>инвайт DOTA</div>
+                                }
                             </div>
                         </RightPanel>
                     </Right>

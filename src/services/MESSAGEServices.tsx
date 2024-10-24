@@ -7,6 +7,6 @@ export const MESSAGEServices = {
         return RQRequestPOST(`${host}chat/reg/message/`, body)
     },
     GETMessage: (offset: any) => {
-        return RQRequestGET(`${host}chat/search/message/?offset=${offset}`)
+        return RQRequestGET(`${host}chat/search/message/?offset=${offset}&limit=14`)
     },
 }

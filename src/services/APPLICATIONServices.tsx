@@ -12,6 +12,6 @@ export const APPLICATIONServices = {
         return RQRequestPOST(`${host}unification/reg/application/tournament/`, body)
     },
     UPDATEApplication: (body: any, id: number) => {
-        return RQRequestPATCH(`${host}update/application/tournament/${id}/`, body)
+        return RQRequestPATCH(`${host}unification/update/application/tournament/${id}/`, body)
     }
 }

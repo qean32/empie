@@ -72,7 +72,7 @@ export const InputPassword = ({ title, value, setValue }: {
 
     const check = () => {
         value != '' ? color.on() : color.off()
-        ValidatePassword(value) ? valide.on() : valide.off()
+        !ValidatePassword(value) ? valide.on() : valide.off()
     }
 
     const id_ = GenerateId()

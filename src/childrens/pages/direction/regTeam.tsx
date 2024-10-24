@@ -15,8 +15,8 @@ export const RegTeamChild = ({ }: {}) => {
     const [idnewteam, setIdnewTeam] = useState<number>()
     const params = useParams()
     const navigate = useNavigate()
-    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), idnewteam, true))
-    const registration = useMutation(() => (TEAMServices.CREATETeam({ name, detail, director: user.user_id, direction: params.iddirection }))
+    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), idnewteam, true).then(() => navigate(`/team/${idnewteam}`)))
+    const registration = useMutation(() => (TEAMServices.CREATETeam({ name, status, director: user.user_id, direction: params.iddirection }))
         .then((results: any) => { setIdnewTeam(results?.id) }),
         {
             // onSuccess(data) {
@@ -31,7 +31,7 @@ export const RegTeamChild = ({ }: {}) => {
     const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
 
     const regHandler = () => {
-        (name.length > 1 && name.length < 15 && detail.length > 1 && detail.length < 43) ?
+        (name.length > 1 && name.length < 15 && status.length > 1 && status.length < 43) ?
             registration.mutate()
             :
             alert("невалидные данные")
@@ -41,7 +41,6 @@ export const RegTeamChild = ({ }: {}) => {
         const fn = () => {
             regtransfer.mutate()
             establishFile.mutate()
-            navigate(`/team/${idnewteam}`)
         }
         idnewteam && fn()
     }, [idnewteam])
@@ -56,7 +55,7 @@ export const RegTeamChild = ({ }: {}) => {
 
 
     const [name, setName] = useState<string>('')
-    const [detail, setDetail] = useState<string>('')
+    const [status, SetStatus] = useState<string>('')
 
     const [logo, setLogo] = useState<any>()
     const [background, setBackground] = useState<any>()
@@ -71,7 +70,7 @@ export const RegTeamChild = ({ }: {}) => {
                         </div>
 
                         <div style={{ width: '80%' }}>
-                            <InputText title={"статус"} value={detail} setValue={setDetail} max={42} validate={false} />
+                            <InputText title={"статус"} value={status} setValue={SetStatus} max={42} validate={false} />
                         </div>
 
                         <span>

@@ -46,13 +46,13 @@ const PlayerInfo = () => {
             <div className="dftcontainer" style={{ flexDirection: 'column', alignItems: 'start' }}>
                 <div className="aboutcareer" style={{ justifyContent: 'center', padding: '15px 0 0 30px' }}>
                     <div>
-                        <div onClick={() => navigate(`/team/${player?.finaldata[0]?.team_cs?.id}`)}
+                        <div onClick={() => player?.finaldata[0]?.team_cs && navigate(`/team/${player?.finaldata[0]?.team_cs?.id}`)}
                             className="teamimg ava"
                             style={{ backgroundImage: `url(${player?.finaldata[0]?.team_cs?.logo})` }}></div>
                         <img src={player?.finaldata[0]?.rank_cs?.image} alt="" className="rankcs btnabsolute" />
                     </div>
                     <div>
-                        <div onClick={() => navigate(`/team/${player?.finaldata[0]?.team_dota?.id}`)}
+                        <div onClick={() => player?.finaldata[0]?.team_dota && navigate(`/team/${player?.finaldata[0]?.team_dota?.id}`)}
                             className="teamimg ava"
                             style={{ backgroundImage: `url(${player?.finaldata[0]?.team_dota?.logo})` }}></div>
                         <img src={player?.finaldata[0]?.rank_dota?.image} alt="" className="rankdota btnabsolute" style={{ transform: 'translate(0, 8px)' }} />

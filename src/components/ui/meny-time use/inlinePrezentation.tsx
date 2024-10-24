@@ -7,7 +7,7 @@ export const InlineUser = ({ item }: { item: any }) => {
     const navigate = useNavigate()
 
     if (item?.user) return (
-        <div className="inline-conteiner" onClick={() => navigate(`/profile/${item?.id}`)}>
+        <div className="inline-conteiner" onClick={() => navigate(`/profile/${item?.user?.id}`)}>
             <div><div className="ava" style={{ backgroundImage: `url(${item?.user?.ava})` }}></div><p>{item?.user?.first_name} {item?.user?.last_name}</p></div>
             <span>
                 <img src={`${item?.rank_cs?.image}`} alt="" className="rankcs" style={{ width: '36px' }} />

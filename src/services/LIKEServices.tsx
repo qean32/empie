@@ -2,6 +2,7 @@ import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
 import { numsrting } from "../models/numsrting"
+import { tokenStorage } from "./USERServices"
 
 export const LIKEServices = {
     GETLike: (idpost: number, author: numsrting = '') => {
@@ -15,7 +16,7 @@ export const LIKEServices = {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Autorization': `JWT ${localStorage.getItem('token')}`
+                'Authorization': `JWT ${JSON.parse(localStorage.getItem(tokenStorage) as any).access}`
             }
         }).then(rezults => rezults.json)
     }

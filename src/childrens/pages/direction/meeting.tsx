@@ -43,7 +43,7 @@ export const MeetingChild = ({ }: {}) => {
                         </div>
                     </div>
                 </SmallCenterPlate>
-                <AdminMeeting />
+                <AdminMeeting idmeeting={0} />
             </>
         }
         </>
@@ -75,7 +75,7 @@ export const Match = ({ item }: { item: any }) => {
                     </div>
                 </div>
             </SmallCenterPlate>
-            <AdminMeetingWin />
+            <AdminMeetingWin teams={undefined} idmeeting={0} />
         </>
     );
 }

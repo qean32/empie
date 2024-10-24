@@ -74,11 +74,12 @@ const Players = memo(({ teamDirection, idDirector }: { teamDirection: number, id
         { team_cs: null }
         :
         { team_dota: null }
-        , user?.user_id))
+        , user?.user_id)
+        .then(() => regtransfer.mutate()))
 
     const players = useRequest(() => PLAYERServices.GETPlayer(0,
-        teamDirection == 1 ? '' : params.iddirection,
-        teamDirection == 2 ? '' : params.iddirection
+        teamDirection == 1 ? '' : params.id,
+        teamDirection == 2 ? '' : params.id
     ), ['playersteam'])
 
     return (
@@ -88,7 +89,12 @@ const Players = memo(({ teamDirection, idDirector }: { teamDirection: number, id
                     idDirector != item?.user?.id && <InlineUser item={item} key={item.id} />
                 ))}
             </div>
-            <ButtonDisabled title={"покинуть команду"} function_={exitteam.mutate().then(() => regtransfer.mutate())} />
+            {
+                idDirector != user?.user_id &&
+                <div style={{ width: '70%', padding: '0 0 0 20px' }}>
+                    <ButtonDisabled title={"покинуть команду"} function_={() => exitteam.mutate()} />
+                </div>
+            }
         </div>
     );
 })

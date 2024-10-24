@@ -2,22 +2,18 @@ import { EmpieLogo } from "./Logo"
 import OnlineHandler from "../one-time use/onlineHandler";
 import { useNavigate } from "react-router";
 import useBoolean from "../../../customHooks/useBoolean";
-import { useContext } from "react";
-import { SomeContext } from "../../../context";
-import useRequest from "../../../customHooks/useRequest";
-import { tokenStorage, USERServices } from "../../../services/USERServices";
+import { tokenStorage } from "../../../services/USERServices";
+import useUserInfo from "../../../customHooks/useUserInfo";
 
 export const Header = () => {
 
     const navigate = useNavigate()
     const notification = useBoolean(false)
-
-    const { user }: any = useContext(SomeContext)
-    const userinfo = useRequest(() => USERServices.GETUser(0, user.user_id), ['userinfo'])
+    const { userinfo }: any = useUserInfo()
 
     const avaClickHandler = () => {
         localStorage.getItem(tokenStorage) ?
-            navigate(`/profile/${userinfo.finaldata[0]?.id}`)
+            navigate(`/profile/${userinfo?.id}`)
             :
             navigate('/registration')
     }
@@ -35,8 +31,11 @@ export const Header = () => {
                     </div>
                 </div>
                 <div onClick={avaClickHandler} style={{ cursor: 'pointer' }}>
-                    {localStorage.getItem(tokenStorage) ? <p>{userinfo.finaldata[0]?.first_name} {userinfo.finaldata[0]?.last_name}</p> : <p>войти</p>}
-                    <div className="headerava" style={{ backgroundImage: `url(${userinfo?.finaldata[0]?.ava})` }}></div>
+                    {localStorage.getItem(tokenStorage) ?
+                        <p>{userinfo?.first_name} {userinfo?.last_name}</p>
+                        :
+                        <p>войти</p>}
+                    <div className="headerava" style={{ backgroundImage: `url(${userinfo?.ava})` }}></div>
                 </div>
             </div>
         </header>

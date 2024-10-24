@@ -18,6 +18,7 @@ import ValidatePassword from "../../functions/ValidatePassword";
 import ValidateRuName from "../../functions/ValidateRuName";
 import { useNavigate } from "react-router";
 import { userwashere } from "./news";
+import { PLAYERServices } from "../../services/PLAYERServices";
 
 
 export const Registration = ({ }: {}) => {
@@ -55,16 +56,23 @@ export const Registration = ({ }: {}) => {
     }
 
     const [id, setId] = useState<number>()
-    const RegistrationRQ: any = useMutation(['reg'], () => USERServices.CREATEUser({ firstname, lastname, password, email }).then((results: any) => setId(results?.id)))
-    const RegistrationRQPlayer: any = useMutation(['regplayer'], () => USERServices.CREATEUser({ name: `${firstname} ${lastname}`, }))
-    const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email }))
+
+    const RegistrationRQ: any = useMutation(['reg'],
+        () => USERServices.CREATEUser({ first_name: firstname, last_name: lastname, password, email })
+            .then((results: any) => setId(results?.id)))
+
+    const RegistrationRQPlayer: any = useMutation(['regplayer'],
+        () => PLAYERServices.CREATEPlayer({ name: `${firstname} ${lastname}`, user: id }))
+    const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email })
+        .then(() => navigate('/')))
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (id) {
+        const fn = () => {
             LoginRQ.mutate()
-            RegistrationRQPlayer.mutate().then(() => navigate(`/profile/${id}`))
+            RegistrationRQPlayer.mutate()
         }
+        id && fn()
     }, [id])
 
     useEffect(() => {
@@ -90,7 +98,7 @@ export const Registration = ({ }: {}) => {
                     <span style={{ position: 'absolute', right: '2vh', top: '1vh' }} onClick={modal.SwapFn}>
                         <Cross />
                     </span>
-                    <Repair size={24} />
+                    <Repair />
                     <div style={{ width: '50%' }}>
                         <InputPassword value={repassword} setValue={setRePassword} title="повторите пароль" />
                     </div>

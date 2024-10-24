@@ -1,8 +1,8 @@
 import { host } from "../functions/GiveConst"
 import RQRequestGET from "../functions/RQRequestGET"
-import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 import { numsrting } from "../models/numsrting"
+import { tokenStorage } from "./USERServices"
 
 export const OFFERServices = {
     GETOffer: (id?: numsrting) => {
@@ -14,7 +14,13 @@ export const OFFERServices = {
     GETOfferShort: (offset?: number) => {
         return RQRequestGET(`${host}unification/search/offers/short/?offseet=${offset}`)
     },
-    DELETEOffer: (body: any, id: number) => {
-        return RQRequestPATCH(`${host}unification/delete/offers/${id}/`, body)
+    DELETEOffer: (id: number) => {
+        return fetch(`${host}unification/update/offers/${id}/`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Autorization': `JWT ${localStorage.getItem(tokenStorage)}`
+            }
+        }).then(results => results.json())
     }
 }

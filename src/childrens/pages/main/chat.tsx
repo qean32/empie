@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react"
+import React, { useContext, useEffect, useRef, useState } from "react"
 import { colors } from "../../../functions/GiveConst"
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate"
 import { InputComent } from "../../../components/ui/one-time use/InterfacePost"
 import { MESSAGEServices } from "../../../services/MESSAGEServices"
-import { useQuery } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import { useNavigate } from "react-router"
+import { SomeContext } from "../../../context"
+import useUserInfo from "../../../customHooks/useUserInfo"
 
 
 
@@ -13,6 +15,7 @@ export const ChatChild = ({ }: {}) => {
     const chatRef: any = useRef()
     const handlerRef: any = useRef()
     const [offset, setOffset] = useState<number>(0)
+    const [message, setMessage] = useState<string>('')
     const RQdata = useQuery(['messages', offset], () => MESSAGEServices.GETMessage(offset))
 
     useEffect(() => {
@@ -52,6 +55,16 @@ export const ChatChild = ({ }: {}) => {
         }
     }, [])
 
+    const { userinfo }: any = useUserInfo()
+    const createmessage = useMutation(() => MESSAGEServices.CREATEMessage({ author: userinfo.id, content: message }))
+
+    const SubmitHandler = (e: any) => {
+        e.preventDefault()
+        message && createmessage.mutate()
+        setMesseges((prev: any) => [{ author: userinfo, content: message }, ...prev])
+        setMessage('')
+    }
+
     return (
         <>
             <CenterPlate>
@@ -65,7 +78,9 @@ export const ChatChild = ({ }: {}) => {
 
                             <div ref={handlerRef} className="scrollhandlerref"></div>
                         </div>
-                        <form style={{ padding: '20px 0 0 20px' }}><InputComent value={""} setValue={() => undefined} title={"ваше сообщение.."} /></form>
+                        <form style={{ padding: '20px 0 0 20px' }}
+                            onSubmit={SubmitHandler}>
+                            <InputComent value={message} setValue={setMessage} title={"ваше сообщение.."} submit={SubmitHandler} /></form>
                     </div>
                 </div>
             </CenterPlate>
@@ -76,12 +91,12 @@ export const ChatChild = ({ }: {}) => {
 
 export const Message = ({ item }: { item: any }) => {
     const navigate = useNavigate()
-    console.log(item)
+    const { user }: any = useContext(SomeContext)
     return (
-        <div className="message" style={item.isorg ? { transform: 'scale(-1, 1)' } : {}}>
+        <div className="message" style={item.author?.id == user?.user_id ? { transform: 'scale(-1, 1)' } : {}}>
             <div className="ava" style={{ backgroundImage: `url(${item?.author?.ava})` }}
                 onClick={() => navigate(`/profile/${item?.author?.id}`)}></div>
-            <div className="messagecontext" style={item.isorg ? { transform: 'scale(-1, 1)' } : {}}>
+            <div className="messagecontext" style={item.author?.id == user?.user_id ? { transform: 'scale(-1, 1)' } : {}}>
                 <p style={{ color: `${colors.maincolor}`, transform: 'translate(0, -10px)', cursor: 'pointer' }}
                     onClick={() => navigate(`/profile/${item?.author?.id}`)}>
                     {item?.author?.first_name} {item?.author?.first_name}

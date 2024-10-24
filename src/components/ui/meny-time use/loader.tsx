@@ -35,7 +35,7 @@ export const MainLoader = () => {
 
 export const Loader = () => {
     return (
-        <div style={{ transform: 'translate(-1vh, -2.4vh)' }}>
+        <div className="adaptiveloader">
             <span className="loader"></span>
         </div>
     )
@@ -43,7 +43,7 @@ export const Loader = () => {
 
 export const LoaderWhite = () => {
     return (
-        <div style={{ transform: 'translate(-1vh, -2.4vh)' }}>
+        <div className="adaptiveloader">
             <span className="loader loaderWhite"></span>
         </div>
     )

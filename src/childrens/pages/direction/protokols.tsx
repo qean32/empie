@@ -9,7 +9,7 @@ export const ProtokolsChild = ({ }: {}) => {
                 <div className="dftcontainer">
                     <span style={{ padding: '0 30px' }}>
                         <p style={{ margin: '10px 0 30px 0' }}>протоколы проведения встреч и организации турниров</p>
-                        <a href="/svg/word.svg" download={''}>
+                        <a href="/img/___.pdf" download={''}>
                             <img src="/svg/word.svg" alt="" />
                         </a>
                     </span>

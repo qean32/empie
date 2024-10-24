@@ -6,8 +6,8 @@ import { numsrting } from "../models/numsrting"
 import { tokenStorage } from "./USERServices"
 
 export const TEAMServices = {
-    GETTeam: (offset?: number, id?: numsrting, director: numsrting = '') => {
-        return RQRequestGET(`${host}unification/search/team/?offset=${offset}&id=${id}&director=${director}`)
+    GETTeam: (offset?: number, id?: numsrting, director: numsrting = '', direction: numsrting = '') => {
+        return RQRequestGET(`${host}unification/search/team/?offset=${offset}&id=${id}&director=${director}&direction=${direction}`)
     },
     CREATETeam: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/team/`, body)
