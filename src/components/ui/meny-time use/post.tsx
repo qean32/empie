@@ -7,7 +7,6 @@ import { COMENTServices } from "../../../services/COMENTServices";
 import { LIKEServices } from "../../../services/LIKEServices";
 import { SomeContext } from "../../../context";
 import { useMutation } from "react-query";
-import { USERServices } from "../../../services/USERServices";
 import useUserInfo from "../../../customHooks/useUserInfo";
 
 export const Post = ({ item }: { item: any }) => {
@@ -50,9 +49,12 @@ export const Post = ({ item }: { item: any }) => {
         <div className="dftcontainer" style={{ flexDirection: 'column' }}>
             <div className="post" style={{ padding: '20px' }}>
                 <div>
-                    <div className="postsimg"><div className="ava" onClick={() => navigate('/profile/2')}></div><img src="" alt="" className="postimg" /></div>
+                    <div className="postsimg">
+                        <div className="ava" onClick={() => navigate('/profile/2')} style={{backgroundImage: `url(${item?.author?.ava})`}}></div>
+                        {item?.image && <img src={item?.image} alt="" style={{ maxWidth: '80%', borderRadius: '2px' }} />}
+                    </div>
                 </div>
-                <div style={{ padding: '0 15px' }}>
+                <div style={{ padding: '0 5px' }}>
                     <p> {item?.content} </p>
                 </div>
                 <div style={{ display: 'flex', gap: '15px', justifyContent: 'end', padding: '0 -20px 0 0' }}>

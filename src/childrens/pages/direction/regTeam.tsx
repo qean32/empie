@@ -8,12 +8,13 @@ import { SomeContext } from "../../../context";
 import { useNavigate, useParams } from "react-router";
 import { TRANSFERServices } from "../../../services/TRANSFERServices copy";
 import useRequest from "../../../customHooks/useRequest";
+import { PLAYERServices } from "../../../services/PLAYERServices";
 
 
 export const RegTeamChild = ({ }: {}) => {
     const { user }: any = useContext(SomeContext)
     const [idnewteam, setIdnewTeam] = useState<number>()
-    const params = useParams()
+    const params: any = useParams()
     const navigate = useNavigate()
     const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), idnewteam, true).then(() => navigate(`/team/${idnewteam}`)))
     const registration = useMutation(() => (TEAMServices.CREATETeam({ name, status, director: user.user_id, direction: params.iddirection }))
@@ -24,6 +25,14 @@ export const RegTeamChild = ({ }: {}) => {
             //     console.log(data)
             // },
         }
+    )
+
+    const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
+        params.iddirection == 2 ?
+            { team_dota: idnewteam }
+            :
+            { team_cs: idnewteam }
+        , user?.user_id)
     )
 
     const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id), ['getteamdirector'])
@@ -40,6 +49,7 @@ export const RegTeamChild = ({ }: {}) => {
     useEffect(() => {
         const fn = () => {
             regtransfer.mutate()
+            acceptance.mutate()
             establishFile.mutate()
         }
         idnewteam && fn()
@@ -65,6 +75,11 @@ export const RegTeamChild = ({ }: {}) => {
             <SmallCenterPlate>
                 <div className="dftcontainer" style={{ minHeight: '500px', justifyContent: 'start', padding: '40px 0' }}>
                     <form className="edit">
+                        {params.iddirection == 2 ?
+                            <p>регистрация команды DOTA</p>
+                            :
+                            <p>регистрация команды CS</p>
+                        }
                         <div style={{ width: '50%' }}>
                             <InputText title={"название"} value={name} setValue={setName} max={14} validate={false} />
                         </div>

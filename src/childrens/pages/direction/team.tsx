@@ -75,7 +75,9 @@ const Players = memo(({ teamDirection, idDirector }: { teamDirection: number, id
         :
         { team_dota: null }
         , user?.user_id)
-        .then(() => regtransfer.mutate()))
+        .then(() => regtransfer.mutate())
+        .then(() => location.reload())
+    )
 
     const players = useRequest(() => PLAYERServices.GETPlayer(0,
         teamDirection == 1 ? '' : params.id,
@@ -91,6 +93,7 @@ const Players = memo(({ teamDirection, idDirector }: { teamDirection: number, id
             </div>
             {
                 idDirector != user?.user_id &&
+                players.finaldata.find((player: any) => player?.user?.id == user?.user_id) &&
                 <div style={{ width: '70%', padding: '0 0 0 20px' }}>
                     <ButtonDisabled title={"покинуть команду"} function_={() => exitteam.mutate()} />
                 </div>

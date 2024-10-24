@@ -145,12 +145,11 @@ input[type=time]::-webkit-calendar-picker-indicator {
 
 .checkbox_ {
     position: absolute;
-    transform: translate(1vh, 0);
+    transform: translate(1vh, -6px);
 }
 
 input[type=checkbox] {
-    height: 10px;
-    width: 11px;
+    width: 12px;
     border: 2px solid $background-color-dark;
 }
 

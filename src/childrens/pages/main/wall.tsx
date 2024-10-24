@@ -1,17 +1,15 @@
-import { memo, useState } from "react";
+import { useRef } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
-import { Post } from "../../../components/ui/meny-time use/post";
 import Repair from "../../../components/ui/meny-time use/repair";
 import useDinamickPagination from "../../../customHooks/useDinamickPagination";
-import { arrey } from "../../../functions/GiveConst";
 import { DftPost } from "../../../pages/main/news";
+import { POSTServices } from "../../../services/POSTServices";
 
 
 
 export const WallChild = ({ }: {}) => {
-    const [posts, setPosts] = useState<any[]>([{ item: '' }, {}])
-
-    // const ref = useDinamickPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
+    const scrollRef: any = useRef()
+    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, '', 5, true), scrollRef, ['post'], 4, 1)
     return (
         <>
             <SmallCenterPlate>
@@ -36,12 +34,11 @@ export const WallChild = ({ }: {}) => {
                 </div>
             </SmallCenterPlate>
 
-            {posts.map((item) => (
-                // <DftPost item={item.id} item={item} />
-                <></>
+            {post && post.finaldata.map((item: any) => (
+                <DftPost key={item.id} item={item} />
             ))}
 
-            {/* <div ref={ref} className="scrollhandlerref"></div> */}
+            <div ref={scrollRef} className="scrollhandlerref"></div>
         </>
     );
 }

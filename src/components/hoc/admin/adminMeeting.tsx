@@ -10,53 +10,70 @@ import { MEETINGServices } from "../../../services/MEETINGServices"
 
 
 
-export const AdminMeeting = ({ idmeeting }: { idmeeting: number }) => {
+export const AdminMeeting = ({ teams__, idmeeting }: { teams__: any, idmeeting: number }) => {
+    const [teamWin, setTeamWin] = useState<any>()
+
+    const setwin = useMutation(() => MEETINGServices.UPDATEMeeting({ team_win: teamWin }, idmeeting)
+        .then(() => location.reload()))
     const [teamOne, setTeamOne] = useState<any>()
     const [teamTwo, setTeamTwo] = useState<any>()
+    const [date, setDate] = useState('')
+    const updatemeeting = useMutation(() => MEETINGServices.UPDATEMeeting({ date }, idmeeting)
+        .then(() => location.reload()))
 
     const teams = useRequest(() => TEAMServices.GETTeamShort(0), ['teams__'])
-    const setteams = useMutation(() => MEETINGServices.UPDATEMeeting({ team_one: teamOne, team_two: teamTwo }, idmeeting))
+    const setteams = useMutation(() => MEETINGServices.UPDATEMeeting({ team_one: teamOne, team_two: teamTwo }, idmeeting)
+        .then(() => location.reload()))
     return (
         <AdminPlate>
             <>
                 <div className="adminpanel" style={{ flexDirection: 'row', gap: '20px' }}>
                     <div>
-                        team one : <div className="role" onClick={() => setTeamOne({})}> {teamOne} </div>
+                        <InputDate value={date} setValue={setDate} />
+                        <Button title={"обновить"} function_={() => updatemeeting.mutate()} />
                     </div>
-                    <div>
-                        team two : <div className="role" onClick={() => setTeamTwo({})}> {teamTwo} </div>
+                    <div style={{ padding: '100px 0 0 0' }}>
+                        <div>
+                            team one : <div className="role" onClick={() => setTeamOne({})}> {teamOne} </div>
+                        </div>
+                        <div>
+                            team two : <div className="role" onClick={() => setTeamTwo({})}> {teamTwo} </div>
+                        </div>
                     </div>
                 </div>
-                <SelectTeam teams={teams?.finaldata[0]} setTeam={setTeamOne} />
-                <SelectTeam teams={teams?.finaldata[0]} setTeam={setTeamTwo} />
+                <SelectTeam teams={teams?.finaldata} setTeam={setTeamOne} />
+                <SelectTeam teams={teams?.finaldata} setTeam={setTeamTwo} />
                 <Button title={"установить команды"} function_={() => setteams.mutate()} />
+                <div>
+                    team win : <div className="role" onClick={() => setTeamWin({})}> {teamWin} </div>
+                </div>
+                <SelectTeam teams={teams__} setTeam={setTeamWin} />
+                <Button title={"установить победителя"} function_={() => setwin.mutate()} />
             </>
         </AdminPlate>
     );
 }
 
 
-export const AdminMeetingWin = ({ teams, idmeeting }: { teams: any, idmeeting: number }) => {
+export const AdminMatch = ({ teams, idmeeting }: { teams: any, idmeeting: number }) => {
     const [teamWin, setTeamWin] = useState<any>()
-    const [date, setDate] = useState('')
     const [time, setTime] = useState('')
-    const setwin = useMutation(() => MEETINGServices.UPDATEMeeting({ team_win: teamWin }, idmeeting))
-    const updatemeeting = useMutation(() => MEETINGServices.UPDATEMeeting({ date, time }, idmeeting))
+    const setwin = useMutation(() => MEETINGServices.UPDATEMeeting({ team_win: teamWin }, idmeeting)
+        .then(() => location.reload()))
+    const updatematch = useMutation(() => MEETINGServices.UPDATEMeeting({ time }, idmeeting)
+        .then(() => location.reload()))
 
     return (
         <AdminPlate>
             <div className="adminpanel">
-                <InputDate value={date} setValue={setDate} />
-                <InputTime value={time} setValue={setTime} />
-
-                <Button title={"обновить"} function_={() => updatemeeting.mutate()} />
-
-
                 <div>
                     team win : <div className="role" onClick={() => setTeamWin({})}> {teamWin} </div>
                 </div>
                 <SelectTeam teams={teams} setTeam={setTeamWin} />
                 <Button title={"установить победителя"} function_={() => setwin.mutate()} />
+                <InputTime value={time} setValue={setTime} />
+
+                <Button title={"обновить"} function_={() => updatematch.mutate()} />
             </div>
         </AdminPlate>
     );

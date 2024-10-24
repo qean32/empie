@@ -33,8 +33,6 @@ export const TournamentChild = ({ }: {}) => {
     const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, tournament?.finaldata[0]?.direction?.id), ['getteamdirector'])
     const createapplication = useMutation(() => APPLICATIONServices.CREATEApplication({ tournament: params?.id, team: getteam?.finaldata[0]?.id }))
 
-    console.log(meetingsq.finaldata)
-
     return (
         <>
             <SmallCenterPlate>

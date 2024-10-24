@@ -48,8 +48,8 @@ export const DftOffer = ({ item }: { item: any }) => {
             { team_dota: item?.team?.id }
             :
             { team_cs: item?.team?.id }
-        , user?.id)
-        // .then(() => deleteoffer.mutate())
+        , user?.user_id)
+        .then(() => deleteoffer.mutate())
     )
     const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 2, user: user?.user_id, team: item?.team?.id })
         .then(() => location.reload())

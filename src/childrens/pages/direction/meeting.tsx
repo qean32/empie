@@ -1,19 +1,33 @@
 import { useNavigate, useParams } from "react-router"
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate"
 import Repair from "../../../components/ui/meny-time use/repair"
-import { AdminMeeting, AdminMeetingWin } from "../../../components/hoc/admin/adminMeeting"
+import { AdminMeeting, AdminMatch } from "../../../components/hoc/admin/adminMeeting"
 import useRequest from "../../../customHooks/useRequest"
 import { MEETINGServices } from "../../../services/MEETINGServices"
 import { MATCHServices } from "../../../services/MATCHServices"
+import { AdminSmallPanel } from "../../../components/hoc/plates/adminSmallPanel"
+import { Button } from "../../../components/ui/meny-time use/customButton"
+import { useMutation } from "react-query"
 
 
 export const MeetingChild = ({ }: {}) => {
     const params: any = useParams()
     const matches = useRequest(() => MATCHServices.GETMatch(params.id), ['mathes'])
     const meeting = useRequest(() => MEETINGServices.GETMeeting(0, params.id), ['meeting'])
+    const creatematch = useMutation(() => MATCHServices.CREATEMatch(
+        {
+            meeting: params.id,
+            team_one: meeting?.finaldata[0]?.team_one?.id,
+            team_two: meeting?.finaldata[0]?.team_two?.id,
+            direction: meeting?.finaldata[0]?.direction?.id,
+        })
+        .then(() => location.reload())
+    )
 
     return (
-        <>{meeting.finaldata[0] ?
+        <>{meeting.finaldata[0] &&
+            meeting.finaldata[0].team_one
+            && meeting.finaldata[0].team_two ?
             <>
                 <SmallCenterPlate>
                     <div className="dftcontainer">
@@ -26,10 +40,24 @@ export const MeetingChild = ({ }: {}) => {
                             <Team item={meeting.finaldata[0].team_two} />
                         </div>
                     </div>
+                    <AdminSmallPanel>
+                        <Button title="создать матч" function_={() => creatematch.mutate()} />
+                    </AdminSmallPanel>
                 </SmallCenterPlate>
+
                 {matches?.finaldata && matches.finaldata.map((item) => (
-                    <Match key={item.id} item={item} />
+                    <Match key={item.id} item={item} teams={[meeting.finaldata[0].team_one, meeting.finaldata[0].team_two]} />
                 ))}
+
+                <AdminMeeting idmeeting={params?.id} teams__=
+                    {
+                        meeting.finaldata[0] &&
+                            meeting.finaldata[0].team_one &&
+                            meeting.finaldata[0].team_two ?
+                            [meeting.finaldata[0].team_one, meeting.finaldata[0].team_two]
+                            :
+                            []
+                    } />
             </>
             :
             <>
@@ -43,7 +71,16 @@ export const MeetingChild = ({ }: {}) => {
                         </div>
                     </div>
                 </SmallCenterPlate>
-                <AdminMeeting idmeeting={0} />
+                <AdminMeeting idmeeting={params?.id} teams__=
+                    {
+                        meeting.finaldata[0] &&
+                            meeting.finaldata[0].team_one &&
+                            meeting.finaldata[0].team_two ?
+                            [meeting.finaldata[0].team_one, meeting.finaldata[0].team_two]
+                            :
+                            []
+                    }
+                />
             </>
         }
         </>
@@ -51,7 +88,8 @@ export const MeetingChild = ({ }: {}) => {
 }
 
 
-export const Match = ({ item }: { item: any }) => {
+export const Match = ({ item, teams }: { item: any, teams: any[] }) => {
+    const params: any = useParams()
     return (
         <>
             <SmallCenterPlate>
@@ -75,7 +113,7 @@ export const Match = ({ item }: { item: any }) => {
                     </div>
                 </div>
             </SmallCenterPlate>
-            <AdminMeetingWin teams={undefined} idmeeting={0} />
+            <AdminMatch teams={teams} idmeeting={params?.id} />
         </>
     );
 }

@@ -10,8 +10,12 @@ export const GridPoint = ({ item }: { item: any }) => {
                 <img src={item?.team_one?.logo ? `${item?.team_two?.logo}` : '/svg/dragon.svg'} alt="" id="imgteamlogo" style={{ transform: 'translateX(2px)' }} />
             </div>
             <span className="line" style={{ position: 'static', backgroundColor: '#00000030', height: '2px' }}></span>
-            <div><p id="nametextteam">{item?.team_one?.name}</p><p>{item?.team_one_score}</p></div>
-            <div><p id="nametextteam">{item?.team_two?.name}</p><p>{item?.team_two_score}</p></div>
+            <div><p id="nametextteam">{item?.team_one?.name}</p>
+                <p>{item?.team_one_score && item?.team_one_score && item?.team_one_score}</p>
+            </div>
+            <div><p id="nametextteam">{item?.team_two?.name}</p>
+                <p>{item?.team_two_score && item?.team_two_score && item?.team_two_score}</p>
+            </div>
         </div>
     );
 }
