@@ -11,10 +11,10 @@ export const GridPoint = ({ item }: { item: any }) => {
             </div>
             <span className="line" style={{ position: 'static', backgroundColor: '#00000030', height: '2px' }}></span>
             <div><p id="nametextteam">{item?.team_one?.name}</p>
-                <p>{item?.team_one_score && item?.team_one_score && item?.team_one_score}</p>
+                <p>{item?.team_one_score == 0 && item?.team_one_score == 0 ? '' : item?.team_one_score}</p>
             </div>
             <div><p id="nametextteam">{item?.team_two?.name}</p>
-                <p>{item?.team_two_score && item?.team_two_score && item?.team_two_score}</p>
+                <p>{item?.team_two_score == 0 && item?.team_two_score == 0 ? '' : item?.team_two_score}</p>
             </div>
         </div>
     );

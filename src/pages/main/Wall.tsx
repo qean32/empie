@@ -20,8 +20,8 @@ import { WallChild } from "../../childrens/pages/main/wall";
 export const Wall = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
-    const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
+    const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
 
     ChangeTitle('стенка')

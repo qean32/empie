@@ -17,21 +17,25 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { PLAYERServices } from "../../services/PLAYERServices";
+import Repair from "../../components/ui/meny-time use/repair";
 
 
 export const Community = ({ }: {}) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
+    const [searchValue, setSearchValue] = useState<any[]>()
     const { loading, modal } = useContext<any>(SomeContext)
 
     const scrollRef: any = useRef()
     const player: any = useDinamickPagination(() => PLAYERServices.GETPlayer(player.offset), scrollRef, ['users'], 10, 0)
 
-    const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
+    const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
 
     useEffect(() => {
+        PLAYERServices.GETPlayer(0, '', '', '', 12, debounsedValue)
+            .then((results) => setSearchValue(results?.results))
     }, [debounsedValue])
 
     ChangeTitle('сообщество')
@@ -53,11 +57,25 @@ export const Community = ({ }: {}) => {
                             <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
                                 <Search value={search} setValue={setSearch} title="найти человека" />
                             </div>
-                            <div style={{ minHeight: '500px' }}>
+                            <div style={{ minHeight: '500px', position: 'relative' }}>
 
-                                {player && player.finaldata.map((item: any) => (
-                                    <InlineUser item={item} key={item.id} />
-                                ))}
+                                {
+                                    !debounsedValue ?
+                                        player && player.finaldata.map((item: any) => (
+                                            <InlineUser item={item} key={item.id} />
+                                        ))
+                                        :
+                                        searchValue && searchValue.length > 0 ?
+                                            searchValue.map((item: any) => (
+                                                <InlineUser item={item} key={item.id} />
+                                            ))
+                                            :
+                                            <div className="positioncenterbyabsolute"
+                                                style={{ width: '200px' }}>
+                                                <Repair />
+                                                <p>нет результатов с таким значением</p>
+                                            </div>
+                                }
 
                                 <div ref={scrollRef} className="scrollhandlerref"></div>
                             </div>

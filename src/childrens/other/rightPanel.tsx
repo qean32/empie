@@ -27,7 +27,7 @@ export const RightPanelDirectionChildren = ({ direction }: { direction: number }
         <div className="rightcontainer">
             <div className="rightpanellink" onClick={() => navigate(`/tournaments/${direction}`)}>турниры</div>
             <div className="rightpanellink" onClick={() => navigate(`/meetings/${direction}`)}>матчи</div>
-            <div className="rightpanellink" onClick={() => navigate(`/${direction}`)}>новости</div>
+            <div className="rightpanellink" onClick={() => navigate(`/direction/${direction}`)}>новости</div>
             <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
             <div className="rightpanellink" onClick={() => navigate(`/transfers/`)}>трансферы</div>
             <div className="rightpanellink" onClick={() => navigate(`/teams/${direction}`)}>команды</div>

@@ -94,7 +94,12 @@ export const RegTeamChild = ({ }: {}) => {
                         </span>
 
                         <div style={{ display: 'flex', justifyContent: 'end', padding: '0 40px 0 0', margin: '20px 0 0 0' }}>
-                            {getteam.finaldata[0] ? <p>вы уже являетесь капитаном команды</p> : <Button title="сохранить" function_={regHandler} />}
+                            {getteam.finaldata[0] ?
+                                <p style={{ transform: 'translateX(-40px)' }}>
+                                    вы уже являетесь капитаном команды
+                                </p>
+                                :
+                                <Button title="сохранить" function_={regHandler} />}
                         </div>
                     </form>
                 </div>

@@ -21,8 +21,8 @@ import useBoolean from "../../customHooks/useBoolean";
 export const Meeting = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
-    const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
+    const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
 
     ChangeTitle('матч')

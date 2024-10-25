@@ -38,7 +38,7 @@ export const InputText = ({ title, value, setValue, max, validate = true }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -80,7 +80,7 @@ export const InputPassword = ({ title, value, setValue }: {
         <div style={{ position: 'relative', width: '100%' }}>
             <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} style={{ zIndex: '10' }} alt="" onClick={() => view.SwapFn()} className="lockpass" />
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type={view.boolean ? 'text' : 'password'} name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -199,7 +199,7 @@ export const InputNumber = ({ title, value, setValue, min, max }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="number" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -248,7 +248,7 @@ export const InputEmail = ({ title, value, setValue }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -336,7 +336,7 @@ export const InputText_ = ({ title, value, setValue, max, word }: {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -3vh)' } : { opacity: '0.8' }}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />

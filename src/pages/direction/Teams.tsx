@@ -17,20 +17,25 @@ import { TEAMServices } from "../../services/TEAMServices";
 import { BGCs } from "../../components/ui/meny-time use/background";
 import { Right } from "../../components/hoc/right";
 import { RightPanel } from "../../components/hoc/rightPanel";
+import Repair from "../../components/ui/meny-time use/repair";
 
 
 export const Teams = ({ }: {}) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
     const { loading, modal } = useContext<any>(SomeContext)
+    const [searchValue, setSearchValue] = useState<any[]>()
 
     const scrollRef: any = useRef()
     const params = useParams()
-    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset), scrollRef, ['teams'], 10)
+    const teams: any = useDinamickPagination(() => TEAMServices.GETTeamShort(teams.offset, params?.iddirection), scrollRef, ['teams'], 10)
+
 
     useEffect(() => {
-
+        TEAMServices.GETTeamShort(0, params?.iddirection, 12, debounsedValue)
+            .then((results) => setSearchValue(results?.results))
     }, [debounsedValue])
+
     const direction = useParams()
     const navigate = useNavigate()
 
@@ -48,19 +53,33 @@ export const Teams = ({ }: {}) => {
                     <LeftPanel function_={modal.SwapFn} />
                     <Center>
                         <SmallCenterPlate>
-                                <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
-                                    <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
-                                        <Search value={search} setValue={setSearch} title="найти команду" />
-                                    </div>
-                                    <div style={{ minHeight: '500px' }}>
-
-                                        {teams && teams.finaldata.map((item: any) => (
-                                            <InlineTeam item={item} key={item.id} />
-                                        ))}
-
-                                        <div ref={scrollRef} className="scrollhandlerref"></div>
-                                    </div>
+                            <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
+                                <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
+                                    <Search value={search} setValue={setSearch} title="найти команду" />
                                 </div>
+                                <div style={{ minHeight: '500px' }}>
+
+                                    {
+                                        !debounsedValue ?
+                                            teams && teams.finaldata.map((item: any) => (
+                                                <InlineTeam item={item} key={item.id} />
+                                            ))
+                                            :
+                                            searchValue && searchValue.length > 0 ?
+                                                searchValue.map((item: any) => (
+                                                    <InlineTeam item={item} key={item.id} />
+                                                ))
+                                                :
+                                                <div className="positioncenterbyabsolute"
+                                                    style={{ width: '200px' }}>
+                                                    <Repair />
+                                                    <p>нет результатов с таким значением</p>
+                                                </div>
+                                    }
+
+                                    <div ref={scrollRef} className="scrollhandlerref"></div>
+                                </div>
+                            </div>
                         </SmallCenterPlate>
                     </Center>
                     <Right>

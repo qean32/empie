@@ -17,8 +17,8 @@ import { TransfersChild } from "../../childrens/pages/main/transfers";
 export const Transfers = ({ }: {}) => {
     const { loading, modal } = useContext<any>(SomeContext)
 
-    const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
+    const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
 
     ChangeTitle('трансферы')

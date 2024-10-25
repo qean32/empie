@@ -12,8 +12,8 @@ export const TEAMServices = {
     CREATETeam: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/team/`, body)
     },
-    GETTeamShort: (offset: number = 0, direction: numsrting = '', limit: number = 10) => {
-        return RQRequestGET(`${host}unification/search/team/short/?offset=${offset}&limit=${limit}&direction=${direction}`)
+    GETTeamShort: (offset: number = 0, direction: numsrting = '', limit: number = 10, search: string = '') => {
+        return RQRequestGET(`${host}unification/search/team/short/?offset=${offset}&limit=${limit}&direction=${direction}&search=${search}`)
     },
     UPDATETeam: (body: any, id: number | undefined, file: boolean = false) => {
         return RQRequestPATCH(`${host}unification/update/team/${id}/`, body, file)

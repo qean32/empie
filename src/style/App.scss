@@ -187,3 +187,10 @@ header>div>div {
   flex-direction: column;
   min-width: 200px;
 }
+
+.positioncenterbyabsolute {
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+}

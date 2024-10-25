@@ -38,10 +38,10 @@ export const News = ({ }: {}) => {
     const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), ['firsttournament'])
     const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, params.iddirection), scrollRef, ['post'], 4, 1)
 
-    const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
-    const modalmeetings = useBoolean(false)
+    const modaltournaments = useBoolean(false)
     const modalregistration = useBoolean(false)
+    const modalmeetings = useBoolean(false)
 
     useEffect(() => {
         const userwashere_ = JSON.parse(localStorage.getItem(userwashere) as any) || { userwashere: false }
