@@ -15,10 +15,11 @@ import useRequest from "../../customHooks/useRequest";
 import { TEAMServices } from "../../services/TEAMServices";
 import { useMutation } from "react-query";
 import { TRANSFERServices } from "../../services/TRANSFERServices copy";
+import usePage from "../../customHooks/usePage";
 
 
 export const Team = ({ }: {}) => {
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
     const params: any = useParams()
     const team = useRequest(() => TEAMServices.GETTeam(0, params.id), ['team'])
     const { user }: any = useContext(SomeContext)

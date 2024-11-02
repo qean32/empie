@@ -4,6 +4,9 @@ export const host: string = 'http://127.0.0.1:8000/api/'
 // export const host: string = 'http://127.0.0.1:8000/api/'
 export const techwork: boolean = false
 
+export const tokenStorage: any = 'tokenStorage'
+export const userwashereStorage = 'userwashereStorage'
+
 export enum colors {
     maincolor = '#E74343',
     greencolor = '#0d9e0d',
@@ -18,7 +21,7 @@ export enum direction {
 }
 
 export enum idDirection {
-    bascketball = 1,
+    bascketball = 3,
     cs = 1,
     dota = 2
 }

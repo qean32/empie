@@ -1,11 +1,9 @@
-import { useContext } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { RightPanelChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/hoc/modal";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
@@ -16,10 +14,11 @@ import { RightTransferChild } from "../../childrens/other/rightTransfer";
 import { StreamChild } from "../../childrens/other/stream";
 import { TopTeamChild } from "../../childrens/other/topTeam";
 import useBoolean from "../../customHooks/useBoolean";
+import usePage from "../../customHooks/usePage";
 
 
 export const Meeting = ({ }: {}) => {
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
 
     const modalteams = useBoolean(false)
     const modaltournaments = useBoolean(false)

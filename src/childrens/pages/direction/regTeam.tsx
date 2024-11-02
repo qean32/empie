@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router";
 import { TRANSFERServices } from "../../../services/TRANSFERServices copy";
 import useRequest from "../../../customHooks/useRequest";
 import { PLAYERServices } from "../../../services/PLAYERServices";
+import useUserInfo from "../../../customHooks/useUserInfo";
 
 
 export const RegTeamChild = ({ }: {}) => {
@@ -40,10 +41,16 @@ export const RegTeamChild = ({ }: {}) => {
     const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
 
     const regHandler = () => {
-        (name.length > 1 && name.length < 15 && status.length > 1 && status.length < 43) ?
-            registration.mutate()
-            :
-            alert("невалидные данные")
+        const { userinfo }: any = useUserInfo()
+        const { modalregistration }: any = useContext(SomeContext)
+
+        if (userinfo)
+            (name.length > 1 && name.length < 15 && status.length > 1 && status.length < 43) ?
+                registration.mutate()
+                :
+                alert("невалидные данные")
+        else
+            modalregistration.on()
     }
 
     useEffect(() => {

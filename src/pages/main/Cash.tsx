@@ -1,7 +1,5 @@
-import { useContext } from "react";
 import { Header } from "../../components/ui/meny-time use/header";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
-import { SomeContext } from "../../context";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Modal } from "../../components/hoc/modal";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
@@ -10,10 +8,11 @@ import ChangeTitle from "../../functions/ChangeTitle";
 import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { CashChild } from "../../childrens/pages/main/cash";
+import usePage from "../../customHooks/usePage";
 
 
 export const Cash = ({ }: {}) => {
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
     ChangeTitle('расходы')
 
     return (

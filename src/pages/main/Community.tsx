@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { RightPanelChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
@@ -9,7 +9,6 @@ import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/hoc/modal";
 import useDebounce from "../../customHooks/useDebounce";
 import { InlineUser } from "../../components/ui/meny-time use/inlinePrezentation";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
@@ -18,13 +17,14 @@ import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { PLAYERServices } from "../../services/PLAYERServices";
 import Repair from "../../components/ui/meny-time use/repair";
+import usePage from "../../customHooks/usePage";
 
 
 export const Community = ({ }: {}) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
     const [searchValue, setSearchValue] = useState<any[]>()
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
 
     const scrollRef: any = useRef()
     const player: any = useDinamickPagination(() => PLAYERServices.GETPlayer(player.offset), scrollRef, ['users'], 10, 0)

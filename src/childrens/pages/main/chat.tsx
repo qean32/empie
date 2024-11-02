@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
-import { colors } from "../../../functions/GiveConst"
+import { colors } from "../../../exports"
 import { CenterPlate } from "../../../components/hoc/plates/centerPlate"
 import { InputComent } from "../../../components/ui/one-time use/InterfacePost"
 import { MESSAGEServices } from "../../../services/MESSAGEServices"

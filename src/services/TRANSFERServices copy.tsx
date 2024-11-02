@@ -1,4 +1,4 @@
-import { host } from "../functions/GiveConst"
+import { host } from "../exports"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
 

@@ -16,10 +16,11 @@ import useRequest from "../../customHooks/useRequest";
 import { TEAMServices } from "../../services/TEAMServices";
 import { useMutation } from "react-query";
 import { OFFERServices } from "../../services/OFFERServices";
+import usePage from "../../customHooks/usePage";
 
 
 export const Profile = ({ }: {}) => {
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
     const params = useParams()
     const { user }: any = useContext(SomeContext)
     const getteamCS = user?.user_id ? useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, 1), ['getteamdirector__']) : null

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { colors } from "../../../functions/GiveConst"
+import { colors } from "../../../exports"
 import { LIKEServices } from "../../../services/LIKEServices"
 import { SomeContext } from "../../../context"
 import useRequest from "../../../customHooks/useRequest"

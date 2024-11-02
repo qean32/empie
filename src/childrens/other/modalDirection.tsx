@@ -1,6 +1,6 @@
 import { Cross } from "../../components/ui/meny-time use/cross"
 import { useNavigate } from "react-router"
-import { direction, idDirection } from "../../functions/GiveConst"
+import { direction, idDirection } from "../../exports"
 
 
 export const ModalDirectionChildren = ({ link = '', function_ }: {

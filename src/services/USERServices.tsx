@@ -1,10 +1,8 @@
-import { host } from "../functions/GiveConst"
+import { host, tokenStorage } from "../exports"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 import { numsrting } from "../models/numsrting"
-
-export const tokenStorage: any = 'tokenStorage'
 
 export const USERServices = {
     GETUser(offset?: number, id: numsrting = '') {

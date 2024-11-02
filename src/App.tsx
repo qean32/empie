@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import './style/App.scss'
 import { Router } from './router'
-import { techwork } from './functions/GiveConst'
+import { techwork } from './exports'
 import { Techwork } from './pages/main/techwork'
 import { QueryClient, QueryClientProvider } from 'react-query'
 

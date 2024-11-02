@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
@@ -7,7 +7,6 @@ import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/hoc/modal";
 import useDebounce from "../../customHooks/useDebounce";
 import { InlineTeam } from "../../components/ui/meny-time use/inlinePrezentation";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
@@ -18,12 +17,13 @@ import { BGCs } from "../../components/ui/meny-time use/background";
 import { Right } from "../../components/hoc/right";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import Repair from "../../components/ui/meny-time use/repair";
+import usePage from "../../customHooks/usePage";
 
 
 export const Teams = ({ }: {}) => {
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
     const [searchValue, setSearchValue] = useState<any[]>()
 
     const scrollRef: any = useRef()

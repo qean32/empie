@@ -1,7 +1,6 @@
-import { CSSProperties, useContext, useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { CenterPlate } from "../../components/hoc/plates/centerPlate";
-import { positioncenterbyabsolute } from "../../functions/GiveConst";
-import { SomeContext } from "../../context";
+import { positioncenterbyabsolute, userwashereStorage } from "../../exports";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { Header } from "../../components/ui/meny-time use/header";
 import ChangeTitle from "../../functions/ChangeTitle";
@@ -17,12 +16,12 @@ import ValidateEmail from "../../functions/ValidateEmail";
 import ValidatePassword from "../../functions/ValidatePassword";
 import ValidateRuName from "../../functions/ValidateRuName";
 import { useNavigate } from "react-router";
-import { userwashere } from "./news";
 import { PLAYERServices } from "../../services/PLAYERServices";
+import usePage from "../../customHooks/usePage";
 
 
 export const Registration = ({ }: {}) => {
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
     ChangeTitle('вход')
 
     const [firstname, setFirstname] = useState<string>('')
@@ -76,7 +75,7 @@ export const Registration = ({ }: {}) => {
     }, [id])
 
     useEffect(() => {
-        localStorage.setItem(userwashere, JSON.stringify({ userwashere: true }))
+        localStorage.setItem(userwashereStorage, JSON.stringify({ userwashere: true }))
     }, [])
 
     const Registration = () => {

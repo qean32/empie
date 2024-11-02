@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { SmallCenterPlate } from "../../hoc/plates/centerPlate";
 
-const Cezar = () => {
+const Cezar = memo(() => {
     return (
         <SmallCenterPlate>
             <div className="dftcontainer" style={{
@@ -14,6 +15,6 @@ const Cezar = () => {
             </div>
         </SmallCenterPlate >
     );
-}
+})
 
 export default Cezar;

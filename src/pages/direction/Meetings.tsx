@@ -1,10 +1,9 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
 import { Modal } from "../../components/hoc/modal";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { MeetingChild } from "../../childrens/other/meeting";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
@@ -13,10 +12,11 @@ import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { MEETINGServices } from "../../services/MEETINGServices";
+import usePage from "../../customHooks/usePage";
 
 
 export const Meetings = ({ }: {}) => {
-    const { loading, modal } = useContext<any>(SomeContext)
+    const [modal, loading]: any = usePage()
     const params = useParams()
 
     const scrollRef: any = useRef()

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { positioncenterbyabsolute } from "../../../functions/GiveConst";
+import { positioncenterbyabsolute } from "../../../exports";
 import { EmpieLogo } from "./Logo";
 import useBoolean from "../../../customHooks/useBoolean";
 

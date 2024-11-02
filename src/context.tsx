@@ -1,41 +1,31 @@
 import { createContext, useEffect } from "react";
 import { useLocation } from "react-router";
-import useBoolean from "./customHooks/useBoolean";
-import { tokenStorage, USERServices } from "./services/USERServices";
+import { USERServices } from "./services/USERServices";
 import { jwtDecode } from "jwt-decode";
+import { tokenStorage } from "./exports";
+import useBoolean from "./customHooks/useBoolean";
 
 export const SomeContext: React.Context<string> = createContext('defaultvalue')
 
 export const Context: any = ({ children }: { children: any }) => {
     const location = useLocation()
-    const loading = useBoolean(false)
-    const modal = useBoolean(false)
     const user: any = localStorage.getItem(tokenStorage) ? jwtDecode(localStorage.getItem(tokenStorage) as any) : 'no user'
+    const modalregistration = useBoolean(false)
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        modal.off()
         user != 'no user' && USERServices.REFRESHUser()
-        loading.SwapFn()
-
         const refresh = setInterval(() => {
             user != 'no user' && USERServices.REFRESHUser()
         }, 210000)
 
-        const timeOut = setTimeout(() => {
-            loading.SwapFn()
-        }, 800)
-
         return () => {
             clearInterval(refresh)
-            clearTimeout(timeOut)
         }
     }, [location])
 
     const value: any = {
-        loading: loading.boolean,
-        modal: modal,
         user: user,
+        modalregistration,
     }
 
     return (<SomeContext.Provider value={value}>{children}</SomeContext.Provider>)

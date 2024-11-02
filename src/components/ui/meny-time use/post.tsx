@@ -88,10 +88,14 @@ const Coment = ({ item }: { item: any }) => {
 
 const Coments = ({ itemid, viewcoments, coments_ }: { itemid: number, viewcoments: any, coments_: any }) => {
     const { userinfo }: any = useUserInfo()
+    const { modalregistration }: any = useContext(SomeContext)
 
     const SubmitHandler = (e: any) => {
         e.preventDefault()
-        comentValue && createcomment.mutate()
+        if (userinfo)
+            comentValue && createcomment.mutate()
+        else 
+            modalregistration.on()
     }
 
     const createcomment = useMutation('createcomment',
