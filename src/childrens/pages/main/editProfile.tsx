@@ -33,9 +33,10 @@ export const EditProfileChild = ({ }: {}) => {
     const { user }: any = useContext(SomeContext)
     const user_ = useRequest(() => USERServices.GETUser(0, user.user_id), ['user'])
     const establishFile = useMutation(() => USERServices.UPDATEUser(returnformData(),
-        user.user_id, true))
-    const edit = useMutation(() => USERServices.UPDATEUser({ steam, telegram, },
-        user.user_id))
+        user.user_id, true)
+        .then(() => location.reload())
+    )
+    const edit = useMutation(() => USERServices.UPDATEUser({ steam, telegram, first_name: firstname, last_name: lastname, status }, user.user_id))
 
 
     const editHandler = () => {
@@ -44,8 +45,7 @@ export const EditProfileChild = ({ }: {}) => {
             establishFile.mutate()
         }
 
-        if
-            (ValidateRuName(firstname) &&
+        if (ValidateRuName(firstname) &&
             ValidateRuName(lastname) &&
             !telegram || ValidateWordToWord(telegram, 't.me') &&
             !steam || ValidateWordToWord(steam, 'steam'))
@@ -56,8 +56,8 @@ export const EditProfileChild = ({ }: {}) => {
 
     useEffect(() => {
         const fn = () => {
-            setFirstname(user_.finaldata[0].first_name)
-            setLastname(user_.finaldata[0].last_name)
+            user_.finaldata[0].first_name && setFirstname(user_.finaldata[0].first_name)
+            user_.finaldata[0].last_name && setLastname(user_.finaldata[0].last_name)
             user_.finaldata[0].steam && setSteam(user_.finaldata[0].steam)
             user_.finaldata[0].telegram && setTelegram(user_.finaldata[0].telegram)
             user_.finaldata[0].status && setStatus(user_.finaldata[0].status)
@@ -80,6 +80,7 @@ export const EditProfileChild = ({ }: {}) => {
                             <InputFile setValue={setLogo} title="изображение профиля" />
                         </span>
                         <div style={{ width: '70%' }}>
+                            используйте.. впадлу фиксить
                             <InputText title={"статус"} value={status} setValue={setStatus} max={255} />
                         </div>
 

@@ -8,7 +8,8 @@ import { PLAYERServices } from "../../../services/PLAYERServices";
 export const ProfileChild = ({ }: {}) => {
     const params = useParams()
     const user_ = useRequest(() => USERServices.GETUser(0, params.id), ['user'])
-    
+    // location.reload()
+
     return (
         <>
             <CenterPlate>
@@ -71,7 +72,7 @@ const Cups = ({ cups }: { cups: any }) => {
                 <div className="trophy">
                     {cups?.length ?
                         cups.map((item: any) => (
-                            <img src={item?.image} alt="" key={item?.id} style={{maxWidth: '120px'}} />
+                            <img src={item?.image} alt="" key={item?.id} style={{ maxWidth: '65px' }} />
                         ))
                         :
                         <div className="dftcontainer">

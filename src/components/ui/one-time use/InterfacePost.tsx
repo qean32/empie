@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react"
 import { colors } from "../../../exports"
 import { LIKEServices } from "../../../services/LIKEServices"
 import { SomeContext } from "../../../context"
-import useRequest from "../../../customHooks/useRequest"
 import { useMutation } from "react-query"
+import useUserInfo from "../../../customHooks/useUserInfo"
 
 
 export const InputComent = ({ value, setValue, title, submit }: {
@@ -59,20 +59,25 @@ const HOCLike = ({ islike, value, fn, count, likeid, postid }:
 ) => {
 
     const [stateLike, setStateLike] = useState<any>()
+    const { userinfo }: any = useUserInfo()
 
     const createLike = useMutation(() => LIKEServices.CREATELike({ author: user.user_id, post: postid })
         .then((results: any) => setStateLike(results.id)))
     const deleteLike = useMutation(() => LIKEServices.DELETELike(likeid ? likeid : stateLike))
 
-    const { user }: any = useContext(SomeContext)
+    const { user, modalregistration }: any = useContext(SomeContext)
 
     const fn_ = () => {
         fn();
+        
+        if (userinfo)
+            !value ?
+        createLike.mutate()
+        :
+                deleteLike.mutate()
+        else
+            modalregistration.on()
 
-        !value ?
-            createLike.mutate()
-            :
-            deleteLike.mutate()
     }
 
     // позже заменить на запрос с задержкой с возможнотью отмены

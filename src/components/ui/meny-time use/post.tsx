@@ -17,7 +17,7 @@ export const Post = ({ item }: { item: any }) => {
     const ulike = useBoolean(false)
     const ucoment = useBoolean(false)
     const likes = useRequest(() => LIKEServices.GETLike(item.id), [`likes${item.id}`])
-    const like = user.user_id ? useRequest(() => LIKEServices.GETLike(item.id, user?.user_id), [`like${item.id}`]) : { finaldata: [false], count: 1 }
+    const like = user.user_id ? useRequest(() => LIKEServices.GETLike(item.id, user?.user_id), [`like${item.id}`]) : { finaldata: [], count: 0 }
     const [countLike, setCountLike] = useState<number>(0)
 
     useEffect(() => {

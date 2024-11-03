@@ -15,7 +15,7 @@ export const USERServices = {
         return RQRequestPOST(`${host}users/reg/`, body, false)
     },
     UPDATEUser: (body: any, id: number, file: boolean = false) => {
-        return RQRequestPATCH(`${host}update/user/${id}/`, body, file)
+        return RQRequestPATCH(`${host}users/update/user/${id}/`, body, file).then((results) => results.json()).then((results) => console.log(results))
     },
     REFRESHUser: () => {
         const token: any = JSON.parse(localStorage.getItem(tokenStorage) as string)
