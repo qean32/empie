@@ -20,11 +20,12 @@ import usePage from "../../customHooks/usePage";
 
 export const Team = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    ChangeTitle('команда')
+    
     const params: any = useParams()
     const team = useRequest(() => TEAMServices.GETTeam(0, params.id), ['team'])
     const { user }: any = useContext(SomeContext)
     const navigate = useNavigate()
-    ChangeTitle('команда')
 
     const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 3, user: user?.user_id, team: params.id }))
 

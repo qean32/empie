@@ -55,15 +55,12 @@ export const Registration = ({ }: {}) => {
     }
 
     const [id, setId] = useState<number>()
-
-    const RegistrationRQ: any = useMutation(['reg'],
-        () => USERServices.CREATEUser({ first_name: firstname, last_name: lastname, password, email })
-            .then((results: any) => setId(results?.id)))
-
     const RegistrationRQPlayer: any = useMutation(['regplayer'],
         () => PLAYERServices.CREATEPlayer({ name: `${firstname} ${lastname}`, user: id }))
+
     const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email })
         .then(() => navigate('/')))
+
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -79,6 +76,10 @@ export const Registration = ({ }: {}) => {
     }, [])
 
     const Registration = () => {
+        const RegistrationRQ: any = useMutation(['reg'],
+            () => USERServices.CREATEUser({ first_name: firstname, last_name: lastname, password, email })
+                .then((results: any) => setId(results?.id)))
+
         if (repassword == password) {
             if (ValidateEmail(email) && ValidatePassword(password) && ValidateRuName(firstname) && ValidateRuName(lastname)) {
                 RegistrationRQ.mutate()
@@ -196,6 +197,7 @@ export const Carousel = ({ }: {}) => {
             }
         }
     }, [carousel])
+    
     return (
         <div style={{ zIndex: '12', backgroundColor: '#292929' }} onClick={() => setCarousel((prev: any) => prev + 1)}>
             <div style={{ width: '100%' }}>

@@ -18,12 +18,12 @@ import usePage from "../../customHooks/usePage";
 
 export const Wall = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    ChangeTitle('стенка')
 
     const modalmeetings = useBoolean(false)
     const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
 
-    ChangeTitle('стенка')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

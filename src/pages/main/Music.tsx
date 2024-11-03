@@ -11,9 +11,10 @@ import usePage from "../../customHooks/usePage";
 
 export const Music = ({ }: {}) => {
     const [{}, loading]: any = usePage()
+    ChangeTitle('музыка')
+    
     const navigate = useNavigate()
 
-    ChangeTitle('музыка')
     return (
         <>
             <Header />

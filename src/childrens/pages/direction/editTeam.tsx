@@ -21,10 +21,13 @@ export const EditTeamChild = ({ }: {}) => {
     }, [team.finaldata[0]])
 
     const params: any = useParams()
-    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), params?.id, true))
-    const edit = useMutation(() => TEAMServices.UPDATETeam({ name, status }, params?.id))
 
     const editHandler = () => {
+        const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData()
+            , params?.id, true))
+        const edit = useMutation(() => TEAMServices.UPDATETeam({ name, status }
+            , params?.id))
+            
         const fn = () => {
             edit.mutate()
             establishFile.mutate()

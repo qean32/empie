@@ -19,12 +19,11 @@ import usePage from "../../customHooks/usePage";
 
 export const Meeting = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    ChangeTitle('матч')
 
     const modalteams = useBoolean(false)
     const modaltournaments = useBoolean(false)
     const modalmeetings = useBoolean(false)
-
-    ChangeTitle('матч')
 
     return (
         <>

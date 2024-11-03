@@ -13,6 +13,7 @@ export const P404 = ({ }: {}) => {
     const navigate = useNavigate()
     const [{}, loading]: any = usePage()
     ChangeTitle('страница не найдена')
+    
     return (
         <>
             <Header />

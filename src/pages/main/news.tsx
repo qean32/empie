@@ -31,6 +31,8 @@ import { userwashereStorage } from "../../exports";
 
 export const News = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    ChangeTitle('новости')
+
     const { modalregistration }: any = useContext(SomeContext)
     const userwashere_ = JSON.parse(localStorage.getItem(userwashereStorage) as any) || { userwashere: false }
 
@@ -38,7 +40,7 @@ export const News = ({ }: {}) => {
     const scrollRef: any = useRef()
     const firstpost = useRequest(() => POSTServices.GETPost(0, params.iddirection, 1), ['firstpost'])
     const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), ['firsttournament'])
-    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, params.iddirection), scrollRef, ['post'], 4, 1)
+    const posts: any = useDinamickPagination(() => POSTServices.GETPost(posts.offset, params.iddirection), scrollRef, ['post'], 4, 1)
 
     const modalteams = useBoolean(false)
     const modaltournaments = useBoolean(false)
@@ -49,7 +51,6 @@ export const News = ({ }: {}) => {
     }, [])
 
 
-    ChangeTitle('новости')
     if (!params.iddirection) {
         return (
             <>
@@ -75,7 +76,7 @@ export const News = ({ }: {}) => {
 
                             <SmallCenterPlate><TournamentChild item={tournament.finaldata[0]} /></SmallCenterPlate>
 
-                            {post && post.finaldata.map((item: any) => (
+                            {posts && posts.finaldata.map((item: any) => (
                                 <DftPost key={item.id} item={item} />
                             ))}
 

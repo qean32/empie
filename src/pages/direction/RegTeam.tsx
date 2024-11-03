@@ -17,6 +17,7 @@ import { SomeContext } from "../../context";
 export const RegTeam = ({ }: {}) => {
     const [modal, loading]: any = usePage()
     ChangeTitle('редактор команды')
+    
     const { modalregistration }: any = useContext(SomeContext)
 
     return (

@@ -21,6 +21,8 @@ import usePage from "../../customHooks/usePage";
 
 export const Profile = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    ChangeTitle('пользователь')
+
     const params = useParams()
     const { user }: any = useContext(SomeContext)
     const getteamCS = user?.user_id ? useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, 1), ['getteamdirector__']) : null
@@ -32,7 +34,7 @@ export const Profile = ({ }: {}) => {
     const crateofferCS = useMutation(() => OFFERServices.CREATEOffer({ team: getteamCS?.finaldata[0]?.id, direction: 2, user: params.id })
         .then(() => location.reload())
     )
-    ChangeTitle('пользователь')
+    
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

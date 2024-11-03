@@ -9,7 +9,7 @@ import { POSTServices } from "../../../services/POSTServices";
 
 export const WallChild = ({ }: {}) => {
     const scrollRef: any = useRef()
-    const post: any = useDinamickPagination(() => POSTServices.GETPost(post.offset, '', 5, true), scrollRef, ['post'], 4, 1)
+    const posts: any = useDinamickPagination(() => POSTServices.GETPost(posts.offset, '', 5, true), scrollRef, ['post'], 4, 1)
     return (
         <>
             <SmallCenterPlate>
@@ -34,7 +34,7 @@ export const WallChild = ({ }: {}) => {
                 </div>
             </SmallCenterPlate>
 
-            {post && post.finaldata.map((item: any) => (
+            {posts && posts.finaldata.map((item: any) => (
                 <DftPost key={item.id} item={item} />
             ))}
 

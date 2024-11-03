@@ -15,12 +15,12 @@ import usePage from "../../customHooks/usePage";
 
 export const Transfers = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    ChangeTitle('трансферы')
 
     const modalmeetings = useBoolean(false)
     const modaltournaments = useBoolean(false)
     const modalteams = useBoolean(false)
 
-    ChangeTitle('трансферы')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

@@ -17,11 +17,12 @@ import usePage from "../../customHooks/usePage";
 
 export const Tournaments = ({ }: {}) => {
     const [modal, loading]: any = usePage()
-    const params = useParams()
+    ChangeTitle('турниры')
+
     const scrollRef: any = useRef()
+    const params = useParams()
     const tournaments: any = useDinamickPagination(() => TOURNAMENTServices.GETTouramentShort(tournaments.offset, '', params.id), scrollRef, ['tournaments'])
 
-    ChangeTitle('турниры')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

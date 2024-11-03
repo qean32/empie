@@ -8,6 +8,7 @@ import { PLAYERServices } from "../../../services/PLAYERServices";
 export const ProfileChild = ({ }: {}) => {
     const params = useParams()
     const user_ = useRequest(() => USERServices.GETUser(0, params.id), ['user'])
+    
     return (
         <>
             <CenterPlate>

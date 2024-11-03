@@ -8,7 +8,6 @@ import usePage from "../../customHooks/usePage";
 
 export const Tournament = ({ }: {}) => {
     const [{}, loading]: any = usePage()
-
     ChangeTitle('турнир')
 
     return (

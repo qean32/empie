@@ -7,7 +7,6 @@ import { useNavigate } from "react-router"
 
 
 export const TransfersChild = ({ }: {}) => {
-
     const scrollRef: any = useRef()
     const transfers: any = useDinamickPagination(() => TRANSFERServices.GETTransfer(transfers.offset), scrollRef, ['transfers'])
 

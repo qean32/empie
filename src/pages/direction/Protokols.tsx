@@ -14,6 +14,7 @@ import usePage from "../../customHooks/usePage";
 export const Protokols = ({ }: {}) => {
     const [modal, loading]: any = usePage()
     ChangeTitle('протоколы')
+    
     const direction = useParams()
 
     return (

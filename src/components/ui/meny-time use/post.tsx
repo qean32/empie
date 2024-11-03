@@ -50,7 +50,7 @@ export const Post = ({ item }: { item: any }) => {
             <div className="post" style={{ padding: '20px' }}>
                 <div>
                     <div className="postsimg">
-                        <div className="ava" onClick={() => navigate('/profile/2')} style={{backgroundImage: `url(${item?.author?.ava})`}}></div>
+                        <div className="ava" onClick={() => navigate('/profile/2')} style={{ backgroundImage: `url(${item?.author?.ava})` }}></div>
                         {item?.image && <img src={item?.image} alt="" style={{ maxWidth: '80%', borderRadius: '2px' }} />}
                     </div>
                 </div>
@@ -92,19 +92,20 @@ const Coments = ({ itemid, viewcoments, coments_ }: { itemid: number, viewcoment
 
     const SubmitHandler = (e: any) => {
         e.preventDefault()
+        const createcomment = useMutation('createcomment',
+            () => COMENTServices.CREATEComent({ author: userinfo?.id, content: comentValue, post: itemid })
+                .then(() => {
+                    coments_.setFinalData((prev: any) => [...prev, {
+                        author: userinfo, content: comentValue, post: itemid
+                    }]); setComentValue('')
+                }))
+
         if (userinfo)
             comentValue && createcomment.mutate()
-        else 
+        else
             modalregistration.on()
     }
 
-    const createcomment = useMutation('createcomment',
-        () => COMENTServices.CREATEComent({ author: userinfo?.id, content: comentValue, post: itemid })
-            .then(() => {
-                coments_.setFinalData((prev: any) => [...prev, {
-                    author: userinfo, content: comentValue, post: itemid
-                }]); setComentValue('')
-            }))
 
     const [comentValue, setComentValue] = useState<string>('')
 

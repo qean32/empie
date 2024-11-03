@@ -8,6 +8,8 @@ import { SomeContext } from "../../../context";
 import { useMutation } from "react-query";
 import { ChangeElo, ChangePts } from "../../../functions/one-use-fucntion/GiveRank";
 import { PLAYERServices } from "../../../services/PLAYERServices";
+import ValidateRuName from "../../../functions/ValidateRuName";
+import ValidateWordToWord from "../../../functions/ValidateWordToWord";
 
 
 
@@ -31,15 +33,24 @@ export const EditProfileChild = ({ }: {}) => {
     const { user }: any = useContext(SomeContext)
     const user_ = useRequest(() => USERServices.GETUser(0, user.user_id), ['user'])
 
-    const establishFile = useMutation(() => USERServices.UPDATEUser(returnformData(), user.user_id, true))
-    const edit = useMutation(() => USERServices.UPDATEUser({ steam, telegram, }, user.user_id))
 
     const editHandler = () => {
+        const establishFile = useMutation(() => USERServices.UPDATEUser(returnformData(),
+            user.user_id, true))
+        const edit = useMutation(() => USERServices.UPDATEUser({ steam, telegram, },
+            user.user_id))
+
         const fn = () => {
             edit.mutate()
             establishFile.mutate()
         }
-        (true) ?
+
+        (
+            ValidateRuName(firstname) &&
+            ValidateRuName(lastname) &&
+            !telegram || ValidateWordToWord(telegram, 't.me') &&
+            !steam || ValidateWordToWord(steam, 'steam')
+        ) ?
             fn()
             :
             alert("невалидные данные")
@@ -55,9 +66,8 @@ export const EditProfileChild = ({ }: {}) => {
         }
 
         user_.finaldata[0] && fn()
-        console.log(user_.finaldata[0])
     }, [user_.finaldata[0]])
-    
+
     return (
         <>
             <SmallCenterPlate>
@@ -95,7 +105,7 @@ export const EditProfileChild = ({ }: {}) => {
 const PlayerData = ({ userid }: { userid: number }) => {
     const getPlayer = useRequest(() => PLAYERServices.GETPlayer(0, '', '', userid), ['getplayer'])
     const updatePlayer = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer({}, userid))
-
+    
     useEffect(() => {
         const fn = () => {
             setRankDOTA(getPlayer?.finaldata[0]?.rank_dota?.id)
@@ -113,7 +123,7 @@ const PlayerData = ({ userid }: { userid: number }) => {
     useEffect(() => {
         ChangePts(pts, setRankDOTA)
     }, [pts])
-
+    
     useEffect(() => {
         ChangeElo(elo, setRankCS)
     }, [elo])

@@ -64,11 +64,3 @@ export const ChangeElo = (value: any, setValue: Function) => {
         setValue(29)
     }
 }
-
-
-
-
-
-
-
-

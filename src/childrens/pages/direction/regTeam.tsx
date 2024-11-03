@@ -17,30 +17,11 @@ export const RegTeamChild = ({ }: {}) => {
     const [idnewteam, setIdnewTeam] = useState<number>()
     const params: any = useParams()
     const navigate = useNavigate()
-    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(), idnewteam, true).then(() => navigate(`/team/${idnewteam}`)))
-    const registration = useMutation(() => (TEAMServices.CREATETeam({ name, status, director: user.user_id, direction: params.iddirection }))
-        .then((results: any) => { setIdnewTeam(results?.id) }),
-        {
-            // onSuccess(data) {
-            //     // establishFile.mutate()
-            //     console.log(data)
-            // },
-        }
-    )
-
-    const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
-        params.iddirection == 2 ?
-            { team_dota: idnewteam }
-            :
-            { team_cs: idnewteam }
-        , user?.user_id)
-    )
-
     const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id), ['getteamdirector'])
 
-    const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
-
     const regHandler = () => {
+        const registration = useMutation(() => (TEAMServices.CREATETeam({ name, status, director: user.user_id, direction: params.iddirection }))
+            .then((results: any) => { setIdnewTeam(results?.id) }))
         const { userinfo }: any = useUserInfo()
         const { modalregistration }: any = useContext(SomeContext)
 
@@ -54,6 +35,18 @@ export const RegTeamChild = ({ }: {}) => {
     }
 
     useEffect(() => {
+        const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(),
+            idnewteam, true).then(() => navigate(`/team/${idnewteam}`)))
+        const regtransfer: any = useMutation(['regtransfer'],
+            () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
+        const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
+            params.iddirection == 2 ?
+                { team_dota: idnewteam }
+                :
+                { team_cs: idnewteam }
+            , user?.user_id)
+        )
+
         const fn = () => {
             regtransfer.mutate()
             acceptance.mutate()

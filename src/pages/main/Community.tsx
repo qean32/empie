@@ -21,10 +21,12 @@ import usePage from "../../customHooks/usePage";
 
 
 export const Community = ({ }: {}) => {
-    const [search, setSearch] = useState<string>('')
-    const debounsedValue = useDebounce(search)
-    const [searchValue, setSearchValue] = useState<any[]>()
     const [modal, loading]: any = usePage()
+    ChangeTitle('сообщество')
+
+    const [search, setSearch] = useState<string>('')
+    const [searchValue, setSearchValue] = useState<any[]>()
+    const debounsedValue = useDebounce(search)
 
     const scrollRef: any = useRef()
     const player: any = useDinamickPagination(() => PLAYERServices.GETPlayer(player.offset), scrollRef, ['users'], 10, 0)
@@ -38,7 +40,6 @@ export const Community = ({ }: {}) => {
             .then((results) => setSearchValue(results?.results))
     }, [debounsedValue])
 
-    ChangeTitle('сообщество')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

@@ -17,12 +17,12 @@ import usePage from "../../customHooks/usePage";
 
 export const Meetings = ({ }: {}) => {
     const [modal, loading]: any = usePage()
-    const params = useParams()
+    ChangeTitle('матчи')
 
+    const params = useParams()
     const scrollRef: any = useRef()
     const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, ['meetings'])
 
-    ChangeTitle('матчи')
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}

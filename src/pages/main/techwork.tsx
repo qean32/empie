@@ -10,6 +10,7 @@ import usePage from "../../customHooks/usePage";
 export const Techwork = ({ }: {}) => {
     const [{}, loading]: any = usePage()
     ChangeTitle('тех работы')
+    
     return (
         <>
             <FakeHeader />

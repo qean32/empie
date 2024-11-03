@@ -11,19 +11,21 @@ import { MainLoader } from "../../components/ui/meny-time use/loader";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
 import useDinamickPagination from "../../customHooks/useDinamickPagination";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { TEAMServices } from "../../services/TEAMServices";
 import { BGCs } from "../../components/ui/meny-time use/background";
 import { Right } from "../../components/hoc/right";
-import { RightPanel } from "../../components/hoc/rightPanel";
 import Repair from "../../components/ui/meny-time use/repair";
 import usePage from "../../customHooks/usePage";
+import TeamsRightChaild from "../../childrens/other/teamsRight";
 
 
 export const Teams = ({ }: {}) => {
+    const [modal, loading]: any = usePage()
+    ChangeTitle('команды')
+
     const [search, setSearch] = useState<string>('')
     const debounsedValue = useDebounce(search)
-    const [modal, loading]: any = usePage()
     const [searchValue, setSearchValue] = useState<any[]>()
 
     const scrollRef: any = useRef()
@@ -36,10 +38,6 @@ export const Teams = ({ }: {}) => {
             .then((results) => setSearchValue(results?.results))
     }, [debounsedValue])
 
-    const direction = useParams()
-    const navigate = useNavigate()
-
-    ChangeTitle('команды')
     return (
         <>
             {Number(params.iddirection) == 3 && <BGCs />}
@@ -82,24 +80,7 @@ export const Teams = ({ }: {}) => {
                             </div>
                         </SmallCenterPlate>
                     </Center>
-                    <Right>
-                        <RightPanel>
-                            <div className="rightcontainer">
-                                <div className="rightpanellink" onClick={() => navigate(`/tournaments/${Number(direction.iddirection)}`)}>турниры</div>
-                                <div className="rightpanellink" onClick={() => navigate(`/meetings/${Number(direction.iddirection)}`)}>матчи</div>
-                                <div className="rightpanellink" onClick={() => navigate(`/${Number(direction.iddirection)}`)}>новости</div>
-                                <div className="rightpanellink" onClick={() => navigate(`/community`)}>игроки</div>
-                                <div className="rightpanellink" onClick={() => navigate(`/transfers/`)}>трансферы</div>
-                                <div className="rightpanellink" onClick={() => navigate(`/teams/${Number(direction.iddirection)}`)}>команды</div>
-                            </div>
-                        </RightPanel>
-                        <RightPanel>
-                            <div className="rightcontainer">
-                                <div className="rightpanellink"
-                                    onClick={() => navigate(`/regteam/${Number(direction.iddirection)}`)}>регистрация команды</div>
-                            </div>
-                        </RightPanel>
-                    </Right>
+                    <Right><TeamsRightChaild /></Right>
                 </>
             </div>
         </>
