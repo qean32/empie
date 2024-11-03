@@ -32,27 +32,25 @@ export const EditProfileChild = ({ }: {}) => {
     const [background, setBackground] = useState<any>()
     const { user }: any = useContext(SomeContext)
     const user_ = useRequest(() => USERServices.GETUser(0, user.user_id), ['user'])
+    const establishFile = useMutation(() => USERServices.UPDATEUser(returnformData(),
+        user.user_id, true))
+    const edit = useMutation(() => USERServices.UPDATEUser({ steam, telegram, },
+        user.user_id))
 
 
     const editHandler = () => {
-        const establishFile = useMutation(() => USERServices.UPDATEUser(returnformData(),
-            user.user_id, true))
-        const edit = useMutation(() => USERServices.UPDATEUser({ steam, telegram, },
-            user.user_id))
-
         const fn = () => {
             edit.mutate()
             establishFile.mutate()
         }
 
-        (
-            ValidateRuName(firstname) &&
+        if
+            (ValidateRuName(firstname) &&
             ValidateRuName(lastname) &&
             !telegram || ValidateWordToWord(telegram, 't.me') &&
-            !steam || ValidateWordToWord(steam, 'steam')
-        ) ?
+            !steam || ValidateWordToWord(steam, 'steam'))
             fn()
-            :
+        else
             alert("невалидные данные")
     }
 
@@ -105,7 +103,7 @@ export const EditProfileChild = ({ }: {}) => {
 const PlayerData = ({ userid }: { userid: number }) => {
     const getPlayer = useRequest(() => PLAYERServices.GETPlayer(0, '', '', userid), ['getplayer'])
     const updatePlayer = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer({}, userid))
-    
+
     useEffect(() => {
         const fn = () => {
             setRankDOTA(getPlayer?.finaldata[0]?.rank_dota?.id)
@@ -123,7 +121,7 @@ const PlayerData = ({ userid }: { userid: number }) => {
     useEffect(() => {
         ChangePts(pts, setRankDOTA)
     }, [pts])
-    
+
     useEffect(() => {
         ChangeElo(elo, setRankCS)
     }, [elo])

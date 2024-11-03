@@ -1,4 +1,4 @@
-import { tokenStorage } from "../services/USERServices";
+import { tokenStorage } from "../exports"
 
 export default function (link: string, body: any, file: boolean = false) {
     const body_ = file ? (body) : JSON.stringify(body)

@@ -56,10 +56,10 @@ export const ChatChild = ({ }: {}) => {
     }, [])
 
     const { userinfo }: any = useUserInfo()
+    const createmessage = useMutation(
+        () => MESSAGEServices.CREATEMessage({ author: userinfo.id, content: message }))
 
     const SubmitHandler = (e: any) => {
-        const createmessage = useMutation(
-            () => MESSAGEServices.CREATEMessage({ author: userinfo.id, content: message }))
         e.preventDefault()
         message && createmessage.mutate()
         setMesseges((prev: any) => [{ author: userinfo, content: message }, ...prev])

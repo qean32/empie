@@ -69,9 +69,9 @@ const Cups = ({ cups }: { cups: any }) => {
         <CenterPlate>
             <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0' }}>
                 <div className="trophy">
-                    {cups?.length > 0 ?
+                    {cups?.length ?
                         cups.map((item: any) => (
-                            <img src={item?.image} alt="" key={item?.id} />
+                            <img src={item?.image} alt="" key={item?.id} style={{maxWidth: '120px'}} />
                         ))
                         :
                         <div className="dftcontainer">

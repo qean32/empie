@@ -19,7 +19,7 @@ export const OffersChild = ({ }: {}) => {
         <>
             <SmallCenterPlate>
                 <div className="dftcontainer" style={{ flexDirection: 'column', alignItems: 'normal', minHeight: '500px', justifyContent: 'start', padding: '40px 0 0 0' }}>
-                    {offers.finaldata.length > 0 ?
+                    {offers.finaldata.length ?
                         <>
 
                             {offers && offers.finaldata.map((item: any) => (
@@ -39,25 +39,21 @@ export const OffersChild = ({ }: {}) => {
 
 
 export const DftOffer = ({ item }: { item: any }) => {
-    const acceptHandler = () => {
-        const { user }: any = useContext(SomeContext)
-        const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
-            item?.direction?.id == 2 ?
-                { team_dota: item?.team?.id }
-                :
-                { team_cs: item?.team?.id }
-            , user?.user_id)
-            .then(() => deleteoffer.mutate())
-        )
-        const deleteoffer = useMutation(() => OFFERServices.DELETEOffer(item?.id)
-            .then(() => regtransfer.mutate())
-        )
-        const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 2, user: user?.user_id, team: item?.team?.id })
-            .then(() => location.reload())
-        )
-
-        acceptance.mutate()
-    }
+    const { user }: any = useContext(SomeContext)
+    const deleteoffer = useMutation(() => OFFERServices.DELETEOffer(item?.id)
+        .then(() => regtransfer.mutate())
+    )
+    const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
+        item?.direction?.id == 2 ?
+            { team_dota: item?.team?.id }
+            :
+            { team_cs: item?.team?.id }
+        , user?.user_id)
+        .then(() => deleteoffer.mutate())
+    )
+    const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 2, user: user?.user_id, team: item?.team?.id })
+        .then(() => location.reload())
+    )
 
     return (
         <div className="offer">
@@ -70,7 +66,7 @@ export const DftOffer = ({ item }: { item: any }) => {
                 <div className="ava" style={{ backgroundImage: `url(${item?.team?.logo})` }} />
                 <p>{item?.team?.name}</p>
             </div>
-            <Button title="принять" function_={acceptHandler} />
+            <Button title="принять" function_={() => acceptance.mutate()} />
         </div>
     );
 }

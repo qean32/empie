@@ -117,11 +117,11 @@ export const News = ({ }: {}) => {
 
                         <SmallCenterPlate><TournamentChild item={undefined} /></SmallCenterPlate>
 
-                        {post && post.finaldata.map((item: any, index: number) => (
+                        {posts && posts.finaldata.map((item: any, index: number) => (
                             <DftPost key={index} item={item} />
                         ))}
 
-                        <div ref={post.scrollRef} className="scrollhandlerref"></div>
+                        <div ref={posts.scrollRef} className="scrollhandlerref"></div>
                     </Center>
 
                     <Right>

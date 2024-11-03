@@ -21,20 +21,20 @@ export const EditTeamChild = ({ }: {}) => {
     }, [team.finaldata[0]])
 
     const params: any = useParams()
+    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData()
+        , params?.id, true))
+    const edit = useMutation(() => TEAMServices.UPDATETeam({ name, status }
+        , params?.id))
 
     const editHandler = () => {
-        const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData()
-            , params?.id, true))
-        const edit = useMutation(() => TEAMServices.UPDATETeam({ name, status }
-            , params?.id))
-            
         const fn = () => {
             edit.mutate()
             establishFile.mutate()
         }
-        (name.length > 1 && name.length < 15 && status.length > 1 && status.length < 43) ?
+        
+        if (name.length > 1 && name.length < 15 && status.length > 1 && status.length < 43)
             fn()
-            :
+        else
             alert("невалидные данные")
     }
 

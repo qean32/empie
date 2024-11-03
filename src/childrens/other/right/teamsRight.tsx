@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router";
-import { RightPanel } from "../../components/hoc/rightPanel";
+import { RightPanel } from "../../../components/hoc/rightPanel";
 
 const TeamsRightChaild = () => {
     const direction = useParams()

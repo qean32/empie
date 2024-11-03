@@ -1,9 +1,8 @@
-import { host } from "../exports"
+import { host, tokenStorage } from "../exports"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
 import { numsrting } from "../models/numsrting"
-import { tokenStorage } from "./USERServices"
 
 export const TEAMServices = {
     GETTeam: (offset?: number, id?: numsrting, director: numsrting = '', direction: numsrting = '') => {

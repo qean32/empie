@@ -13,6 +13,7 @@ export const Context: any = ({ children }: { children: any }) => {
     const modalregistration = useBoolean(false)
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         user != 'no user' && USERServices.REFRESHUser()
         const refresh = setInterval(() => {
             user != 'no user' && USERServices.REFRESHUser()

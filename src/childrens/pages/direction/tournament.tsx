@@ -31,9 +31,9 @@ export const TournamentChild = ({ }: {}) => {
     const meetingsq = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id, true), ['meetingsq'])
     const { user }: any = useContext(SomeContext)
     const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, tournament?.finaldata[0]?.direction?.id), ['getteamdirector'])
+    const createapplication = useMutation(() => APPLICATIONServices.CREATEApplication({ tournament: params?.id, team: getteam?.finaldata[0]?.id }))
     
     const applicationHandler = () => {
-        const createapplication = useMutation(() => APPLICATIONServices.CREATEApplication({ tournament: params?.id, team: getteam?.finaldata[0]?.id }))
         createapplication.mutate()
     }
 

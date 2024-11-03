@@ -17,7 +17,7 @@ import { BGCs } from "../../components/ui/meny-time use/background";
 import { Right } from "../../components/hoc/right";
 import Repair from "../../components/ui/meny-time use/repair";
 import usePage from "../../customHooks/usePage";
-import TeamsRightChaild from "../../childrens/other/teamsRight";
+import TeamsRightChaild from "../../childrens/other/right/teamsRight";
 
 
 export const Teams = ({ }: {}) => {

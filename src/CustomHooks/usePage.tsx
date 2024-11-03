@@ -4,7 +4,6 @@ import useBoolean from "./useBoolean";
 export default function () {
     const modal = useBoolean(false)
     const loading = useBoolean(true)
-    window.scrollTo(0, 0);
 
     useEffect(() => {
         setTimeout(() => {

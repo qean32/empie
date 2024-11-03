@@ -1,7 +1,6 @@
-import { host } from "../exports"
+import { host, tokenStorage } from "../exports"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
-import { tokenStorage } from "./USERServices"
 
 export const CASHServices = {
     GETCash(offset?: number) {

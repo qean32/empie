@@ -1,4 +1,4 @@
-import { tokenStorage } from "../services/USERServices"
+import { tokenStorage } from "../exports"
 
 export default function (link: string, body: any, Auth: boolean = true) {
     const headers: any = Auth ? { 'Content-Type': 'application/json', 'Authorization': `JWT ${JSON.parse(localStorage.getItem(tokenStorage) as any).access}` } : { 'Content-Type': 'application/json', }

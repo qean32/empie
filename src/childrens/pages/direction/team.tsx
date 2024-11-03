@@ -68,20 +68,19 @@ export const TeamChild = ({ }: {}) => {
 const Players = memo(({ teamDirection, idDirector }: { teamDirection: number, idDirector: number }) => {
     const params = useParams()
     const { user }: any = useContext(SomeContext)
+    const regtransfer: any = useMutation(['regtransfer'],
+        () => TRANSFERServices.CREATETransfer({ script: 1, user: user?.user_id, team: params.id }))
+    const exitteam: any = useMutation(['exitteam'],
+        () => PLAYERServices.UPDATEPlayer(teamDirection == 1 ?
+            { team_cs: null }
+            :
+            { team_dota: null }
+            , user?.user_id)
+            .then(() => regtransfer.mutate())
+            .then(() => location.reload())
+    )
 
     const exitHandler = () => {
-        const regtransfer: any = useMutation(['regtransfer'],
-            () => TRANSFERServices.CREATETransfer({ script: 1, user: user?.user_id, team: params.id }))
-        const exitteam: any = useMutation(['exitteam'],
-            () => PLAYERServices.UPDATEPlayer(teamDirection == 1 ?
-                { team_cs: null }
-                :
-                { team_dota: null }
-                , user?.user_id)
-                .then(() => regtransfer.mutate())
-                .then(() => location.reload())
-        )
-
         exitteam.mutate()
     }
 

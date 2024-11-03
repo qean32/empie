@@ -18,10 +18,10 @@ export const RegTeamChild = ({ }: {}) => {
     const params: any = useParams()
     const navigate = useNavigate()
     const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id), ['getteamdirector'])
+    const registration = useMutation(() => (TEAMServices.CREATETeam({ name, status, director: user.user_id, direction: params.iddirection }))
+        .then((results: any) => { setIdnewTeam(results?.id) }))
 
     const regHandler = () => {
-        const registration = useMutation(() => (TEAMServices.CREATETeam({ name, status, director: user.user_id, direction: params.iddirection }))
-            .then((results: any) => { setIdnewTeam(results?.id) }))
         const { userinfo }: any = useUserInfo()
         const { modalregistration }: any = useContext(SomeContext)
 
@@ -33,19 +33,19 @@ export const RegTeamChild = ({ }: {}) => {
         else
             modalregistration.on()
     }
+    const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(),
+        idnewteam, true).then(() => navigate(`/team/${idnewteam}`)))
+    const regtransfer: any = useMutation(['regtransfer'],
+        () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
+    const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
+        params.iddirection == 2 ?
+            { team_dota: idnewteam }
+            :
+            { team_cs: idnewteam }
+        , user?.user_id)
+    )
 
     useEffect(() => {
-        const establishFile = useMutation(() => TEAMServices.UPDATETeam(returnformData(),
-            idnewteam, true).then(() => navigate(`/team/${idnewteam}`)))
-        const regtransfer: any = useMutation(['regtransfer'],
-            () => TRANSFERServices.CREATETransfer({ script: 4, user: user?.user_id, team: idnewteam }))
-        const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
-            params.iddirection == 2 ?
-                { team_dota: idnewteam }
-                :
-                { team_cs: idnewteam }
-            , user?.user_id)
-        )
 
         const fn = () => {
             regtransfer.mutate()

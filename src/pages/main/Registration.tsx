@@ -53,11 +53,10 @@ export const Registration = ({ }: {}) => {
         on.off();
         modal.SwapFn()
     }
-
-    const [id, setId] = useState<number>()
     const RegistrationRQPlayer: any = useMutation(['regplayer'],
         () => PLAYERServices.CREATEPlayer({ name: `${firstname} ${lastname}`, user: id }))
 
+    const [id, setId] = useState<number>()
     const LoginRQ: any = useMutation(['login'], () => USERServices.ACCESSUser({ password, email })
         .then(() => navigate('/')))
 
@@ -74,12 +73,11 @@ export const Registration = ({ }: {}) => {
     useEffect(() => {
         localStorage.setItem(userwashereStorage, JSON.stringify({ userwashere: true }))
     }, [])
+    const RegistrationRQ: any = useMutation(['reg'],
+        () => USERServices.CREATEUser({ first_name: firstname, last_name: lastname, password, email })
+            .then((results: any) => setId(results?.id)))
 
     const Registration = () => {
-        const RegistrationRQ: any = useMutation(['reg'],
-            () => USERServices.CREATEUser({ first_name: firstname, last_name: lastname, password, email })
-                .then((results: any) => setId(results?.id)))
-
         if (repassword == password) {
             if (ValidateEmail(email) && ValidatePassword(password) && ValidateRuName(firstname) && ValidateRuName(lastname)) {
                 RegistrationRQ.mutate()
@@ -197,7 +195,7 @@ export const Carousel = ({ }: {}) => {
             }
         }
     }, [carousel])
-    
+
     return (
         <div style={{ zIndex: '12', backgroundColor: '#292929' }} onClick={() => setCarousel((prev: any) => prev + 1)}>
             <div style={{ width: '100%' }}>

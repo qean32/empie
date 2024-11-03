@@ -8,6 +8,7 @@ import { LIKEServices } from "../../../services/LIKEServices";
 import { SomeContext } from "../../../context";
 import { useMutation } from "react-query";
 import useUserInfo from "../../../customHooks/useUserInfo";
+import { GenerateId } from "../../../functions/GenerateNumber";
 
 export const Post = ({ item }: { item: any }) => {
     const { user }: any = useContext(SomeContext)
@@ -16,7 +17,7 @@ export const Post = ({ item }: { item: any }) => {
     const ulike = useBoolean(false)
     const ucoment = useBoolean(false)
     const likes = useRequest(() => LIKEServices.GETLike(item.id), [`likes${item.id}`])
-    const like = useRequest(() => LIKEServices.GETLike(item.id, user?.user_id), [`like${item.id}`])
+    const like = user.user_id ? useRequest(() => LIKEServices.GETLike(item.id, user?.user_id), [`like${item.id}`]) : { finaldata: [false], count: 1 }
     const [countLike, setCountLike] = useState<number>(0)
 
     useEffect(() => {
@@ -24,7 +25,7 @@ export const Post = ({ item }: { item: any }) => {
     }, [likes.count])
 
     const coments = useRequest(() => COMENTServices.GETComent(item.id), [`coments${item.id}`])
-    const coment = useRequest(() => COMENTServices.GETComent(item.id, 0,), [`coments${item.id}`])
+    const coment = user.user_id ? useRequest(() => COMENTServices.GETComent(item.id, 0, user.user_id), [`coments${item.id}`]) : { finaldata: [false] }
 
     useEffect(() => {
         coment.finaldata[0] && ucoment.on()
@@ -51,7 +52,7 @@ export const Post = ({ item }: { item: any }) => {
                 <div>
                     <div className="postsimg">
                         <div className="ava" onClick={() => navigate('/profile/2')} style={{ backgroundImage: `url(${item?.author?.ava})` }}></div>
-                        {item?.image && <img src={item?.image} alt="" style={{ maxWidth: '80%', borderRadius: '2px' }} />}
+                        {item?.image && <img src={item?.image} alt="" style={{ width: '80%', borderRadius: '2px' }} />}
                     </div>
                 </div>
                 <div style={{ padding: '0 5px' }}>
@@ -89,16 +90,16 @@ const Coment = ({ item }: { item: any }) => {
 const Coments = ({ itemid, viewcoments, coments_ }: { itemid: number, viewcoments: any, coments_: any }) => {
     const { userinfo }: any = useUserInfo()
     const { modalregistration }: any = useContext(SomeContext)
+    const createcomment = useMutation('createcomment',
+        () => COMENTServices.CREATEComent({ author: userinfo?.id, content: comentValue, post: itemid })
+            .then(() => {
+                coments_.setFinalData((prev: any) => [...prev, {
+                    author: userinfo, content: comentValue, post: itemid, id: GenerateId()
+                }]); setComentValue('')
+            }))
 
     const SubmitHandler = (e: any) => {
         e.preventDefault()
-        const createcomment = useMutation('createcomment',
-            () => COMENTServices.CREATEComent({ author: userinfo?.id, content: comentValue, post: itemid })
-                .then(() => {
-                    coments_.setFinalData((prev: any) => [...prev, {
-                        author: userinfo, content: comentValue, post: itemid
-                    }]); setComentValue('')
-                }))
 
         if (userinfo)
             comentValue && createcomment.mutate()

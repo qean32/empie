@@ -66,6 +66,10 @@
     @include positioncenterbyflex;
 }
 
+.trophy {
+    padding: 20px
+}
+
 .trophy>div {
     @include positioncenterbyflex;
     gap: 40px;
