@@ -11,7 +11,9 @@ export default (fetch_: Function, ref: any, RQkey: string[], step: number = 4, o
 
 
     useEffect(() => {
-        RQData.data && setFinalData((prev: any) => [...prev, ...RQData.data?.results])
+        RQData.data &&
+            Array.isArray(RQData.data?.results) &&
+               setFinalData((prev: any) => [...prev, ...RQData.data?.results])
     }, [RQData.data])
 
     useEffect(() => {

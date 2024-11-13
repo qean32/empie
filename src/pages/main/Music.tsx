@@ -10,9 +10,9 @@ import usePage from "../../customHooks/usePage";
 
 
 export const Music = ({ }: {}) => {
-    const [{}, loading]: any = usePage()
+    const [{ }, loading]: any = usePage()
     ChangeTitle('музыка')
-    
+
     const navigate = useNavigate()
 
     return (
@@ -28,6 +28,7 @@ export const Music = ({ }: {}) => {
                             <div className="containernsmallwindow">
                                 <Repair />
                                 <p>раздел в разработке</p>
+                                <audio loop src='/audio/serega.mp3' controls></audio>
                                 <Button title="назад" function_={() => navigate('/')} />
                             </div>
                         </SmallCenterPlate>

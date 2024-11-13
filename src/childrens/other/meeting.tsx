@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 export const MeetingChild = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-        <div className="dftcontainer" onClick={() => navigate(`/meeting/${item?.id}`)} style={{ padding: '15px 0', cursor: 'pointer' }}>
+        <div className="dftcontainer" onClick={() => navigate(`/meeting/${item?.id}`)} style={{ padding: '24px 0', cursor: 'pointer' }}>
             <div style={{ justifyContent: 'space-between', display: 'flex', width: '100%', padding: '0 30px' }}>
                 <div className="teamvstam">
                     <p>{item?.team_one?.name}</p><div style={{ display: 'flex', gap: '10px' }}><p>

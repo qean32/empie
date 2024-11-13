@@ -29,7 +29,7 @@ export const CashChild = ({ }: {}) => {
 export const DftCash = ({ item }: { item: any }) => {
     return (
         <>
-            <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={item?.price < 0 ? 'redcash' : ''}>
+            <div className="cashheader greencash" style={{ padding: '10px 20px 10px 20px' }} id={item?.price < 0 ? 'redcash' : ''}>
                 <div>{item?.price > 0 ? '+' : ''}{item?.price} ₽</div>
                 <div style={{ width: '200px', textAlign: 'center' }}>{item?.content}</div>
                 <div>{(item?.created_at).split(' ')[1]}</div>
@@ -42,11 +42,12 @@ export const DftCash = ({ item }: { item: any }) => {
 
 
 export const CashHeader = ({ }: {}) => {
-    const cash = useRequest(() => CASHServices.GETCashList(), ['cashlist'])
+    const cash = useRequest(() => CASHServices.GETBudget(), ['budget'])
+
     return (
         <>
             <div className="cashheader">
-                <div>{cash?.finaldata[0]?.price} ₽</div>
+                <div>{cash?.finaldata[0]?.budget} ₽</div>
                 <div>история расхода</div>
                 <div>дата <img src="/svg/calendar.svg" /></div>
                 <div>дисциплина</div>

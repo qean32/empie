@@ -1,14 +1,13 @@
 import { EmpieLogo } from "./Logo"
 import OnlineHandler from "../one-time use/onlineHandler";
 import { useNavigate } from "react-router";
-import useBoolean from "../../../customHooks/useBoolean";
 import useUserInfo from "../../../customHooks/useUserInfo";
 import { tokenStorage } from "../../../exports";
+import Notifications from "../one-time use/notifications";
 
 export const Header = () => {
 
     const navigate = useNavigate()
-    const notification = useBoolean(false)
     const { userinfo }: any = useUserInfo()
 
     const avaClickHandler = () => {
@@ -26,9 +25,7 @@ export const Header = () => {
                     <span onClick={() => navigate('/')}>
                         <EmpieLogo />
                     </span>
-                    <div onClick={() => navigate('/offers')} style={{ cursor: 'pointer' }}>
-                        {notification.boolean ? <img src="/svg/notification.svg" alt="" /> : <img src="/svg/notificationun.svg" alt="" />}
-                    </div>
+                    <Notifications />
                 </div>
                 <div onClick={avaClickHandler} style={{ cursor: 'pointer' }}>
                     {localStorage.getItem(tokenStorage) ?

@@ -7,6 +7,9 @@ export const OFFERServices = {
     GETOffer: (id?: numsrting) => {
         return RQRequestGET(`${host}unification/search/offers/?user=${id}`)
     },
+    GETREALTIMEOffer: (id: numsrting, datetime_: string) => {
+        return RQRequestGET(`${host}unification/longpoll/offers/${id}/${datetime_}/`)
+    },
     CREATEOffer: (body: any) => {
         return RQRequestPOST(`${host}unification/reg/offers/`, body)
     },

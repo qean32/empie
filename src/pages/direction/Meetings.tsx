@@ -21,7 +21,7 @@ export const Meetings = ({ }: {}) => {
 
     const params = useParams()
     const scrollRef: any = useRef()
-    const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset), scrollRef, ['meetings'])
+    const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset, '', 12, '', false, params.iddirection), scrollRef, ['meetings'])
 
     return (
         <>

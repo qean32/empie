@@ -122,6 +122,7 @@ export const Match = ({ item, teams }: { item: any, teams: any[] }) => {
 export const Team = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-        <div onClick={() => navigate(`/team/${item?.id}`)} style={{ cursor: 'pointer' }}> <div className="ava hover3 transition03"></div> <p>{item?.name}</p> </div>
+        <div onClick={() => navigate(`/team/${item?.id}`)} style={{ cursor: 'pointer' }}> <div className="ava hover3 transition03"
+            style={{ backgroundImage: `url(${item?.logo})` }} ></div> <p>{item?.name}</p> </div>
     );
 }

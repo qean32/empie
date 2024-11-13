@@ -9,8 +9,8 @@ export const CASHServices = {
     CREATECash(body: any) {
         return RQRequestPOST(`${host}cash/reg/cash/`, body)
     },
-    GETCashList() {
-        return RQRequestGET(`${host}cash/search/cash/list/?id=1`)
+    GETBudget() {
+        return RQRequestGET(`${host}cash/search/budget/?id=1`)
     },
     DELETECash: (id: number) => {
         return fetch(`${host} ${id}`, {

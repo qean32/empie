@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function (ref: any, daley: number = 200) {
     const [boolean, setBoolean] = useState<boolean>(false)
+    const controller = new AbortController
 
     const on = () => setBoolean(true)
     const off = () => setBoolean(false)
@@ -16,11 +17,12 @@ export default function (ref: any, daley: number = 200) {
                 off()
         }
 
-        window.addEventListener('scroll', fn)
+        window.addEventListener('scroll', fn, { signal: controller.signal })
 
         return function () {
-            window.removeEventListener('scroll', fn)
+            controller.abort()
         }
+
     }, [])
 
     return boolean

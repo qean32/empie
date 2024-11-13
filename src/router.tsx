@@ -20,7 +20,7 @@ import { Tournament } from "./pages/direction/tournament"
 import { EditProfile } from "./pages/main/editProfile"
 import { EditTeam } from "./pages/direction/editTeam"
 import { RegTeam } from "./pages/direction/regTeam"
-import { Protokols } from "./pages/direction/protokols"
+import { Protokols } from "./pages/main/Protokols"
 import { Wall } from "./pages/main/wall"
 
 type Props = {

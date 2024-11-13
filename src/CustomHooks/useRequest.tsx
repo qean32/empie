@@ -6,7 +6,9 @@ export default (fetch_: any, RQkey: string[]) => {
     const RQData: any = useQuery(RQkey, fetch_, { keepPreviousData: true, refetchOnWindowFocus: false })
 
     useEffect(() => {
-        RQData.data && setFinalData((prev: any) => [...prev, ...RQData.data?.results])
+        RQData.data &&
+            Array.isArray(RQData.data?.results) &&
+                setFinalData((prev: any) => [...prev, ...RQData.data?.results])
     }, [RQData.data])
 
     return { finaldata, setFinalData, count: RQData?.data?.count }
