@@ -4,8 +4,9 @@ import { useNavigate } from "react-router";
 import useUserInfo from "../../../customHooks/useUserInfo";
 import { tokenStorage } from "../../../exports";
 import Notifications from "../one-time use/notifications";
+import { memo } from "react";
 
-export const Header = () => {
+export const Header = memo(() => {
 
     const navigate = useNavigate()
     const { userinfo }: any = useUserInfo()
@@ -25,7 +26,7 @@ export const Header = () => {
                     <span onClick={() => navigate('/')}>
                         <EmpieLogo />
                     </span>
-                    <Notifications />
+                        <Notifications />
                 </div>
                 <div onClick={avaClickHandler} style={{ cursor: 'pointer' }}>
                     {localStorage.getItem(tokenStorage) ?
@@ -37,7 +38,7 @@ export const Header = () => {
             </div>
         </header>
     );
-}
+})
 
 
 export const FakeHeader = () => {

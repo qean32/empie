@@ -73,7 +73,7 @@ export const Registration = ({ }: {}) => {
     useEffect(() => {
         localStorage.setItem(userwashereStorage, JSON.stringify({ userwashere: true }))
     }, [])
-    
+
     const RegistrationRQ: any = useMutation(['reg'],
         () => USERServices.CREATEUser({ first_name: firstname, last_name: lastname, password, email })
             .then((results: any) => setId(results?.id)))
@@ -129,7 +129,7 @@ export const Registration = ({ }: {}) => {
                                             </div>
                                             <div>
                                                 <Button title="вход"
-                                                    function_={() => LoginRQ.mutate().then(() => navigate('/'))} />
+                                                    function_={() => LoginRQ.mutate()} />
                                             </div>
                                         </form>
                                         <form className="windowreg" onSubmit={clickHandler}>

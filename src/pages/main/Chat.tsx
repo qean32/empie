@@ -9,15 +9,20 @@ import { Right } from "../../components/hoc/right";
 import { Center } from "../../components/hoc/center";
 import { ChatChild } from "../../childrens/pages/main/chat";
 import usePage from "../../customHooks/usePage";
+import { useContext } from "react";
+import UserWasHereModal from "../../components/ui/one-time use/userwashere";
+import { SomeContext } from "../../context";
 
 
 export const Chat = ({ }: {}) => {
     const [modal, loading]: any = usePage()
+    const { modalregistration }: any = useContext(SomeContext)
     ChangeTitle("чат")
 
     return (
         <>
             {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
+            {modalregistration.boolean && <Modal function_={modalregistration.SwapFn}><UserWasHereModal modalregistration={modalregistration} /></Modal>}
             <Header />
             <div className="main">
                 {loading &&

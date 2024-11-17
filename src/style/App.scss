@@ -52,13 +52,14 @@ body {
 }
 
 .right {
+  padding-top: 3px;
+  overflow: hidden;
   width: 30vh;
   min-width: 260px;
 }
 
 .leftpanel {
   @include dftPlate;
-  margin: 0.5vh 0;
 
   width: 22vh;
   min-width: 185px;
@@ -76,8 +77,7 @@ body {
   margin: 0 0 3vh 0;
   min-width: 580px;
   min-height: 1000px;
-  transform: translateY(-100px);
-  z-index: -1;
+  transform: translateY(-100px)
 }
 
 .rightpanel {
@@ -110,7 +110,7 @@ header {
   border-radius: 0;
   border: 0;
   min-height: 50px;
-  // z-index: 10;
+  z-index: 10;
 }
 
 header>div {
@@ -139,7 +139,6 @@ header>div>div {
 
 .centerplate:hover,
 .smallcenterplate:hover,
-.fullplate:hover,
 .leftpanel:hover,
 .rightpanel:hover {
   transform: translateY(-3px);

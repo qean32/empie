@@ -69,11 +69,11 @@ const HOCLike = ({ islike, value, fn, count, likeid, postid }:
 
     const fn_ = () => {
         fn();
-        
+
         if (userinfo)
             !value ?
-        createLike.mutate()
-        :
+                createLike.mutate()
+                :
                 deleteLike.mutate()
         else
             modalregistration.on()
