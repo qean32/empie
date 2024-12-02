@@ -1,30 +1,30 @@
-import { useState } from "react";
+import { useContext, useEffect } from "react";
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate";
 import { Button } from "../../../components/ui/meny-time use/customButton";
 import Repair from "../../../components/ui/meny-time use/repair";
-import useDinamicPagination from "../../../customHooks/useDinamicPagination";
-import { arrey } from "../../../functions/GiveConst";
+import { OFFERServices } from "../../../services/OFFERServices";
+import useRequest from "../../../customHooks/useRequest";
+import { SomeContext } from "../../../context";
+import { PLAYERServices } from "../../../services/PLAYERServices";
+import { useMutation } from "react-query";
+import { TRANSFERServices } from "../../../services/TRANSFERServices copy";
 
 
-type Props = {
 
-}
-export const OffersChild = ({ }: Props) => {
-    const [offers, setOffers] = useState<any[]>([])
-
-    const ref = useDinamicPagination(() => setOffers((prev: any) => [...prev, ...arrey]))
+export const OffersChild = ({ }: {}) => {
+    const { user }: any = useContext(SomeContext)
+    const offers: any = useRequest(() => OFFERServices.GETOffer(user.user_id), ['offers'])
 
     return (
         <>
             <SmallCenterPlate>
                 <div className="dftcontainer" style={{ flexDirection: 'column', alignItems: 'normal', minHeight: '500px', justifyContent: 'start', padding: '40px 0 0 0' }}>
-                    {offers.length > 0 ?
+                    {offers.finaldata.length ?
                         <>
-                            {offers.map((el, index) => (
-                                <DftOffer key={index} />
-                            ))}
 
-                            <div ref={ref} className="scrollhandlerref"></div>
+                            {offers && offers.finaldata.map((item: any) => (
+                                <DftOffer item={item} key={item.id} />
+                            ))}
                         </> :
                         <div className="dftcontainer" style={{ flexDirection: 'column', gap: '40px' }}>
                             <Repair />
@@ -37,14 +37,41 @@ export const OffersChild = ({ }: Props) => {
     );
 }
 
-type PropsDft = {
 
-}
-export const DftOffer = ({ }: PropsDft) => {
+export const DftOffer = ({ item }: { item: any }) => {
+    const { user }: any = useContext(SomeContext)
+    const deleteoffer = useMutation(() => OFFERServices.DELETEOffer(item?.id)
+        .then(() => regtransfer.mutate())
+    )
+    const viewOffer = useMutation(() => OFFERServices.UPDATEOffer(item.id, { is_view: true }))
+    useEffect(() => {
+        !item.is_view && viewOffer.mutate()
+    }, [])
+    
+    const acceptance: any = useMutation(['updateplayer'], () => PLAYERServices.UPDATEPlayer(
+        item?.direction?.id == 2 ?
+            { team_dota: item?.team?.id }
+            :
+            { team_cs: item?.team?.id }
+        , user?.user_id)
+        .then(() => deleteoffer.mutate())
+    )
+    const regtransfer: any = useMutation(['regtransfer'], () => TRANSFERServices.CREATETransfer({ script: 2, user: user?.user_id, team: item?.team?.id })
+        .then(() => location.reload())
+    )
+
     return (
         <div className="offer">
-            <div><img src="./svg/dota.svg" alt="" /> <img src="" alt="" className="ava" /> <p>ROKUZAN</p></div>
-            <Button title="принять" function_={() => undefined} />
+            <div>
+                {item?.direction?.id == 2 ?
+                    <img src="./svg/dota.svg" alt="" />
+                    :
+                    <img src="./svg/cs.svg" alt="" />
+                }
+                <div className="ava" style={{ backgroundImage: `url(${item?.team?.logo})` }} />
+                <p>{item?.team?.name}</p>
+            </div>
+            <Button title="принять" function_={() => acceptance.mutate()} />
         </div>
     );
 }

@@ -9,7 +9,7 @@ input {
     outline: none;
     cursor: pointer;
     width: 100%;
-    min-height: 22px;
+    min-height: 31px;
 }
 
 label {
@@ -17,6 +17,7 @@ label {
     justify-content: start;
     padding: 0 0 0 20px;
     width: 100%;
+    pointer-events: none;
 }
 
 label>p {
@@ -144,12 +145,11 @@ input[type=time]::-webkit-calendar-picker-indicator {
 
 .checkbox_ {
     position: absolute;
-    transform: translate(1vh, 0);
+    transform: translate(1vh, -6px);
 }
 
 input[type=checkbox] {
-    height: 10px;
-    width: 11px;
+    width: 12px;
     border: 2px solid $background-color-dark;
 }
 
@@ -161,9 +161,7 @@ input[type=checkbox] {
 }
 
 .inputfile>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include positioncenterbyflex;
 }
 
 .smallinput>div {
@@ -181,3 +179,34 @@ select {
     width: 100%;
     min-height: 22px;
 }
+
+input[type=range] {
+    -webkit-appearance: none;
+    overflow: hidden;
+    width: 400px;
+    cursor: pointer;
+    height: 16px;
+    padding: 0;
+    min-height: auto;
+    background-color: $background-color-light;
+    border-radius: 1px;
+}
+
+::-webkit-slider-thumb {
+    content: '|||';
+    -webkit-appearance: none;
+    width: 20px;
+    height: 15px;
+    background: $background-color-dark;
+    box-shadow: -200px 0 0 200px $background-color-dark;
+    border: 1px solid #535353;
+    position: relative;
+}
+
+// ::-webkit-slider-thumb::after {
+//     content: '|||';
+//     font-size: 10px;
+//     color: $background-color-light-l;
+//     position: absolute;
+//     inset: 0;
+// }

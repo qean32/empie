@@ -1,4 +1,4 @@
-import Shadaow from "./shadow";
+import Shadaow from "../ui/meny-time use/shadow";
 
 type Props = {
     children: any

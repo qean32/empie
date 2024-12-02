@@ -7,9 +7,7 @@
 }
 
 .react-calendar__navigation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
 }
 
 
@@ -29,9 +27,7 @@
     border: none;
     outline: none;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include positioncenterbyflex;
     padding: 5px;
 }
 

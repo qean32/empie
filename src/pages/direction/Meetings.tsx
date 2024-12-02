@@ -1,48 +1,44 @@
-import { useContext, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
+import { useRef } from "react";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Header } from "../../components/ui/meny-time use/header";
-import { Modal } from "../../components/ui/meny-time use/modal";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { MeetingChild } from "../../childrens/other/meeting";
 import { DftRPanel } from "../../components/hoc/dftrPanel";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Center } from "../../components/hoc/center";
-import { arrey } from "../../functions/GiveConst";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
+import { MEETINGServices } from "../../services/MEETINGServices";
+import usePage from "../../customHooks/usePage";
 
-type Props = {
 
-}
-export const Meetings = ({ }: Props) => {
-    const { loading, modal } = useContext<any>(SomeContext)
-    const [meetings, setMeetings] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}, {}])
-    const direction = useParams()
-
-    const ref = useDinamicPagination(() => setMeetings((prev: any) => [...prev, ...arrey]))
-
+export const Meetings = ({ }: {}) => {
+    const [{ }, loading]: any = usePage()
     ChangeTitle('матчи')
+
+    const params = useParams()
+    const scrollRef: any = useRef()
+    const meetings: any = useDinamickPagination(() => MEETINGServices.GETMeeting(meetings.offset, '', 12, '', false, params.iddirection), scrollRef, ['meetings'])
+
     return (
         <>
-            {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
                 {loading &&
                     <MainLoader />
                 }
                 <>
-                    <LeftPanel function_={modal.SwapFn} />
+                    <LeftPanel />
                     <Center>
-                        {meetings.map((el, index) => (
-                            <SmallCenterPlate key={index}><MeetingChild /></SmallCenterPlate>
+
+                        {meetings && meetings.finaldata.map((item: any) => (
+                            <SmallCenterPlate key={item.id}><MeetingChild item={item} /></SmallCenterPlate>
                         ))}
 
-                        <div ref={ref} className="scrollhandlerref"></div>
+                        <div ref={scrollRef} className="scrollhandlerref"></div>
                     </Center>
-                    <DftRPanel direction={Number(direction.iddirection)} />
+                    <DftRPanel direction={Number(params.iddirection)} />
                 </>
             </div>
         </>

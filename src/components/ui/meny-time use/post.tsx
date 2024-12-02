@@ -1,61 +1,128 @@
-import { InputComent, LikeComent } from "../one-time use/InterfacePost";
+import HOCLike, { InputComent, ShellLikeComent } from "../one-time use/InterfacePost";
 import useBoolean from "../../../customHooks/useBoolean";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import useRequest from "../../../customHooks/useRequest";
+import { COMENTServices } from "../../../services/COMENTServices";
+import { LIKEServices } from "../../../services/LIKEServices";
+import { SomeContext } from "../../../context";
+import { useMutation } from "react-query";
+import useUserInfo from "../../../customHooks/useUserInfo";
+import { GenerateId } from "../../../functions/GenerateNumber";
+import { createPortal } from "react-dom";
+import { Modal } from "../../hoc/modal";
+import UserWasHereModal from "../one-time use/userwashere";
 
-type Props = {
+export const Post = ({ item }: { item: any }) => {
+    const { user }: any = useContext(SomeContext)
 
-}
-export const Post = ({ }: Props) => {
+    const viewcoments = useBoolean(false)
     const ulike = useBoolean(false)
     const ucoment = useBoolean(false)
-    const viewcoments = useBoolean(false)
+    const likes = useRequest(() => LIKEServices.GETLike(item.id), [`likes${item.id}`])
+    const like = user.user_id ? useRequest(() => LIKEServices.GETLike(item.id, user?.user_id), [`like${item.id}`]) : { finaldata: [], count: 0 }
     const [countLike, setCountLike] = useState<number>(0)
-    const [coments, setComents] = useState<any[]>([])
+
+    useEffect(() => {
+        likes.count && setCountLike(likes.count)
+    }, [likes.count])
+
+    const coments = useRequest(() => COMENTServices.GETComent(item.id), [`coments${item.id}`])
+    const coment = user.user_id ? useRequest(() => COMENTServices.GETComent(item.id, 0, user.user_id), [`coments${item.id}`]) : { finaldata: [false] }
+
+    useEffect(() => {
+        coment.finaldata[0] && ucoment.on()
+    }, [coment.finaldata[0]])
+
+    useEffect(() => {
+        like.count && ulike.on()
+    }, [like.count])
+
     const navigate = useNavigate()
 
     const LikeHandler = () => {
         ulike.SwapFn()
-        if (!ulike.boolean) {
+
+        ulike.boolean ?
+            setCountLike((prev: number) => prev - 1)
+            :
             setCountLike((prev: number) => prev + 1)
-        } else { setCountLike((prev: number) => prev - 1) }
     }
 
     return (
-        <div className="dftcontainer" style={{ padding: '20px 30px', flexDirection: 'column' }}>
-            <div className="post">
+        <div className="dftcontainer" style={{ flexDirection: 'column' }}>
+            <div className="post" style={{ padding: '20px' }}>
                 <div>
-                    <div className="postsimg"><div className="ava" onClick={() => navigate('/profile/2')}></div><img src="" alt="" className="postimg" /></div>
+                    <div className="postsimg">
+                        <div className="ava" onClick={() => navigate('/profile/2')} style={{ backgroundImage: `url(${item?.author?.ava})` }}></div>
+                        {item?.image && <img src={item?.image} alt="" style={{ width: '80%', borderRadius: '2px' }} />}
+                    </div>
                 </div>
-                <div>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur, obcaecati rem! Dignissimos eveniet quisquam nulla obcaecati saepe  </p>
+                <div style={{ padding: '0 5px' }}>
+                    <p> {item?.content} </p>
                 </div>
-                <div style={{ display: 'flex', gap: '15px', justifyContent: 'end', padding: '0 10px 0 0' }}>
-                    <LikeComent islike={true} value={ulike.boolean} fn={LikeHandler} count={countLike} />
-                    <LikeComent islike={false} value={ucoment.boolean} fn={viewcoments.SwapFn} count={coments.length} />
+                <div style={{ display: 'flex', gap: '15px', justifyContent: 'end', padding: '0 -20px 0 0' }}>
+                    <HOCLike islike={true} value={ulike.boolean}
+                        fn={LikeHandler} count={countLike} likeid={like?.finaldata[0]?.id} postid={item?.id} />
+                    <ShellLikeComent islike={false} value={ucoment.boolean} fn={viewcoments.SwapFn} count={coments.finaldata.length} />
                 </div>
             </div>
-            <div className="coments" style={viewcoments.boolean ? { maxHeight: 'calc(anchor-size(--myAnchor self-block, 450px) + 2em)', padding: '30px 0 0 0' } : { maxHeight: '0' }}>
-                <InputComent value={""} setValue={() => undefined} title={"ваш коментарий.."} />
-                <Coment />
-                <Coment />
-            </div>
+            <Coments itemid={item.id} viewcoments={viewcoments} coments_={coments} />
         </div>
     );
 }
 
-type Props_ = {
-
-}
-export const Coment = ({ }: Props_) => {
+const Coment = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-
-        <div className="postsimg" style={{ gap: '15px' }}>
-            <div className="ava" onClick={() => navigate('/profile/2')}></div>
-            <p style={{ maxWidth: '420px' }}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam, magnam.sit amet consectetur adipisicing elit. Totam, magnam.
-            </p>
+        <div className="postsimg" style={{ gap: '15px', padding: '20px 0 0 35px', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', gap: '20px' }}>
+                <div className="ava" onClick={() => navigate(`/profile/${item?.author?.id}`)} style={{ backgroundImage: `url(${item?.author?.ava})` }}></div>
+                <p>{item?.author?.first_name} {item?.author?.last_name}</p>
+            </div>
+            <div style={{ display: 'flex', gap: '20px' }}>
+                <div className="ava" style={{ opacity: 0 }}></div>
+                <p style={{ maxWidth: '420px' }} dangerouslySetInnerHTML={{ __html: item.content }}></p>
+            </div>
         </div>
     );
+}
+
+const Coments = ({ itemid, viewcoments, coments_ }: { itemid: number, viewcoments: any, coments_: any }) => {
+    const { userinfo }: any = useUserInfo()
+    const modalregistration = useBoolean(false)
+    const createcomment = useMutation('createcomment',
+        () => COMENTServices.CREATEComent({ author: userinfo?.id, content: comentValue, post: itemid })
+            .then(() => {
+                coments_.setFinalData((prev: any) => [...prev, {
+                    author: userinfo, content: comentValue, post: itemid, id: GenerateId()
+                }]); setComentValue('')
+            }))
+
+    const SubmitHandler = (e: any) => {
+        e.preventDefault()
+
+        if (userinfo)
+            comentValue && createcomment.mutate()
+        else
+            modalregistration.on()
+    }
+
+
+    const [comentValue, setComentValue] = useState<string>('')
+
+    return (
+        <div className="coments" style={viewcoments.boolean ? { maxHeight: 'calc(anchor-size(--myAnchor self-block, 250px) + 2em)' } : { maxHeight: '0' }}>
+            {modalregistration.boolean && createPortal(
+                <Modal function_={modalregistration.SwapFn}><UserWasHereModal modalregistration={modalregistration} /></Modal>,
+                document.body
+            )}
+            <div>
+                <form style={{ padding: '0 0 0 30px' }} onSubmit={SubmitHandler}>
+                    <InputComent value={comentValue} setValue={setComentValue} title={"ваш коментарий.."} submit={SubmitHandler} />
+                </form>
+                {coments_ && coments_.finaldata.map((item: any) => <Coment item={item} key={item.id} />)}
+            </div>
+        </div>
+    )
 }

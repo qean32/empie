@@ -1,8 +1,5 @@
-type Props = {
-
-}
-export const Cross = ({ }: Props) => {
+export const Cross = ({ }: {}) => {
     return (
-        <img src="/svg/cross.svg" alt="" style={{cursor: 'pointer'}}/>
+        <img src="/svg/cross.svg" alt="" style={{ cursor: 'pointer' }} />
     );
 }

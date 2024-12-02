@@ -1,36 +1,63 @@
-import { useState } from "react"
-import { useNavigate } from "react-router"
-import { SelectTeam } from "../../../components/hoc/admin/selectTeam"
-import { AdminPlate } from "../../../components/hoc/plates/adminPlate"
+import { useNavigate, useParams } from "react-router"
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate"
-import { Button } from "../../../components/ui/meny-time use/customButton"
-import { InputDate, InputTime } from "../../../components/ui/meny-time use/customInput"
 import Repair from "../../../components/ui/meny-time use/repair"
-import { AdminMeeting, AdminMeetingWin } from "../../../components/hoc/admin/adminMeeting"
+import { AdminMeeting, AdminMatch } from "../../../components/hoc/admin/adminMeeting"
+import useRequest from "../../../customHooks/useRequest"
+import { MEETINGServices } from "../../../services/MEETINGServices"
+import { MATCHServices } from "../../../services/MATCHServices"
+import { AdminSmallPanel } from "../../../components/hoc/plates/adminSmallPanel"
+import { Button } from "../../../components/ui/meny-time use/customButton"
+import { useMutation } from "react-query"
 
 
-type PropsSomeMeeting = {
-    element: any
-}
-export const MeetingChild = ({ element }: PropsSomeMeeting) => {
-    const [match, setMatch] = useState<any[]>([{}, {}, {}, {}, {}, {}, {}])
+export const MeetingChild = ({ }: {}) => {
+    const params: any = useParams()
+    const matches = useRequest(() => MATCHServices.GETMatch(params.id), ['mathes'])
+    const meeting = useRequest(() => MEETINGServices.GETMeeting(0, params.id), ['meeting'])
+    const creatematch = useMutation(() => MATCHServices.CREATEMatch(
+        {
+            meeting: params.id,
+            team_one: meeting?.finaldata[0]?.team_one?.id,
+            team_two: meeting?.finaldata[0]?.team_two?.id,
+            direction: meeting?.finaldata[0]?.direction?.id,
+        })
+        .then(() => location.reload())
+    )
 
     return (
-        <>{element ?
+        <>{meeting.finaldata[0] &&
+            meeting.finaldata[0].team_one
+            && meeting.finaldata[0].team_two ?
             <>
                 <SmallCenterPlate>
                     <div className="dftcontainer">
                         <div className="headmeeting">
-                            <Team />
+                            <Team item={meeting.finaldata[0].team_one} />
                             <div style={{ gap: '10px' }}> <img src="/svg/cup.svg" alt="" style={{ width: '30px' }} />
-                                <div> <p>20:21</p><p style={{ fontSize: '12px' }}> 20.09 </p> </div> </div>
-                            <Team />
+                                <div> <p>
+                                    {meeting.finaldata[0].team_one_score}:{meeting.finaldata[0].team_two_score}</p>
+                                    <p style={{ fontSize: '12px' }}> {meeting.finaldata[0].date} </p> </div> </div>
+                            <Team item={meeting.finaldata[0].team_two} />
                         </div>
                     </div>
+                    <AdminSmallPanel>
+                        <Button title="создать матч" function_={() => creatematch.mutate()} />
+                    </AdminSmallPanel>
                 </SmallCenterPlate>
-                {match.map((el, index) => (
-                    <Match key={index} element={el} />
+
+                {matches?.finaldata && matches.finaldata.map((item) => (
+                    <Match key={item.id} item={item} teams={[meeting.finaldata[0].team_one, meeting.finaldata[0].team_two]} />
                 ))}
+
+                <AdminMeeting idmeeting={params?.id} teams__=
+                    {
+                        meeting.finaldata[0] &&
+                            meeting.finaldata[0].team_one &&
+                            meeting.finaldata[0].team_two ?
+                            [meeting.finaldata[0].team_one, meeting.finaldata[0].team_two]
+                            :
+                            []
+                    } />
             </>
             :
             <>
@@ -44,49 +71,58 @@ export const MeetingChild = ({ element }: PropsSomeMeeting) => {
                         </div>
                     </div>
                 </SmallCenterPlate>
-                <AdminMeeting />
+                <AdminMeeting idmeeting={params?.id} teams__=
+                    {
+                        meeting.finaldata[0] &&
+                            meeting.finaldata[0].team_one &&
+                            meeting.finaldata[0].team_two ?
+                            [meeting.finaldata[0].team_one, meeting.finaldata[0].team_two]
+                            :
+                            []
+                    }
+                />
             </>
         }
         </>
     );
 }
 
-type PropsMatch = {
-    element: any
-}
-export const Match = ({ element }: PropsMatch) => {
+
+export const Match = ({ item, teams }: { item: any, teams: any[] }) => {
+    const params: any = useParams()
     return (
         <>
             <SmallCenterPlate>
                 <div className="dftcontainer" style={{ padding: '40px 0 0 0' }}>
                     <div style={{ width: '100%' }}>
                         <div className="headmeeting">
-                            <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/cup.svg" alt="" /><p style={{ fontSize: '13px', width: '240px', cursor: 'pointer' }}>id: 7948176944 <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('7948176944')} style={{ transform: 'translate(2px, 3px)' }} /></p> </div>
-                            <div><p>51:40</p></div>
+                            <div style={{ gap: '10px', flexDirection: 'row' }}> <img src="/svg/cup.svg" alt="" />
+                                <p style={{ fontSize: '13px', width: '240px', cursor: 'pointer' }}>id: {item?.id_match}
+                                    <img src="/svg/copy.svg" alt="" onClick={() => navigator.clipboard.writeText('7948176944')} style={{ transform: 'translate(2px, 3px)' }} /></p> </div>
+                            <div><p>{item?.team_one_score} : {item?.team_two_score}</p></div>
                         </div>
                         <div className="meetingrepair">
                             <Repair />
                             {
-                                element ?
+                                item?.id_match == 0 ?
                                     <p style={{ fontSize: '15px' }}>информация отсутствует</p>
                                     :
-                                    <a style={{ fontSize: '16px' }} href={`https://www.dotabuff.com/matches/${7948176944}`} target="_blank">ссылка дотабафф</a>
+                                    <a style={{ fontSize: '16px' }} href={`https://www.dotabuff.com/matches/${item?.id_match}`} target="_blank">ссылка дотабафф</a>
                             }
                         </div>
                     </div>
                 </div>
             </SmallCenterPlate>
-            <AdminMeetingWin />
+            <AdminMatch teams={teams} idmeeting={params?.id} />
         </>
     );
 }
 
-type Props_ = {
 
-}
-export const Team = ({ }: Props_) => {
+export const Team = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-        <div onClick={() => navigate('/team/2')} style={{ cursor: 'pointer' }}> <div className="ava hover3 transition03"></div> <p>POKUZAN</p> </div>
+        <div onClick={() => navigate(`/team/${item?.id}`)} style={{ cursor: 'pointer' }}> <div className="ava hover3 transition03"
+            style={{ backgroundImage: `url(${item?.logo})` }} ></div> <p>{item?.name}</p> </div>
     );
 }

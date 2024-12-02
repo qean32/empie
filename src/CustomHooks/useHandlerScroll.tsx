@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-export default function (ref: any, daley: number = 50) {
+export default function (ref: any, daley: number = 200) {
     const [boolean, setBoolean] = useState<boolean>(false)
+    const controller = new AbortController
 
     const on = () => setBoolean(true)
     const off = () => setBoolean(false)
@@ -10,19 +11,18 @@ export default function (ref: any, daley: number = 50) {
         const node: HTMLElement = ref.current
 
         const fn = () => {
-            if (node.getBoundingClientRect().top < window.innerHeight - daley) {
-                on(); console.log('on', window.innerHeight - daley, node.getBoundingClientRect().top)
-            }
-            else {
-                off(); console.log('off', window.innerHeight - daley, node.getBoundingClientRect().top)
-            }
+            node.getBoundingClientRect().top < window.innerHeight + daley ?
+                on()
+                :
+                off()
         }
 
-        window.addEventListener('scroll', fn)
+        window.addEventListener('scroll', fn, { signal: controller.signal })
 
         return function () {
-            window.removeEventListener('scroll', fn)
+            controller.abort()
         }
+
     }, [])
 
     return boolean

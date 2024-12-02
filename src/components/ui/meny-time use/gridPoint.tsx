@@ -1,19 +1,21 @@
 import { useNavigate } from "react-router";
 
-type Props = {
-
-}
-export const GridPoint = ({ }: Props) => {
+export const GridPoint = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-        <div className="gridpoint" onClick={() => navigate('/meeting/2')}>
+        <div className="gridpoint" onClick={() => navigate(`/meeting/${item?.id}`)}>
             <div style={{ display: 'flex', justifyContent: 'space-between', height: '16px', padding: '5px 10px 2px 10px' }}>
-                <img src="/svg/dragon.svg" alt="" style={{ width: '20px' }} />
-                <img src="/svg/dragon.svg" alt="" style={{ width: '20px' }} />
+                <img src={item?.team_one?.logo ? `${item?.team_one?.logo}` : '/svg/dragon.svg'} alt="" id="imgteamlogo" style={{ transform: 'translateX(-2px)' }} />
+                vs
+                <img src={item?.team_one?.logo ? `${item?.team_two?.logo}` : '/svg/dragon.svg'} alt="" id="imgteamlogo" style={{ transform: 'translateX(2px)' }} />
             </div>
             <span className="line" style={{ position: 'static', backgroundColor: '#00000030', height: '2px' }}></span>
-            <div><p>Team Spirit</p><p>2</p></div>
-            <div><p>ROKUZAN</p><p>1</p></div>
+            <div><p id="nametextteam">{item?.team_one?.name}</p>
+                <p>{item?.team_one_score == 0 && item?.team_one_score == 0 ? '' : item?.team_one_score}</p>
+            </div>
+            <div><p id="nametextteam">{item?.team_two?.name}</p>
+                <p>{item?.team_two_score == 0 && item?.team_two_score == 0 ? '' : item?.team_two_score}</p>
+            </div>
         </div>
     );
 }

@@ -15,7 +15,7 @@
 
 
 .leftpanel>div:hover>p {
-    transform: translateX(7px);
+    transform: translateX(3px);
 }
 
 .leftpanel>div>img {
@@ -54,15 +54,14 @@
 }
 
 .rightpanellink:hover {
-    transform: translateX(7px);
+    transform: translateX(4px);
 }
 
 .inline-conteiner {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-between;
     transition: .4s;
-    padding: 10px 20px;
+    padding: 10px 10px 10px 20px;
 }
 
 .inline-conteiner:hover,
@@ -83,25 +82,14 @@
 
 
 .inline-conteiner>span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    @include positioncenterbyflex;
+    gap: 5px;
 }
 
 .inline-conteiner>section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include positioncenterbyflex;
     gap: 8px;
     padding: 0 20px 0 0;
-}
-
-.inline-conteiner>span>img {
-    width: 4vh;
-    height: 4vh;
-    min-height: 50px;
-    min-width: 50px;
 }
 
 .alightcenter {
@@ -128,8 +116,7 @@
 }
 
 .topteam>div {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: start;
     gap: 10px;
     transition: .7s;
@@ -144,7 +131,8 @@
 }
 
 .topteam>div>div {
-    @include dftava
+    @include dftava;
+    width: 5.8vh;
 }
 
 .offer {
@@ -171,15 +159,16 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    align-items: start;
+    width: 90%;
 }
 
 .postsimg {
     display: flex;
-    gap: 40px;
+    gap: 30px;
 }
 
 .coments {
-    padding: 20px 0 0 0;
     width: 100%;
     display: flex;
     flex-direction: column;

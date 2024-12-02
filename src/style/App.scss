@@ -5,7 +5,7 @@
 @import './custom/modal.scss';
 @import './custom/calendar.scss';
 @import './custom/children.scss';
-@import  './custom/tournament.scss';
+@import './custom/tournament.scss';
 @import './pages.scss';
 
 * {
@@ -39,12 +39,10 @@ body {
 
 .dftcontainer {
   padding: 20px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include positioncenterbyflex;
 
-  width: 56vh;
-  min-width: 460px;
+  min-width: 490px;
+  width: 55vh;
 }
 
 .rightcontainer {
@@ -54,18 +52,19 @@ body {
 }
 
 .right {
+  padding-top: 3px;
+  overflow: hidden;
   width: 30vh;
   min-width: 260px;
-  overflow: hidden;
 }
 
 .leftpanel {
   @include dftPlate;
-  margin: 0.5vh 0;
 
   width: 22vh;
   min-width: 185px;
   padding: 1vh 0 0 0;
+  overflow: hidden;
 }
 
 .leftpanel>div {
@@ -77,10 +76,9 @@ body {
   border-radius: 2px;
   width: 76vh;
   margin: 0 0 3vh 0;
-  min-width: 560px;
+  min-width: 580px;
   min-height: 1000px;
-  transform: translateY(-100px);
-  z-index: -1;
+  transform: translateY(-100px)
 }
 
 .rightpanel {
@@ -103,7 +101,7 @@ body {
 
 .logo:hover {
   cursor: pointer;
-  filter: drop-shadow(0 0 4vh #E74343);
+  filter: drop-shadow(0 0 3vh #E74343);
 }
 
 header {
@@ -113,15 +111,21 @@ header {
   border-radius: 0;
   border: 0;
   min-height: 50px;
-  // z-index: 11;
+  z-index: 10;
 }
 
 header>div {
   @include positioncenterbyflex;
-  width: 35%;
+  width: 36%;
   height: 100%;
-  transform: translate(-5vh, 0);
+  transform: translate(2vh, 0);
   justify-content: space-between;
+}
+
+@media screen and (max-width: 1400px) {
+  header>div {
+    width: 50%;
+  }
 }
 
 header>div>div {
@@ -136,10 +140,13 @@ header>div>div {
 
 .centerplate:hover,
 .smallcenterplate:hover,
-.fullplate:hover,
 .leftpanel:hover,
 .rightpanel:hover {
   transform: translateY(-3px);
+}
+
+.center>div {
+  width: 100%;
 }
 
 .main {
@@ -178,4 +185,12 @@ header>div>div {
 .center {
   display: flex;
   flex-direction: column;
+  min-width: 200px;
+}
+
+.positioncenterbyabsolute {
+  position: absolute;
+  top: 40%;
+  left: 53%;
+  transform: translate(-50%, -50%);
 }

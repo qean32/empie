@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router";
+import useRequest from "../../customHooks/useRequest";
+import { TRANSFERServices } from "../../services/TRANSFERServices copy";
+import { Transfer } from "../pages/main/transfers";
 
-type Props = {
 
-}
-export const RightTransferChild = ({ }: Props) => {
-    const navigate = useNavigate()
+export const RightTransferChild = ({ }: {}) => {
+    const lasttransfer = useRequest(() => TRANSFERServices.GETTransfer(0, 1), ['lasttransfer'])
     return (
-        <div className="rightcontainer" style={{padding: '10px 0 '}}>
-            <div style={{ padding: '0 27px' }}><i onClick={() => navigate(`/profile/2`)}>Сашка Бирюков</i> покинул команду <i onClick={() => navigate(`/team/2`)}>Астартес</i></div>
+        <div className="rightcontainer">
+            <Transfer item={lasttransfer.finaldata[0]} />
         </div>
     );
 }

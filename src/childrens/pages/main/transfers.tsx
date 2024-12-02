@@ -1,37 +1,40 @@
-import { useState } from "react"
+import { useRef } from "react"
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate"
-import useDinamicPagination from "../../../customHooks/useDinamicPagination"
-import { arrey } from "../../../functions/GiveConst"
+import useDinamickPagination from "../../../customHooks/useDinamickPagination"
+import { TRANSFERServices } from "../../../services/TRANSFERServices copy"
+import { useNavigate } from "react-router"
 
 
-type Props = {
 
-}
-export const TransfersChild = ({ }: Props) => {
-    const [transfers, setTransfers] = useState<any[]>([{}, {}])
-
-    const ref = useDinamicPagination(() => setTransfers((prev: any) => [...prev, ...arrey]))
+export const TransfersChild = ({ }: {}) => {
+    const scrollRef: any = useRef()
+    const transfers: any = useDinamickPagination(() => TRANSFERServices.GETTransfer(transfers.offset), scrollRef, ['transfers'])
 
     return (
         <>
             <SmallCenterPlate>
-                <div className="transfers">
-                    {transfers.map((el, index) => (
-                        <Transfer key={index} />
+                <div className="transfers" style={{ maxWidth: '550px' }}>
+
+                    {transfers && transfers.finaldata.map((item: any) => (
+                        <Transfer item={item} key={item.id} />
                     ))}
 
-                    <div ref={ref} className="scrollhandlerref"></div>
+                    <div ref={scrollRef} className="scrollhandlerref"></div>
                 </div>
             </SmallCenterPlate>
         </>
     );
 }
 
-interface Props_ {
 
-}
-const Transfer = ({ }: Props_) => {
+export const Transfer = ({ item }: { item: any }) => {
+    const navigate = useNavigate()
+
     return (
-        <div className="transfer"><i>Сашка Бирюков</i> покинул команду <i>Астартес</i></div>
+        <div style={{ padding: '0 27px' }}>
+            <i onClick={() => navigate(`/profile/${item?.user?.id}`)}>
+                {item?.user?.first_name} {item?.user?.last_name}</i> {item?.script?.content} <i onClick={() => navigate(`/team/${item?.id}`)}>
+                {item?.team?.name ? item?.team?.name : 'команда удалена'}</i>
+        </div>
     )
 }

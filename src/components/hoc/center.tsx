@@ -1,9 +1,7 @@
 import { memo } from "react";
 
-type Props = {
-    children: any
-}
-export const Center = memo(({ children }: Props) => {
+
+export const Center = memo(({ children }: { children: any }) => {
     return (
         <div className="center">
             {children}

@@ -1,19 +1,20 @@
-import { host } from "../functions/GiveConst"
+import { host } from "../exports"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPATCH from "../functions/RQRequestPATCH"
 import RQRequestPOST from "../functions/RQRequestPOST"
+import { numsrting } from "../models/numsrting"
 
 export const TOURNAMENTServices = {
-    GETTournamets: (offset: number) => {
-        RQRequestGET(`${host} ${offset}`)
+    GETTournamet: (id: numsrting = '') => {
+        return RQRequestGET(`${host}unification/search/tournament/?id=${id}`)
     },
-    GETTourament: (id: number) => {
-        RQRequestGET(`${host} ${id}`)
+    GETTouramentShort: (offset: number = 0, winteam: numsrting = '', direction: numsrting = '') => {
+        return RQRequestGET(`${host}unification/search/tournament/short/?offset=${offset}&win_team=${winteam}&direction=${direction}`)
     },
     CREATETournament: (body: any) => {
-        RQRequestPOST(`${host} `, body)
+        return RQRequestPOST(`${host}unification/reg/tournament/`, body)
     },
     UPDATETournamet: (body: any, id: number) => {
-        RQRequestPATCH(`${host} ${id}`, body)
+        return RQRequestPATCH(`${host}unification/update/tournament/${id}/`, body)
     }
 }

@@ -3,19 +3,17 @@ import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { Button, ButtonDisabled } from "../../components/ui/meny-time use/customButton";
 import { Header } from "../../components/ui/meny-time use/header";
 import Repair from "../../components/ui/meny-time use/repair";
-import { positioncenterbyabsolute } from "../../functions/GiveConst";
+import { positioncenterbyabsolute } from "../../exports";
 import ChangeTitle from "../../functions/ChangeTitle";
-import { useContext } from "react";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
+import usePage from "../../customHooks/usePage";
 
-type Props = {
 
-}
-export const P404 = ({ }: Props) => {
+export const P404 = ({ }: {}) => {
     const navigate = useNavigate()
-    const { loading } = useContext<any>(SomeContext)
+    const [{}, loading]: any = usePage()
     ChangeTitle('страница не найдена')
+    
     return (
         <>
             <Header />
