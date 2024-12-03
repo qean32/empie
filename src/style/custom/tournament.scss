@@ -6,8 +6,7 @@
 
 .teamtournament {
     background-color: $background-color-dark;
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-between;
     padding: 0 20px 0 0;
     gap: 20px;
@@ -58,15 +57,17 @@
     width: 100%;
     padding: 5px 0;
     position: relative;
+    max-width: 127px;
 }
 
 .gridpoint>div {
-    display: flex;
-    align-items: center;
+    @include positioncenterbyflex;
     justify-content: space-between;
     padding: 0 10px;
     gap: 10px;
     height: 33%;
+    min-height: 20px;
+    max-height: 20px;
 }
 
 .gridpoint>div>p {
@@ -80,7 +81,7 @@
 
 .gridtournamnet>p>img {
     position: absolute;
-    top: 50%;
+    top: 40%;
 }
 
 .line {
@@ -122,4 +123,21 @@
     padding: 50px;
     gap: 40px;
     flex-wrap: wrap;
+}
+
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
+#nametextteam {
+    width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#imgteamlogo {
+    width: 30px;
+    height: 20px;
+    border-radius: 2px;
 }

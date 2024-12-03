@@ -1,11 +1,11 @@
 import useBoolean from "../../../customHooks/useBoolean"
 import { Loader, LoaderWhite } from "./loader"
 
-type Props = {
+
+export const Button = ({ title, function_ }: {
     title: string,
     function_: Function
-}
-export const Button = ({ title, function_ }: Props) => {
+}) => {
     const color = useBoolean(false)
     const fn = (e: any) => {
         e.preventDefault()
@@ -24,11 +24,11 @@ export const Button = ({ title, function_ }: Props) => {
     );
 }
 
-type Props_ = {
+
+export const ButtonDisabled = ({ title, function_ }: {
     title: string,
     function_: Function
-}
-export const ButtonDisabled = ({ title, function_ }: Props_) => {
+}) => {
     const color = useBoolean(false)
     const fn = (e: any) => {
         e.preventDefault()

@@ -1,7 +1,7 @@
 import moment from "moment"
-import { useState, useEffect, memo } from "react"
+import { memo, useContext } from "react"
 import Calendar from "react-calendar"
-import { useNavigate } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { SmallCenterPlate } from "../../../components/hoc/plates/centerPlate"
 import { Button } from "../../../components/ui/meny-time use/customButton"
 import { GridPoint } from "../../../components/ui/meny-time use/gridPoint"
@@ -13,13 +13,30 @@ import { Tournament_7 } from "../../../components/ui/one-time use/grid/7_tournam
 import { Tournament_8 } from "../../../components/ui/one-time use/grid/8_tournament"
 import { Tournament_9 } from "../../../components/ui/one-time use/grid/9_tournament"
 import { AdminTournament } from "../../../components/hoc/admin/adminTournament"
+import useRequest from "../../../customHooks/useRequest"
+import { APPLICATIONServices } from "../../../services/APPLICATIONServices"
+import { MEETINGServices } from "../../../services/MEETINGServices"
+import { TOURNAMENTServices } from "../../../services/TOURNAMENTServices"
+import { AdminSmallPanel } from "../../../components/hoc/plates/adminSmallPanel"
+import { TEAMServices } from "../../../services/TEAMServices"
+import { SomeContext } from "../../../context"
+import { useMutation } from "react-query"
 
 
-type Props = {
-}
-export const TournamentChild = ({ }: Props) => {
-    const navigate = useNavigate()
-    const [meetings, setMeetings] = useState<any[]>([{}, {}, {}, {}, {}, {}])
+export const TournamentChild = ({ }: {}) => {
+    const params: any = useParams()
+    const tournament = useRequest(() => TOURNAMENTServices.GETTournamet(params.id), ['tournament'])
+    const applications = useRequest(() => APPLICATIONServices.GETApplication(params.id), ['applications'])
+    const meetings = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id), ['meetings'])
+    const meetingsq = useRequest(() => MEETINGServices.GETMeeting(0, '', 99, params.id, true), ['meetingsq'])
+    const { user }: any = useContext(SomeContext)
+    const getteam = useRequest(() => TEAMServices.GETTeam(0, '', user?.user_id, tournament?.finaldata[0]?.direction?.id), ['getteamdirector'])
+    const createapplication = useMutation(() => APPLICATIONServices.CREATEApplication({ tournament: params?.id, team: getteam?.finaldata[0]?.id }))
+    
+    const applicationHandler = () => {
+        createapplication.mutate()
+    }
+
 
     return (
         <>
@@ -28,79 +45,53 @@ export const TournamentChild = ({ }: Props) => {
                     <div className="infotournamnet">
                         <div>
                             <div><p>команды / расписание</p></div>
-                            <div>
-                                <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
-                                    <div>
-                                        <div className="ava"></div>
-                                        <p>team</p>
-                                    </div>
-                                    <img src="/svg/accept.svg" alt="" style={{ width: '19px', transform: 'translate(3px, 0)' }} />
+                            {applications && applications.finaldata.map((item: any) => (
+                                <Application item={item} key={item.id} />
+                            ))}
+                            {
+                                getteam?.finaldata[0]?.id &&
+                                !applications?.finaldata?.find((application: any) => application?.team?.director == user?.user_id) &&
+                                <div style={{ padding: '40px 0 0 0' }}>
+                                    <Button title="подать заявку" function_={applicationHandler} />
                                 </div>
-                            </div>
-                            <div>
-                                <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
-                                    <div>
-                                        <div className="ava"></div>
-                                        <p>team</p>
-                                    </div>
-                                    <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />
-                                </div>
-                            </div>
-                            <div>
-                                <div onClick={() => navigate(`/team/2`)} className="teamtournament transition07">
-                                    <div>
-                                        <div className="ava"></div>
-                                        <p>team</p>
-                                    </div>
-                                    <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />
-                                </div>
-                                <Button title="одобрить" function_={() => undefined} />
-                            </div>
+                            }
                         </div>
-                        <CustomCalendar meetings={meetings} />
+                        <div>
+                            <CustomCalendar meetings={meetings.finaldata} />
+                        </div>
                     </div>
 
-                    {meetings.length < 6 && <div className="gridtournamnet"> <p>идет набор команд...<img src="/img/cezar.webp" alt="" /></p> </div>}
+                    {meetings.finaldata && meetings.finaldata.length < 6 && <div className="gridtournamnet center">
+                        <p style={{ height: '20px' }}>идет набор команд...</p> <img src="/svg/dragon-fire.svg" alt="" style={{ width: '240px' }} /> </div>}
 
-                    {meetings.length > 12 && <div className="gridtournamnet"> <p>набор команд окончен...<img src="/img/cezar.webp" alt="" /></p> </div>}
-                    { /* ПОТОМ ЗАМЕНИТЬ УСЛОВИЕ!!! */}
+                    {tournament?.finaldata[0]?.is_on && meetings.finaldata.length < 6 && <div className="gridtournamnet center"> <p style={{ height: '20px' }}>
+                        набор команд окончен...</p> <img src="/svg/dragon-fire.svg" alt="" style={{ width: '240px' }} /> </div>}
 
-                    {meetings.length == 6 && <Tournament_6 />}
-                    {meetings.length == 7 && <Tournament_7 />}
-                    {meetings.length == 8 && <Tournament_8 />}
-                    {meetings.length == 9 && <Tournament_9 />}
-                    {meetings.length == 10 && <Tournament_10 />}
-                    {meetings.length == 11 && <Tournament_11 />}
-                    {meetings.length == 12 && <Tournament_12 />}
+                    {meetings.finaldata && meetings.finaldata.length == 6 && <Tournament_6 meetings={meetings?.finaldata} />}
+                    {meetings.finaldata && meetings.finaldata.length == 7 && <Tournament_7 meetings={meetings?.finaldata} />}
+                    {meetings.finaldata && meetings.finaldata.length == 8 && <Tournament_8 meetings={meetings?.finaldata} />}
+                    {meetings.finaldata && meetings.finaldata.length == 9 && <Tournament_9 meetings={meetings?.finaldata} />}
+                    {meetings.finaldata && meetings.finaldata.length == 10 && <Tournament_10 meetings={meetings?.finaldata} />}
+                    {meetings.finaldata && meetings.finaldata.length == 11 && <Tournament_11 meetings={meetings?.finaldata} />}
+                    {meetings.finaldata && meetings.finaldata.length == 12 && <Tournament_12 meetings={meetings?.finaldata} />}
 
 
                     <div className="undertournamnet">
                         <p style={{ padding: '0 0 0 50px' }}>матчи - квалицикации</p>
                         <div>
-                            {meetings.map((el, index) => (<GridPoint key={index} />))}
+                            {meetingsq.finaldata && meetingsq.finaldata.map((item) => (<GridPoint key={item.id} item={item} />))}
                         </div>
                     </div>
                 </div>
             </SmallCenterPlate>
-            <AdminTournament />
+            <AdminTournament applications={[]} />
         </>
     )
 }
 
 const CustomCalendar = memo(({ meetings }: { meetings: any }) => {
-    const [onlyDate, setOnlyDate] = useState<any>(['24.09.24', '21.09.24'])
     const date = new Date()
     const navigate = useNavigate()
-
-    useEffect(() => {
-        if (meetings) {
-            meetings.forEach(({ date }: { date: any }) => {
-                if (date) {
-                    setOnlyDate((prew: any) => [...prew, date])
-                }
-            })
-        }
-    }, [meetings])
 
     let CheckFunction = (array: any, value: any) => {
         let result = false
@@ -125,14 +116,39 @@ const CustomCalendar = memo(({ meetings }: { meetings: any }) => {
                 }}
 
                 tileClassName={({ date }) => {
-                    if (onlyDate.find((x: any) =>
-                        x === moment(date).format("DD.MM.YY")
+                    if (meetings.find((x: any) =>
+                        x.date === moment(date).format("DD.MM.YY")
                     )) {
                         return 'highlight'
                     }
                 }}
 
             />
+
         </>
     );
 })
+
+
+
+export const Application = ({ item }: { item: any }) => {
+    const navigate = useNavigate()
+    const updateapplicant = useMutation(() => APPLICATIONServices.UPDATEApplication({ is_on: true }, item?.id).then(() => location.reload()))
+    return (
+        <div>
+            <div onClick={() => navigate(`/team/${item?.team?.id}`)} className="teamtournament transition07">
+                <div>
+                    <div className="ava" style={{ backgroundImage: `url(${item?.team?.logo})` }}></div>
+                    <p>{item?.team?.name}</p>
+                </div>
+                {item?.is_on ? <img src="/svg/accept.svg" alt="" style={{ width: '18px' }} /> : <img src="/svg/cross.svg" alt="" style={{ width: '14px' }} />}
+            </div>
+            {
+                !item?.is_on &&
+                <AdminSmallPanel>
+                    <Button title={"одообрить"} function_={() => updateapplicant.mutate()} />
+                </AdminSmallPanel>
+            }
+        </div>
+    );
+}

@@ -1,57 +1,68 @@
-import { memo, useState } from "react";
-import useDinamicPagination from "../../../customHooks/useDinamicPagination";
-import { arrey } from "../../../functions/GiveConst";
+import { useRef } from "react";
+import useDinamickPagination from "../../../customHooks/useDinamickPagination";
 import { FullPlate } from "../../../components/hoc/plates/fullPlate";
+import { CASHServices } from "../../../services/CASHServices";
+import useRequest from "../../../customHooks/useRequest";
+import { AdminSmallPanel } from "../../../components/hoc/plates/adminSmallPanel";
+import { useMutation } from "react-query";
+import { direction } from "../../../exports";
 
-type Props = {
 
-}
-export const CashChild = ({ }: Props) => {
-    const [cash, setCash] = useState<any[]>([{}, {}])
-
-    const ref = useDinamicPagination(() => setCash((prev: any) => [...prev, ...arrey]))
+export const CashChild = ({ }: {}) => {
+    const scrollRef: any = useRef()
+    const cash: any = useDinamickPagination(() => CASHServices.GETCash(cash.offset), scrollRef, ['cashs'], 18)
     return (
         <>
             <FullPlate>
                 <div style={{ padding: '100px 0 0 0' }}>
                     <CashHeader />
 
-                    {cash.map((el, index) => (
-                        <DftCash key={index} />
+                    {cash && cash.finaldata.map((item: any) => (
+                        <DftCash item={item} key={item.id} />
                     ))}
 
-                    <div ref={ref} className="scrollhandlerref"></div>
+                    <div ref={scrollRef} className="scrollhandlerref"></div>
                 </div>
             </FullPlate>
         </>
     );
 }
 
-type PropsDftCash = {
 
-}
-export const DftCash = ({ }: PropsDftCash) => {
+export const DftCash = ({ item }: { item: any }) => {
+    const cash = useRequest(() => CASHServices.GETBudget(), ['budget'])
+    const craeteCash = useMutation(() => CASHServices.DELETECash(item.id)
+        .catch(() => updateBudget.mutate()))
+    const updateBudget = useMutation(() => CASHServices.UPDATEBudget({ budget: Number(cash.finaldata[0]?.budget) - Number(item.price) })
+        .then(() => location.reload()))
+
+    const DeleteHandler = () => {
+        craeteCash.mutate()
+    }
     return (
         <>
-            <div className="cashheader greencash" style={{ padding: '10px 30px' }} id={false ? 'redcash' : ''}>
-                <div>+5000 ₽</div>
-                <div>покупка мяча</div>
-                <div>20.05.06</div>
-                <div>dota</div>
+            <div className="cashheader greencash" style={{ padding: '10px 20px 10px 20px' }} id={item?.price < 0 ? 'redcash' : ''}>
+                <div>{item?.price > 0 ? '+' : ''}{item?.price} ₽</div>
+                <div style={{ width: '200px', textAlign: 'center' }}>{item?.content}</div>
+                <div>{(item?.created_at).split(' ')[1]}</div>
+                <div>{item?.direction?.direction_name}</div>
+                <AdminSmallPanel>
+                    <img src="/svg/delete.svg" alt="" onClick={DeleteHandler} style={{ cursor: 'pointer', position: 'absolute', left: '-23px', zIndex: '1000000' }} />
+                </AdminSmallPanel>
             </div>
             <hr color="#262626" />
         </>
     );
 }
 
-type PropsCashheader = {
 
-}
-export const CashHeader = memo(({ }: PropsCashheader) => {
+export const CashHeader = ({ }: {}) => {
+    const cash = useRequest(() => CASHServices.GETBudget(), ['budget'])
+
     return (
         <>
             <div className="cashheader">
-                <div>вс 500 ₽</div>
+                <div style={{ transform: 'translateX(20px)' }}>{cash?.finaldata[0]?.budget} ₽</div>
                 <div>история расхода</div>
                 <div>дата <img src="/svg/calendar.svg" /></div>
                 <div>дисциплина</div>
@@ -59,4 +70,4 @@ export const CashHeader = memo(({ }: PropsCashheader) => {
             <hr color="#262626" />
         </>
     );
-})
+}

@@ -1,15 +1,13 @@
-import { host } from "../functions/GiveConst"
+import { host } from "../exports"
 import RQRequestGET from "../functions/RQRequestGET"
 import RQRequestPOST from "../functions/RQRequestPOST"
+import { numsrting } from "../models/numsrting"
 
 export const COMENTServices = {
-    GETComents: (offset: number, idpost: number) => {
-        RQRequestGET(`${offset} ${host} ${idpost}`)
+    GETComent: (idpost: number, offset: number = 0, author: numsrting = '') => {
+        return RQRequestGET(`${host}news/search/coment/?offset=${offset}&post=${idpost}&author=${author}`)
     },
     CREATEComent: (body: any) => {
-        RQRequestPOST(`${host}`, body)
+        return RQRequestPOST(`${host}news/reg/coment/`, body)
     },
-    GETComent: (id: number, idpost: number) => {
-        RQRequestGET(`${host} ${id} ${idpost}`)
-    }
 }

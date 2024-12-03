@@ -6,14 +6,16 @@ import ValidatePassword from "../../../functions/ValidatePassword"
 import ValidateEmail from "../../../functions/ValidateEmail"
 import { GenerateId } from "../../../functions/GenerateNumber"
 import ValidateWordToWord from "../../../functions/ValidateWordToWord"
+import RenameFile from "../../../functions/RenameFile"
 
-type PropsText = {
+
+export const InputText = ({ title, value, setValue, max, validate = true }: {
     title: string
     value: string
     setValue: Function
     max: number
-}
-export const InputText = ({ title, value, setValue, max }: PropsText) => {
+    validate?: boolean
+}) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -26,15 +28,17 @@ export const InputText = ({ title, value, setValue, max }: PropsText) => {
     }, [value])
 
     const check = () => {
-        if (value != '') { color.on() } else { color.off() }
-        if (!ValidateRuName(value)) { valide.on() } else { valide.off() }
+        value != '' ? color.on() : color.off()
+
+        if (validate)
+            ValidateRuName(value) ? valide.off() : valide.on()
     }
 
     const id_ = GenerateId()
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -48,12 +52,12 @@ export const InputText = ({ title, value, setValue, max }: PropsText) => {
     );
 }
 
-type PropsPassword = {
+
+export const InputPassword = ({ title, value, setValue }: {
     title: string
     value: string
     setValue: Function
-}
-export const InputPassword = ({ title, value, setValue }: PropsPassword) => {
+}) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
     const view = useBoolean(false)
@@ -63,12 +67,12 @@ export const InputPassword = ({ title, value, setValue }: PropsPassword) => {
     }
 
     useEffect(() => {
-        if (value != '') check()
+        value != '' && check()
     }, [value])
 
     const check = () => {
-        if (value != '') { color.on() } else { color.off() }
-        if (!ValidatePassword(value)) { valide.on() } else { valide.off() }
+        value != '' ? color.on() : color.off()
+        !ValidatePassword(value) ? valide.on() : valide.off()
     }
 
     const id_ = GenerateId()
@@ -76,7 +80,7 @@ export const InputPassword = ({ title, value, setValue }: PropsPassword) => {
         <div style={{ position: 'relative', width: '100%' }}>
             <img src={view.boolean ? "/svg/unlock.svg" : "/svg/lock.svg"} style={{ zIndex: '10' }} alt="" onClick={() => view.SwapFn()} className="lockpass" />
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type={view.boolean ? 'text' : 'password'} name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -85,11 +89,11 @@ export const InputPassword = ({ title, value, setValue }: PropsPassword) => {
     );
 }
 
-type PropsTime = {
+
+export const InputTime = ({ value, setValue }: {
     value: any
     setValue: Function
-}
-export const InputTime = ({ value, setValue }: PropsTime) => {
+}) => {
     const color = useBoolean(false)
     const input = useBoolean(false)
 
@@ -133,15 +137,14 @@ export const InputTime = ({ value, setValue }: PropsTime) => {
     );
 }
 
-type PropsDate = {
+
+export const InputDate = ({ value, setValue }: {
     value: string
     setValue: Function
-}
-export const InputDate = ({ value, setValue }: PropsDate) => {
+}) => {
     const [notification, setNotification] = useState<string>('')
 
     useEffect(() => {
-        console.log(value)
         if (value) {
             const value_: any = moment(value).format("DD.MM").split('.')
             const now: any = moment(new Date).format("DD.MM").split('.')
@@ -169,14 +172,13 @@ export const InputDate = ({ value, setValue }: PropsDate) => {
 }
 
 
-type PropsNumber = {
+export const InputNumber = ({ title, value, setValue, min, max }: {
     title: string
     value: number
     setValue: Function
     max: number
     min: number
-}
-export const InputNumber = ({ title, value, setValue, min, max }: PropsNumber) => {
+}) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -197,7 +199,7 @@ export const InputNumber = ({ title, value, setValue, min, max }: PropsNumber) =
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="number" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -206,12 +208,12 @@ export const InputNumber = ({ title, value, setValue, min, max }: PropsNumber) =
     );
 }
 
-type PropsCheckbox = {
+
+export const Checkbox = ({ title, fn, value }: {
     value: boolean
     fn: Function
     title: string
-}
-export const Checkbox = ({ title, fn, value }: PropsCheckbox) => {
+}) => {
     return (
         <div onClick={() => fn()} style={{ cursor: 'pointer' }}>
             <p style={{ position: 'relative', fontSize: '14px' }}>{title} <input type="checkbox" style={value ? { opacity: '0' } : { opacity: '1' }} className="transition03 checkbox_" />
@@ -220,12 +222,12 @@ export const Checkbox = ({ title, fn, value }: PropsCheckbox) => {
     );
 }
 
-type PropsEmail = {
+
+export const InputEmail = ({ title, value, setValue }: {
     title: string
     value: string
     setValue: Function
-}
-export const InputEmail = ({ title, value, setValue }: PropsEmail) => {
+}) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -246,7 +248,7 @@ export const InputEmail = ({ title, value, setValue }: PropsEmail) => {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -258,12 +260,12 @@ export const InputEmail = ({ title, value, setValue }: PropsEmail) => {
     );
 }
 
-type PropsSearch = {
+
+export const Search = ({ value, setValue, title }: {
     value: string
     setValue: Function
     title: string
-}
-export const Search = ({ value, setValue, title }: PropsSearch) => {
+}) => {
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -273,17 +275,16 @@ export const Search = ({ value, setValue, title }: PropsSearch) => {
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <input type="text" name="" id="" value={value} onChange={changeHandler} placeholder={`${title}`} />
-            <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '1.2vh', right: '-3.1vh' }} />
+            <img src="/svg/lupa.svg" alt="" style={{ position: 'absolute', top: '15px', right: '-22px' }} />
         </div>
     );
 }
 
 
-type PropsFile = {
+export const InputFile = ({ title = 'изображение', setValue }: {
     title?: string,
     setValue: Function
-}
-export const InputFile = ({ title = 'изображение', setValue }: PropsFile) => {
+}) => {
     const id_ = GenerateId()
     const [src, setSrc] = useState<any>([]);
     const urls = src.map((file: any) => URL.createObjectURL(file));
@@ -293,13 +294,14 @@ export const InputFile = ({ title = 'изображение', setValue }: PropsF
         if (!e.target.files[0]) return
 
         setSrc([e.target.files[0]])
-        setValue(e.target.files[0])
+        setValue(RenameFile(e))
     }
     return (
         <div>
             <input accept="image/png, image/jpeg, image/svg, image/jpg, image/webp" type="file" id={`${id_}`} style={{ display: 'none' }} onChange={changeHandler} />
-            <label htmlFor={`${id_}`} className="inputfile">
-                <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '90px', height: '60px' }}>{src.length > 0 ? <></> : <img src="/svg/upload.svg" />}</div>
+            <label htmlFor={`${id_}`} className="inputfile" style={{ pointerEvents: 'auto' }}>
+                <div className="ava" style={{ backgroundImage: `url(${urls[0]})`, width: '70px', height: '50px' }}>{src.length > 0 ? <></> :
+                    <img src="/svg/upload.svg" style={{ width: '27px' }} />}</div>
                 <p>{title}</p>
             </label>
         </div>
@@ -307,14 +309,13 @@ export const InputFile = ({ title = 'изображение', setValue }: PropsF
 }
 
 
-type PropsText_ = {
+export const InputText_ = ({ title, value, setValue, max, word }: {
     title: string
     value: string
     setValue: Function
     max: number
     word: string
-}
-export const InputText_ = ({ title, value, setValue, max, word }: PropsText_) => {
+}) => {
     const valide = useBoolean(false)
     const color = useBoolean(false)
 
@@ -323,19 +324,19 @@ export const InputText_ = ({ title, value, setValue, max, word }: PropsText_) =>
     }
 
     useEffect(() => {
-        if (value != '') check()
+        value != '' && check()
     }, [value])
 
     const check = () => {
-        if (value != '') { color.on() } else { color.off() }
-        if (!ValidateWordToWord(value, word)) { valide.on() } else { valide.off() }
+        value != '' ? color.on() : color.off()
+        ValidateWordToWord(value, word) ? valide.on() : valide.off()
     }
 
     const id_ = GenerateId()
     return (
         <div style={{ position: 'relative', width: '100%' }}>
             <label htmlFor={`${id_}`} className="fill" >
-                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -2.8vh)' } : {opacity: '0.8'}}>{title}</p>
+                <p style={color.boolean ? { opacity: '0.6', transform: 'translate(-.4vh, -25px)' } : { opacity: '0.8' }}>{title}</p>
             </label>
             <input type="text" name="" id={`${id_}`}
                 onFocus={() => color.on()} onBlur={check} onChange={changeHandler} value={value} />
@@ -348,3 +349,19 @@ export const InputText_ = ({ title, value, setValue, max, word }: PropsText_) =>
         </div>
     );
 }
+
+const InpuRange = ({ min, max, step, setValue }: {
+    max: number
+    min: number
+    step: number
+    setValue: Function
+}) => {
+    return (
+        <>
+            <input type="range" name="" id="" list="tickmarks" min={min} max={max}
+                step={step} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
+        </>
+    );
+}
+
+export default InpuRange;

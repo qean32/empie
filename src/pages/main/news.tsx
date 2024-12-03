@@ -1,86 +1,85 @@
-import { useContext, useState } from "react";
-import { ModalDirectionChildren } from "../../childrens/other/modalDirection";
+import { memo, useContext, useEffect, useRef } from "react";
 import { RightPanelChildren, RightPanelDirectionChildren } from "../../childrens/other/rightPanel";
 import { LeftPanel } from "../../components/hoc/leftPanel";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import { RightPanel } from "../../components/hoc/rightPanel";
 import { Header } from "../../components/ui/meny-time use/header";
-import { Modal } from "../../components/ui/meny-time use/modal";
-import { SomeContext } from "../../context";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { RightTransferChild } from "../../childrens/other/rightTransfer";
 import { TopTeamChild } from "../../childrens/other/topTeam";
 import { StreamChild } from "../../childrens/other/stream";
-import useBoolean from "../../customHooks/useBoolean";
 import ChangeTitle from "../../functions/ChangeTitle";
 import { Post } from "../../components/ui/meny-time use/post";
 import { Center } from "../../components/hoc/center";
 import { Right } from "../../components/hoc/right";
 import { TournamentChild } from "../../childrens/other/tournament";
 import { MoveonGridChild } from "../../childrens/other/moveongrid";
-import useDinamicPagination from "../../customHooks/useDinamicPagination";
-import { arrey } from "../../functions/GiveConst";
+import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
+import { POSTServices } from "../../services/POSTServices";
+import useRequest from "../../customHooks/useRequest";
+import { TOURNAMENTServices } from "../../services/TOURNAMENTServices";
+import Cezar from "../../components/ui/meny-time use/cezar";
+import usePage from "../../customHooks/usePage";
+import UserWasHereModal from "../../components/ui/one-time use/userwashere";
+import { userwashereStorage } from "../../exports";
+import { createPortal } from "react-dom";
+import { Modal } from "../../components/hoc/modal";
+import useBoolean from "../../customHooks/useBoolean";
 
-type Props = {
-}
-export const News = ({ }: Props) => {
-    const { loading, modal } = useContext<any>(SomeContext)
-    const [posts, setPosts] = useState<any[]>([{}, {}])
 
-    const ref = useDinamicPagination(() => setPosts((prev: any) => [...prev, ...arrey]))
-
-    const modaltournaments = useBoolean(false)
-    const modalmeetings = useBoolean(false)
-    const modalteams = useBoolean(false)
-
-    const direction = useParams()
-
-    console.log(direction)
-
+export const News = ({ }: {}) => {
+    const [{ }, loading]: any = usePage()
     ChangeTitle('новости')
 
-    if (!direction.iddirection) {
+    const modalregistration = useBoolean(false)
+    const userwashere_ = JSON.parse(localStorage.getItem(userwashereStorage) as any) || { userwashere: false }
+
+    const params = useParams()
+    const scrollRef: any = useRef()
+    const firstpost = useRequest(() => POSTServices.GETPost(0, params.iddirection, 1), ['firstpost'])
+    const tournament = useRequest(() => TOURNAMENTServices.GETTouramentShort(0), ['firsttournament'])
+    const posts: any = useDinamickPagination(() => POSTServices.GETPost(posts.offset, params.iddirection), scrollRef, ['post'], 4, 1)
+
+    useEffect(() => {
+        setTimeout(() => !userwashere_.userwashere && modalregistration.on(), 3000)
+    }, [])
+
+
+    if (!params.iddirection) {
         return (
             <>
-                {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
-                {modalteams.boolean && <Modal function_={modalteams.off}><ModalDirectionChildren function_={modalteams.off} link="teams" /></Modal>}
-                {modalmeetings.boolean && <Modal function_={modalmeetings.off}><ModalDirectionChildren function_={modalmeetings.off} link="meetings" /></Modal>}
-                {modaltournaments.boolean && <Modal function_={modaltournaments.off}><ModalDirectionChildren function_={modaltournaments.off} link="tournaments" /></Modal>}
+                {modalregistration.boolean && createPortal(
+                    <Modal function_={modalregistration.SwapFn}><UserWasHereModal modalregistration={modalregistration} /></Modal>,
+                    document.body
+                )}
                 <Header />
                 <div className="main">
                     {loading &&
                         <MainLoader />
                     }
                     <>
-                        <LeftPanel function_={modal.SwapFn} />
+                        <LeftPanel />
                         <Center>
 
-                            <SmallCenterPlate>
-                                <div className="dftcontainer" style={{
-                                    justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
-                                    backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
-                                }}>
-                                    <div style={{ margin: '10px 60px' }}>
-                                        <p style={{ fontSize: '30px' }}>СТАНЬ</p>
-                                        <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
-                                    </div>
-                                </div>
-                            </SmallCenterPlate >
+                            <Cezar />
 
-                            <DftPost />
-
-                            <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
-
-                            {posts.map((el, index) => (
-                                <DftPost key={index} />
+                            {firstpost && firstpost.finaldata.map((item: any) => (
+                                <DftPost key={item.id} item={item} />
                             ))}
 
-                            <div ref={ref} className="scrollhandlerref"></div>
+                            <SmallCenterPlate><TournamentChild item={tournament.finaldata[0]} /></SmallCenterPlate>
+
+                            {posts && posts.finaldata.map((item: any) => (
+                                <DftPost key={item.id} item={item} />
+                            ))}
+
+                            <div ref={scrollRef} className="scrollhandlerref"></div>
 
                         </Center>
+
                         <Right>
-                            <RightPanel><RightPanelChildren fn1={modaltournaments.on} fn3={modalmeetings.on} fn2={modalteams.on} /></RightPanel>
+                            <RightPanel><RightPanelChildren /></RightPanel>
                             <RightPanel><MoveonGridChild /></RightPanel>
                             <RightPanel><RightTransferChild /></RightPanel>
                             <RightPanel><TopTeamChild /></RightPanel>
@@ -94,42 +93,31 @@ export const News = ({ }: Props) => {
 
     return (
         <>
-            {modal.boolean && <Modal function_={modal.SwapFn}><ModalDirectionChildren function_={modal.SwapFn} /></Modal>}
             <Header />
             <div className="main">
                 {loading &&
                     <MainLoader />
                 }
                 <>
-                    <LeftPanel function_={modal.SwapFn} />
+                    <LeftPanel />
 
                     <Center>
 
-                        <SmallCenterPlate>
-                            <div className="dftcontainer" style={{
-                                justifyContent: 'start', backgroundImage: 'url(/img/cezar.webp)',
-                                backgroundSize: '50%', backgroundRepeat: 'no-repeat', backgroundPosition: '120%'
-                            }}>
-                                <div style={{ margin: '10px 60px' }}>
-                                    <p style={{ fontSize: '30px' }}>СТАНЬ</p>
-                                    <p style={{ fontSize: '30px', margin: '-5px 20px' }}>ОДНИМ ИЗ НАС</p>
-                                </div>
-                            </div>
-                        </SmallCenterPlate >
+                        <Cezar />
 
-                        <DftPost />
+                        <DftPost item={undefined} />
 
-                        <SmallCenterPlate><TournamentChild /></SmallCenterPlate>
+                        <SmallCenterPlate><TournamentChild item={undefined} /></SmallCenterPlate>
 
-                        {posts.map((el, index) => (
-                            <DftPost key={index} />
+                        {posts && posts.finaldata.map((item: any, index: number) => (
+                            <DftPost key={index} item={item} />
                         ))}
 
-                        <div ref={ref} className="scrollhandlerref"></div>
+                        <div ref={posts.scrollRef} className="scrollhandlerref"></div>
                     </Center>
 
                     <Right>
-                        <RightPanel><RightPanelDirectionChildren direction={Number(direction.iddirection)} /></RightPanel>
+                        <RightPanel><RightPanelDirectionChildren direction={Number(params.iddirection)} /></RightPanel>
                         <RightPanel><MoveonGridChild /></RightPanel>
                         <RightPanel><RightTransferChild /></RightPanel>
                         <RightPanel><TopTeamChild /></RightPanel>
@@ -141,13 +129,11 @@ export const News = ({ }: Props) => {
     )
 }
 
-type PropsDftPost = {
 
-}
-export const DftPost = ({ }: PropsDftPost) => {
+export const DftPost = memo(({ item }: { item: any }) => {
     return (
-        <SmallCenterPlate>
-            <Post />
+        <SmallCenterPlate key={item.id}>
+            <Post item={item} />
         </SmallCenterPlate>
     );
-}
+})

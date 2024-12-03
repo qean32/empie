@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 
 export default function () {
     const [boolean, setboolean] = useState<boolean>()
+    const controller = new AbortController
 
     useEffect(() => {
-        window.addEventListener('online', () => { setboolean(true) })
-        window.addEventListener('offline', () => { setboolean(false) })
+        window.addEventListener('online', () => { setboolean(true) }, { signal: controller.signal })
+        window.addEventListener('offline', () => { setboolean(false) }, { signal: controller.signal })
 
         return () => {
-            window.removeEventListener('online', () => { setboolean(true) })
-            window.removeEventListener('offline', () => { setboolean(false) })
+            controller.abort()
         }
     }, [])
 

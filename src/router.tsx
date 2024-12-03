@@ -8,7 +8,7 @@ import { Meetings } from "./pages/direction/meetings"
 import { Tournaments } from "./pages/direction/tournaments"
 import { Teams } from "./pages/direction/teams"
 import { P404 } from "./pages/main/p404"
-import { Registration } from "./pages/main/registration"
+import { Registration } from "./pages/main/Registration"
 import { Music } from "./pages/main/music"
 import { Profile } from "./pages/main/profile"
 import { Team } from "./pages/direction/team"
@@ -20,7 +20,7 @@ import { Tournament } from "./pages/direction/tournament"
 import { EditProfile } from "./pages/main/editProfile"
 import { EditTeam } from "./pages/direction/editTeam"
 import { RegTeam } from "./pages/direction/regTeam"
-import { Protokols } from "./pages/direction/protokols"
+import { Protokols } from "./pages/main/Protokols"
 import { Wall } from "./pages/main/wall"
 
 type Props = {
@@ -33,7 +33,7 @@ export const Router = ({ }: Props) => {
                 <Routes>
                     <Route element={<Test />} path="/test" />
                     <Route element={<News />} path="/" />
-                    <Route element={<News />} path="/:iddirection" />
+                    <Route element={<News />} path="/direction/:iddirection" />
                     <Route element={<Registration />} path="/registration" />
                     <Route element={<Profile />} path="/profile/:id" />
                     <Route element={<Wall />} path="/wall" />

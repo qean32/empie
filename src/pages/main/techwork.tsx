@@ -1,18 +1,16 @@
-import { useContext } from "react";
 import { SmallCenterPlate } from "../../components/hoc/plates/centerPlate";
 import Repair from "../../components/ui/meny-time use/repair";
-import { positioncenterbyabsolute } from "../../functions/GiveConst";
-import { SomeContext } from "../../context";
+import { positioncenterbyabsolute } from "../../exports";
 import { MainLoader } from "../../components/ui/meny-time use/loader";
 import { FakeHeader } from "../../components/ui/meny-time use/header";
 import ChangeTitle from "../../functions/ChangeTitle";
+import usePage from "../../customHooks/usePage";
 
-type Props = {
 
-}
-export const Techwork = ({ }: Props) => {
-    const { loading } = useContext<any>(SomeContext)
+export const Techwork = ({ }: {}) => {
+    const [{}, loading]: any = usePage()
     ChangeTitle('тех работы')
+    
     return (
         <>
             <FakeHeader />

@@ -1,18 +1,18 @@
 import { Cross } from "../../components/ui/meny-time use/cross"
 import { useNavigate } from "react-router"
-import { direction, idDirection } from "../../functions/GiveConst"
+import { idDirection } from "../../exports"
 
-type Props = {
+
+export const ModalDirectionChildren = ({ link = '', function_ }: {
     link?: string
     function_: React.MouseEventHandler<HTMLSpanElement>
-}
-export const ModalDirectionChildren = ({ link = '', function_ }: Props) => {
+}) => {
     const navigate = useNavigate()
 
-    const navigate_ = (id: number, direction: string) => {
+    const navigate_ = (id: number) => {
         if (link)
             return `/${link}/${id}`
-        return `/${direction}`
+        return `/direction/${id}`
     }
 
     return (
@@ -21,9 +21,9 @@ export const ModalDirectionChildren = ({ link = '', function_ }: Props) => {
                 <Cross />
             </span>
             <div style={{ border: 'none' }}><img src="/svg/bascketball.svg" alt="" className="transition07" /> <p className="transition03">баскетбол</p></div>
-            <div onClick={() => navigate(navigate_(idDirection.cs, direction.cs))}><img src="/svg/cs.svg" alt="" className="transition07" /> <p className="transition03">CS</p></div>
+            <div onClick={() => navigate(navigate_(idDirection.cs))}><img src="/svg/cs.svg" alt="" className="transition07" /> <p className="transition03">CS</p></div>
             <div ></div>
-            <div onClick={() => navigate(navigate_(idDirection.dota, direction.dota))}><img src="/svg/dota.svg" alt="" className="transition07" /> <p className="transition03">DOTA</p> </div>
+            <div onClick={() => navigate(navigate_(idDirection.dota))}><img src="/svg/dota.svg" alt="" className="transition07" /> <p className="transition03">DOTA</p> </div>
         </div>
     );
 }

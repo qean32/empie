@@ -1,15 +1,13 @@
 import { useNavigate } from "react-router";
 
-type Props = {
 
-}
-export const TournamentChild = ({ }: Props) => {
+export const TournamentChild = ({ item }: { item: any }) => {
     const navigate = useNavigate()
     return (
-        <div className="dftcontainer" onClick={() => navigate(`/tournament/2`)} style={{ cursor: 'pointer', padding: '25px 0' }}>
-            <div style={{ justifyContent: 'space-between', display: 'flex', width: '100%', padding: '0 30px' }}>
-                <p>попытка номер два</p>
-                <p>ДОПЗ: 14.05</p>
+        <div className="dftcontainer" onClick={() => navigate(`/tournament/${item.id}`)} style={{ cursor: 'pointer', padding: '25px 0' }}>
+            <div style={{ justifyContent: 'space-between', display: 'flex', width: '100%', padding: '0 32px' }}>
+                <p>{item?.name}</p>
+                <p>ДОПЗ: {item?.date}</p>
             </div>
         </div>
     );

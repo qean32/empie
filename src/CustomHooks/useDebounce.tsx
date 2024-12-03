@@ -8,7 +8,7 @@ export default function (defaultValue: any, daley: number = 400) {
             setDebousedValue(defaultValue)
         }, daley)
 
-        return clearTimeout(timeOut)
+        return () => clearTimeout(timeOut)
     }, [defaultValue, daley])
 
     return debounsedValue

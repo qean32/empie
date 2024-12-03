@@ -11,10 +11,10 @@ export const SelectTeam = ({ teams, setTeam }: Props) => {
     return (
         <div>
             <select onChange={SelectTeam}>
-                {teams.map((el, index) =>
+                {teams && teams.map((item: any) =>
                     <option
-                        key={index}>
-                        ROKUZAN asdas - 22
+                        key={item.id}>
+                        {item?.name} - {item?.id}
                     </option>)}
             </select>
         </div>

@@ -1,5 +1,5 @@
-export default (e: React.ChangeEvent<HTMLInputElement>, setState: Function) => {
-    const newName = Math.floor(Math.random() * 100000)
+export default (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = Math.floor(Math.random() * 1000000)
     const nameProject = 'space_gallery'
     const input = e.currentTarget
 
@@ -10,5 +10,5 @@ export default (e: React.ChangeEvent<HTMLInputElement>, setState: Function) => {
     dT.items.add(newFile)
     input.files = dT.files
 
-    setState(input.files.item(0))
+    return input.files.item(0)
 }

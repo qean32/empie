@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { positioncenterbyabsolute } from "../../../functions/GiveConst";
+import { positioncenterbyabsolute } from "../../../exports";
 import { EmpieLogo } from "./Logo";
 import useBoolean from "../../../customHooks/useBoolean";
 
@@ -8,15 +8,15 @@ export const MainLoader = () => {
     const up = useBoolean(false)
 
     useEffect(() => {
-        const int = setInterval(() => {
-            if (up.boolean) { setPoints(prev => prev + '.') }
-            if (!up.boolean) { setPoints(prev => prev.slice(0, -1)) }
+        const interval = setInterval(() => {
+            up.boolean && setPoints(prev => prev + '.')
+            !up.boolean && setPoints(prev => prev.slice(0, -1))
             if (points == '.') { up.on(); return }
             if (points == '..') { up.off(); return }
         }, 200)
 
         return () => {
-            clearInterval(int)
+            clearInterval(interval)
         }
     }, [points])
     return (
@@ -35,7 +35,7 @@ export const MainLoader = () => {
 
 export const Loader = () => {
     return (
-        <div style={{ transform: 'translate(-1vh, -2.4vh)' }}>
+        <div className="adaptiveloader">
             <span className="loader"></span>
         </div>
     )
@@ -43,7 +43,7 @@ export const Loader = () => {
 
 export const LoaderWhite = () => {
     return (
-        <div style={{ transform: 'translate(-1vh, -2.4vh)' }}>
+        <div className="adaptiveloader">
             <span className="loader loaderWhite"></span>
         </div>
     )
