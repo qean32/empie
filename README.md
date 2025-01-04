@@ -1,18 +1,16 @@
-<p align="center" style="display: flex; gap: 20px ">
-<img src="https://vite.dev/logo.svg" width="120" alt="" />
-<img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" width="120" alt="" />
-<img src="https://i.postimg.cc/Xvn0qsF3/Group-46.png" width="120" alt="" />
-</p>
+# react typescript reactquery scss vite
+### for start
+```
+$ npm run dev
+```
+use my backend application to launch correctly
+### The application is designed as a non-commercial platform for organizing and holding tournaments and friendly meetings in various sports - esports disciplines
+### current version: 3.00
 
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules
+<div>
+<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/ts.svg" width="40" />
+<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/react.svg" width="50" />
+<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/reactquery.svg" width="50" />
+<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/scss.svg" width="37" />
+<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/vite.svg" width="45" />
+</div>
