@@ -11,11 +11,13 @@ import useDinamickPagination from "../../customHooks/useDinamickPagination";
 import { useParams } from "react-router";
 import { MEETINGServices } from "../../services/MEETINGServices";
 import usePage from "../../customHooks/usePage";
+import React from "react";
 
 
 export const Meetings = ({ }: {}) => {
     const [{ }, loading]: any = usePage()
     ChangeTitle('матчи')
+
 
     const params = useParams()
     const scrollRef: any = useRef()
@@ -37,6 +39,7 @@ export const Meetings = ({ }: {}) => {
                         ))}
 
                         <div ref={scrollRef} className="scrollhandlerref"></div>
+
                     </Center>
                     <DftRPanel direction={Number(params.iddirection)} />
                 </>

@@ -20,7 +20,30 @@ import usePage from "../../customHooks/usePage";
 export const Community = ({ }: {}) => {
     const [{ }, loading]: any = usePage()
     ChangeTitle('сообщество')
+    return (
+        <>
+            <Header />
+            {loading &&
+                <MainLoader />
+            }
+            <div className="main">
+                <LeftPanel />
+                <Center>
+                    <SmallCenterPlate>
+                        <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
+                            <Component />
+                        </div>
+                    </SmallCenterPlate>
+                </Center>
+                <Right>
+                    <RightPanel><RightPanelChildren /></RightPanel>
+                </Right>
+            </div>
+        </>
+    );
+}
 
+export const Component: React.FC = () => {
     const [search, setSearch] = useState<string>('')
     const [searchValue, setSearchValue] = useState<any[]>()
     const debounsedValue = useDebounce(search)
@@ -35,47 +58,31 @@ export const Community = ({ }: {}) => {
 
     return (
         <>
-            <Header />
-            {loading &&
-                <MainLoader />
-            }
-            <div className="main">
-                <LeftPanel />
-                <Center>
-                    <SmallCenterPlate>
-                        <div className="dftcontainer" style={{ flexDirection: 'column', padding: '0', alignItems: 'normal' }}>
-                            <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
-                                <Search value={search} setValue={setSearch} title="найти человека" />
-                            </div>
-                            <div style={{ minHeight: '500px', position: 'relative' }}>
-
-                                {
-                                    !debounsedValue ?
-                                        player && player.finaldata.map((item: any) => (
-                                            <InlineUser item={item} key={item.id} />
-                                        ))
-                                        :
-                                        searchValue && searchValue.length > 0 ?
-                                            searchValue.map((item: any) => (
-                                                <InlineUser item={item} key={item.id} />
-                                            ))
-                                            :
-                                            <div className="positioncenterbyabsolute"
-                                                style={{ width: '200px' }}>
-                                                <Repair />
-                                                <p>нет результатов с таким значением</p>
-                                            </div>
-                                }
-
-                                <div ref={scrollRef} className="scrollhandlerref"></div>
-                            </div>
-                        </div>
-                    </SmallCenterPlate>
-                </Center>
-                <Right>
-                    <RightPanel><RightPanelChildren /></RightPanel>
-                </Right>
+            <div style={{ margin: '2vh 0 4vh 2vh', width: '80%' }}>
+                <Search value={search} setValue={setSearch} title="найти человека" />
             </div>
+            <div style={{ minHeight: '500px', position: 'relative' }}>
+
+                {
+                    !debounsedValue ?
+                        player && player.finaldata.map((item: any) => (
+                            <InlineUser item={item} key={item.id} />
+                        ))
+                        :
+                        searchValue && searchValue.length > 0 ?
+                            searchValue.map((item: any) => (
+                                <InlineUser item={item} key={item.id} />
+                            ))
+                            :
+                            <div className="positioncenterbyabsolute"
+                                style={{ width: '200px' }}>
+                                <Repair />
+                                <p>нет результатов с таким значением</p>
+                            </div>
+                }
+
+                <div ref={scrollRef} className="scrollhandlerref"></div>
+            </div >
         </>
-    );
+    )
 }

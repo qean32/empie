@@ -17,6 +17,7 @@ export default (fetch_: Function, ref: any, RQkey: string[], step: number = 4, o
     }, [RQData.data])
 
     useEffect(() => {
+        console.log('rerendr')
         if (HandlerScroll && RQData?.data?.next) {
             setTimeout(() =>
                 setOffset((prev: number) => prev + step)
