@@ -8,11 +8,12 @@ use my backend application to launch correctly
 ### current version: 3.52
 
 <div>
-<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/ts.svg" width="40" />
-<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/react.svg" width="50" />
-<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/reactquery.svg" width="50" />
-<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/scss.svg" width="37" />
-<img src="https://github.com/qean32/empie/blob/inworkconnection/public/svg_/vite.svg" width="45" />
+<img src="https://github.com/qean32/qean32/blob/main/icon/ts.svg" />
+<img src="https://github.com/qean32/qean32/blob/main/icon/react.svg" />
+<img src="https://github.com/qean32/qean32/blob/main/icon/reactquery.svg" />
+<img src="https://github.com/qean32/qean32/blob/main/icon/scss.svg" />
+<img src="https://github.com/qean32/qean32/blob/main/icon/JWT.svg" />
+  
 </div>
 
 </br>
